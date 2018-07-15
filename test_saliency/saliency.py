@@ -31,7 +31,7 @@ def decode(coded_seq):
     decoded_seq = []
 
     for number in coded_seq:
-        for am, code in aaMap_fang.iteritems():
+        for am, code in aaMap_fang.items():
             if code == number and am is not 'NoSeq':
                 decoded_seq.append(am)
 
@@ -103,7 +103,7 @@ def load_data():
     mask = mask.astype(theano.config.floatX)
     vals = np.arange(0, 8)
     labels_new = np.zeros((num_seqs, seqlen))
-    for i in xrange(np.size(labels, axis=0)):
+    for i in range(np.size(labels, axis=0)):
         labels_new[i, :] = np.dot(labels[i, :, :], vals)
     labels_new = labels_new.astype('int32')
     labels = labels_new
