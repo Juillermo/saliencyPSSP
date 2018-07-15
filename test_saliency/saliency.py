@@ -132,7 +132,7 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
     start_time = time.time()
     prev_time = start_time
 
-    saliencies = np.zeros((2, num_seqs, seqlen, 21))
+    saliencies = np.zeros((2, num_seqs, seqlen, seqlen, 21))
     saliency_info = pd.DataFrame(columns=["Seq", "Pos", "Class", "Prediction", "Aminoacids", "Predictions", "True labels"])
 
     ssConvertMap = {0: 'C', 1: 'B', 2: 'E', 3: 'G', 4: 'I', 5: 'H', 6: 'S', 7: 'T', 8: ''}
@@ -174,7 +174,8 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
                 inputs = [X_test_am[seq, ...], X_test_pssm[seq, ...], 0]
                 inputs = [inputs[0][None, ...], inputs[1][None, ...], inputs[2]]
                 grads = get_gradients(inputs)
-                saliencies[:,seq,pos,:] = np.array(grads)
+                grads = np.array(grads)
+                saliencies[:,seq,pos,:,:] = grads[:,0,...]
 
         now = time.time()
         time_since_start = now - start_time
