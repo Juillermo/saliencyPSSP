@@ -4,8 +4,11 @@
 
 import gzip
 import pickle
+import time
+from datetime import datetime, timedelta
 
 import numpy as np
+import pandas as pd
 import theano
 import keras.backend as K
 from keras.models import load_model
@@ -68,14 +71,14 @@ def convertPredictQ8Result2HumanReadable(predictedSS):
 
 def load_data():
     ## Load training data
-    TRAIN_PATH = 'cullpdb+profile_6133_filtered.npy.gz'
+    TRAIN_PATH = '../secondary_proteins_prediction/data/cullpdb+profile_6133_filtered.npy.gz'
     X_in = load_gz(TRAIN_PATH)
     X_train = np.reshape(X_in, (5534, 700, 57))
     del X_in
     X_train = X_train[:, :, :]
 
     ## Load test data
-    TEST_PATH = 'cb513+profile_split1.npy.gz'
+    TEST_PATH = '../secondary_proteins_prediction/data/cb513+profile_split1.npy.gz'
     X_test_in = load_gz(TEST_PATH)
     X_test = np.reshape(X_test_in, (514, 700, 57))
     del X_test_in
@@ -105,8 +108,8 @@ def load_data():
     labels_new = labels_new.astype('int32')
     labels = labels_new
 
-    print "X.shape", X.shape
-    print "labels.shape", labels.shape
+    print("X.shape", X.shape)
+    print("labels.shape", labels.shape)
 
     return X, mask, labels, num_seqs
 
@@ -119,29 +122,35 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
     window = 29
 
     ## Load model
-    model = load_model("modelQ8.h5")
+    model = load_model("../Standalone/data/modelQ8.h5")
 
     ## Make predictions
     predictions = model.predict([X_test_am, X_test_pssm])
-    print predictions.shape
+    print(predictions.shape)
 
-    ## Compute saliencies
-    saliencies = np.empty((num_seqs, seqlen), dtype=object)
+
+    start_time = time.time()
+    prev_time = start_time
+
+    saliencies = np.zeros((2, num_seqs, seqlen, 21))
+    saliency_info = pd.DataFrame(columns=["Seq", "Pos", "Class", "Prediction", "Aminoacids", "Predictions", "True labels"])
 
     ssConvertMap = {0: 'C', 1: 'B', 2: 'E', 3: 'G', 4: 'I', 5: 'H', 6: 'S', 7: 'T', 8: ''}
     for seq in range(num_seqs):
+
         gato = decode(X_test_am[seq])
         perro = convertPredictQ8Result2HumanReadable(predictions[seq])
         conejo = "".join([ssConvertMap[el] for el in labels_test[seq]])
 
         for pos in range(seqlen):
             if labels_test[seq, pos] == np.argmax(predictions[seq, pos]):
+                new_row = len(saliency_info)
+
                 target_class = labels_test[seq, pos]
-                saliency_object = {}
 
                 ## Compute string aminoacids and predictions
-                saliency_object["Class"] = ssConvertMap[target_class]
-                saliency_object["Prediction"] = predictions[seq, pos, target_class]
+                saliency_info.loc[new_row, "Class"] = ssConvertMap[target_class]
+                saliency_info.loc[new_row, "Prediction"] = predictions[seq, pos, target_class]
 
                 if pos >= window:
                     init = pos - window
@@ -153,9 +162,9 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
                 else:
                     end = pos + window + 1
 
-                saliency_object["Aminoacids"] = gato[init: pos] + " " + gato[pos] + " " + gato[pos + 1: end]
-                saliency_object["Predictions"] = perro[init:pos] + " " + perro[pos] + " " + perro[pos + 1:end]
-                saliency_object["True labels"] = conejo[init:pos] + " " + conejo[pos] + " " + conejo[pos + 1:end]
+                saliency_info.loc[new_row, "Aminoacids"] = gato[init: pos] + " " + gato[pos] + " " + gato[pos + 1: end]
+                saliency_info.loc[new_row, "Predictions"] = perro[init:pos] + " " + perro[pos] + " " + perro[pos + 1:end]
+                saliency_info.loc[new_row, "True labels"] = conejo[init:pos] + " " + conejo[pos] + " " + conejo[pos + 1:end]
 
                 ## Compute gradients
                 gradients = theano.gradient.grad(model.outputs[0][seq, pos, target_class],
@@ -165,13 +174,19 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
                 inputs = [X_test_am[seq, ...], X_test_pssm[seq, ...], 0]
                 inputs = [inputs[0][None, ...], inputs[1][None, ...], inputs[2]]
                 grads = get_gradients(inputs)
-                saliency_object["grads"] = np.array(grads)
+                saliencies[:,seq,pos,:] = np.array(grads)
 
-                saliencies[seq, pos] = saliency_object
+        now = time.time()
+        time_since_start = now - start_time
+        time_since_prev = now - prev_time
+        prev_time = now
+        est_time_left = time_since_start * num_seqs
+        eta = datetime.now() + timedelta(seconds=est_time_left)
+        eta_str = eta.strftime("%c")
+        print("  %s since start (%.2f s)" % (time_since_start, time_since_prev))
+        print("  estimated %s to go (ETA: %s)" % (est_time_left, eta_str))
 
-        print seq
-
-    return saliencies
+    return saliency_info, saliencies
 
 
 def main():
@@ -180,11 +195,11 @@ def main():
     X_test_am, X_test_pssm = toFang(X, mask)
 
     ## Compute saliencies
-    saliencies = compute_saliency(X_test_am, X_test_pssm, labels_test)
+    saliencies, saliency_info = compute_saliency(X_test_am, X_test_pssm, labels_test)
 
     ## Save file
     with open(("saliencies.pkl"), 'w') as f:
-        pickle.dump(saliencies, f, pickle.HIGHEST_PROTOCOL)
+        pickle.dump((saliencies, saliency_info), f, pickle.HIGHEST_PROTOCOL)
 
 
 if __name__ == "__main__":
