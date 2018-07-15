@@ -71,14 +71,14 @@ def convertPredictQ8Result2HumanReadable(predictedSS):
 
 def load_data():
     ## Load training data
-    TRAIN_PATH = '../secondary_proteins_prediction/data/cullpdb+profile_6133_filtered.npy.gz'
+    TRAIN_PATH = 'cullpdb+profile_6133_filtered.npy.gz'
     X_in = load_gz(TRAIN_PATH)
     X_train = np.reshape(X_in, (5534, 700, 57))
     del X_in
     X_train = X_train[:, :, :]
 
     ## Load test data
-    TEST_PATH = '../secondary_proteins_prediction/data/cb513+profile_split1.npy.gz'
+    TEST_PATH = 'cb513+profile_split1.npy.gz'
     X_test_in = load_gz(TEST_PATH)
     X_test = np.reshape(X_test_in, (514, 700, 57))
     del X_test_in
