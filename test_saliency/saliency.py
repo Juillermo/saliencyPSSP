@@ -122,7 +122,7 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
     window = 29
 
     ## Load model
-    model = load_model("../Standalone/data/modelQ8.h5")
+    model = load_model("modelQ8.h5")
 
     ## Make predictions
     predictions = model.predict([X_test_am, X_test_pssm])
@@ -198,7 +198,7 @@ def main():
     saliencies, saliency_info = compute_saliency(X_test_am, X_test_pssm, labels_test)
 
     ## Save file
-    with open(("saliencies.pkl"), 'w') as f:
+    with open(("saliencies.pkl"), 'wb') as f:
         pickle.dump((saliencies, saliency_info), f, pickle.HIGHEST_PROTOCOL)
 
 
