@@ -126,5 +126,5 @@ if __name__ == "__main__":
     saliencies = compute_saliency(X_am, X_pssm, labels_test)
 
     ## Save file
-    with open(("saliencies.pkl"), 'w') as f:
+    with open(("saliencies.pkl"), 'wb') as f:
         pickle.dump(saliencies, f, pickle.HIGHEST_PROTOCOL)
