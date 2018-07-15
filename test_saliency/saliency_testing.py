@@ -50,8 +50,8 @@ def load_data():
     labels_new = labels_new.astype('int32')
     labels = labels_new
 
-    print "X.shape", X.shape
-    print "labels.shape", labels.shape
+    print("X.shape", X.shape)
+    print("labels.shape", labels.shape)
 
     return X, mask, labels, num_seqs
 
@@ -67,7 +67,7 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
 
     ## Make predictions
     predictions = model.predict([X_test_am, X_test_pssm])
-    print predictions.shape
+    print(predictions.shape)
 
     ## Compute saliencies
     saliencies = np.empty((1, 1), dtype=object)
@@ -113,7 +113,7 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
 
                 saliencies[seq, pos] = saliency_object
 
-                print seq, pos
+                print(seq, pos)
 
                 return saliencies
 
