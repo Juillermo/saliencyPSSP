@@ -219,9 +219,12 @@ def save_predictions():
     print("Predictions made")
 
     with open("predictions.pkl", 'wb') as f:
-        pickle.dump(predictions, f, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(predictions, f, protocol=2)
 
 if __name__ == "__main__":
-    #main_saliencies()
+    import sys
+    with open("job_output.txt", "w") as f:
+        sys.stdout = f
+        #main_saliencies()
 
-    save_predictions()
+        save_predictions()
