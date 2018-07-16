@@ -69,7 +69,7 @@ def convertPredictQ8Result2HumanReadable(predictedSS):
     return ''.join(result)
 
 
-def load_data(data_path):
+def save_data(data_path):
     ## Load training data
     TRAIN_PATH = data_path + 'cullpdb+profile_6133_filtered.npy.gz'
     X_in = load_gz(TRAIN_PATH)
@@ -111,10 +111,16 @@ def load_data(data_path):
     print("X.shape", X.shape)
     print("labels.shape", labels.shape)
 
-    X_am, X_pmm = toFang(X, mask)
+    X_am, X_psmm = toFang(X, mask)
 
-    return X_am, X_pmm, mask, labels, num_seqs
+    with open(data_path + "data.pkl", "wb") as f:
+        pickle.dump((X_am, X_psmm, mask, labels), f, protocol=2)
+    print("Data saved")
 
+def load_data(data_path):
+    with open(data_path+"data.pkl", "rb") as f:
+        X_am, X_psmm, mask, labels = pickle.load(f)
+        return X_am, X_psmm, mask, labels
 
 def compute_saliency(X_test_am, X_test_pssm, labels_test):
     num_seqs = np.size(X_test_am, 0)
@@ -196,7 +202,7 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
 
 def main_saliencies():
     ## Load data
-    X_am, X_pssm, mask, labels_test, num_seqs = load_data("")
+    X_am, X_pssm, mask, labels_test = load_data("")
 
     ## Compute saliencies
     saliencies, saliency_info = compute_saliency(X_am, X_pssm, labels_test)
@@ -205,8 +211,9 @@ def main_saliencies():
     with open(("saliencies.pkl"), 'wb') as f:
         pickle.dump((saliencies, saliency_info), f, pickle.HIGHEST_PROTOCOL)
 
+
 def save_predictions():
-    X_am, X_pssm, mask, labels_test, num_seqs = load_data("")
+    X_am, X_pssm, mask, labels_test = load_data("")
     print("Data loaded")
 
     ## Load model
@@ -221,10 +228,12 @@ def save_predictions():
     with open("predictions.pkl", 'wb') as f:
         pickle.dump(predictions, f, protocol=2)
 
+
 if __name__ == "__main__":
     import sys
+
     with open("job_output.txt", "w") as f:
         sys.stdout = f
-        #main_saliencies()
-
-        save_predictions()
+        # main_saliencies()
+        # save_predictions()
+        save_data("")
