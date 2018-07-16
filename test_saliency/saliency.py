@@ -1,7 +1,3 @@
-# Install libraries: theano, keras
-# Bring data files
-# Bring model file
-
 import gzip
 import pickle
 import time
@@ -117,14 +113,35 @@ def save_data(data_path):
         pickle.dump((X_am, X_psmm, mask, labels), f, protocol=2)
     print("Data saved")
 
-def load_data(data_path):
-    with open(data_path+"data.pkl", "rb") as f:
-        X_am, X_psmm, mask, labels = pickle.load(f)
-        return X_am, X_psmm, mask, labels
 
-def compute_saliency(X_test_am, X_test_pssm, labels_test):
-    num_seqs = np.size(X_test_am, 0)
-    seqlen = np.size(X_test_am, 1)
+def load_data(data_path, num_seqs=0):
+    with open(data_path + "data.pkl", "rb") as f:
+        X_am, X_psmm, mask, labels = pickle.load(f)
+        if num_seqs == 0:
+            num_seqs = len(X_am)
+        return X_am[:num_seqs], X_psmm[:num_seqs], mask[:num_seqs], labels[:num_seqs]
+
+
+def compute_tensor_saliency(X_am, X_pssm):
+    if X_am.ndim == 2:
+        X_am = X_am[None, ...]
+        X_pssm = X_pssm[None, ...]
+
+    model = load_model("modelQ8.h5")
+
+    gradients = theano.gradient.jacobian(model.outputs[0][:, :, 5].flatten(),
+                                         wrt=[model.inputs[0], model.inputs[1]])
+    get_gradients = K.function(inputs=[model.inputs[0], model.inputs[1], K.learning_phase()],
+                               outputs=gradients)
+    grads = get_gradients([X_am, X_pssm, 0])
+
+    with open(("saliencies.pkl"), 'wb') as f:
+        pickle.dump(grads, f, protocol=2)
+
+
+def compute_saliency(X_am, X_pssm, labels):
+    num_seqs = np.size(X_am, 0)
+    seqlen = np.size(X_am, 1)
 
     # 29 aminoacids per side
     window = 29
@@ -133,7 +150,7 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
     model = load_model("modelQ8.h5")
 
     ## Make predictions
-    predictions = model.predict([X_test_am, X_test_pssm])
+    predictions = model.predict([X_am, X_pssm])
     print(predictions.shape)
 
     start_time = time.time()
@@ -146,15 +163,15 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
     ssConvertMap = {0: 'C', 1: 'B', 2: 'E', 3: 'G', 4: 'I', 5: 'H', 6: 'S', 7: 'T', 8: ''}
     for seq in range(num_seqs):
 
-        gato = decode(X_test_am[seq])
+        gato = decode(X_am[seq])
         perro = convertPredictQ8Result2HumanReadable(predictions[seq])
-        conejo = "".join([ssConvertMap[el] for el in labels_test[seq]])
+        conejo = "".join([ssConvertMap[el] for el in labels[seq]])
 
         for pos in range(seqlen):
-            if labels_test[seq, pos] == np.argmax(predictions[seq, pos]):
+            if labels[seq, pos] == np.argmax(predictions[seq, pos]):
                 new_row = len(saliency_info)
 
-                target_class = labels_test[seq, pos]
+                target_class = labels[seq, pos]
 
                 ## Compute string aminoacids and predictions
                 saliency_info.loc[new_row, "Class"] = ssConvertMap[target_class]
@@ -181,7 +198,7 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
                                                  wrt=[model.inputs[0], model.inputs[1]])
                 get_gradients = K.function(inputs=[model.inputs[0], model.inputs[1], K.learning_phase()],
                                            outputs=gradients)
-                inputs = [X_test_am[seq, ...], X_test_pssm[seq, ...], 0]
+                inputs = [X_am[seq, ...], X_pssm[seq, ...], 0]
                 inputs = [inputs[0][None, ...], inputs[1][None, ...], inputs[2]]
                 grads = get_gradients(inputs)
                 grads = np.array(grads)
@@ -197,19 +214,14 @@ def compute_saliency(X_test_am, X_test_pssm, labels_test):
         print("  %s since start (%.2f s)" % (time_since_start, time_since_prev))
         print("  estimated %s to go (ETA: %s)" % (est_time_left, eta_str))
 
-    return saliency_info, saliencies
+    with open(("saliencies.pkl"), 'wb') as f:
+        pickle.dump((saliencies, saliency_info), f, protocol=2)
 
 
 def main_saliencies():
-    ## Load data
-    X_am, X_pssm, mask, labels_test = load_data("")
-
-    ## Compute saliencies
-    saliencies, saliency_info = compute_saliency(X_am, X_pssm, labels_test)
-
-    ## Save file
-    with open(("saliencies.pkl"), 'wb') as f:
-        pickle.dump((saliencies, saliency_info), f, pickle.HIGHEST_PROTOCOL)
+    X_am, X_pssm, mask, labels = load_data("", num_seqs=1)
+    compute_saliency(X_am, X_pssm, labels)
+    compute_tensor_saliency(X_am, X_pssm)
 
 
 def save_predictions():
@@ -234,6 +246,6 @@ if __name__ == "__main__":
 
     with open("job_output.txt", "w") as f:
         sys.stdout = f
-        # main_saliencies()
+        main_saliencies()
         # save_predictions()
-        save_data("")
+        # save_data("")
