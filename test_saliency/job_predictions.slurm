@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH --job-name=saliency
+#SBATCH --job-name=predictions
 
-#SBATCH --time=13:00:00
+#SBATCH --time=00:20:00
 
 #SBATCH --nodes=1
 

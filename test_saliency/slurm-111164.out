@@ -1,0 +1,41 @@
+Running SLURM prolog script on pink51
+===============================================================================
+Job started on Sun Jul 15 03:15:13 BST 2018
+Job ID          : 111164
+Job name        : saliency
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/test_saliency
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink51
+Job Output Follows ...
+===============================================================================
+Using TensorFlow backend.
+Traceback (most recent call last):
+  File "saliency_testing.py", line 122, in <module>
+    X, mask_test, labels_test, num_seqs = load_data()
+  File "saliency_testing.py", line 48, in load_data
+    for i in xrange(np.size(labels, axis=0)):
+NameError: name 'xrange' is not defined
+==============================================================================
+Running epilogue script on pink51.
+
+Submit time  : 2018-07-15T03:15:12
+Start time   : 2018-07-15T03:15:13
+End time     : 2018-07-15T03:15:52
+Elapsed time : 00:00:39 (Timelimit=04:00:00)
+
+Job ID: 111164
+Cluster: i5
+User/Group: grm1g17/fp
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 00:00:08
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 1.47% of 00:09:06 core-walltime
+
+Memory Utilized: 142.70 MB
+

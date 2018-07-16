@@ -1,0 +1,45 @@
+Running SLURM prolog script on pink51
+===============================================================================
+Job started on Sun Jul 15 03:55:30 BST 2018
+Job ID          : 111170
+Job name        : saliency
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/test_saliency
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink51
+Job Output Follows ...
+===============================================================================
+Using Theano backend.
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.6/site-packages/keras/engine/saving.py:305: UserWarning: Error in loading the saved optimizer state. As a result, your model is starting with a freshly initialized optimizer.
+  warnings.warn('Error in loading the saved optimizer '
+X.shape (6048, 700, 42)
+labels.shape (6048, 700)
+(6048, 700, 9)
+Traceback (most recent call last):
+  File "saliency.py", line 206, in <module>
+    main()
+  File "saliency.py", line 198, in main
+    saliencies, saliency_info = compute_saliency(X_test_am, X_test_pssm, labels_test)
+  File "saliency.py", line 177, in compute_saliency
+    saliencies[:,seq,pos,:] = np.array(grads)
+ValueError: could not broadcast input array from shape (2,1,700,21) into shape (2,21)
+==============================================================================
+Running epilogue script on pink51.
+
+Submit time  : 2018-07-15T03:55:30
+Start time   : 2018-07-15T03:55:30
+End time     : 2018-07-15T05:17:32
+Elapsed time : 01:22:02 (Timelimit=07:00:00)
+
+Job ID: 111170
+Cluster: i5
+User/Group: grm1g17/fp
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 15:56:08
+CPU Efficiency: 83.25% of 19:08:28 core-walltime
+Memory Utilized: 3.95 GB
+

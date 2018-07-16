@@ -1,0 +1,41 @@
+Running SLURM prolog script on pink51
+===============================================================================
+Job started on Sun Jul 15 03:39:10 BST 2018
+Job ID          : 111168
+Job name        : saliency
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/test_saliency
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink51
+Job Output Follows ...
+===============================================================================
+Using Theano backend.
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.6/site-packages/keras/engine/saving.py:305: UserWarning: Error in loading the saved optimizer state. As a result, your model is starting with a freshly initialized optimizer.
+  warnings.warn('Error in loading the saved optimizer '
+X.shape (4, 700, 42)
+labels.shape (4, 700)
+(4, 700, 9)
+0 0
+==============================================================================
+Running epilogue script on pink51.
+
+Submit time  : 2018-07-15T03:39:10
+Start time   : 2018-07-15T03:39:10
+End time     : 2018-07-15T03:45:32
+Elapsed time : 00:06:22 (Timelimit=04:00:00)
+
+Job ID: 111168
+Cluster: i5
+User/Group: grm1g17/fp
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 00:07:30
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 8.41% of 01:29:08 core-walltime
+
+Memory Utilized: 1.54 GB
+
