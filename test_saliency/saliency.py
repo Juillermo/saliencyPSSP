@@ -114,28 +114,34 @@ def save_data(data_path):
     print("Data saved")
 
 
-def load_data(data_path, num_seqs=0):
+def load_data(data_path, first_seq=0, num_seqs=0):
     with open(data_path + "data.pkl", "rb") as f:
+
         X_am, X_psmm, mask, labels = pickle.load(f)
+
         if num_seqs == 0:
-            num_seqs = len(X_am)
-        return X_am[:num_seqs], X_psmm[:num_seqs], mask[:num_seqs], labels[:num_seqs]
+            last_seq = len(X_am)
+        else:
+            last_seq = first_seq + num_seqs
+
+        return X_am[first_seq:last_seq], X_psmm[first_seq:last_seq], mask[first_seq:last_seq], labels[
+                                                                                               first_seq:last_seq]
 
 
-def compute_tensor_saliency(X_am, X_pssm):
+def compute_tensor_saliency(X_am, X_pssm, first_seq, num_seqs):
     if X_am.ndim == 2:
         X_am = X_am[None, ...]
         X_pssm = X_pssm[None, ...]
 
     model = load_model("modelQ8.h5")
 
-    gradients = theano.gradient.jacobian(model.outputs[0][:, :, 5].flatten(),
-                                         wrt=[model.inputs[0], model.inputs[1]])
+    gradients = jacobian(model.outputs[0][:, :, 5].flatten(),
+                         wrt=[model.inputs[0], model.inputs[1]])
     get_gradients = K.function(inputs=[model.inputs[0], model.inputs[1], K.learning_phase()],
                                outputs=gradients)
     grads = get_gradients([X_am, X_pssm, 0])
 
-    with open(("saliencies.pkl"), 'wb') as f:
+    with open(("saliencies"+str(first_seq)+"-"+str(first_seq+num_seqs)+".pkl"), 'wb') as f:
         pickle.dump(grads, f, protocol=2)
 
 
@@ -219,9 +225,11 @@ def compute_saliency(X_am, X_pssm, labels):
 
 
 def main_saliencies():
-    X_am, X_pssm, mask, labels = load_data("", num_seqs=1)
-    compute_saliency(X_am, X_pssm, labels)
-    compute_tensor_saliency(X_am, X_pssm)
+    first_seq=1
+    num_seqs=20
+    X_am, X_pssm, mask, labels = load_data("", first_seq=first_seq, num_seqs=num_seqs)
+    # compute_saliency(X_am, X_pssm, labels)
+    compute_tensor_saliency(X_am, X_pssm, first_seq, num_seqs)
 
 
 def save_predictions():
