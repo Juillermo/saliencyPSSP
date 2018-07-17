@@ -241,6 +241,84 @@ def save_predictions():
         pickle.dump(predictions, f, protocol=2)
 
 
+def jacobian(expression, wrt, consider_constant=None,
+             disconnected_inputs='raise'):
+    """
+    Compute the full Jacobian, row by row.
+    Parameters
+    ----------
+    expression : Vector (1-dimensional) :class:`~theano.gof.graph.Variable`
+        Values that we are differentiating (that we want the Jacobian of)
+    wrt : :class:`~theano.gof.graph.Variable` or list of Variables
+        Term[s] with respect to which we compute the Jacobian
+    consider_constant : list of variables
+        Expressions not to backpropagate through
+    disconnected_inputs: string
+        Defines the behaviour if some of the variables
+        in `wrt` are not part of the computational graph computing `cost`
+        (or if all links are non-differentiable). The possible values are:
+        - 'ignore': considers that the gradient on these parameters is zero.
+        - 'warn': consider the gradient zero, and print a warning.
+        - 'raise': raise an exception.
+    Returns
+    -------
+    :class:`~theano.gof.graph.Variable` or list/tuple of Variables (depending upon `wrt`)
+        The Jacobian of `expression` with respect to (elements of) `wrt`.
+        If an element of `wrt` is not differentiable with respect to the
+        output, then a zero variable is returned. The return value is
+        of same type as `wrt`: a list/tuple or TensorVariable in all cases.
+    """
+    from theano.tensor import arange
+    # Check inputs have the right format
+    assert isinstance(expression, theano.gof.Variable), \
+        "tensor.jacobian expects a Variable as `expression`"
+    assert expression.ndim < 2, \
+        ("tensor.jacobian expects a 1 dimensional variable as "
+         "`expression`. If not use flatten to make it a vector")
+
+    using_list = isinstance(wrt, list)
+    using_tuple = isinstance(wrt, tuple)
+
+    if isinstance(wrt, (list, tuple)):
+        wrt = list(wrt)
+    else:
+        wrt = [wrt]
+
+    if expression.ndim == 0:
+        # expression is just a scalar, use grad
+        return theano.gradient.format_as(using_list, using_tuple,
+                                         theano.gradient.grad(expression,
+                                                              wrt,
+                                                              consider_constant=consider_constant,
+                                                              disconnected_inputs=disconnected_inputs))
+
+    def inner_function(*args):
+        idx = args[0]
+        expr = args[1]
+        rvals = []
+        for inp in args[2:]:
+            rval = theano.gradient.grad(expr[idx],
+                                        inp,
+                                        consider_constant=consider_constant,
+                                        disconnected_inputs=disconnected_inputs)
+            rvals.append(rval)
+        return rvals
+
+    # Computing the gradients does not affect the random seeds on any random
+    # generator used n expression (because during computing gradients we are
+    # just backtracking over old values. (rp Jan 2012 - if anyone has a
+    # counter example please show me)
+    jacobs, updates = theano.scan(inner_function,
+                                  sequences=arange(expression.shape[0]),
+                                  non_sequences=[expression] + wrt)
+    # assert not updates, \
+    #     ("Scan has returned a list of updates. This should not "
+    #      "happen! Report this to theano-users (also include the "
+    #      "script that generated the error)")
+
+    return theano.gradient.format_as(using_list, using_tuple, jacobs)
+
+
 if __name__ == "__main__":
     import sys
 
