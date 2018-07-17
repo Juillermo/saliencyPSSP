@@ -2,6 +2,7 @@ import gzip
 import pickle
 import time
 from datetime import datetime, timedelta
+import argparse
 
 import numpy as np
 import pandas as pd
@@ -128,7 +129,7 @@ def load_data(data_path, first_seq=0, num_seqs=0):
                                                                                                first_seq:last_seq]
 
 
-def compute_tensor_saliency(X_am, X_pssm, first_seq, num_seqs):
+def compute_tensor_saliency(X_am, X_pssm, args):
     if X_am.ndim == 2:
         X_am = X_am[None, ...]
         X_pssm = X_pssm[None, ...]
@@ -141,7 +142,7 @@ def compute_tensor_saliency(X_am, X_pssm, first_seq, num_seqs):
                                outputs=gradients)
     grads = get_gradients([X_am, X_pssm, 0])
 
-    with open(("saliencies"+str(first_seq)+"-"+str(first_seq+num_seqs)+".pkl"), 'wb') as f:
+    with open("saliencies" + str(args.seq) + str(args.label) + ".pkl", 'wb') as f:
         pickle.dump(grads, f, protocol=2)
 
 
@@ -225,11 +226,29 @@ def compute_saliency(X_am, X_pssm, labels):
 
 
 def main_saliencies():
-    first_seq=1
-    num_seqs=20
-    X_am, X_pssm, mask, labels = load_data("", first_seq=first_seq, num_seqs=num_seqs)
+    parser = argparse.ArgumentParser(description='Compute saliencies')
+    parser.add_argument('--label', type=chr, default='H', metavar='label',
+                        help='class to which gradients are computed (default H)')
+    parser.add_argument('--seq', type=int, default=0, metavar='seq',
+                        help='sequence of which the gradient is calculated (default 0)')
+
+    parser.add_argument('--no-cuda', action='store_true', default=False,
+                        help='disables CUDA training')
+    parser.add_argument('--seed', type=int, default=1, metavar='S',
+                        help='random seed (default: 1)')
+
+    parser.add_argument("-o", help="save folder", default=None)
+
+    args = parser.parse_args()
+
+    if args.index_array is not None:
+        first_seq = args.seq
+        num_seqs = 1
+
+        X_am, X_pssm, mask, labels = load_data("", first_seq=first_seq, num_seqs=num_seqs)
+        compute_tensor_saliency(X_am, X_pssm, args)
+
     # compute_saliency(X_am, X_pssm, labels)
-    compute_tensor_saliency(X_am, X_pssm, first_seq, num_seqs)
 
 
 def save_predictions():
