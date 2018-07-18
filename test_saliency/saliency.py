@@ -22,6 +22,10 @@ def load_gz(path):  # load a .npy.gz file
 aaMap_fang = {'A': 0, 'R': 1, 'N': 2, 'D': 3, 'C': 4, 'Q': 5, 'E': 6, 'G': 7, 'H': 8, 'I': 9, 'L': 10, 'K': 11, 'M': 12,
               'F': 13, 'P': 14, 'S': 15, 'T': 16, 'W': 17, 'Y': 18, 'V': 19, 'NoSeq': 20}
 
+ssConvertMap = {0: 'C', 1: 'B', 2: 'E', 3: 'G', 4: 'I', 5: 'H', 6: 'S', 7: 'T', 8: ''}
+ssConvertString = 'CBEGIHST'
+aaString_Fang = 'ARNDCQEGHILKMFPSTWYVN'
+
 
 def decode(coded_seq):
     coded_seq = np.argmax(coded_seq, axis=1)
@@ -59,7 +63,6 @@ def toFang(X, mask):
 
 def convertPredictQ8Result2HumanReadable(predictedSS):
     predSS = np.argmax(predictedSS, axis=-1)
-    ssConvertMap = {0: 'C', 1: 'B', 2: 'E', 3: 'G', 4: 'I', 5: 'H', 6: 'S', 7: 'T', 8: ''}
     result = []
     for i in range(0, 700):
         result.append(ssConvertMap[predSS[i]])
@@ -136,13 +139,13 @@ def compute_tensor_saliency(X_am, X_pssm, args):
 
     model = load_model("modelQ8.h5")
 
-    gradients = jacobian(model.outputs[0][:, :, 5].flatten(),
+    gradients = jacobian(model.outputs[0][:, :, ssConvertString.find(args.label)].flatten(),
                          wrt=[model.inputs[0], model.inputs[1]])
     get_gradients = K.function(inputs=[model.inputs[0], model.inputs[1], K.learning_phase()],
                                outputs=gradients)
     grads = get_gradients([X_am, X_pssm, 0])
 
-    with open("saliencies" + str(args.seq) + str(args.label) + ".pkl", 'wb') as f:
+    with open("saliencies/saliencies" + str(args.seq) + str(args.label) + ".pkl", 'wb') as f:
         pickle.dump(grads, f, protocol=2)
 
 
@@ -167,7 +170,6 @@ def compute_saliency(X_am, X_pssm, labels):
     saliency_info = pd.DataFrame(
         columns=["Seq", "Pos", "Class", "Prediction", "Aminoacids", "Predictions", "True labels"])
 
-    ssConvertMap = {0: 'C', 1: 'B', 2: 'E', 3: 'G', 4: 'I', 5: 'H', 6: 'S', 7: 'T', 8: ''}
     for seq in range(num_seqs):
 
         gato = decode(X_am[seq])
@@ -227,21 +229,13 @@ def compute_saliency(X_am, X_pssm, labels):
 
 def main_saliencies():
     parser = argparse.ArgumentParser(description='Compute saliencies')
-    parser.add_argument('--label', type=chr, default='H', metavar='label',
+    parser.add_argument('--label', type=str, default='H', metavar='label',
                         help='class to which gradients are computed (default H)')
     parser.add_argument('--seq', type=int, default=0, metavar='seq',
                         help='sequence of which the gradient is calculated (default 0)')
-
-    parser.add_argument('--no-cuda', action='store_true', default=False,
-                        help='disables CUDA training')
-    parser.add_argument('--seed', type=int, default=1, metavar='S',
-                        help='random seed (default: 1)')
-
-    parser.add_argument("-o", help="save folder", default=None)
-
     args = parser.parse_args()
 
-    if args.index_array is not None:
+    if args.seq is not None:
         first_seq = args.seq
         num_seqs = 1
 
