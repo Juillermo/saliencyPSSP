@@ -37,31 +37,3 @@ def load_gz(path):  # load a .npy.gz file
         return np.load(f)
     else:
         return np.load(path)
-
-
-def toFang(X, mask):
-    # Permutation from Troyanska's pssm arranging (ACDEFGHIKLMNPQRSTVWXY) to Fang's ('ARNDCQEGHILKMFPSTWYV NoSeq')
-    # Amino Acid 'X' was treated as amino acid 'A'. 'B' was treated as amino acid 'N'. 'Z' was treated as amino acid 'Q'
-    sorted_fang = sorted(aaMap_fang.keys(), key=lambda letter: aaMap_fang[letter])
-
-    aaMap = ['A', 'C', 'E', 'D', 'G', 'F', 'I', 'H', 'K', 'M', 'L', 'N', 'Q', 'P', 'S', 'R', 'T', 'W', 'V', 'Y', 'X']
-    pssm = 'ACDEFGHIKLMNPQRSTVWXY'
-    aaMap_jurtz = {amino: i for i, amino in enumerate(aaMap)}
-    pssm_jurtz = {amino: i for i, amino in enumerate(pssm)}
-
-    index_am = np.array([aaMap_jurtz[letter] for letter in sorted_fang if letter is not 'NoSeq'])
-    index_pssm = np.array([pssm_jurtz[letter] for letter in sorted_fang if letter is not 'NoSeq'])
-
-    X_am = X[:, :, index_am]
-    X_pssm = X[:, :, index_pssm + 21]
-
-    # Amino Acid 'X' was treated as amino acid 'A'. 'B' was treated as amino acid 'N'. 'Z' was treated as amino acid 'Q
-    X_am[:, :, aaMap_fang['A']] = X[:, :, aaMap_jurtz['A']] + X[:, :, aaMap_jurtz['X']]
-    X_pssm[:,:,aaMap_fang['A']] = X[:, :, pssm_jurtz['A']] + X[:,:, pssm_jurtz['X']]
-
-    # Add NoSeq class
-    mask_inv = mask * -1 + 1
-    X_am = np.concatenate([X_am, mask_inv[:, :, None]], axis=2)
-    X_pssm = np.concatenate([X_pssm, mask_inv[:, :, None]], axis=2)
-
-    return X_am, X_pssm
