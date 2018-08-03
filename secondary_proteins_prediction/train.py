@@ -83,7 +83,7 @@ def main():
     print("  number of parameters: %d" % num_params)
     print("  layer output shapes:")
     for layer in all_layers:
-        name = string.ljust(layer.__class__.__name__, 32)
+        name = layer.__class__.__name__
         print("    %s %s" % (name, nn.layers.get_output_shape(layer)))
     print("Creating cost function")
     # lasagne.layers.get_output produces a variable for the output of the net
