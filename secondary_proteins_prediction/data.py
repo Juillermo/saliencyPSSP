@@ -96,7 +96,7 @@ def get_test():
     ## DUMMY -> CONCAT ##
     vals = np.arange(0, 8)
     labels_new = np.zeros((num_seq_test, seqlen))
-    for i in xrange(np.size(labels_test, axis=0)):
+    for i in range(np.size(labels_test, axis=0)):
         labels_new[i, :] = np.dot(labels_test[i, :, :], vals)
     labels_new = labels_new.astype('int32')
     labels_test = labels_new

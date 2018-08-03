@@ -271,7 +271,7 @@ def main():
         time_since_start = now - start_time
         time_since_prev = now - prev_time
         prev_time = now
-        est_time_left = time_since_start * num_epochs
+        est_time_left = time_since_prev * (num_epochs - epoch)
         eta = datetime.now() + timedelta(seconds=est_time_left)
         eta_str = eta.strftime("%c")
         print ("  %s since start (%.2f s)" % (utils.hms(time_since_start), time_since_prev))

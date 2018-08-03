@@ -42,7 +42,7 @@ print "Averaged on top %d" % topX
 print "Validation = %.5f" % best_val.mean()
 
 par = np.array(metadata['param_values'])
-
+"""
 print "Params shape:"
 print par.shape
 for i in range(par.shape[0]):
@@ -50,5 +50,5 @@ for i in range(par.shape[0]):
     print par[i].shape
     print "-First element:"
     print par[i][0]
-
+"""
 print metadata['config_name']
