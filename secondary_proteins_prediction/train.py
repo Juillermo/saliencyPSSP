@@ -7,7 +7,7 @@ import sys
 from datetime import datetime, timedelta
 import importlib
 import time
-import cPickle as pickle
+import pickle
 
 print ("loading data ...")
 # import data
