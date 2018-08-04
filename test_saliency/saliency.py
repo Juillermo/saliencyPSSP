@@ -201,8 +201,8 @@ def compute_tensor_jurtz(X, mask, args):
     nn.layers.set_all_param_values(l_out, metadata['param_values'])
 
     print("Compile functions")
-    # gradients = theano.gradient.grad(inference[0,0,7], wrt=sym_x)
-    gradients = theano.gradient.jacobian(inference[args.seq, :np.sum(mask[seq]), ssConvertString.find(args.label)].flatten(), wrt=sym_x)
+    seq_len = int(np.sum(mask[args.seq]))
+    gradients = theano.gradient.jacobian(inference[args.seq, :seq_len, ssConvertString.find(args.label)], wrt=sym_x)
     get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
 
     inputs = X[:64]
@@ -211,7 +211,7 @@ def compute_tensor_jurtz(X, mask, args):
     print(grads.shape)
 
     with open("saliencies_jurtz/saliencies" + str(args.seq) + str(args.label) + ".pkl", 'wb') as f:
-        pickle.dump(grads, f, protocol=2)
+        pickle.dump(grads[:seq_len, args.seq, :seq_len], f, protocol=2)
 
 
 def main_saliencies_jurtz():
@@ -219,7 +219,7 @@ def main_saliencies_jurtz():
     parser.add_argument('--label', type=str, default='H', metavar='label',
                         help='class to which gradients are computed (default H)')
     parser.add_argument('--seq', type=int, default=0, metavar='seq',
-                       help='sequence of which the gradient is calculated (default 0)')
+                        help='sequence of which the gradient is calculated (default 0)')
     args = parser.parse_args()
 
     if args.seq is not None:
