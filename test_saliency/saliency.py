@@ -200,33 +200,47 @@ def compute_tensor_jurtz(X, mask, args):
     print("Load parameters")
     nn.layers.set_all_param_values(l_out, metadata['param_values'])
 
-    print("Compile functions")
-    seq_len = int(np.sum(mask[args.seq]))
-    gradients = theano.gradient.jacobian(inference[args.seq, :seq_len, ssConvertString.find(args.label)], wrt=sym_x)
-    get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
+    print("Compute saliencies")
+    saliencies = []
+    for batch_seq in range(64):
+        seq_len = int(np.sum(mask[batch_seq]))
+        gradients = theano.gradient.jacobian(inference[batch_seq, :seq_len, ssConvertString.find(args.label)],
+                                             wrt=sym_x)
+        get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
 
-    inputs = X[:64]
-    grads = get_gradients(inputs)
-    grads = np.array(grads)
-    print(grads.shape)
+        grads = get_gradients(X)
+        grads = np.array(grads)
+        saliencies.append(grads[:seq_len, batch_seq, :seq_len])
+        print(batch_seq)
 
-    with open("saliencies_jurtz/saliencies" + str(args.seq) + str(args.label) + ".pkl", 'wb') as f:
-        pickle.dump(grads[:seq_len, args.seq, :seq_len], f, protocol=2)
+    with open("saliencies_jurtz/saliencies_batch" + str(args.batch) + str(args.label) + ".pkl", 'wb') as f:
+        pickle.dump(saliencies, f, protocol=2)
 
 
 def main_saliencies_jurtz():
     parser = argparse.ArgumentParser(description='Compute saliencies (jurtz)')
     parser.add_argument('--label', type=str, default='H', metavar='label',
                         help='class to which gradients are computed (default H)')
-    parser.add_argument('--seq', type=int, default=0, metavar='seq',
-                        help='sequence of which the gradient is calculated (default 0)')
+    parser.add_argument('--batch', type=int, default=0, metavar='batch',
+                        help='batch of which the gradient is calculated (default 0)')
     args = parser.parse_args()
 
-    if args.seq is not None:
-        from data import get_train
-        TRAIN_PATH = 'cullpdb+profile_6133_filtered.npy.gz'
-        X_train, _, _, _, mask_train, _, _ = get_train(TRAIN_PATH)
-        compute_tensor_jurtz(X_train, mask_train, args)
+    batch_size = 64
+    if args.batch is not None:
+        if args.batch < 5534 // batch_size:
+            from data import get_train
+            TRAIN_PATH = 'cullpdb+profile_6133_filtered.npy.gz'
+            if args.batch < 5278 // batch_size:
+                X, _, _, _, mask, _, _ = get_train(TRAIN_PATH)
+            else:
+                _, X, _, _, _, mask, _ = get_train(TRAIN_PATH)
+        else:
+            from data import get_test
+            TEST_PATH = 'data/cb513+profile_split1.npy.gz'
+            X, mask, _, _ = get_test(TEST_PATH)
+
+        idx = range(args.batch * batch_size, (args.batch + 1) * batch_size)
+        compute_tensor_jurtz(X[idx], mask[idx], args)
 
 
 def calculate_SeqLogo(args):
