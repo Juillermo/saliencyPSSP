@@ -201,7 +201,7 @@ def compute_tensor_jurtz(X, args):
     nn.layers.set_all_param_values(l_out, metadata['param_values'])
     print("Compile functions")
     # gradients = theano.gradient.grad(inference[0,0,7], wrt=sym_x)
-    gradients = theano.gradient.jacobian(inference[:2, :5, args.label].flatten(), wrt=sym_x)
+    gradients = theano.gradient.jacobian(inference[:2, :5, ssConvertString.find(args.label)].flatten(), wrt=sym_x)
     get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
 
     inputs = X[:64]
