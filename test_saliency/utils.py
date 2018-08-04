@@ -5,15 +5,13 @@ aaMap_fang = {'A': 0, 'R': 1, 'N': 2, 'D': 3, 'C': 4, 'Q': 5, 'E': 6, 'G': 7, 'H
               'F': 13, 'P': 14, 'S': 15, 'T': 16, 'W': 17, 'Y': 18, 'V': 19, 'NoSeq': 20}
 aaString_Fang = 'ARNDCQEGHILKMFPSTWYV_'
 
-aaString_Jurtz = 'ACEDGFIHKMLNQPSRTWVYX'
-pssmString_Jurtz = 'ACDEFGHIKLMNPQRSTVWXY'
-aaMap_jurtz = {amino: i for i, amino in enumerate(aaString_Jurtz)}
-pssmMap_jurtz = {amino: i for i, amino in enumerate(pssm)}
+aaString_jurtz = 'ACEDGFIHKMLNQPSRTWVYX'
+pssmString_jurtz = 'ACDEFGHIKLMNPQRSTVWXY'
+aaMap_jurtz = {amino: i for i, amino in enumerate(aaString_jurtz)}
+pssmMap_jurtz = {amino: i for i, amino in enumerate(pssmString_jurtz)}
 
 ssConvertMap = {0: 'C', 1: 'B', 2: 'E', 3: 'G', 4: 'I', 5: 'H', 6: 'S', 7: 'T', 8: ''}
 ssConvertString = 'CBEGIHST'
-
-window = 29  # 29 aminoacids per side
 
 
 def convertPredictQ8Result2HumanReadable(predictedSS):
