@@ -11,7 +11,7 @@ import keras.backend as K
 from keras.models import load_model
 import lasagne as nn
 
-from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable, window
+from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable
 from data_managing import load_data
 
 
@@ -245,6 +245,7 @@ def main_saliencies_jurtz():
 def calculate_SeqLogo(args):
     _, _, mask, _ = load_data("", num_seqs=args.num_seqs)
     del _
+    window = 9
 
     total = np.zeros((2, 2 * window + 1, 21))  # one-hot/pssm, window-size, n aminoacids
     for seq in range(args.num_seqs):
