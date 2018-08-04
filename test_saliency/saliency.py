@@ -201,7 +201,6 @@ def compute_tensor_jurtz(X, mask, args):
     nn.layers.set_all_param_values(l_out, metadata['param_values'])
 
     print("Compute saliencies")
-    saliencies = []
     for batch_seq in range(64):
         seq_len = int(np.sum(mask[batch_seq]))
         gradients = theano.gradient.jacobian(inference[batch_seq, :seq_len, ssConvertString.find(args.label)],
@@ -210,11 +209,11 @@ def compute_tensor_jurtz(X, mask, args):
 
         grads = get_gradients(X)
         grads = np.array(grads)
-        saliencies.append(grads[:seq_len, batch_seq, :seq_len])
-        print(batch_seq)
 
-    with open("saliencies_jurtz/saliencies_batch" + str(args.batch) + str(args.label) + ".pkl", 'wb') as f:
-        pickle.dump(saliencies, f, protocol=2)
+        with open("saliencies_jurtz/saliencies" + str(64 * args.batch + batch_seq) + str(args.label) + ".pkl",
+                  'wb') as f:
+            pickle.dump(grads[:seq_len, batch_seq, :seq_len], f, protocol=2)
+            print(batch_seq)
 
 
 def main_saliencies_jurtz():
@@ -239,8 +238,9 @@ def main_saliencies_jurtz():
             TEST_PATH = 'data/cb513+profile_split1.npy.gz'
             X, mask, _, _ = get_test(TEST_PATH)
 
-        idx = range(args.batch * batch_size, (args.batch + 1) * batch_size)
-        compute_tensor_jurtz(X[idx], mask[idx], args)
+        idx = range(args.batch * batch_size, (batch + 1) * batch_size)
+
+        compute_tensor_jurtz(X[idx], mask[idx], batch_seq, args)
 
 
 def calculate_SeqLogo(args):
