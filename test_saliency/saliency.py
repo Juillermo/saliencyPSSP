@@ -238,9 +238,8 @@ def main_saliencies_jurtz():
             TEST_PATH = 'data/cb513+profile_split1.npy.gz'
             X, mask, _, _ = get_test(TEST_PATH)
 
-        idx = range(args.batch * batch_size, (batch + 1) * batch_size)
-
-        compute_tensor_jurtz(X[idx], mask[idx], batch_seq, args)
+        idx = range(args.batch * batch_size, (args.batch + 1) * batch_size)
+        compute_tensor_jurtz(X[idx], mask[idx], args)
 
 
 def calculate_SeqLogo(args):
