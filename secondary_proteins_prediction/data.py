@@ -11,14 +11,14 @@ TEST_PATH = 'data/cb513+profile_split1.npy.gz'
 
 ##### TRAIN DATA #####
 
-def get_train():
-    if not os.path.isfile(TRAIN_PATH):
+def get_train(path=TRAIN_PATH):
+    if not os.path.isfile(path):
         print("Train path is not downloaded ...")
         subprocess.call("./download_train.sh", shell=True)
     else:
         print("Train path is downloaded ...")
     print("Loading train data ...")
-    X_in = utils.load_gz(TRAIN_PATH)
+    X_in = utils.load_gz(path)
     X = np.reshape(X_in, (5534, 700, 57))
     del X_in
     X = X[:, :, :]
@@ -70,11 +70,11 @@ def get_train():
 # del split
 ##### TEST DATA #####
 
-def get_test():
-    if not os.path.isfile(TEST_PATH):
+def get_test(path=TEST_PATH):
+    if not os.path.isfile(path):
         subprocess.call("./download_test.sh", shell=True)
     print("Loading test data ...")
-    X_test_in = utils.load_gz(TEST_PATH)
+    X_test_in = utils.load_gz(path)
     X_test = np.reshape(X_test_in, (514, 700, 57))
     del X_test_in
     X_test = X_test[:, :, :].astype(theano.config.floatX)

@@ -8,7 +8,6 @@ import os
 import glob
 
 import data
-import utils
 
 if not (2 <= len(sys.argv) <= 3):
     sys.exit("Usage: python predict.py <metadata_path> [subset=test]")
@@ -33,8 +32,8 @@ elif subset == "train":
     X_train, _, _, _, mask_train, _, num_seq = data.get_train()
 elif subset == "train_valid":
     X_train, X_valid, _, _, mask_train, mask_valid, num_seq = data.get_train()
-    X = np.concatenate((X_train, X_valid))
-    mask = np.concatenate((mask_train, mask_valid))
+    X = np.concatenate((X_train[:-30], X_valid))
+    mask = np.concatenate((mask_train[:-30], mask_valid))
 else:
     _, X, _, _, _, mask, num_seq = data.get_train()
 

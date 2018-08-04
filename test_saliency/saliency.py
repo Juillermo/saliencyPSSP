@@ -1,12 +1,15 @@
 import pickle
 import time
 import argparse
-str
+import importlib
+
 import numpy as np
 import pandas as pd
 import theano
+import theano.tensor as T
 import keras.backend as K
 from keras.models import load_model
+import lasagne as nn
 
 from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable, window
 from data_managing import load_data
@@ -182,6 +185,51 @@ def main_saliencies():
         compute_tensor_saliency(X_am, X_pssm, args)
 
 
+def compute_tensor_jurtz(X, args):
+    metadata_path = "dump_pureConv-20180804-010835-47.pkl"
+    metadata = np.load(metadata_path)
+    config_name = metadata['config_name']
+    config = importlib.import_module("%s" % config_name)
+    print("Using configurations: '%s'" % config_name)
+    print("Build model")
+    l_in, l_out = config.build_model()
+    print("Build eval function")
+    sym_x = T.tensor3()
+    inference = nn.layers.get_output(
+        l_out, sym_x, deterministic=True)
+    print("Load parameters")
+    nn.layers.set_all_param_values(l_out, metadata['param_values'])
+    print("Compile functions")
+    # gradients = theano.gradient.grad(inference[0,0,7], wrt=sym_x)
+    gradients = theano.gradient.jacobian(inference[:2, :5, args.label].flatten(), wrt=sym_x)
+    get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
+
+    inputs = X[:64]
+    grads = get_gradients(inputs)
+    grads = np.array(grads)
+    print(grads.shape)
+    print(grads[0, 0, :25, 0], grads[5, 1, :25, 0])
+
+
+def main_saliencies_jurtz():
+    parser = argparse.ArgumentParser(description='Compute saliencies (jurtz)')
+    parser.add_argument('--label', type=str, default='H', metavar='label',
+                        help='class to which gradients are computed (default H)')
+    # parser.add_argument('--seq', type=int, default=0, metavar='seq',
+    #                    help='sequence of which the gradient is calculated (default 0)')
+    args = parser.parse_args()
+
+    if True:  # args.seq is not None:
+        # first_seq = args.seq
+        # num_seqs = 1
+
+        # X_am, X_pssm, mask, labels = load_data("", first_seq=first_seq, num_seqs=num_seqs)
+        import data
+        TRAIN_PATH = 'cullpdb+profile_6133_filtered.npy.gz'
+        X_train, _, _, _, mask_train, _, _ = data.get_train(TRAIN_PATH)
+        compute_tensor_jurtz(X_train, args)
+
+
 def calculate_SeqLogo(args):
     _, _, mask, _ = load_data("", num_seqs=args.num_seqs)
     del _
@@ -230,4 +278,5 @@ def main_SeqLogo():
 
 if __name__ == "__main__":
     # main_saliencies()
-    main_SeqLogo()
+    # main_SeqLogo()
+    main_saliencies_jurtz()

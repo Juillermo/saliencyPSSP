@@ -7,6 +7,10 @@ from keras.models import load_model
 from utils import load_gz, aaMap_fang
 
 
+def load_jurtz(data_path):
+    import data
+    X_train, X_valid, labels_train, labels_valid, mask_train, mask_valid, _ = data.get_train(TRAIN_PATH)
+
 def save_data(data_path):
     # LOAD TRAINING DATA
     TRAIN_PATH = data_path + 'cullpdb+profile_6133_filtered.npy.gz'
