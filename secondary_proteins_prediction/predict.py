@@ -81,8 +81,8 @@ for metadata_path in metadata_path_all:
         predictions.append(p)
 
     predictions = np.concatenate(predictions, axis=0)
-    predictions_path = os.path.join("predictions" + subset,
-                                    os.path.basename(metadata_path).replace("dump_", "predictions_").replace(".pkl",
+    predictions_path = os.path.join("predictions",
+                                    os.path.basename(metadata_path).replace("dump_", "predictions_"+subset+"_").replace(".pkl",
                                                                                                              ".npy"))
 
     print("Storing predictions in %s" % predictions_path)

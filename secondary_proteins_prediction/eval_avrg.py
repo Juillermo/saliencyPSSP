@@ -2,7 +2,6 @@ import sys
 import numpy as np
 import glob
 
-
 import utils
 
 if len(sys.argv) < 2:
@@ -17,10 +16,10 @@ mybool = False
 for predictions_path in predictions_path_all:
     print(predictions_path)
     if not mybool:
-        predictions = np.load(predictions_path)#.ravel()
+        predictions = np.load(predictions_path)  # .ravel()
         mybool = True
     else:
-        predictions = predictions + np.load(predictions_path)#.ravel()
+        predictions = predictions + np.load(predictions_path)  # .ravel()
 print("shape of predictions")
 print(predictions.shape)
 print(predictions.max())
@@ -47,4 +46,4 @@ else:
 
 acc = utils.proteins_acc(predictions, y, mask)
 
-print("Accuracy (%s) is: %.5f" % (subset,acc)
+print("Accuracy (%s) is: %.5f" % (subset, acc))
