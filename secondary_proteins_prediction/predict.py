@@ -18,7 +18,7 @@ sym_x = T.tensor3()
 
 metadata_path_all = glob.glob(sys.argv[1] + "*")
 
-print "shape of metadata_path_all"
+print("shape of metadata_path_all")
 print(len(metadata_path_all))
 
 if len(sys.argv) >= 3:
@@ -30,16 +30,17 @@ else:
 if subset == "test":
     X, mask, _, num_seq = data.get_test()
 elif subset == "train":
-    sys.exit("train not implemented")
+    X_train, _, _, _, mask_train, _, num_seq = data.get_train()
 elif subset == "train_valid":
-    sys.exit("train_valid not implemented")
+    X_train, X_valid, _, _, mask_train, mask_valid, num_seq = data.get_train()
+    X = np.concatenate((X_train, X_valid))
+    mask = np.concatenate((mask_train, mask_valid))
 else:
-    sys.exit("valid not implemented")
-
+    _, X, _, _, _, mask, num_seq = data.get_train()
 
 for metadata_path in metadata_path_all:
 
-    print "Loading metadata file %s" % metadata_path
+    print("Loading metadata file %s" % metadata_path)
 
     metadata = np.load(metadata_path)
 
@@ -47,40 +48,42 @@ for metadata_path in metadata_path_all:
 
     config = importlib.import_module("configurations.%s" % config_name)
 
-    print "Using configurations: '%s'" % config_name
+    print("Using configurations: '%s'" % config_name)
 
-    print "Build model"
+    print("Build model")
 
     l_in, l_out = config.build_model()
 
-    print "Build eval function"
+    print("Build eval function")
 
     inference = nn.layers.get_output(
         l_out, sym_x, deterministic=True)
 
-    print "Load parameters"
+    print("Load parameters")
 
     nn.layers.set_all_param_values(l_out, metadata['param_values'])
 
-    print "Compile functions"
+    print("Compile functions")
 
     predict = theano.function([sym_x], inference)
 
-    print "Predict"
+    print("Predict")
 
     predictions = []
     batch_size = config.batch_size
-    num_batches = np.size(X,axis=0) // batch_size
+    num_batches = np.size(X, axis=0) // batch_size
 
     for i in range(num_batches):
-        idx = range(i*batch_size, (i+1)*batch_size)
+        idx = range(i * batch_size, (i + 1) * batch_size)
         x_batch = X[idx]
         mask_batch = mask[idx]
         p = predict(x_batch)
         predictions.append(p)
-        
-    predictions = np.concatenate(predictions, axis = 0)
-    predictions_path = os.path.join("predictions", os.path.basename(metadata_path).replace("dump_", "predictions_").replace(".pkl", ".npy"))
-    
-    print "Storing predictions in %s" % predictions_path
+
+    predictions = np.concatenate(predictions, axis=0)
+    predictions_path = os.path.join("predictions" + subset,
+                                    os.path.basename(metadata_path).replace("dump_", "predictions_").replace(".pkl",
+                                                                                                             ".npy"))
+
+    print("Storing predictions in %s" % predictions_path)
     np.save(predictions_path, predictions)

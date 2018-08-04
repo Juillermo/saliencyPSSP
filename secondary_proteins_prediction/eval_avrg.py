@@ -10,7 +10,7 @@ if len(sys.argv) < 2:
 
 predictions_path_all = glob.glob(sys.argv[1] + "*")
 
-print "shape of metadata_path_all"
+print("shape of metadata_path_all")
 print(len(predictions_path_all))
 
 mybool = False
@@ -21,7 +21,7 @@ for predictions_path in predictions_path_all:
         mybool = True
     else:
         predictions = predictions + np.load(predictions_path)#.ravel()
-print "shape of predictions"
+print("shape of predictions")
 print(predictions.shape)
 print(predictions.max())
 
@@ -47,4 +47,4 @@ else:
 
 acc = utils.proteins_acc(predictions, y, mask)
 
-print "Accuracy (%s) is: %.5f" % (subset,acc)
+print("Accuracy (%s) is: %.5f" % (subset,acc)
