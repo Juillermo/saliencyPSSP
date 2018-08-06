@@ -252,7 +252,7 @@ def main_saliencies_jurtz():
             X, mask, _, _ = get_test(TEST_PATH)
             batch = args.batch - 5534 // batch_size
 
-        idx = range(batch * batch_size, (args.batch + 1) * batch_size)
+        idx = range(batch * batch_size, (batch + 1) * batch_size)
         compute_tensor_jurtz(X[idx], mask[idx], args.batch, args.label)
 
 
