@@ -4,8 +4,8 @@ import re
 
 import numpy as np
 
-from saliency import batch_size, compute_tensor_jurtz
-from utils import ssConvertString
+from saliency import BATCH_SIZE, compute_tensor_jurtz
+from utils import ssConvertString, Jurtz_Data
 
 
 def repare_saliencies():
@@ -20,31 +20,14 @@ def repare_saliencies():
         exists[num] = True
     os.chdir(origin)
 
-    from data import get_train, get_test
-    TRAIN_PATH = 'cullpdb+profile_6133_filtered.npy.gz'
-    TEST_PATH = 'cb513+profile_split1.npy.gz'
-    X, _, _, _, mask, _, _ = get_train(TRAIN_PATH)
+    dater = Jurtz_Data()
 
-    def get_index(batch):
-        return batch
+    for batch in range(6048 // BATCH_SIZE):
 
-    for batch in range(6018 // batch_size):
-        if batch == 5278 // batch_size:
-            _, X, _, _, _, mask, _ = get_train(TRAIN_PATH)
-
-            def get_index(batch):
-                return batch - 5278 // batch_size
-
-        elif batch == 5534 // batch_size:
-            X, mask, _, _ = get_test(TEST_PATH)
-
-            def get_index(batch):
-                return batch - 5534 // batch_size
-
-        for batch_seq in range(batch_size):
-            seq = batch * batch_size + batch_seq
+        for batch_seq in range(BATCH_SIZE):
+            seq = batch * BATCH_SIZE + batch_seq
             if not exists[seq]:
-                idx = get_index(batch)
+                X_batch = dater.get_batch_from_seq(seq)
                 for label in ssConvertString:
                     compute_tensor_jurtz(X[idx], mask[idx], batch, label, ini=batch_seq)
                 break

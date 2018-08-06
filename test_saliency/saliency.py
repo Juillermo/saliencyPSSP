@@ -11,10 +11,10 @@ import keras.backend as K
 from keras.models import load_model
 import lasagne as nn
 
-from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable
+from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable, Jurtz_Data
 from data_managing import load_data
 
-batch_size = 64
+BATCH_SIZE = 64
 
 
 def spot_best(X_am, X_pssm, labels):
@@ -205,14 +205,14 @@ def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
 
         tot_grads = np.concatenate((grads[:, ini, seq_len], grads2[:, ini, seq_len]), axis=0)
 
-        with open("saliencies_jurtz/saliencies{:4d}{:s}.pkl".format(batch_size * batch + ini, label),
+        with open("saliencies_jurtz/saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + ini, label),
                   'wb') as f:
             pickle.dump(tot_grads, f, protocol=2)
 
         ini += 1
 
     print("Compute saliencies")
-    for batch_seq in range(ini, batch_size):
+    for batch_seq in range(ini, BATCH_SIZE):
         seq_len = int(np.sum(mask_batch[batch_seq]))
         gradients = theano.gradient.jacobian(inference[batch_seq, :seq_len, ssConvertString.find(label)],
                                              wrt=sym_x)
@@ -221,7 +221,7 @@ def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
         grads = get_gradients(X_batch)
         grads = np.array(grads)
 
-        with open("saliencies_jurtz/saliencies{:4d}{:s}.pkl".format(batch_size * batch + batch_seq, label),
+        with open("saliencies_jurtz/saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label),
                   'wb') as f:
             pickle.dump(grads[:seq_len, batch_seq, :seq_len], f, protocol=2)
         print(batch_seq)
@@ -235,25 +235,12 @@ def main_saliencies_jurtz():
                         help='batch of which the gradient is calculated (default 0)')
     args = parser.parse_args()
 
-    batch_size = 64
     if args.batch is not None:
-        if args.batch < 5534 // batch_size:
-            from data import get_train
-            TRAIN_PATH = 'cullpdb+profile_6133_filtered.npy.gz'
-            if args.batch < 5278 // batch_size:
-                X, _, _, _, mask, _, _ = get_train(TRAIN_PATH)
-                batch = args.batch
-            else:
-                _, X, _, _, _, mask, _ = get_train(TRAIN_PATH)
-                batch = args.batch - 5278 // batch_size
-        else:
-            from data import get_test
-            TEST_PATH = 'data/cb513+profile_split1.npy.gz'
-            X, mask, _, _ = get_test(TEST_PATH)
-            batch = args.batch - 5534 // batch_size
+        first_seq = args.batch * BATCH_SIZE
+        dater = Jurtz_Data()
 
-        idx = range(batch * batch_size, (batch + 1) * batch_size)
-        compute_tensor_jurtz(X[idx], mask[idx], args.batch, args.label)
+        X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+        compute_tensor_jurtz(X_batch, mask_batch, args.batch, args.label)
 
 
 
