@@ -9,27 +9,28 @@ from utils import ssConvertString, Jurtz_Data
 
 
 def repare_saliencies():
-    # TODO: Separate label detecting to fix batches with only one label broken
-
     origin = os.getcwd()
     os.chdir('/scratch/grm1g17/saliencies')
     files = glob.glob('saliencies*')
-    exists = [False for _ in range(6018)]
-    for el in files:
-        num = int(re.search(r'\d+', el).group(0))
-        exists[num] = True
-    os.chdir(origin)
 
+    exists = np.zeros((6018, 8))
+    for el in files:
+        found = re.search(r'(\d+)(\D)', el).groups()
+        num = int(found[0])
+        label = ssConvertString.find(found[1])
+        exists[num, label] += 1
+
+    os.chdir(origin)
     dater = Jurtz_Data()
 
-    for batch in range(6048 // BATCH_SIZE):
-
+    for batch in range(6018 // BATCH_SIZE):
         for batch_seq in range(BATCH_SIZE):
             seq = batch * BATCH_SIZE + batch_seq
-            if not exists[seq]:
-                X_batch = dater.get_batch_from_seq(seq)
+            if int(np.sum(exists[seq])) != 8:
+                X_batch, mask_batch = dater.get_batch_from_seq(seq)
                 for label in ssConvertString:
-                    compute_tensor_jurtz(X[idx], mask[idx], batch, label, ini=batch_seq)
+                    if not exists[ssConvertString.find(label)]:
+                        compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=batch_seq)
                 break
 
 

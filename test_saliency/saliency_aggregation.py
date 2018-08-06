@@ -18,33 +18,32 @@ def calculate_SeqLogo(args):
 
     total = np.zeros((2 * WINDOW + 1, 42))  # WINDOW-size, n aminoacids + pssm
     for seq in range(args.num_seqs):
-        if seq < 5248 or seq >= 5534:
-            with open("saliencies" + str(seq) + args.label + ".pkl", "rb") as f:
-                saliency = np.array(pickle.load(f))
+        with open("saliencies" + str(seq) + args.label + ".pkl", "rb") as f:
+            saliency = np.array(pickle.load(f))
 
-            X_seq, mask_seq = dater.get_sequence(seq)
-            end_seq = int(sum(mask_seq))
-            for pos in range(end_seq):
-                # Pre-WINDOW
-                if pos > WINDOW:
-                    init = pos - WINDOW
-                    total[:WINDOW] += np.multiply(saliency[pos, init:pos, :], X_seq[init:pos])
-                elif pos != 0:
-                    init = WINDOW - pos
-                    total[init:WINDOW] += np.multiply(saliency[pos, 0:pos, :], X_seq[0:pos])
+        X_seq, mask_seq = dater.get_sequence(seq)
+        end_seq = int(sum(mask_seq))
+        for pos in range(end_seq):
+            # Pre-WINDOW
+            if pos > WINDOW:
+                init = pos - WINDOW
+                total[:WINDOW] += np.multiply(saliency[pos, init:pos, :], X_seq[init:pos])
+            elif pos != 0:
+                init = WINDOW - pos
+                total[init:WINDOW] += np.multiply(saliency[pos, 0:pos, :], X_seq[0:pos])
 
-                # Window
-                total[WINDOW] += np.multiply(saliency[pos, pos, :], X_seq[pos])
+            # Window
+            total[WINDOW] += np.multiply(saliency[pos, pos, :], X_seq[pos])
 
-                # Post-WINDOW
-                if pos + WINDOW + 1 <= end_seq:
-                    end = pos + WINDOW + 1
-                    total[WINDOW + 1:] += np.multiply(saliency[pos, pos + 1:end, :], X_seq[pos + 1:end])
-                elif pos != end_seq:
-                    end = end_seq
-                    total[WINDOW + 1:-(pos + WINDOW + 1 - end)] += np.multiply(saliency[pos, pos + 1:end, :],
-                                                                               X_seq[pos + 1:end])
-            print(seq)
+            # Post-WINDOW
+            if pos + WINDOW + 1 <= end_seq:
+                end = pos + WINDOW + 1
+                total[WINDOW + 1:] += np.multiply(saliency[pos, pos + 1:end, :], X_seq[pos + 1:end])
+            elif pos != end_seq:
+                end = end_seq
+                total[WINDOW + 1:-(pos + WINDOW + 1 - end)] += np.multiply(saliency[pos, pos + 1:end, :],
+                                                                           X_seq[pos + 1:end])
+        print(seq)
 
     os.chdir(origin)
     with open("SeqLogo" + str(args.num_seqs) + args.label + ".pkl", "wb") as f:

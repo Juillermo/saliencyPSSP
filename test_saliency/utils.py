@@ -62,9 +62,9 @@ class Jurtz_Data():
 
         batch = sequence // BATCH_SIZE
         if self.subset is "valid":
-            batch -= 5278 // BATCH_SIZE
+            batch -= 5248 // BATCH_SIZE
         elif self.subset is "test":
-            batch -= 5534 // BATCH_SIZE
+            batch -= 5504 // BATCH_SIZE
 
         idx = range(batch * BATCH_SIZE, (batch + 1) * BATCH_SIZE)
         return self.X[idx], self.mask[idx]
@@ -73,9 +73,9 @@ class Jurtz_Data():
         self.update_data(sequence)
 
         if self.subset is "valid":
-            sequence -= 5278
+            sequence -= 5248
         elif self.subset is "test":
-            sequence -= 5534
+            sequence -= 5504
 
         return self.X[sequence], self.mask[sequence]
 
@@ -84,10 +84,10 @@ class Jurtz_Data():
         if sequence < 5248 and self.subset is not "train":
             self.X, _, _, _, self.mask, _, _ = self.get_train(Jurtz_Data.TRAIN_PATH)
             self.subset = "train"
-        elif sequence >= 5278 and sequence < 5504 and self.subset is not "valid":
+        elif sequence >= 5248 and sequence < 5504 and self.subset is not "valid":
             _, X, _, _, _, mask, _ = self.get_train(Jurtz_Data.TRAIN_PATH)
             self.subset = "valid"
-        elif sequence >= 5534 and self.subset is not "test":
+        elif sequence >= 5504 and self.subset is not "test":
             X, mask, _, _ = self.get_test(Jurtz_Data.TEST_PATH)
         else:
             print("Problem with data managing")
