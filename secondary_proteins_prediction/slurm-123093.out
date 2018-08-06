@@ -1,0 +1,38 @@
+Running SLURM prolog script on pink51
+===============================================================================
+Job started on Sat Aug  4 00:45:16 BST 2018
+Job ID          : 123093
+Job name        : train
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/secondary_proteins_prediction
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink51
+Job Output Follows ...
+===============================================================================
+Traceback (most recent call last):
+  File "train.py", line 2, in <module>
+    import theano
+ImportError: No module named theano
+==============================================================================
+Running epilogue script on pink51.
+
+Submit time  : 2018-08-04T00:45:15
+Start time   : 2018-08-04T00:45:16
+End time     : 2018-08-04T00:45:22
+Elapsed time : 00:00:06 (Timelimit=13:00:00)
+
+Job ID: 123093
+Cluster: i5
+User/Group: grm1g17/fp
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 00:00:01
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 1.19% of 00:01:24 core-walltime
+
+Memory Utilized: 1.26 MB
+

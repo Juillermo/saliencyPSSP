@@ -18,4 +18,4 @@ source activate localenv
 
 module load cuda
 
-THEANO_FLAGS='floatx=float32,device=cuda,force_device=True' python saliency.py
+THEANO_FLAGS='floatX=float32,device=cuda,force_device=True' python saliency.py

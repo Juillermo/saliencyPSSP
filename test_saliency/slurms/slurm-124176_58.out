@@ -1,0 +1,1863 @@
+Running SLURM prolog script on pink54
+===============================================================================
+Job started on Sun Aug  5 19:13:39 BST 2018
+Job ID          : 124305
+Job name        : saliency-batch
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/test_saliency
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink54
+Job Output Follows ...
+===============================================================================
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:03:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18687' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15969' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19838' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '21239' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19507' (I am process '2787')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Using configurations: 'pureConv'
+Build model
+Build eval function
+Load parameters
+Compute saliencies
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:03:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22666' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '22582' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '24053' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by unknown process (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25905' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26724' (I am process '7684')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Using configurations: 'pureConv'
+Build model
+Build eval function
+Load parameters
+Compute saliencies
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:03:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28610' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29732' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27690' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '29913' (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by unknown process (I am process '13804')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Using configurations: 'pureConv'
+Build model
+Build eval function
+Load parameters
+Compute saliencies
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '11003' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:03:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '37179' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '12638' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '33252' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '13854' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '14971' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '43876' (I am process '19264')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Using configurations: 'pureConv'
+Build model
+Build eval function
+Load parameters
+Compute saliencies
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:03:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by unknown process (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '16546' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '17767' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '47424' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by unknown process (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '51065' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18976' (I am process '26064')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Using configurations: 'pureConv'
+Build model
+Build eval function
+Load parameters
+Compute saliencies
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:03:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '19912' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2229' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '53752' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '1868' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '31595')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Using configurations: 'pureConv'
+Build model
+Build eval function
+Load parameters
+Compute saliencies
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+Traceback (most recent call last):
+  File "saliency.py", line 295, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 242, in main_saliencies_jurtz
+    compute_tensor_jurtz(X[idx], mask[idx], args)
+  File "saliency.py", line 208, in compute_tensor_jurtz
+    get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/compile/function.py", line 317, in function
+    output_keys=output_keys)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/compile/pfunc.py", line 486, in pfunc
+    output_keys=output_keys)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/compile/function_module.py", line 1841, in orig_function
+    fn = m.create(defaults)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/compile/function_module.py", line 1715, in create
+    input_storage=input_storage_lists, storage_map=storage_map)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/link.py", line 699, in make_thunk
+    storage_map=storage_map)[:3]
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/vm.py", line 1091, in make_all
+    impl=impl))
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/scan_module/scan_op.py", line 866, in make_thunk
+    on_unused_input='ignore')
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/compile/function.py", line 317, in function
+    output_keys=output_keys)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/compile/pfunc.py", line 486, in pfunc
+    output_keys=output_keys)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/compile/function_module.py", line 1841, in orig_function
+    fn = m.create(defaults)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/compile/function_module.py", line 1715, in create
+    input_storage=input_storage_lists, storage_map=storage_map)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/link.py", line 699, in make_thunk
+    storage_map=storage_map)[:3]
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/vm.py", line 1091, in make_all
+    impl=impl))
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/op.py", line 955, in make_thunk
+    no_recycling)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/op.py", line 858, in make_c_thunk
+    output_storage=node_output_storage)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/cc.py", line 1217, in make_thunk
+    keep_lock=keep_lock)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/cc.py", line 1157, in __compile__
+    keep_lock=keep_lock)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/cc.py", line 1620, in cthunk_factory
+    key=key, lnk=self, keep_lock=keep_lock)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/cmodule.py", line 1147, in module_from_key
+    module = self._get_from_hash(module_hash, key, keep_lock=keep_lock)
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/cmodule.py", line 1047, in _get_from_hash
+    key_data.add_key(key, save_pkl=bool(key[0]))
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/cmodule.py", line 511, in add_key
+    self.save_pkl()
+  File "/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/site-packages/theano/gof/cmodule.py", line 532, in save_pkl
+    with open(self.key_pkl, 'wb') as f:
+NotADirectoryError: [Errno 20] Not a directory: '/mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/tmphmsql_r7/key.pkl'
+WARNING (theano.gof.cmodule): A module that was loaded by this ModuleCache can no longer be read from file /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/tmphmsql_r7/mbd626567447c890deaeae43c11d017397d199718db52724e0b1e4de85220c385.so... this could lead to problems.
+WARNING (theano.gof.cmodule): Removing key file /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/tmphmsql_r7/key.pkl because the corresponding module is gone from the file system.
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:03:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8294' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '54664' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '8731' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '15128' (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by unknown process (I am process '36463')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Using configurations: 'pureConv'
+Build model
+Build eval function
+Load parameters
+Compute saliencies
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:03:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18736' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '18418' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '25076' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '56838' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '2408' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '28214' (I am process '41555')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Using configurations: 'pureConv'
+Build model
+Build eval function
+Load parameters
+Compute saliencies
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+==============================================================================
+Running epilogue script on pink54.
+
+Submit time  : 2018-08-05T15:07:03
+Start time   : 2018-08-05T19:13:38
+End time     : 2018-08-05T22:44:48
+Elapsed time : 03:31:10 (Timelimit=05:40:00)
+
+Job ID: 124305
+Array Job ID: 124176_58
+Cluster: i5
+User/Group: grm1g17/fp
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 01:36:10
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 3.25% of 2-01:16:20 core-walltime
+
+Memory Utilized: 6.50 GB
+

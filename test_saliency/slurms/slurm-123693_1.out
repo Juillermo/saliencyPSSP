@@ -1,0 +1,103 @@
+Running SLURM prolog script on pink60
+===============================================================================
+Job started on Sat Aug  4 18:57:52 BST 2018
+Job ID          : 123694
+Job name        : saliency-batch
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/test_saliency
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink60
+Job Output Follows ...
+===============================================================================
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+WARNING (theano.gof.compilelock): Overriding existing lock by dead process '28145' (I am process '28612')
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 14, in <module>
+    from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable, window
+ImportError: cannot import name 'window'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 14, in <module>
+    from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable, window
+ImportError: cannot import name 'window'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 14, in <module>
+    from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable, window
+ImportError: cannot import name 'window'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 14, in <module>
+    from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable, window
+ImportError: cannot import name 'window'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 14, in <module>
+    from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable, window
+ImportError: cannot import name 'window'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 14, in <module>
+    from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable, window
+ImportError: cannot import name 'window'
+slurmstepd: error: *** JOB 123694 ON pink60 CANCELLED AT 2018-08-04T19:03:09 ***
+==============================================================================
+Running epilogue script on pink60.
+
+Submit time  : 2018-08-04T18:57:47
+Start time   : 2018-08-04T18:57:48
+End time     : 2018-08-04T19:03:09
+Elapsed time : 00:05:21 (Timelimit=05:40:00)
+
+Job ID: 123694
+Array Job ID: 123693_1
+Cluster: i5
+User/Group: grm1g17/fp
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 00:00:56
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 1.25% of 01:14:54 core-walltime
+
+Memory Utilized: 1.03 GB
+

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH --job-name=saliency
+#SBATCH --job-name=salienjurtz
 
-#SBATCH --time=13:00:00
+#SBATCH --time=1:00:00
 
 #SBATCH --nodes=1
 

@@ -1,0 +1,55 @@
+Running SLURM prolog script on pink57
+===============================================================================
+Job started on Sat Aug  4 14:54:35 BST 2018
+Job ID          : 123347
+Job name        : saliency-array
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/test_saliency
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink57
+Job Output Follows ...
+===============================================================================
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+INFO (theano.gof.compilelock): Waiting for existing lock by process '5040' (I am process '5483')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+INFO (theano.gof.compilelock): Waiting for existing lock by process '5040' (I am process '5483')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:03:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Using configurations: 'pureConv'
+Build model
+Build eval function
+Load parameters
+Compile functions
+(337, 64, 700, 42)
+==============================================================================
+Running epilogue script on pink57.
+
+Submit time  : 2018-08-04T14:37:09
+Start time   : 2018-08-04T14:54:31
+End time     : 2018-08-04T14:55:34
+Elapsed time : 00:01:03 (Timelimit=01:30:00)
+
+Job ID: 123347
+Array Job ID: 123300_46
+Cluster: i5
+User/Group: grm1g17/fp
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 00:00:40
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 4.54% of 00:14:42 core-walltime
+
+Memory Utilized: 2.13 GB
+

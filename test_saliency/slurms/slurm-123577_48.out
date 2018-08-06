@@ -1,0 +1,22 @@
+==============================================================================
+Running epilogue script on pink58.
+
+Submit time  : 2018-08-04T16:52:07
+Start time   : 2018-08-04T17:16:30
+End time     : 2018-08-04T17:18:08
+Elapsed time : 00:01:38 (Timelimit=00:40:00)
+
+Job ID: 123641
+Array Job ID: 123577_48
+Cluster: i5
+User/Group: grm1g17/fp
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 00:00:43
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 3.13% of 00:22:52 core-walltime
+
+Memory Utilized: 1.73 GB
+

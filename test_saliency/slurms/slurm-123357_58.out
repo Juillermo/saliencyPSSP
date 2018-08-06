@@ -1,0 +1,51 @@
+Running SLURM prolog script on pink55
+===============================================================================
+Job started on Sat Aug  4 15:30:55 BST 2018
+Job ID          : 123437
+Job name        : saliency-array
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/test_saliency
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink55
+Job Output Follows ...
+===============================================================================
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:83:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Using configurations: 'pureConv'
+Build model
+Build eval function
+Load parameters
+Compile functions
+(547, 64, 700, 42)
+==============================================================================
+Running epilogue script on pink55.
+
+Submit time  : 2018-08-04T14:58:16
+Start time   : 2018-08-04T15:30:55
+End time     : 2018-08-04T15:31:49
+Elapsed time : 00:00:54 (Timelimit=00:40:00)
+
+Job ID: 123437
+Array Job ID: 123357_58
+Cluster: i5
+User/Group: grm1g17/fp
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 00:00:49
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 6.48% of 00:12:36 core-walltime
+
+Memory Utilized: 1.65 GB
+
