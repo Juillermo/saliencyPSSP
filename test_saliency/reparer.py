@@ -7,7 +7,10 @@ import numpy as np
 from saliency import batch_size, compute_tensor_jurtz
 from utils import ssConvertString
 
+
 def repare_saliencies():
+    # TODO: Separate label detecting to fix batches with only one label broken
+
     origin = os.getcwd()
     os.chdir('/scratch/grm1g17/saliencies')
     files = glob.glob('saliencies*')
@@ -15,8 +18,8 @@ def repare_saliencies():
     for el in files:
         num = int(re.search(r'\d+', el).group(0))
         exists[num] = True
-
     os.chdir(origin)
+
     from data import get_train, get_test
     TRAIN_PATH = 'cullpdb+profile_6133_filtered.npy.gz'
     TEST_PATH = 'cb513+profile_split1.npy.gz'
@@ -46,6 +49,7 @@ def repare_saliencies():
                     compute_tensor_jurtz(X[idx], mask[idx], batch, label, ini=batch_seq)
                 break
 
+
 def probe():
     origin = os.getcwd()
     os.chdir('/scratch/grm1g17/saliencies')
@@ -57,13 +61,14 @@ def probe():
 
     os.chdir(origin)
 
-    print([str(i)+" "+str(el) for i, el in enumerate(exists)])
+    print([str(i) + " " + str(el) for i, el in enumerate(exists)])
 
 
 def assert_all():
     origin = os.getcwd()
     os.chdir('/scratch/grm1g17/saliencies')
     files = glob.glob('saliencies*')
+
     exists = np.zeros((6018, 8))
     for el in files:
         found = re.search(r'(\d+)(\D)', el).groups()
@@ -73,9 +78,11 @@ def assert_all():
 
     os.chdir(origin)
 
-    for el in exists:
+    for i, el in enumerate(exists):
         tot = np.sum(el)
-        assert(tot == 0 | tot == 8)
+        if int(tot) != 0 and int(tot) != 8:
+            print(i, tot)
+
 
 if __name__ == "__main__":
     probe()

@@ -256,55 +256,6 @@ def main_saliencies_jurtz():
         compute_tensor_jurtz(X[idx], mask[idx], args.batch, args.label)
 
 
-def calculate_SeqLogo(args):
-    _, _, mask, _ = load_data("", num_seqs=args.num_seqs)
-    del _
-    window = 9
-
-    total = np.zeros((2, 2 * window + 1, 21))  # one-hot/pssm, window-size, n aminoacids
-    for seq in range(args.num_seqs):
-        with open("saliencies/saliencies" + str(seq) + args.label + ".pkl", "rb") as f:
-            saliencies = np.array(pickle.load(f))
-
-        end_seq = int(sum(mask[seq]))
-        for pos in range(end_seq):
-            # Pre-window
-            if pos > window:
-                init = pos - window
-                total[:, :window] += saliencies[:, pos, 0, init:pos, :]
-            elif pos != 0:
-                init = window - pos
-                total[:, init:window] += saliencies[:, pos, 0, 0:pos, :]
-
-            # Window
-            total[:, window] = saliencies[:, pos, 0, pos, :]
-
-            # Post-window
-            if pos + window + 1 <= end_seq:
-                end = pos + window + 1
-                total[:, window + 1:] = saliencies[:, pos, 0, pos + 1:end, :]
-            elif pos != end_seq:
-                end = end_seq
-                total[:, window + 1:-(pos + window + 1 - end)] = saliencies[:, pos, 0, pos + 1:end, :]
-
-    with open("SeqLogo" + str(args.num_seqs) + args.label + ".pkl", "wb") as f:
-        pickle.dump(total, f, protocol=2)
-
-
-def main_SeqLogo():
-    parser = argparse.ArgumentParser(description='Compute SeqLogo from saliencies')
-    parser.add_argument('--label', type=str, default='H', metavar='label',
-                        help='class to which gradients are computed (default H)')
-    parser.add_argument('--num-seqs', type=int, default=2, metavar='num_seqs',
-                        help='number of sequences aggregated for SeqLogo (default 2)')
-    args = parser.parse_args()
-
-    if args.seq is not None:
-        calculate_SeqLogo(args)
-
-
-
-
 
 if __name__ == "__main__":
     # main_saliencies()
