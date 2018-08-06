@@ -2,6 +2,8 @@ import glob
 import os
 import re
 
+import numpy as np
+
 from saliency import batch_size, compute_tensor_jurtz
 from utils import ssConvertString
 
@@ -55,4 +57,25 @@ def probe():
 
     os.chdir(origin)
 
-    print([str(i)+" "+el for i, el in exists])
+    print([str(i)+" "+str(el) for i, el in enumerate(exists)])
+
+
+def assert_all():
+    origin = os.getcwd()
+    os.chdir('/scratch/grm1g17/saliencies')
+    files = glob.glob('saliencies*')
+    exists = np.zeros((6018, 8))
+    for el in files:
+        found = re.search(r'(\d+)(\D)', el).groups()
+        num = int(found[0])
+        label = ssConvertString.find(found[1])
+        exists[num, label] += 1
+
+    os.chdir(origin)
+
+    for el in exists:
+        tot = np.sum(el)
+        assert(tot == 0 | tot == 8)
+
+if __name__ == "__main__":
+    probe()
