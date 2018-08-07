@@ -65,6 +65,9 @@ class Jurtz_Data():
             batch -= 5248 // BATCH_SIZE
         elif self.subset is "test":
             batch -= 5504 // BATCH_SIZE
+        elif self.subset is not "train":
+            print("Error: subset is None")
+            assert False
 
         idx = range(batch * BATCH_SIZE, (batch + 1) * BATCH_SIZE)
         return self.X[idx], self.mask[idx]
@@ -88,6 +91,7 @@ class Jurtz_Data():
             self.subset = "valid"
         elif sequence >= 5504 and self.subset is not "test":
             self.X, self.mask, _, _ = self.get_test(Jurtz_Data.TEST_PATH)
+            self.subset = "test"
         else:
             print("Problem with data managing")
             assert False

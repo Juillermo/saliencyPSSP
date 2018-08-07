@@ -29,7 +29,7 @@ def repare_saliencies():
             if int(np.sum(exists[seq])) != 8:
                 X_batch, mask_batch = dater.get_batch_from_seq(seq)
                 for label in ssConvertString:
-                    if not exists[ssConvertString.find(label)]:
+                    if not exists[seq, ssConvertString.find(label)]:
                         compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=batch_seq)
                 break
 
