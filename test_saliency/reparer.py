@@ -24,9 +24,13 @@ def repair_saliencies(args):
     os.chdir(origin)
     dater = Jurtz_Data()
 
-    for batch in range(6018 // BATCH_SIZE):
-        if args.dir == 'b':
-            batch = 6018 // BATCH_SIZE - batch
+    batch_range = range(6018 // BATCH_SIZE)
+    if args.dir == 'b':
+        batch_range = reversed(batch_range)
+    elif args.dir != 'f':
+        raise ValueError("args.dir is "+str(args.dir))
+
+    for batch in batch_range:
         for batch_seq in range(BATCH_SIZE):
             seq = batch * BATCH_SIZE + batch_seq
             if int(np.sum(exists[seq])) != 8:
