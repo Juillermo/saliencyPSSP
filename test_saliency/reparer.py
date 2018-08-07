@@ -1,6 +1,7 @@
 import glob
 import os
 import re
+import argparse
 
 import numpy as np
 
@@ -8,7 +9,7 @@ from saliency import BATCH_SIZE, compute_tensor_jurtz
 from utils import ssConvertString, Jurtz_Data
 
 
-def repare_saliencies():
+def repair_saliencies(args):
     origin = os.getcwd()
     os.chdir('/scratch/grm1g17/saliencies')
     files = glob.glob('saliencies*')
@@ -67,7 +68,24 @@ def assert_all():
         if int(tot) != 0 and int(tot) != 8:
             print(i, tot)
 
+def main():
+    parser = argparse.ArgumentParser(description='For seen saliency files and repairing them')
+    parser.add_argument('--function', type=str, default='probe', metavar='function',
+                        help='which function of the file to use (probe, assert, repair)')
+    parser.add_argument('--dir', type=str, default='f', metavar='dir',
+                        help='direction of the reparation process (f or b)')
+    args = parser.parse_args()
+
+    if args.function == "probe":
+        probe()
+    elif args.function == "assert":
+        assert_all()
+    elif args.function == "repair":
+        repair_saliencies(args)
+    else:
+        print("No valid function selected")
 
 if __name__ == "__main__":
+    main()
     #probe()
-    repare_saliencies()
+    #repair_saliencies()
