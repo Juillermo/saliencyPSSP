@@ -69,4 +69,5 @@ def assert_all():
 
 
 if __name__ == "__main__":
-    probe()
+    #probe()
+    repare_saliencies()
