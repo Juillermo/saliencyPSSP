@@ -12,8 +12,8 @@ pssmString_jurtz = 'ACDEFGHIKLMNPQRSTVWXY'
 aaMap_jurtz = {amino: i for i, amino in enumerate(aaString_jurtz)}
 pssmMap_jurtz = {amino: i for i, amino in enumerate(pssmString_jurtz)}
 
-ssConvertMap = {0: 'C', 1: 'B', 2: 'E', 3: 'G', 4: 'I', 5: 'H', 6: 'S', 7: 'T', 8: ''}
-ssConvertString = 'CBEGIHST'
+ssConvertMap = {0: 'L', 1: 'B', 2: 'E', 3: 'G', 4: 'I', 5: 'H', 6: 'S', 7: 'T', 8: ''}
+ssConvertString = 'LBEGIHST'
 
 
 def convertPredictQ8Result2HumanReadable(predictedSS):
