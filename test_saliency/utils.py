@@ -48,10 +48,10 @@ class Jurtz_Data():
     TRAIN_PATH = 'cullpdb+profile_6133_filtered.npy.gz'
     TEST_PATH = 'cb513+profile_split1.npy.gz'
 
-    def __ini__(self):
+    def __init__(self):
         from data import get_train, get_test
         self.get_train = get_train
-        self.get_test = get_test()
+        self.get_test = get_test
 
         self.subset = None
         self.X = None
@@ -79,16 +79,15 @@ class Jurtz_Data():
 
         return self.X[sequence], self.mask[sequence]
 
-
     def update_data(self, sequence):
         if sequence < 5248 and self.subset is not "train":
             self.X, _, _, _, self.mask, _, _ = self.get_train(Jurtz_Data.TRAIN_PATH)
             self.subset = "train"
         elif sequence >= 5248 and sequence < 5504 and self.subset is not "valid":
-            _, X, _, _, _, mask, _ = self.get_train(Jurtz_Data.TRAIN_PATH)
+            _, self.X, _, _, _, self.mask, _ = self.get_train(Jurtz_Data.TRAIN_PATH)
             self.subset = "valid"
         elif sequence >= 5504 and self.subset is not "test":
-            X, mask, _, _ = self.get_test(Jurtz_Data.TEST_PATH)
+            self.X, self.mask, _, _ = self.get_test(Jurtz_Data.TEST_PATH)
         else:
             print("Problem with data managing")
             assert False
