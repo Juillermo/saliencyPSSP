@@ -1,0 +1,50 @@
+Running SLURM prolog script on pink54
+===============================================================================
+Job started on Tue Aug  7 02:18:16 BST 2018
+Job ID          : 124928
+Job name        : saliency
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/test_saliency
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink54
+Job Output Follows ...
+===============================================================================
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:83:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Traceback (most recent call last):
+  File "reparer.py", line 72, in <module>
+    repare_saliencies()
+  File "reparer.py", line 32, in repare_saliencies
+    if not exists[ssConvertString.find(label)]:
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+==============================================================================
+Running epilogue script on pink54.
+
+Submit time  : 2018-08-07T00:51:10
+Start time   : 2018-08-07T02:18:14
+End time     : 2018-08-07T02:19:49
+Elapsed time : 00:01:35 (Timelimit=13:00:00)
+
+Job ID: 124928
+Cluster: i5
+User/Group: grm1g17/fp
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 00:00:29
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 2.18% of 00:22:10 core-walltime
+
+Memory Utilized: 2.11 GB
+

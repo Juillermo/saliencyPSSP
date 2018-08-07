@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=saliency
+#SBATCH --job-name=reparer
 
 #SBATCH --time=13:00:00
 
@@ -18,5 +18,5 @@ source activate localenv
 
 module load cuda
 
-THEANO_FLAGS='floatX=float32,device=cuda,force_device=True' python saliency.py --label=H --num-seqs=2
+THEANO_FLAGS='floatX=float32,device=cuda,force_device=True' python reparer.py
 

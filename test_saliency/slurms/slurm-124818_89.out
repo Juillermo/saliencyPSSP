@@ -1,0 +1,171 @@
+Running SLURM prolog script on pink60
+===============================================================================
+Job started on Mon Aug  6 21:14:19 BST 2018
+Job ID          : 124866
+Job name        : saliency-batch
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/test_saliency
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink60
+Job Output Follows ...
+===============================================================================
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 61, in get_batch_from_seq
+    self.update_data(sequence)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 90, in update_data
+    elif sequence >= 5504 and self.subset is not "test":
+AttributeError: 'Jurtz_Data' object has no attribute 'subset'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 61, in get_batch_from_seq
+    self.update_data(sequence)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 90, in update_data
+    elif sequence >= 5504 and self.subset is not "test":
+AttributeError: 'Jurtz_Data' object has no attribute 'subset'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 61, in get_batch_from_seq
+    self.update_data(sequence)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 90, in update_data
+    elif sequence >= 5504 and self.subset is not "test":
+AttributeError: 'Jurtz_Data' object has no attribute 'subset'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 61, in get_batch_from_seq
+    self.update_data(sequence)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 90, in update_data
+    elif sequence >= 5504 and self.subset is not "test":
+AttributeError: 'Jurtz_Data' object has no attribute 'subset'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 61, in get_batch_from_seq
+    self.update_data(sequence)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 90, in update_data
+    elif sequence >= 5504 and self.subset is not "test":
+AttributeError: 'Jurtz_Data' object has no attribute 'subset'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 61, in get_batch_from_seq
+    self.update_data(sequence)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 90, in update_data
+    elif sequence >= 5504 and self.subset is not "test":
+AttributeError: 'Jurtz_Data' object has no attribute 'subset'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 61, in get_batch_from_seq
+    self.update_data(sequence)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 90, in update_data
+    elif sequence >= 5504 and self.subset is not "test":
+AttributeError: 'Jurtz_Data' object has no attribute 'subset'
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:82:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 61, in get_batch_from_seq
+    self.update_data(sequence)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 90, in update_data
+    elif sequence >= 5504 and self.subset is not "test":
+AttributeError: 'Jurtz_Data' object has no attribute 'subset'
+==============================================================================
+Running epilogue script on pink60.
+
+Submit time  : 2018-08-06T18:35:22
+Start time   : 2018-08-06T21:14:19
+End time     : 2018-08-06T21:29:27
+Elapsed time : 00:15:08 (Timelimit=04:40:00)
+
+Job ID: 124866
+Array Job ID: 124818_89
+Cluster: i5
+User/Group: grm1g17/fp
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 00:02:20
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 1.10% of 03:31:52 core-walltime
+
+Memory Utilized: 1.48 GB
+

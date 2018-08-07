@@ -1,0 +1,191 @@
+Running SLURM prolog script on pink55
+===============================================================================
+Job started on Tue Aug  7 01:20:04 BST 2018
+Job ID          : 124934
+Job name        : saliency-batch
+WorkDir         : /mainfs/lyceum/grm1g17/lasagne4bio/test_saliency
+Partition       : lyceum
+Num hosts       : 1
+Num cores       : 14
+Num of tasks    : 14
+Hosts allocated : pink55
+Job Output Follows ...
+===============================================================================
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+INFO (theano.gof.compilelock): Waiting for existing lock by process '26928' (I am process '44416')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:02:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 70, in get_batch_from_seq
+    return self.X[idx], self.mask[idx]
+TypeError: 'NoneType' object is not subscriptable
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27153' (I am process '44752')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:02:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 70, in get_batch_from_seq
+    return self.X[idx], self.mask[idx]
+TypeError: 'NoneType' object is not subscriptable
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27384' (I am process '45101')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:02:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 70, in get_batch_from_seq
+    return self.X[idx], self.mask[idx]
+TypeError: 'NoneType' object is not subscriptable
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27553' (I am process '45410')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:02:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 70, in get_batch_from_seq
+    return self.X[idx], self.mask[idx]
+TypeError: 'NoneType' object is not subscriptable
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27757' (I am process '45727')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:02:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 70, in get_batch_from_seq
+    return self.X[idx], self.mask[idx]
+TypeError: 'NoneType' object is not subscriptable
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+INFO (theano.gof.compilelock): Waiting for existing lock by process '27933' (I am process '46098')
+INFO (theano.gof.compilelock): To manually release the lock, delete /mainfs/lyceum/grm1g17/.theano/compiledir_Linux-3.10-el7.x86_64-x86_64-with-redhat-7.4-Maipo-x86_64-3.5.5-64/lock_dir
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:02:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 70, in get_batch_from_seq
+    return self.X[idx], self.mask[idx]
+TypeError: 'NoneType' object is not subscriptable
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:02:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 70, in get_batch_from_seq
+    return self.X[idx], self.mask[idx]
+TypeError: 'NoneType' object is not subscriptable
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using cuDNN version 7005 on context None
+Mapped name None to device cuda: GeForce GTX 1080 Ti (0000:02:00.0)
+/lyceum/grm1g17/.conda/envs/localenv/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+Using Theano backend.
+Train path is downloaded ...
+Loading train data ...
+Loading splits ...
+Traceback (most recent call last):
+  File "saliency.py", line 173, in <module>
+    main_saliencies_jurtz()
+  File "saliency.py", line 165, in main_saliencies_jurtz
+    X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
+  File "/mainfs/lyceum/grm1g17/lasagne4bio/test_saliency/utils.py", line 70, in get_batch_from_seq
+    return self.X[idx], self.mask[idx]
+TypeError: 'NoneType' object is not subscriptable
+==============================================================================
+Running epilogue script on pink55.
+
+Submit time  : 2018-08-07T00:49:58
+Start time   : 2018-08-07T01:20:04
+End time     : 2018-08-07T01:33:59
+Elapsed time : 00:13:55 (Timelimit=04:40:00)
+
+Job ID: 124934
+Array Job ID: 124927_84
+Cluster: i5
+User/Group: grm1g17/fp
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 14
+CPU Utilized: 00:03:33
+**** Please note that the CPU efficency of your job is less than 50% ****
+**** Ask the HPC team for advice -- if you need it
+**** CPU Efficiency: 1.82% of 03:14:50 core-walltime
+
+Memory Utilized: 4.28 GB
+
