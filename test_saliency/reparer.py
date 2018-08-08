@@ -37,7 +37,12 @@ def repair_saliencies(args):
                 X_batch, mask_batch = dater.get_batch_from_seq(seq)
                 for label in ssConvertString:
                     if not exists[seq, ssConvertString.find(label)]:
-                        compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=batch_seq)
+                        try:
+                            print("Repairing sequence "+str(seq)+" and batch "+str(batch)+" for label "+label)
+                            compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=batch_seq)
+                        except Exception as err:
+                            print(err)
+                            break
                 break
 
 
