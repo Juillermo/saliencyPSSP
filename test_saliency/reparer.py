@@ -8,8 +8,7 @@ import numpy as np
 from saliency import BATCH_SIZE, compute_tensor_jurtz
 from utils import ssConvertString, Jurtz_Data
 
-
-def repair_saliencies(args):
+def probe():
     origin = os.getcwd()
     os.chdir('/scratch/grm1g17/saliencies')
     files = glob.glob('saliencies*')
@@ -22,6 +21,9 @@ def repair_saliencies(args):
         exists[num, label] += 1
 
     os.chdir(origin)
+    return exists
+
+def repair_saliencies(args):
     dater = Jurtz_Data()
 
     batch_range = range(6018 // BATCH_SIZE)
@@ -31,18 +33,15 @@ def repair_saliencies(args):
         raise ValueError("args.dir is " + str(args.dir))
 
     for batch in batch_range:
+        exists = probe()
         for batch_seq in range(BATCH_SIZE):
             seq = batch * BATCH_SIZE + batch_seq
             if int(np.sum(exists[seq])) != 8:
                 X_batch, mask_batch = dater.get_batch_from_seq(seq)
                 for label in ssConvertString:
                     if not exists[seq, ssConvertString.find(label)]:
-                        try:
-                            print("Repairing sequence " + str(seq) + " and batch " + str(batch) + " for label " + label)
-                            compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=batch_seq)
-                        except Exception as err:
-                            print(err)
-                            break
+                        print("Repairing sequence {:d} and batch {:d} for label {:d}".format(seq, batch, label))
+                        compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=batch_seq)
                 break
 
 

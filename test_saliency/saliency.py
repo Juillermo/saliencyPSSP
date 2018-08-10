@@ -1,92 +1,37 @@
 import pickle
-import time
 import argparse
 import importlib
 
 import numpy as np
-import pandas as pd
 import theano
 import theano.tensor as T
 import keras.backend as K
 from keras.models import load_model
 import lasagne as nn
 
-from utils import decode, ssConvertMap, ssConvertString, convertPredictQ8Result2HumanReadable, Jurtz_Data
-from data_managing import load_data
+from utils import ssConvertString, Jurtz_Data
 
 BATCH_SIZE = 64
+PATH_SALIENCIES = "/scratch/grm1g17/saliencies/"
 
+def compute_single_saliency(X_batch, seq_len, batch_seq, label, sym_x, inference):
+    gradients = theano.gradient.jacobian(inference[batch_seq, :seq_len, ssConvertString.find(label)],
+                                         wrt=sym_x)
+    get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
 
-def spot_best(X_am, X_pssm, labels):
-    ## NEEDS REVISION
-
-    num_seqs = np.size(X_am, 0)
-    seqlen = np.size(X_am, 1)
-
-    # 29 aminoacids per side
-    window = 29
-
-    ## Load model
-    model = load_model("modelQ8.h5")
-
-    ## Make predictions
-    predictions = model.predict([X_am, X_pssm])
-    print(predictions.shape)
-
-    start_time = time.time()
-    prev_time = start_time
-
-    saliencies = np.zeros((2, num_seqs, seqlen, seqlen, 21))
-    saliency_info = pd.DataFrame(
-        columns=["Seq", "Pos", "Class", "Prediction", "Aminoacids", "Predictions", "True labels"])
-
-    for seq in range(num_seqs):
-
-        gato = decode(X_am[seq])
-        perro = convertPredictQ8Result2HumanReadable(predictions[seq])
-        conejo = "".join([ssConvertMap[el] for el in labels[seq]])
-
-        for pos in range(seqlen):
-            if labels[seq, pos] == np.argmax(predictions[seq, pos]):
-                new_row = len(saliency_info)
-
-                target_class = labels[seq, pos]
-
-                ## Compute string aminoacids and predictions
-                saliency_info.loc[new_row, "Class"] = ssConvertMap[target_class]
-                saliency_info.loc[new_row, "Prediction"] = predictions[seq, pos, target_class]
-
-                if pos >= window:
-                    init = pos - window
-                else:
-                    init = 0
-
-                if pos + window >= seqlen:
-                    end = seqlen
-                else:
-                    end = pos + window + 1
-
-                saliency_info.loc[new_row, "Aminoacids"] = gato[init: pos] + " " + gato[pos] + " " + gato[pos + 1: end]
-                saliency_info.loc[new_row, "Predictions"] = perro[init:pos] + " " + perro[pos] + " " + perro[
-                                                                                                       pos + 1:end]
-                saliency_info.loc[new_row, "True labels"] = conejo[init:pos] + " " + conejo[pos] + " " + conejo[
-                                                                                                         pos + 1:end]
-
-    with open(("saliencies.pkl"), 'wb') as f:
-        pickle.dump((saliency_info), f, protocol=2)
-
+    grads = get_gradients(X_batch)
+    return np.array(grads)
 
 
 def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
     """
-    Computes the saliencies of a batch for a certain label. If ini!=0, it also repairs the ini sequence and
-    computes the rest of the batch.
+    Computes the saliencies of a batch for a certain label, starting at batch index ini.
 
     Inputs:
         X_batch: batch of length 64, with its corresponding mask batch
         batch: batch number (absolute, for labeling)
         label: one of the 8 classes (see ssConvertString)
-        ini: which sequence of the batch to start from. If not 0, it will also split the first sequence in 2
+        ini: which sequence of the batch to start from
 
     Outputs:
         Saves individual saliencies in separated pickle files, properly labelled"""
@@ -96,58 +41,48 @@ def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
     config_name = metadata['config_name']
     config = importlib.import_module("%s" % config_name)
     print("Using configurations: '%s'" % config_name)
-    print("Build model")
     l_in, l_out = config.build_model()
-    print("Build eval function")
+
     sym_x = T.tensor3()
     inference = nn.layers.get_output(
         l_out, sym_x, deterministic=True)
-    print("Load parameters")
     nn.layers.set_all_param_values(l_out, metadata['param_values'])
 
-    if ini != 0:
-        print("Computing broken saliency")
-        seq_len = int(np.sum(mask_batch[ini]))
+    print("Computing saliencies")
+    for batch_seq in range(ini, BATCH_SIZE):
 
-        # FIRST HALF
-        gradients = theano.gradient.jacobian(inference[ini, :seq_len // 2, ssConvertString.find(label)],
-                                             wrt=sym_x)
-        get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
+        seq_len = int(np.sum(mask_batch[batch_seq]))
+        fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
 
-        grads = np.array(get_gradients(X_batch))
+        try:
+            tot_grads = compute_single_saliency(X_batch=X_batch, seq_len=seq_len, batch_seq=batch_seq, label=label, sym_x=sym_x, inference=inference)
 
-        del get_gradients
-        del gradients
+        except Exception as err:
 
-        # SECOND HALF
-        gradients = theano.gradient.jacobian(inference[ini, seq_len // 2:seq_len, ssConvertString.find(label)],
-                                             wrt=sym_x)
-        get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
+            print(err) # IF GPU OUT OF MEMORY
+            print("Computing broken saliency")
 
-        grads2 = np.array(get_gradients(X_batch))
+            # FIRST HALF
+            gradients = theano.gradient.jacobian(inference[ini, :seq_len // 2, ssConvertString.find(label)],
+                                                 wrt=sym_x)
+            get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
+            grads = np.array(get_gradients(X_batch))
+            del get_gradients
+            del gradients
 
-        tot_grads = np.concatenate((grads[:, ini, seq_len], grads2[:, ini, seq_len]), axis=0)
+            # SECOND HALF
+            gradients = theano.gradient.jacobian(inference[ini, seq_len // 2:seq_len, ssConvertString.find(label)],
+                                                 wrt=sym_x)
+            get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
+            grads2 = np.array(get_gradients(X_batch))
 
-        with open("saliencies_jurtz/saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + ini, label),
-                  'wb') as f:
+            # TODO: FIX THE OVERLAPPING PART AT THE JOINT POINT
+            tot_grads = np.concatenate((grads[:, ini, seq_len], grads2[:, ini, seq_len]), axis=0)
+
+        with open(PATH_SALIENCIES + fname, 'wb') as f:
             pickle.dump(tot_grads, f, protocol=2)
 
-        ini += 1
 
-    print("Compute saliencies")
-    for batch_seq in range(ini, BATCH_SIZE):
-        seq_len = int(np.sum(mask_batch[batch_seq]))
-        gradients = theano.gradient.jacobian(inference[batch_seq, :seq_len, ssConvertString.find(label)],
-                                             wrt=sym_x)
-        get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
-
-        grads = get_gradients(X_batch)
-        grads = np.array(grads)
-
-        with open("saliencies_jurtz/saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label),
-                  'wb') as f:
-            pickle.dump(grads[:seq_len, batch_seq, :seq_len], f, protocol=2)
-        print(batch_seq)
 
 
 def main_saliencies_jurtz():
@@ -175,6 +110,8 @@ if __name__ == "__main__":
 
 
 # DEPRECATED
+from data_managing import load_data
+
 def compute_tensor_saliency(X_am, X_pssm, args):
     if X_am.ndim == 2:
         X_am = X_am[None, ...]

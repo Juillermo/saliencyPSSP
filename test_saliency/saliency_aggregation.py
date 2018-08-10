@@ -171,3 +171,65 @@ def calculate_SeqLogo_fang(args):
 
     with open("SeqLogo" + str(args.num_seqs) + args.label + ".pkl", "wb") as f:
         pickle.dump(total, f, protocol=2)
+
+
+# DEPRECATED
+
+def spot_best(X_am, X_pssm, labels):
+    ## NEEDS REVISION
+
+    num_seqs = np.size(X_am, 0)
+    seqlen = np.size(X_am, 1)
+
+    # 29 aminoacids per side
+    window = 29
+
+    ## Load model
+    model = load_model("modelQ8.h5")
+
+    ## Make predictions
+    predictions = model.predict([X_am, X_pssm])
+    print(predictions.shape)
+
+    start_time = time.time()
+    prev_time = start_time
+
+    saliencies = np.zeros((2, num_seqs, seqlen, seqlen, 21))
+    saliency_info = pd.DataFrame(
+        columns=["Seq", "Pos", "Class", "Prediction", "Aminoacids", "Predictions", "True labels"])
+
+    for seq in range(num_seqs):
+
+        gato = decode(X_am[seq])
+        perro = convertPredictQ8Result2HumanReadable(predictions[seq])
+        conejo = "".join([ssConvertMap[el] for el in labels[seq]])
+
+        for pos in range(seqlen):
+            if labels[seq, pos] == np.argmax(predictions[seq, pos]):
+                new_row = len(saliency_info)
+
+                target_class = labels[seq, pos]
+
+                ## Compute string aminoacids and predictions
+                saliency_info.loc[new_row, "Class"] = ssConvertMap[target_class]
+                saliency_info.loc[new_row, "Prediction"] = predictions[seq, pos, target_class]
+
+                if pos >= window:
+                    init = pos - window
+                else:
+                    init = 0
+
+                if pos + window >= seqlen:
+                    end = seqlen
+                else:
+                    end = pos + window + 1
+
+                saliency_info.loc[new_row, "Aminoacids"] = gato[init: pos] + " " + gato[pos] + " " + gato[pos + 1: end]
+                saliency_info.loc[new_row, "Predictions"] = perro[init:pos] + " " + perro[pos] + " " + perro[
+                                                                                                       pos + 1:end]
+                saliency_info.loc[new_row, "True labels"] = conejo[init:pos] + " " + conejo[pos] + " " + conejo[
+                                                                                                         pos + 1:end]
+
+    with open(("saliencies.pkl"), 'wb') as f:
+        pickle.dump((saliency_info), f, protocol=2)
+
