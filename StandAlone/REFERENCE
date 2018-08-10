@@ -1,5 +1,0 @@
-Acknowledgement and Reference:
-Tensorflow: Abadi, Martín, et al. "Tensorflow: Large-scale machine learning on heterogeneous distributed systems." arXiv preprint arXiv:1603.04467 (2016).
-Keras: Chollet, François. "Keras." (2015).
-Psipred: McGuffin, Liam J., Kevin Bryson, and David T. Jones. "The PSIPRED protein structure prediction server." Bioinformatics 16.4 (2000): 404-405.
-Psiblast: Altschul, Stephen F., et al. "Gapped BLAST and PSI-BLAST: a new generation of protein database search programs." Nucleic acids research 25.17 (1997): 3389-3402.

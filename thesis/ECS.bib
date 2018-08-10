@@ -1,0 +1,634 @@
+%% ----------------------------------------------------------------
+%% ECS.bib
+%% ---------------------------------------------------------------- 
+@article{Zhou2014,
+	abstract = {Predicting protein secondary structure is a fundamental problem in protein structure prediction. Here we present a new supervised generative stochastic network (GSN) based method to predict local secondary structure with deep hierarchical representations. GSN is a recently proposed deep learning technique (Bengio {\&} Thibodeau-Laufer, 2013) to globally train deep generative model. We present the supervised extension of GSN, which learns a Markov chain to sample from a conditional distribution, and applied it to protein structure prediction. To scale the model to full-sized, high-dimensional data, like protein sequences with hundreds of amino acids, we introduce a convolutional architecture, which allows efficient learning across multiple layers of hierarchical representations. Our architecture uniquely focuses on predicting structured low-level labels informed with both low and high-level representations learned by the model. In our application this corresponds to labeling the secondary structure state of each amino-acid residue. We trained and tested the model on separate sets of non-homologous proteins sharing less than 30{\%} sequence identity. Our model achieves 66.4{\%} Q8 accuracy on the CB513 dataset, better than the previously reported best performance 64.9{\%} (Wang et al., 2011) for this challenging secondary structure prediction problem.},
+	archivePrefix = {arXiv},
+	arxivId = {1403.1347},
+	author = {Zhou, Jian and Troyanskaya, Olga G.},
+	eprint = {1403.1347},
+	isbn = {9781634393973},
+	keywords = {CNN,Deep learning,Secondary structure},
+	mendeley-tags = {CNN,Deep learning,Secondary structure},
+	title = {{Deep Supervised and Convolutional Generative Stochastic Network for Protein Secondary Structure Prediction}},
+	year = {2014}
+}
+
+@article{Kabsch1983,
+	abstract = {For a successful analysis of the relation between amino acid sequence and protein structure, an unambiguous and physically meaningful definition of secondary structure is essential. We have developed a set of simple and physically motivated criteria for secondary structure, programmed as a pattern-recognition process of hydrogen-bonded and geometrical features extracted from x-ray coordinates. Cooperative secondary structure is recognized as repeats of the elementary hydrogen-bonding patterns “turn” and “bridge.” Repeating turns are “helices,” repeating bridges are “ladders,” connected ladders are “sheets.” Geometric structure is defined in terms of the concepts torsion and curvature of differential geometry. Local chain “chirality” is the torsional handedness of four consecutive C$\alpha$ positions and is positive for right-handed helices and negative for ideal twisted $\beta$-sheets. Curved pieces are defined as “bends.” Solvent “exposure” is given as the number of water molecules in possible contact with a residue. The end result is a compilation of the primary structure, including SS bonds, secondary structure, and solvent exposure of 62 different globular proteins. The presentation is in linear form: strip graphs for an overall view and strip tables for the details of each of 10.925 residues. The dictionary is also available in computer-readable form for protein structure prediction work.},
+	archivePrefix = {arXiv},
+	arxivId = {0006-3525/83/122577-6},
+	author = {Kabsch, Wolfgang and Sander, Christian},
+	doi = {10.1002/bip.360221211},
+	eprint = {83/122577-6},
+	isbn = {0006-3525 (Print) 0006-3525 (Linking)},
+	issn = {10970282},
+	journal = {Biopolymers},
+	keywords = {Computational Biology,Secondary structure},
+	mendeley-tags = {Secondary structure,Computational Biology},
+	number = {12},
+	pages = {2577--2637},
+	pmid = {6667333},
+	primaryClass = {0006-3525},
+	title = {{Dictionary of protein secondary structure: Pattern recognition of hydrogen‐bonded and geometrical features}},
+	volume = {22},
+	year = {1983}
+}
+
+@article{Jurtz2017,
+	abstract = {Motivation: Deep neural network architectures such as convolutional and long short-term memory networks have become increasingly popular as machine learning tools during the recent years. The availability of greater computational resources, more data, new algorithms for training deep models and easy to use libraries for implementation and training of neural networks are the drivers of this development. The use of deep learning has been especially successful in image recognition; and the development of tools, applications and code examples are in most cases centered within this field rather than within biology. Results: Here, we aim to further the development of deep learning methods within biology by providing application examples and ready to apply and adapt code templates. Given such examples, we illustrate how architectures consisting of convolutional and long short-term memory neural networks can relatively easily be designed and trained to state-of-the-art performance on three biological sequence problems: prediction of subcellular localization, protein secondary structure and the binding of peptides to MHC Class II molecules. Availability: All implementations and datasets are available online to the scientific community at https://github.com/vanessajurtz/lasagne4bio. Supplementary information:Supplementary data are available at Bioinformatics online.},
+	annote = {The key paper.},
+	archivePrefix = {arXiv},
+	arxivId = {103549},
+	author = {Jurtz, Vanessa Isabell and Johansen, Alexander Rosenberg and Nielsen, Morten and {Almagro Armenteros}, Jose Juan and Nielsen, Henrik and S{\o}nderby, Casper Kaae and Winther, Ole and S{\o}nderby, S{\o}ren Kaae},
+	doi = {10.1093/bioinformatics/btx531},
+	eprint = {103549},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Jurtz et al. - 2017 - An introduction to deep learning on biological sequence data Examples and solutions.pdf:pdf},
+	isbn = {1367-4811 (Electronic)},
+	issn = {14602059},
+	journal = {Bioinformatics},
+	keywords = {Broad,CNN,Computational Biology,Deep learning,LSTM,RNN,Secondary structure,Sequencing},
+	mendeley-tags = {Broad,CNN,Computational Biology,Deep learning,LSTM,RNN,Secondary structure,Sequencing},
+	number = {22},
+	pages = {3685--3690},
+	pmid = {28961695},
+	title = {{An introduction to deep learning on biological sequence data: Examples and solutions}},
+	volume = {33},
+	year = {2017}
+}
+
+@article{Ioffe2015,
+	abstract = {Training Deep Neural Networks is complicated by the fact that the distribution of each layer's inputs changes during training, as the parameters of the previous layers change. This slows down the training by requiring lower learning rates and careful parameter initialization, and makes it notoriously hard to train models with saturating nonlinearities. We refer to this phenomenon as internal covariate shift, and address the problem by normalizing layer inputs. Our method draws its strength from making normalization a part of the model architecture and performing the normalization for each training mini-batch. Batch Normalization allows us to use much higher learning rates and be less careful about initialization. It also acts as a regularizer, in some cases eliminating the need for Dropout. Applied to a state-of-the-art image classification model, Batch Normalization achieves the same accuracy with 14 times fewer training steps, and beats the original model by a significant margin. Using an ensemble of batch-normalized networks, we improve upon the best published result on ImageNet classification: reaching 4.9{\%} top-5 validation error (and 4.8{\%} test error), exceeding the accuracy of human raters.},
+	archivePrefix = {arXiv},
+	arxivId = {1502.03167},
+	author = {Ioffe, Sergey and Szegedy, Christian},
+	eprint = {1502.03167},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Ioffe, Szegedy - 2015 - Batch Normalization Accelerating Deep Network Training by Reducing Internal Covariate Shift.pdf:pdf},
+	month = {feb},
+	title = {{Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift}},
+	url = {http://arxiv.org/abs/1502.03167},
+	year = {2015}
+}
+
+@article{Thomsen2012,
+	abstract = {Seq2Logo is a web-based sequence logo generator. Sequence logos are a graphical representation of the information content stored in a multiple sequence alignment (MSA) and provide a compact and highly intuitive representation of the position-specific amino acid composition of binding motifs, active sites, etc. in biological sequences. Accurate generation of sequence logos is often compromised by sequence redundancy and low number of observations. Moreover, most methods available for sequence logo generation focus on displaying the position-specific enrichment of amino acids, discarding the equally valuable information related to amino acid depletion. Seq2logo aims at resolving these issues allowing the user to include sequence weighting to correct for data redundancy, pseudo counts to correct for low number of observations and different logotype representations each capturing different aspects related to amino acid enrichment and depletion. Besides allowing input in the format of peptides and MSA, Seq2Logo accepts input as Blast sequence profiles, providing easy access for non-expert end-users to characterize and identify functionally conserved/variable amino acids in any given protein of interest. The output from the server is a sequence logo and a PSSM. Seq2Logo is available at http://www.cbs.dtu.dk/biotools/Seq2Logo (14 May 2012, date last accessed).},
+	author = {Thomsen, Martin Christen Frolund and Nielsen, Morten},
+	doi = {10.1093/nar/gks469},
+	isbn = {1362-4962 (Electronic) 0305-1048 (Linking)},
+	issn = {03051048},
+	journal = {Nucleic Acids Research},
+	number = {W1},
+	pmid = {22638583},
+	title = {{Seq2Logo: A method for construction and visualization of amino acid binding motifs and sequence profiles including sequence weighting, pseudo counts and two-sided representation of amino acid enrichment and depletion}},
+	volume = {40},
+	year = {2012}
+}
+
+
+@article{Glorot2010,
+	abstract = {Whereas before 2006 it appears that deep multilayer neural networks were not successfully trained, since then several algorithms have been shown to successfully train them, with experimental results showing the superiority of deeper vs less deep architectures. All these experimental results were obtained with new initialization or training mechanisms. Our objective here is to understand better why standard gradient descent from random initialization is doing so poorly with deep neural networks, to better understand these recent relative successes and help design better algorithms in the future. We ﬁrst observe the inﬂuence of the non-linear activations functions. We ﬁnd that the logistic sigmoid activation is unsuited for deep networks with random initialization because of its mean value, which can drive especially the top hidden layer into saturation. Surprisingly, we ﬁnd that saturated units can move out of saturation by themselves, albeit slowly, and explaining the plateaus sometimes seen when training neural networks. We ﬁnd that a new non-linearity that saturates less can often be beneﬁcial. Finally, we study how activations and gradients vary across layers and during training, with the idea that training may be more difﬁcult when the singular values of the Jacobian associated with each layer are far from 1. Based on these considerations, we propose a new initialization scheme that brings substantially faster convergence.},
+	archivePrefix = {arXiv},
+	arxivId = {arXiv:1011.1669v3},
+	author = {Glorot, Xavier and Bengio, Yoshua},
+	doi = {10.1.1.207.2059},
+	eprint = {arXiv:1011.1669v3},
+	isbn = {9781937284275},
+	issn = {15324435},
+	journal = {PMLR},
+	pages = {249--256},
+	pmid = {25246403},
+	title = {{Understanding the difficulty of training deep feedforward neural networks}},
+	url = {http://machinelearning.wustl.edu/mlpapers/paper{\_}files/AISTATS2010{\_}GlorotB10.pdf},
+	volume = {9},
+	year = {2010}
+}
+
+
+@article{Avdagic2009,
+	abstract = {In this paper we describe CB513 a non-redundant dataset, suitable for development of algorithms for prediction of secondary protein structure. A program was made in Borland Delphi for transforming data from our dataset to make it suitable for learning of neural network for prediction of secondary protein structure implemented in MATLAB Neural-Network Toolbox. Learning (training and testing) of neural network is researched with different sizes of windows, different number of neurons in the hidden layer and different number of training epochs, while using dataset CB513.},
+	author = {Avdagic, Zikrija and Purisevic, Elvir and Omanovic, Samir and Coralic, Zlatan},
+	issn = {2153-6430},
+	journal = {Summit on translational bioinformatics},
+	keywords = {Computational Biology,Secondary structure},
+	mendeley-tags = {Secondary structure,Computational Biology},
+	pages = {1--5},
+	pmid = {21347158},
+	title = {{Artificial Intelligence in Prediction of Secondary Protein Structure Using CB513 Database.}},
+	url = {http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=3041573{\&}tool=pmcentrez{\&}rendertype=abstract},
+	volume = {2009},
+	year = {2009}
+}
+
+
+@article{Zhou2015,
+	abstract = {Identifying functional effects of noncoding variants is a major challenge in human genetics. To predict the noncoding-variant effects de novo from sequence, we developed a deep learning-based algorithmic framework, DeepSEA (http://deepsea.princeton.edu/), that directly learns a regulatory sequence code from large-scale chromatin-profiling data, enabling prediction of chromatin effects of sequence alterations with single-nucleotide sensitivity. We further used this capability to improve prioritization of functional variants including expression quantitative trait loci (eQTLs) and disease-associated variants.},
+	archivePrefix = {arXiv},
+	arxivId = {15334406},
+	author = {Zhou, Jian and Troyanskaya, Olga G.},
+	doi = {10.1038/nmeth.3547},
+	eprint = {15334406},
+	isbn = {1548-7105 (Electronic)$\backslash$r1548-7091 (Linking)},
+	issn = {15487105},
+	journal = {Nature Methods},
+	keywords = {Computational Biology},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Computational Biology},
+	number = {10},
+	pages = {931--934},
+	pmid = {26301843},
+	title = {{Predicting effects of noncoding variants with deep learning-based sequence model}},
+	volume = {12},
+	year = {2015}
+}
+
+
+@article{Shrikumar2017,
+	abstract = {The purported "black box"' nature of neural networks is a barrier to adoption in applications where interpretability is essential. Here we present DeepLIFT (Deep Learning Important FeaTures), a method for decomposing the output prediction of a neural network on a specific input by backpropagating the contributions of all neurons in the network to every feature of the input. DeepLIFT compares the activation of each neuron to its 'reference activation' and assigns contribution scores according to the difference. By optionally giving separate consideration to positive and negative contributions, DeepLIFT can also reveal dependencies which are missed by other approaches. Scores can be computed efficiently in a single backward pass. We apply DeepLIFT to models trained on MNIST and simulated genomic data, and show significant advantages over gradient-based methods. A detailed video tutorial on the method is at http://goo.gl/qKb7pL and code is at http://goo.gl/RM8jvH.},
+	archivePrefix = {arXiv},
+	arxivId = {1704.02685},
+	author = {Shrikumar, Avanti and Greenside, Peyton and Kundaje, Anshul},
+	eprint = {1704.02685},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Shrikumar, Greenside, Kundaje - 2017 - Learning Important Features Through Propagating Activation Differences.pdf:pdf},
+	keywords = {Feature visualization,Saliency maps},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Saliency maps,Feature visualization},
+	month = {apr},
+	title = {{Learning Important Features Through Propagating Activation Differences}},
+	url = {http://arxiv.org/abs/1704.02685},
+	year = {2017}
+}
+
+
+@book{Ching2017,
+	abstract = {Deep learning, which describes a class of machine learning algorithms, has recently showed impressive results across a variety of domains. Biology and medicine are data rich, but the data are complex and often ill-understood. Problems of this nature may be particularly well-suited to deep learning techniques. We examine applications of deep learning to a variety of biomedical problems -- patient classification, fundamental biological processes, and treatment of patients -- to predict whether deep learning will transform these tasks or if the biomedical sphere poses unique challenges. We find that deep learning has yet to revolutionize or definitively resolve any of these problems, but promising advances have been made on the prior state of the art. Even when improvement over a previous baseline has been modest, we have seen signs that deep learning methods may speed or aid human investigation. More work is needed to address concerns related to interpretability and how to best model each problem. Furthermore, the limited amount of labeled data for training presents problems in some domains, as can legal and privacy constraints on work with sensitive health records. Nonetheless, we foresee deep learning powering changes at the bench and bedside with the potential to transform several areas of biology and medicine.},
+	archivePrefix = {arXiv},
+	arxivId = {142760},
+	author = {Ching, Travers and Himmelstein, Daniel S. and Beaulieu-Jones, Brett K. and Kalinin, Alexandr A. and Do, Brian T. and Way, Gregory P. and Ferrero, Enrico and Agapow, Paul-Michael and Xie, Wei and Rosen, Gail L. and Lengerich, Benjamin J. and Israeli, Johnny and Lanchantin, Jack and Woloszynek, Stephen and Carpenter, Anne E. and Shrikumar, Avanti and Xu, Jinbo and Cofer, Evan M. and Harris, David J. and DeCaprio, Dave and Qi, Yanjun and Kundaje, Anshul and Peng, Yifan and Wiley, Laura K. and Segler, Marwin H. S. and Gitter, Anthony and Greene, Casey S.},
+	booktitle = {bioRxiv},
+	doi = {10.1101/142760},
+	eprint = {142760},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Ching et al. - 2017 - Opportunities And Obstacles For Deep Learning In Biology And Medicine.pdf:pdf},
+	isbn = {0000000305396},
+	keywords = {Broad},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Broad},
+	title = {{Opportunities And Obstacles For Deep Learning In Biology And Medicine}},
+	year = {2017}
+}
+
+
+@article{Montavon2017,
+	abstract = {Nonlinear methods such as Deep Neural Networks (DNNs) are the gold standard for various challenging machine learning problems such as image recognition. Although these methods perform impressively well, they have a significant disadvantage, the lack of transparency, limiting the interpretability of the solution and thus the scope of application in practice. Especially DNNs act as black boxes due to their multilayer nonlinear structure. In this paper we introduce a novel methodology for interpreting generic multilayer neural networks by decomposing the network classification decision into contributions of its input elements. Although our focus is on image classification, the method is applicable to a broad set of input data, learning tasks and network architectures. Our method called deep Taylor decomposition efficiently utilizes the structure of the network by backpropagating the explanations from the output to the input layer. We evaluate the proposed method empirically on the MNIST and ILSVRC data sets.},
+	archivePrefix = {arXiv},
+	arxivId = {1512.02479},
+	author = {Montavon, Gr{\'{e}}goire and Lapuschkin, Sebastian and Binder, Alexander and Samek, Wojciech and M{\"{u}}ller, Klaus Robert},
+	doi = {10.1016/j.patcog.2016.11.008},
+	eprint = {1512.02479},
+	file = {:home/juillermo/Desktop/1512.02479v1.pdf:pdf},
+	isbn = {0031-3203},
+	issn = {00313203},
+	journal = {Pattern Recognition},
+	keywords = {Deep neural networks,Feature visualization,Heatmapping,Image recognition,Relevance propagation,Taylor decomposition},
+	mendeley-groups = {AML},
+	mendeley-tags = {Feature visualization},
+	title = {{Explaining nonlinear classification decisions with deep Taylor decomposition}},
+	year = {2017}
+}
+
+
+@misc{Montavon2018,
+	abstract = {This paper provides an entry point to the problem of interpreting a deep neural network model and explaining its predictions. It is based on a tutorial given at ICASSP 2017. As a tutorial paper, the set of methods covered here is not exhaustive, but sufficiently representative to discuss a number of questions in interpretability, technical challenges, and possible applications. The second part of the tutorial focuses on the recently proposed layer-wise relevance propagation (LRP) technique, for which we provide theory, recommendations, and tricks, to make most efficient use of it on real data.},
+	annote = {Fucking awesome},
+	archivePrefix = {arXiv},
+	arxivId = {1706.07979},
+	author = {Montavon, Gr{\'{e}}goire and Samek, Wojciech and M{\"{u}}ller, Klaus Robert},
+	booktitle = {Digital Signal Processing: A Review Journal},
+	doi = {10.1016/j.dsp.2017.10.011},
+	eprint = {1706.07979},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Montavon, Samek, M{\"{u}}ller - 2018 - Methods for interpreting and understanding deep neural networks(2).pdf:pdf},
+	issn = {10512004},
+	keywords = {Activation maximization,Deep neural networks,Feature visualization,Layer-wise relevance propagation,Sensitivity analysis,Taylor decomposition},
+	mendeley-groups = {AML},
+	mendeley-tags = {Feature visualization},
+	title = {{Methods for interpreting and understanding deep neural networks}},
+	year = {2018}
+}
+
+@article{Lanchantin2016,
+	abstract = {Deep neural network (DNN) models have recently obtained state-of-the-art prediction accuracy for the transcription factor binding (TFBS) site classification task. However, it remains unclear how these approaches identify meaningful DNA sequence signals and give insights as to why TFs bind to certain locations. In this paper, we propose a toolkit called the Deep Motif Dashboard (DeMo Dashboard) which provides a suite of visualization strategies to extract motifs, or sequence patterns from deep neural network models for TFBS classification. We demonstrate how to visualize and understand three important DNN models: convolutional, recurrent, and convolutional-recurrent networks. Our first visualization method is finding a test sequence's saliency map which uses first-order derivatives to describe the importance of each nucleotide in making the final prediction. Second, considering recurrent models make predictions in a temporal manner (from one end of a TFBS sequence to the other), we introduce temporal output scores, indicating the prediction score of a model over time for a sequential input. Lastly, a class-specific visualization strategy finds the optimal input sequence for a given TFBS positive class via stochastic gradient optimization. Our experimental results indicate that a convolutional-recurrent architecture performs the best among the three architectures. The visualization techniques indicate that CNN-RNN makes predictions by modeling both motifs as well as dependencies among them.},
+	archivePrefix = {arXiv},
+	arxivId = {1608.03644},
+	author = {Lanchantin, Jack and Singh, Ritambhara and Wang, Beilun and Qi, Yanjun},
+	doi = {10.1101/085191},
+	eprint = {1608.03644},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Lanchantin et al. - 2016 - Deep Motif Dashboard Visualizing and Understanding Genomic Sequences Using Deep Neural Networks.pdf:pdf;:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Lanchantin et al. - 2016 - Deep Motif Dashboard Visualizing and Understanding Genomic Sequences Using Deep Neural Networks(2).pdf:pdf},
+	issn = {23356936},
+	keywords = {Deep learning,Feature visualization},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Deep learning,Feature visualization},
+	title = {{Deep Motif Dashboard: Visualizing and Understanding Genomic Sequences Using Deep Neural Networks}},
+	year = {2016}
+}
+
+
+@misc{chollet2015keras,
+	title={Keras},
+	author={Chollet, Fran\c{c}ois and others},
+	year={2015},
+	howpublished={\url{https://keras.io}},
+}
+
+@phdthesis{Fontal2017,
+	author = {Fontal, Alejandro},
+	file = {:home/juillermo/Desktop/edepotair{\_}t5a2fb523{\_}001.pdf:pdf},
+	keywords = {CNN,Computational Biology,Deep Learning,Feature visualization,LSTM,Machine Learning,RNN,Subcellular localization},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {CNN,Computational Biology,Deep Learning,LSTM,Machine Learning,RNN,Subcellular localization,Feature visualization},
+	school = {Wageningen University {\&} Research},
+	title = {{Neural Networks for Subcellular Localization Prediction}},
+	url = {http://edepot.wur.nl/429151},
+	year = {2017}
+}
+
+
+@inproceedings{Zeiler2014,
+	abstract = {Large Convolutional Network models have recently demonstrated impressive classification performance on the ImageNet benchmark. However there is no clear understanding of why they perform so well, or how they might be improved. In this paper we address both issues. We introduce a novel visualization technique that gives insight into the function of intermediate feature layers and the operation of the classifier. We also perform an ablation study to discover the performance contribution from different model layers. This enables us to find model architectures that outperform Krizhevsky $\backslash$etal on the ImageNet classification benchmark. We show our ImageNet model generalizes well to other datasets: when the softmax classifier is retrained, it convincingly beats the current state-of-the-art results on Caltech-101 and Caltech-256 datasets.},
+	archivePrefix = {arXiv},
+	arxivId = {1311.2901},
+	author = {Zeiler, Matthew D. and Fergus, Rob},
+	booktitle = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
+	doi = {10.1007/978-3-319-10590-1_53},
+	eprint = {1311.2901},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Zeiler, Fergus - 2014 - Visualizing and understanding convolutional networks.pdf:pdf},
+	isbn = {9783319105895},
+	issn = {16113349},
+	keywords = {Feature visualization},
+	mendeley-groups = {AML},
+	mendeley-tags = {Feature visualization},
+	pmid = {26353135},
+	title = {{Visualizing and understanding convolutional networks}},
+	year = {2014}
+}
+
+
+@article{Szegedy2013,
+	abstract = {Deep neural networks are highly expressive models that have recently achieved state of the art performance on speech and visual recognition tasks. While their expressiveness is the reason they succeed, it also causes them to learn uninterpretable solutions that could have counter-intuitive properties. In this paper we report two such properties. First, we find that there is no distinction between individual high level units and random linear combinations of high level units, according to various methods of unit analysis. It suggests that it is the space, rather than the individual units, that contains of the semantic information in the high layers of neural networks. Second, we find that deep neural networks learn input-output mappings that are fairly discontinuous to a significant extend. We can cause the network to misclassify an image by applying a certain imperceptible perturbation, which is found by maximizing the network's prediction error. In addition, the specific nature of these perturbations is not a random artifact of learning: the same perturbation can cause a different network, that was trained on a different subset of the dataset, to misclassify the same input.},
+	archivePrefix = {arXiv},
+	arxivId = {1312.6199},
+	author = {Szegedy, Christian and Zaremba, Wojciech and Sutskever, Ilya and Bruna, Joan and Erhan, Dumitru and Goodfellow, Ian and Fergus, Rob},
+	eprint = {1312.6199},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Szegedy et al. - 2013 - Intriguing properties of neural networks.pdf:pdf},
+	keywords = {Feature visualization},
+	mendeley-groups = {AML},
+	mendeley-tags = {Feature visualization},
+	month = {dec},
+	title = {{Intriguing properties of neural networks}},
+	url = {http://arxiv.org/abs/1312.6199},
+	year = {2013}
+}
+
+
+@article{Gatys2016,
+	abstract = {Rendering the semantic content of an image in different styles is a difficult image processing task. Arguably, a major limiting factor for previous approaches has been the lack of image representations that explicitly represent semantic in-formation and, thus, allow to separate image content from style. Here we use image representations derived from Con-volutional Neural Networks optimised for object recogni-tion, which make high level image information explicit. We introduce A Neural Algorithm of Artistic Style that can sep-arate and recombine the image content and style of natural images. The algorithm allows us to produce new images of high perceptual quality that combine the content of an ar-bitrary photograph with the appearance of numerous well-known artworks. Our results provide new insights into the deep image representations learned by Convolutional Neu-ral Networks and demonstrate their potential for high level image synthesis and manipulation.},
+	archivePrefix = {arXiv},
+	arxivId = {1505.07376},
+	author = {Gatys, Leon A and Ecker, Alexander S and Bethge, Matthias},
+	doi = {10.1109/CVPR.2016.265},
+	eprint = {1505.07376},
+	file = {:home/juillermo/Desktop/07780634.pdf:pdf},
+	isbn = {9781467388511},
+	issn = {10636919},
+	journal = {The IEEE conference on computer vision and pattern recognition},
+	keywords = {Feature visualization},
+	mendeley-groups = {AML},
+	mendeley-tags = {Feature visualization},
+	pmid = {15430064963552939126},
+	title = {{Image style transfer using convolutional neural networks}},
+	year = {2016}
+}
+
+
+@inproceedings{Mahendran2015,
+	abstract = {Image representations, from SIFT and Bag of Visual Words to Convolutional Neural Networks (CNNs), are a crucial component of almost any image understanding system. Nevertheless, our understanding of them remains limited. In this paper we conduct a direct analysis of the visual information contained in representations by asking the following question: given an encoding of an image, to which extent is it possible to reconstruct the image itself? To answer this question we contribute a general framework to invert representations. We show that this method can invert representations such as HOG and SIFT more accurately than recent alternatives while being applicable to CNNs too. We then use this technique to study the inverse of recent state-of-the-art CNN image representations for the first time. Among our findings, we show that several layers in CNNs retain photographically accurate information about the image, with different degrees of geometric and photometric invariance.},
+	archivePrefix = {arXiv},
+	arxivId = {1412.0035},
+	author = {Mahendran, Aravindh and Vedaldi, Andrea},
+	booktitle = {Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition},
+	doi = {10.1109/CVPR.2015.7299155},
+	eprint = {1412.0035},
+	file = {:home/juillermo/Desktop/1412.0035v1.pdf:pdf},
+	isbn = {9781467369640},
+	issn = {10636919},
+	keywords = {Feature visualization},
+	mendeley-groups = {AML},
+	mendeley-tags = {Feature visualization},
+	pmid = {903},
+	title = {{Understanding deep image representations by inverting them}},
+	year = {2015}
+}
+
+@article{Simonyan2014,
+	abstract = {This paper addresses the visualisation of image classification models, learnt using deep Convolutional Networks (ConvNets). We consider two visualisation techniques, based on computing the gradient of the class score with respect to the input image. The first one generates an image, which maximises the class score [Erhan et al., 2009], thus visualising the notion of the class, captured by a ConvNet. The second technique computes a class saliency map, specific to a given image and class. We show that such maps can be employed for weakly supervised object segmentation using classification ConvNets. Finally, we establish the connection between the gradient-based ConvNet visualisation methods and deconvolutional networks [Zeiler et al., 2013].},
+	author = {Simonyan, Karen and Vedaldi, Andrea and Zisserman, Andrew},
+	file = {:home/juillermo/Desktop/1312.6034v2.pdf:pdf},
+	journal = {arXiv.org},
+	keywords = {Feature visualization},
+	mendeley-groups = {AML},
+	mendeley-tags = {Feature visualization},
+	title = {{Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps}},
+	year = {2014}
+}
+
+@misc{Mordvintsev2015,
+	abstract = {Artificial Neural Networks have spurred remarkable recent progress in image classification and speech recognition. But even though these are very useful tools based on well-known mathematical methods, we actually understand surprisingly little of why certain models work and others don't. So let's take a look at some simple techniques for peeking inside these networks. We train an artificial neural network by showing it millions of training examples and gradually adjusting the network parameters until it gives the classifications we want. The network typically consists of 10-30 stacked layers of artificial neurons. Each image is fed into the input layer, which then talks to the next layer, until eventually the “output” layer is reached. The network's “answer” comes from this final output layer. One of the challenges of neural networks is understanding what exactly goes on at each layer. We know that after training, each layer progressively extracts higher and higher-level features of the image, until the final layer essentially makes a decision on what the image shows. For example, Artificial Neural Networks have spurred remarkable recent progress in image classification and speech recognition. But even though these are very useful tools based on well-known mathematical methods, we actually understand surprisingly little of why certain models work and others don't. So let's take a look at some simple techniques for peeking inside these networks.},
+	author = {Mordvintsev, Alexander and Tyka, Michael and Olah, Christopher},
+	booktitle = {Google Research Blog},
+	keywords = {Feature visualization},
+	mendeley-groups = {AML},
+	mendeley-tags = {Feature visualization},
+	title = {{Inceptionism: Going deeper into neural networks, google research blog}},
+	url = {https://ai.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html},
+	year = {2015}
+}
+
+@article{Olah2017,
+	abstract = {Deep convolutional neural networks (CNNs) have demonstrated impressive performance on visual object classification tasks. In addition, it is a useful model for predication of neuronal responses recorded in visual system. However, there is still no clear understanding of what CNNs learn in terms of visual neuronal circuits. Visualizing CNN's features to obtain possible connections to neuronscience underpinnings is not easy due to highly complex circuits from the retina to higher visual cortex. Here we address this issue by focusing on single retinal ganglion cells with a simple model and electrophysiological recordings from salamanders. By training CNNs with white noise images to predicate neural responses, we found that convolutional filters learned in the end are resembling to biological components of the retinal circuit. Features represented by these filters tile the space of conventional receptive field of retinal ganglion cells. These results suggest that CNN could be used to reveal structure components of neuronal circuits.},
+	archivePrefix = {arXiv},
+	arxivId = {1711.02837},
+	author = {Olah, Chris and Mordvintsev, Alexander and Schubert, Ludwig},
+	doi = {10.23915/distill.00007},
+	eprint = {1711.02837},
+	issn = {2476-0757},
+	journal = {Distill},
+	keywords = {Feature visualization},
+	mendeley-groups = {AML},
+	mendeley-tags = {Feature visualization},
+	title = {{Feature Visualization}},
+	url = {https://distill.pub/2017/feature-visualization/},
+	year = {2017}
+}
+
+@article{Erhan2009,
+	abstract = {Deep architectures have demonstrated state-of-the-art results in a variety of settings, especially with vision datasets. Beyond the model definitions and the quantitative analyses, there is a need for qualitative comparisons of the solutions learned by various deep architectures. The goal of this paper is to find good qualitative interpretations of high level features represented by such models. To this end, we contrast and compare several techniques applied on Stacked Denoising Autoencoders and Deep Belief Networks, trained on several vision datasets. We show that, perhaps counter-intuitively, such interpretation is possible at the unit level, that it is simple to accomplish and that the results are consistent across various techniques. We hope that such techniques will allow researchers in deep architectures to understand more of how and why deep architectures work},
+	author = {Erhan, Dumitru and Bengio, Yoshua and Courville, Aaron and Vincent, Pascal},
+	file = {:home/juillermo/Desktop/visualization{\_}techreport.pdf:pdf},
+	journal = {Bernoulli},
+	keywords = {Feature visualization},
+	mendeley-groups = {AML},
+	mendeley-tags = {Feature visualization},
+	title = {{Visualizing higher-layer features of a deep network}},
+	year = {2009}
+}
+
+
+@article{Zhou2018,
+	abstract = {Protein secondary structure is the three dimensional form of local segments of proteins and its prediction is an important problem in protein tertiary structure prediction. Developing computational approaches for protein secondary structure prediction is becoming increasingly urgent. We present a novel deep learning based model, referred to as CNNH{\_}PSS, by using multi-scale CNN with highway. In CNNH{\_}PSS, any two neighbor convolutional layers have a highway to deliver information from current layer to the output of the next one to keep local contexts. As lower layers extract local context while higher layers extract long-range interdependencies, the highways between neighbor layers allow CNNH{\_}PSS to have ability to extract both local contexts and long-range interdependencies. We evaluate CNNH{\_}PSS on two commonly used datasets: CB6133 and CB513. CNNH{\_}PSS outperforms the multi-scale CNN without highway by at least 0.010 Q8 accuracy and also performs better than CNF, DeepCNF and SSpro8, which cannot extract long-range interdependencies, by at least 0.020 Q8 accuracy, demonstrating that both local contexts and long-range interdependencies are indeed useful for prediction. Furthermore, CNNH{\_}PSS also performs better than GSM and DCRNN which need extra complex model to extract long-range interdependencies. It demonstrates that CNNH{\_}PSS not only cost less computer resource, but also achieves better predicting performance. CNNH{\_}PSS have ability to extracts both local contexts and long-range interdependencies by combing multi-scale CNN and highway network. The evaluations on common datasets and comparisons with state-of-the-art methods indicate that CNNH{\_}PSS is an useful and efficient tool for protein secondary structure prediction.},
+	author = {Zhou, Jiyun and Wang, Hongpeng and Zhao, Zhishan and Xu, Ruifeng and Lu, Qin},
+	doi = {10.1186/s12859-018-2067-8},
+	file = {:home/juillermo/Desktop/document.pdf:pdf},
+	issn = {14712105},
+	journal = {BMC Bioinformatics},
+	keywords = {Convolutional neural network,Highway,Local context,Long-range interdependency,Protein secondary structure,Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{CNNH{\_}PSS: Protein 8-class secondary structure prediction by convolutional neural network with highway}},
+	year = {2018}
+}
+
+@INPROCEEDINGS{8371925,
+	author={C. Fang and Y. Shang and D. Xu},
+	booktitle={2017 IEEE 29th International Conference on Tools with Artificial Intelligence (ICTAI)},
+	title={A New Deep Neighbor Residual Network for Protein Secondary Structure Prediction},
+	year={2017},
+	volume={},
+	number={},
+	pages={66-71},
+	keywords={Amino acids;Computer architecture;Neural networks;Protein sequence;Tools;Training;Protein secondary structure prediction;deep learning;deep neighbor residual network},
+	doi={10.1109/ICTAI.2017.00022},
+	ISSN={},
+	month={Nov},}
+
+@inproceedings{Johansen2017,
+	abstract = {Deep learning has become the state-of-the-art method for predict-ing protein secondary structure from only its amino acid residues and sequence proole. Building upon these results, we propose to combine a bi-directional recurrent neural network (biRNN) with a conditional random meld (CRF), which we call the biRNN-CRF. The biRNN-CRF may be seen as an improved alternative to an auto-regressive uni-directional RNN where predictions are performed sequentially conditioning on the prediction in the previous time-step. The CRF is instead nearest neighbor-aware and models for the joint distribution of the labels for all time-steps. We condition the CRF on the output of biRNN, which learns a distributed represen-tation based on the entire sequence. The biRNN-CRF is therefore close to ideally suited for the secondary structure task because a high degree of cross-talk between neighboring elements can be ex-pected. We validate the model on several benchmark datasets. For example, on CB513, a model with 1.7 million parameters, achieves a Q8 accuracy of 69.4 for single model and 70.9 for ensemble, which to our knowledge is state-of-the-art. 1},
+	author = {Johansen, Alexander Rosenberg and S{\o}nderby, Casper Kaae and S{\o}nderby, S{\o}ren Kaae and Winther, Ole},
+	booktitle = {Proceedings of the 8th ACM International Conference on Bioinformatics, Computational Biology,and Health Informatics - ACM-BCB '17},
+	doi = {10.1145/3107411.3107489},
+	file = {:home/juillermo/Desktop/p73-johansen.pdf:pdf},
+	isbn = {9781450347228},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Deep Recurrent Conditional Random Field Network for Protein Secondary Prediction}},
+	year = {2017}
+}
+
+@article{Wang2017,
+	abstract = {The prediction of protein structures directly from amino acid sequences is one of the biggest challenges in computational biology. It can be divided into several independent sub-problems in which protein secondary structure (SS) prediction is fundamental. Many computational methods have been proposed for SS prediction problem. Few of them can model well both the sequence-structure mapping relationship between input protein features and SS, and the interaction relationship among residues which are both important for SS prediction. In this paper, we proposed a deep recurrent encoder–decoder networks called Secondary Structure Recurrent Encoder–Decoder Networks (SSREDNs) to solve this SS prediction problem. Deep architecture and recurrent structures are employed in the SSREDNs to model both the complex nonlinear mapping relationship between input protein features and SS, and the mutual interaction among continuous residues of the protein chain. A series of techniques are also used in this paper to refine the model's performance. The proposed model is applied to the open dataset CullPDB and CB513. Experimental results demonstrate that our method can improve both Q3 and Q8 accuracy compared with some public available methods. For Q8 prediction problem, it achieves 68.20{\%} and 73.1{\%} accuracy on CB513 and CullPDB dataset in fewer epochs better than the previous state-of-art method.},
+	author = {Wang, Yangxu and Mao, Hua and Yi, Zhang},
+	doi = {10.1016/j.knosys.2016.11.015},
+	file = {:home/juillermo/Desktop/1-s2.0-S0950705116304713-main.pdf:pdf},
+	issn = {09507051},
+	journal = {Knowledge-Based Systems},
+	keywords = {Deep learning,Encoder–decoder networks,Recurrent neural networks,Secondary structure,Secondary structure prediction},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Protein secondary structure prediction by using deep learning method}},
+	year = {2017}
+}
+
+
+@article{Sønderby2014,
+	abstract = {Prediction of protein secondary structure from the amino acid sequence is a classical bioinformatics problem. Common methods use feed forward neural networks or SVMs combined with a sliding window, as these models does not naturally handle sequential data. Recurrent neural networks are an generalization of the feed forward neural network that naturally handle sequential data. We use a bidirectional recurrent neural network with long short term memory cells for prediction of secondary structure and evaluate using the CB513 dataset. On the secondary structure 8-class problem we report better performance (0.674) than state of the art (0.664). Our model includes feed forward networks between the long short term memory cells, a path that can be further explored.},
+	archivePrefix = {arXiv},
+	arxivId = {1412.7828},
+	author = {S{\o}nderby, S{\o}ren Kaae and Winther, Ole},
+	eprint = {1412.7828},
+	journal = {arXiv:1412.7828},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Protein Secondary Structure Prediction with Long Short Term Memory Networks}},
+	year = {2014}
+}
+
+
+@article{Magnan2014,
+	abstract = {MOTIVATION Accurately predicting protein secondary structure and relative solvent accessibility is important for the study of protein evolution, structure and function and as a component of protein 3D structure prediction pipelines. Most predictors use a combination of machine learning and profiles, and thus must be retrained and assessed periodically as the number of available protein sequences and structures continues to grow. RESULTS We present newly trained modular versions of the SSpro and ACCpro predictors of secondary structure and relative solvent accessibility together with their multi-class variants SSpro8 and ACCpro20. We introduce a sharp distinction between the use of sequence similarity alone, typically in the form of sequence profiles at the input level, and the additional use of sequence-based structural similarity, which uses similarity to sequences in the Protein Data Bank to infer annotations at the output level, and study their relative contributions to modern predictors. Using sequence similarity alone, SSpro's accuracy is between 79 and 80{\%} (79{\%} for ACCpro) and no other predictor seems to exceed 82{\%}. However, when sequence-based structural similarity is added, the accuracy of SSpro rises to 92.9{\%} (90{\%} for ACCpro). Thus, by combining both approaches, these problems appear now to be essentially solved, as an accuracy of 100{\%} cannot be expected for several well-known reasons. These results point also to several open technical challenges, including (i) achieving on the order of ≥ 80{\%} accuracy, without using any similarity with known proteins and (ii) achieving on the order of ≥ 85{\%} accuracy, using sequence similarity alone. AVAILABILITY AND IMPLEMENTATION SSpro, SSpro8, ACCpro and ACCpro20 programs, data and web servers are available through the SCRATCH suite of protein structure predictors at http://scratch.proteomics.ics.uci.edu.},
+	author = {Magnan, Christophe N. and Baldi, Pierre},
+	doi = {10.1093/bioinformatics/btu352},
+	isbn = {1367-4811 (Electronic)$\backslash$r1367-4803 (Linking)},
+	issn = {14602059},
+	journal = {Bioinformatics},
+	pmid = {24860169},
+	title = {{SSpro/ACCpro 5: Almost perfect prediction of protein secondary structure and relative solvent accessibility using profiles, machine learning and structural similarity}},
+	year = {2014}
+}
+
+
+@article{Zhou2014,
+	abstract = {Predicting protein secondary structure is a fundamental problem in protein structure prediction. Here we present a new supervised generative stochastic network (GSN) based method to predict local secondary structure with deep hierarchical representations. GSN is a recently proposed deep learning technique (Bengio {\&} Thibodeau-Laufer, 2013) to globally train deep generative model. We present the supervised extension of GSN, which learns a Markov chain to sample from a conditional distribution, and applied it to protein structure prediction. To scale the model to full-sized, high-dimensional data, like protein sequences with hundreds of amino acids, we introduce a convolutional architecture, which allows efficient learning across multiple layers of hierarchical representations. Our architecture uniquely focuses on predicting structured low-level labels informed with both low and high-level representations learned by the model. In our application this corresponds to labeling the secondary structure state of each amino-acid residue. We trained and tested the model on separate sets of non-homologous proteins sharing less than 30{\%} sequence identity. Our model achieves 66.4{\%} Q8 accuracy on the CB513 dataset, better than the previously reported best performance 64.9{\%} (Wang et al., 2011) for this challenging secondary structure prediction problem.},
+	archivePrefix = {arXiv},
+	arxivId = {1403.1347},
+	author = {Zhou, Jian and Troyanskaya, Olga G.},
+	eprint = {1403.1347},
+	isbn = {9781634393973},
+	keywords = {CNN,Deep learning,Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {CNN,Deep learning,Secondary structure},
+	title = {{Deep Supervised and Convolutional Generative Stochastic Network for Protein Secondary Structure Prediction}},
+	year = {2014}
+}
+
+
+@article{Heffernan2017,
+	abstract = {Motivation: The accuracy of predicting protein local and global structural properties such as sec-ondary structure and solvent accessible surface area has been stagnant for many years because of the challenge of accounting for non-local interactions between amino acid residues that are close in three-dimensional structural space but far from each other in their sequence positions. All exist-ing machine-learning techniques relied on a sliding window of 10–20 amino acid residues to cap-ture some 'short to intermediate' non-local interactions. Here, we employed Long Short-Term Memory (LSTM) Bidirectional Recurrent Neural Networks (BRNNs) which are capable of capturing long range interactions without using a window. Results: We showed that the application of LSTM-BRNN to the prediction of protein structural properties makes the most significant improvement for residues with the most long-range contacts (ji-jj {\textgreater}19) over a previous window-based, deep-learning method SPIDER2. Capturing long-range interactions allows the accuracy of three-state secondary structure prediction to reach 84{\%} and the correlation coefficient between predicted and actual solvent accessible surface areas to reach 0.80, plus a reduction of 5{\%}, 10{\%}, 5{\%} and 10{\%} in the mean absolute error for backbone /, w, h and s angles, respectively, from SPIDER2. More significantly, 27{\%} of 182724 40-residue models directly constructed from predicted Ca atom-based h and s have similar structures to their corresponding native structures (6{\AA} RMSD or less), which is 3{\%} better than models built by / and w angles. We expect the method to be useful for assisting protein structure and function prediction. Availability and implementation: The method is available as a SPIDER3 server and standalone package at http://sparks-lab.org.},
+	author = {Heffernan, Rhys and Yang, Yuedong and Paliwal, Kuldip and Zhou, Yaoqi},
+	doi = {10.1093/bioinformatics/btx218},
+	file = {:home/juillermo/Desktop/btx218.pdf:pdf},
+	issn = {14602059},
+	journal = {Bioinformatics},
+	keywords = {Computational Biology,LSTM,RNN,Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Computational Biology,LSTM,RNN,Secondary structure},
+	number = {18},
+	pages = {2842--2849},
+	title = {{Capturing non-local interactions by long short-term memory bidirectional recurrent neural networks for improving prediction of protein secondary structure, backbone angles, contact numbers and solvent accessibility}},
+	volume = {33},
+	year = {2017}
+}
+
+
+@inproceedings{Hattori2017,
+	abstract = {—One of the most important open problems in science is the protein secondary structures prediction from the protein sequence of amino acids. This work presents an application of Deep Recurrent Neural Network with Bidirectional Long Short-Term Memory (DBLSTM) cells to this problem. We compare the performance of the proposed approach with the state-of-the-art approaches. Despite the lower complexity of the proposed approach (i.e. Neural Network architecture with fewer neurons), results showed that the DBLSTM could achieve a satisfactory level of accuracy when compared with the state-of-the-art ap-proaches. We also studied the behavior of Gradient Optimizers applied to the DBLSTM. Furthermore, this paper concentrates on well-known quantitative analytical methods applied to evaluate the proposed approach.},
+	annote = {Good technical info about DLSTM. Compares results to the Vanessa-previous paper.},
+	author = {Hattori, Leandro Takeshi and Benitez, Cesar Manuel Vargas and Lopes, Heitor Silverio},
+	booktitle = {2017 IEEE Latin American Conference on Computational Intelligence (LA-CCI)},
+	doi = {10.1109/LA-CCI.2017.8285678},
+	file = {:home/juillermo/Desktop/08285678.pdf:pdf},
+	isbn = {978-1-5386-3734-0},
+	keywords = {Computational Biology,Deep Learning,LSTM,RNN,Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Computational Biology,Deep Learning,LSTM,RNN,Secondary structure},
+	pages = {1--6},
+	title = {{A deep bidirectional long short-term memory approach applied to the protein secondary structure prediction problem}},
+	url = {http://ieeexplore.ieee.org/document/8285678/},
+	year = {2017}
+}
+
+
+@article{Busia2017,
+	abstract = {Recently developed deep learning techniques have significantly improved the accuracy of various speech and image recognition systems. In this paper we show how to adapt some of these techniques to create a novel chained convolutional architecture with next-step conditioning for improving performance on protein sequence prediction problems. We explore its value by demonstrating its ability to improve performance on eight-class secondary structure prediction. We first establish a state-of-the-art baseline by adapting recent advances in convolutional neural networks which were developed for vision tasks. This model achieves 70.0{\%} per amino acid accuracy on the CB513 benchmark dataset without use of standard performance-boosting techniques such as ensembling or multitask learning. We then improve upon this state-of-the-art result using a novel chained prediction approach which frames the secondary structure prediction as a next-step prediction problem. This sequential model achieves 70.3{\%} Q8 accuracy on CB513 with a single model; an ensemble of these models produces 71.4{\%} Q8 accuracy on the same test set, improving upon the previous overall state of the art for the eight-class secondary structure problem. Our models are implemented using TensorFlow, an open-source machine learning software library available at TensorFlow.org; we aim to release the code for these experiments as part of the TensorFlow repository.},
+	archivePrefix = {arXiv},
+	arxivId = {1702.03865},
+	author = {Busia, Akosua and Jaitly, Navdeep},
+	eprint = {1702.03865},
+	journal = {arXiv:1702.03865v1},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Next-Step Conditioned Deep Convolutional Neural Networks Improve Protein Secondary Structure Prediction}},
+	year = {2017}
+}
+
+
+@inproceedings{Li2016,
+	abstract = {Protein secondary structure prediction is an important problem in bioinformatics. Inspired by the recent successes of deep neural networks, in this paper, we propose an end-to-end deep network that predicts protein secondary structures from integrated local and global contextual features. Our deep architecture leverages convolutional neural networks with different kernel sizes to extract multiscale local contextual features. In addition, considering long-range dependencies existing in amino acid sequences, we set up a bidirectional neural network consisting of gated recurrent unit to capture global contextual features. Furthermore, multi-task learning is utilized to predict secondary structure labels and amino-acid solvent accessibility simultaneously. Our proposed deep network demonstrates its effectiveness by achieving state-of-the-art performance, i.e., 69.7{\%} Q8 accuracy on the public benchmark CB513, 76.9{\%} Q8 accuracy on CASP10 and 73.1{\%} Q8 accuracy on CASP11. Our model and results are publicly available.},
+	archivePrefix = {arXiv},
+	arxivId = {1604.07176},
+	author = {Li, Zhen and Yu, Yizhou},
+	booktitle = {Proceedings of the Twenty-Fifth International Joint Conference on Artificial Intelligence},
+	eprint = {1604.07176},
+	isbn = {978-1-57735-770-4},
+	issn = {10450823},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Protein Secondary Structure Prediction Using Cascaded Convolutional and Recurrent Neural Networks}},
+	year = {2016}
+}
+
+
+@article{Fang2017,
+	abstract = {Motivation: Protein secondary structure prediction can provide important information for protein 3D structure prediction and protein functions. Deep learning, which has been successfully applied to various research fields such as image classification and voice recognition, provides a new opportunity to significantly improve the secondary structure prediction accuracy. Although several deep-learning methods have been developed for secondary structure prediction, there is room for improvement. MUFold-SS was developed to address these issues. Results: Here, a very deep neural network, the deep inception-inside-inception networks (Deep3I), is proposed for protein secondary structure prediction and a software tool was implemented using this network. This network takes two inputs: a protein sequence and a profile generated by PSI-BLAST. The output is the predicted eight states (Q8) or three states (Q3) of secondary structures. The proposed Deep3I not only achieves the state-of-the-art performance but also runs faster than other tools. Deep3I achieves Q3 82.8{\%} and Q8 71.1{\%} accuracies on the CB513 benchmark.},
+	archivePrefix = {arXiv},
+	arxivId = {1709.06165},
+	author = {Fang, Chao and Shang, Yi and Xu, Dong},
+	eprint = {1709.06165},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Fang, Shang, Xu - 2017 - MUFold-SS Protein Secondary Structure Prediction Using Deep Inception-Inside-Inception Networks.pdf:pdf},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	month = {sep},
+	title = {{MUFold-SS: Protein Secondary Structure Prediction Using Deep Inception-Inside-Inception Networks}},
+	url = {http://arxiv.org/abs/1709.06165},
+	year = {2017}
+}
+
+
+@article{Jurtz2017,
+	abstract = {Motivation: Deep neural network architectures such as convolutional and long short-term memory networks have become increasingly popular as machine learning tools during the recent years. The availability of greater computational resources, more data, new algorithms for training deep models and easy to use libraries for implementation and training of neural networks are the drivers of this development. The use of deep learning has been especially successful in image recognition; and the development of tools, applications and code examples are in most cases centered within this field rather than within biology. Results: Here, we aim to further the development of deep learning methods within biology by providing application examples and ready to apply and adapt code templates. Given such examples, we illustrate how architectures consisting of convolutional and long short-term memory neural networks can relatively easily be designed and trained to state-of-the-art performance on three biological sequence problems: prediction of subcellular localization, protein secondary structure and the binding of peptides to MHC Class II molecules. Availability: All implementations and datasets are available online to the scientific community at https://github.com/vanessajurtz/lasagne4bio. Supplementary information:Supplementary data are available at Bioinformatics online.},
+	annote = {The key paper.},
+	archivePrefix = {arXiv},
+	arxivId = {103549},
+	author = {Jurtz, Vanessa Isabell and Johansen, Alexander Rosenberg and Nielsen, Morten and {Almagro Armenteros}, Jose Juan and Nielsen, Henrik and S{\o}nderby, Casper Kaae and Winther, Ole and S{\o}nderby, S{\o}ren Kaae},
+	doi = {10.1093/bioinformatics/btx531},
+	eprint = {103549},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Jurtz et al. - 2017 - An introduction to deep learning on biological sequence data Examples and solutions.pdf:pdf},
+	isbn = {1367-4811 (Electronic)},
+	issn = {14602059},
+	journal = {Bioinformatics},
+	keywords = {Broad,CNN,Computational Biology,Deep learning,LSTM,RNN,Secondary structure,Sequencing},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Broad,CNN,Computational Biology,Deep learning,LSTM,RNN,Secondary structure,Sequencing},
+	number = {22},
+	pages = {3685--3690},
+	pmid = {28961695},
+	title = {{An introduction to deep learning on biological sequence data: Examples and solutions}},
+	volume = {33},
+	year = {2017}
+}
+
+
+@article{Wang2016,
+	abstract = {Protein secondary structure (SS) prediction is important for studying protein structure and function. When only the sequence (profile) information is used as input feature, currently the best predictors can obtain {\~{}}80{\%} Q3 accuracy, which has not been improved in the past decade. Here we present DeepCNF (Deep Convolutional Neural Fields) for protein SS prediction. DeepCNF is a Deep Learning extension of Conditional Neural Fields (CNF), which is an integration of Conditional Random Fields (CRF) and shallow neural networks. DeepCNF can model not only complex sequence-structure relationship by a deep hierarchical architecture, but also interdependency between adjacent SS labels, so it is much more powerful than CNF. Experimental results show that DeepCNF can obtain {\~{}}84{\%} Q3 accuracy, {\~{}}85{\%} SOV score, and {\~{}}72{\%} Q8 accuracy, respectively, on the CASP and CAMEO test proteins, greatly outperforming currently popular predictors. As a general framework, DeepCNF can be used to predict other protein structure properties such as contact number, disorder regions, and solvent accessibility.},
+	archivePrefix = {arXiv},
+	arxivId = {1611.01503},
+	author = {Wang, Sheng and Peng, Jian and Ma, Jianzhu and Xu, Jinbo},
+	doi = {10.1038/srep18962},
+	eprint = {1611.01503},
+	file = {:home/juillermo/Desktop/srep18962.pdf:pdf},
+	isbn = {2045-2322 (Electronic)$\backslash$r2045-2322 (Linking)},
+	issn = {20452322},
+	journal = {Scientific Reports},
+	keywords = {CNN,Computational Biology,Deep learning,Secondary structure,Solving accessibility},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {CNN,Computational Biology,Deep learning,Secondary structure,Solving accessibility},
+	pmid = {26752681},
+	title = {{Protein Secondary Structure Prediction Using Deep Convolutional Neural Fields}},
+	volume = {6},
+	year = {2016}
+}
+
+
+@article{Lin2016,
+	abstract = {Predicting protein properties such as solvent accessibility and secondary structure from its primary amino acid sequence is an important task in bioinformatics. Recently, a few deep learning models have surpassed the traditional window based multilayer perceptron. Taking inspiration from the image classification domain we propose a deep convolutional neural network architecture, MUST-CNN, to predict protein properties. This architecture uses a novel multilayer shift-and-stitch (MUST) technique to generate fully dense per-position predictions on protein sequences. Our model is significantly simpler than the state-of-the-art, yet achieves better results. By combining MUST and the efficient convolution operation, we can consider far more parameters while retaining very fast prediction speeds. We beat the state-of-the-art performance on two large protein property prediction datasets.},
+	annote = {After the initial multitask model is trained, we take the top layers and each task-specific subclassifier and fine-tune the models by initializing their weights at the weights learned by the multitask model and training only on each specific task with 1/10 of the original learning rate. 
+	
+	PSI-BLAST generates a PSSM of size T × 20 for a T lengthed sequence, where a higher score represents a higher likelihood of the ith amino acid replacing the current one in other species. Generally, two amino acids that are interchangeable in the PSSM indicates that they are also interchangeable in the protein without sig- nificantly modifying the functionality of the protein.
+	
+	The class labels are H = alpha helix, B = residue in isolated beta bridge, E = extended strand, G = 3-helix, I = 5-helix, T = hydrogen bonded turn, S = bend, L = loop.
+	
+	ssp A collapsed version of the 8 class prediction task, since many protein secondary structure prediction algo- rithms use a 3 class approach instead of the 8-class ap- proach given in dssp. {\{}H, G{\}} → H =Helix, {\{}B, E{\}} → B =Beta sheet, and {\{}I, S, T, L{\}} → C =Coil},
+	archivePrefix = {arXiv},
+	arxivId = {1605.03004},
+	author = {Lin, Zeming and Lanchantin, Jack and Qi, Yanjun},
+	eprint = {1605.03004},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Lin, Lanchantin, Qi - 2016 - MUST-CNN A Multilayer Shift-and-Stitch Deep Convolutional Architecture for Sequence-based Protein Structure.pdf:pdf},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	month = {may},
+	title = {{MUST-CNN: A Multilayer Shift-and-Stitch Deep Convolutional Architecture for Sequence-based Protein Structure Prediction}},
+	url = {http://arxiv.org/abs/1605.03004},
+	year = {2016}
+}

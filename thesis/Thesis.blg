@@ -1,0 +1,71 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Thesis.aux
+A level-1 auxiliary file: Hints.aux
+A level-1 auxiliary file: Introduction.aux
+A level-1 auxiliary file: Theory.aux
+A level-1 auxiliary file: Methods.aux
+A level-1 auxiliary file: Results.aux
+A level-1 auxiliary file: Discussion.aux
+A level-1 auxiliary file: Conclusions.aux
+A level-1 auxiliary file: AppendixA.aux
+The style file: ecs.bst
+Database file #1: ECS.bib
+Repeated entry---line 468 of file ECS.bib
+ : @article{Zhou2014
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 568 of file ECS.bib
+ : @article{Jurtz2017
+ :                   ,
+I'm skipping whatever remains of this entry
+Warning--empty publisher in Ching2017
+Warning--empty journal in Fang2017
+Warning--empty journal in Ioffe2015
+Warning--empty journal in Lanchantin2016
+Warning--empty journal in Lin2016
+Warning--empty journal in Shrikumar2017
+Warning--empty journal in Szegedy2013
+Warning--empty journal in Zhou2014
+You've used 31 entries,
+            2638 wiz_defined-function locations,
+            785 strings with 12470 characters,
+and the built_in function-call counts, 15463 in all, are:
+= -- 1347
+> -- 1114
+< -- 13
++ -- 405
+- -- 372
+* -- 1286
+:= -- 2690
+add.period$ -- 109
+call.type$ -- 31
+change.case$ -- 246
+chr.to.int$ -- 30
+cite$ -- 39
+duplicate$ -- 623
+empty$ -- 1008
+format.name$ -- 423
+if$ -- 3053
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 29
+newline$ -- 177
+num.names$ -- 124
+pop$ -- 390
+preamble$ -- 1
+purify$ -- 217
+quote$ -- 0
+skip$ -- 465
+stack$ -- 0
+substring$ -- 354
+swap$ -- 50
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 336
+warning$ -- 8
+while$ -- 108
+width$ -- 0
+write$ -- 410
+(There were 2 error messages)

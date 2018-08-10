@@ -1,0 +1,49 @@
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.2}
+\contentsline {chapter}{\numberline {2}Theory}{5}{chapter.8}
+\contentsline {section}{\numberline {2.1}Deep Learning}{5}{section.9}
+\contentsline {subsection}{\numberline {2.1.1}Convolutional Neural Networks}{6}{subsection.10}
+\contentsline {section}{\numberline {2.2}Interpretability techniques}{8}{section.11}
+\contentsline {subsection}{\numberline {2.2.1}Feature visualization}{9}{subsection.12}
+\contentsline {subsubsection}{\numberline {2.2.1.1}Linear combination of filters}{10}{subsubsection.13}
+\contentsline {subsubsection}{\numberline {2.2.1.2}Activation maximization}{10}{subsubsection.14}
+\contentsline {subsection}{\numberline {2.2.2}Saliency maps}{12}{subsection.16}
+\contentsline {subsubsection}{\numberline {2.2.2.1}Perturbation-based forward propagation approaches (sensitivity analysis)}{13}{subsubsection.17}
+\contentsline {subsubsection}{\numberline {2.2.2.2}Backpropagation-based approaches}{14}{subsubsection.18}
+\contentsline {section}{\numberline {2.3}Deep Learning in biology}{17}{section.19}
+\contentsline {subsection}{\numberline {2.3.1}CNNs on biological sequence data}{17}{subsection.20}
+\contentsline {subsection}{\numberline {2.3.2}Interpretability techniques on biological problems}{18}{subsection.21}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Feature visualization}{18}{subsubsection.22}
+\contentsline {subsubsection}{\numberline {2.3.2.2}Saliency maps}{20}{subsubsection.23}
+\contentsline {section}{\numberline {2.4}Secondary Structure Prediction}{21}{section.24}
+\contentsline {subsection}{\numberline {2.4.1}Features}{24}{subsection.25}
+\contentsline {subsubsection}{\numberline {2.4.1.1}Beyond one-hot}{25}{subsubsection.26}
+\contentsline {subsection}{\numberline {2.4.2}PSI-BLAST profiles}{26}{subsection.27}
+\contentsline {subsection}{\numberline {2.4.3}Targets}{27}{subsection.28}
+\contentsline {subsubsection}{\numberline {2.4.3.1}Q3}{28}{subsubsection.29}
+\contentsline {subsubsection}{\numberline {2.4.3.2}Q8}{28}{subsubsection.30}
+\contentsline {subsubsection}{\numberline {2.4.3.3}Accuracy}{29}{subsubsection.31}
+\contentsline {subsection}{\numberline {2.4.4}State of the art}{29}{subsection.32}
+\contentsline {subsubsection}{\numberline {2.4.4.1}Initial research}{29}{subsubsection.33}
+\contentsline {subsubsection}{\numberline {2.4.4.2}Recently}{31}{subsubsection.34}
+\contentsline {subsubsection}{\numberline {2.4.4.3}Hall of fame}{31}{subsubsection.35}
+\contentsline {chapter}{\numberline {3}Methods}{33}{chapter.36}
+\contentsline {section}{\numberline {3.1}Dataset}{33}{section.37}
+\contentsline {subsection}{\numberline {3.1.1}CullPDB53}{33}{subsection.40}
+\contentsline {subsection}{\numberline {3.1.2}CB513 \& CB6133}{34}{subsection.41}
+\contentsline {section}{\numberline {3.2}Network of study}{35}{section.43}
+\contentsline {subsection}{\numberline {3.2.1}Local and non-local interactions}{36}{subsection.45}
+\contentsline {subsection}{\numberline {3.2.2}Window size}{36}{subsection.46}
+\contentsline {subsection}{\numberline {3.2.3}Framework}{36}{subsection.47}
+\contentsline {subsubsection}{\numberline {3.2.3.1}Lasagne}{37}{subsubsection.48}
+\contentsline {section}{\numberline {3.3}Saliency maps}{37}{section.49}
+\contentsline {section}{\numberline {3.4}Open-source}{37}{section.50}
+\contentsline {chapter}{\numberline {4}Results}{39}{chapter.51}
+\contentsline {section}{\numberline {4.1}Saliency maps}{39}{section.54}
+\contentsline {subsection}{\numberline {4.1.1}Sheer aggregation}{39}{subsection.55}
+\contentsline {subsection}{\numberline {4.1.2}Clustering techniques}{39}{subsection.56}
+\contentsline {chapter}{\numberline {5}Discussion}{41}{chapter.57}
+\contentsline {section}{\numberline {5.1}Sheer aggregation discussion}{41}{section.60}
+\contentsline {section}{\numberline {5.2}Clustering discussion}{41}{section.61}
+\contentsline {chapter}{\numberline {6}Conclusions}{43}{chapter.62}
+\contentsline {chapter}{\numberline {A}Stuff}{45}{appendix.65}
+\contentsline {chapter}{Bibliography}{47}{dummy.66}

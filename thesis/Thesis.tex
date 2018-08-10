@@ -1,0 +1,58 @@
+%% ----------------------------------------------------------------
+%% Thesis.tex
+%% 214 phrases, Aug 10th
+%% ---------------------------------------------------------------- 
+\documentclass{ecsthesis}      % Use the Thesis Style
+\graphicspath{{Figures/}}   % Location of your graphics files
+\usepackage{natbib}            % Use Natbib style for the refs.
+\hypersetup{colorlinks=true}   % Set to false for black/white printing
+\input{Definitions}            % Include your abbreviations
+%% ----------------------------------------------------------------
+\begin{document}
+\frontmatter
+\title      {Applying Saliency Map Analysis to CNNs on Protein Secondary Structure Prediction}
+\authors    {\texorpdfstring
+             {\href{mailto:grm1g17@soton.ac.uk}{Guillermo Romero Moreno}}
+             {Guillermo Romero Moreno}
+            }
+\addresses  {\groupname\\\deptname\\\univname}
+\date       {\today}
+\subject    {}
+\keywords   {}
+%\maketitle
+%% ----------------------------------------------------------------
+\begin{abstract}
+%Not exceeding 600 words
+
+%Check that the abstract follows the hourglass structure: broad context, narrower context, the research question, your result, implications of your result on your (sub)field, its broader implications. Also, do make sure that your abstract is as jargon-free as possible: only use words that most readers can understand.
+
+%Check that your paper is focused. Choose the point of the paper and its key conclusion before you begin writing, stick to your choices, and write the paper so that the reader gets the point already in the abstract and in the introduction. Leave  out results that are not required for supporting the key conclusion, or safely tuck them away in the supplementary information document. When editing, if you feel that your paper loses its focus at some point, take a step back and do a major rewrite.
+
+The relatively new field of deep learning is slowly being transferred to the biology field and pushing its state-of-the-art achievements. However, improvements in performance come with the drawback of opaqueness, as what deep learning machines learn cannot be fully understood. Although a few authors have already started applying deep network interpretability techniques on biological problems to overcome this issue, none of them has been applied yet to the problem of protein secondary-structure prediction.
+
+The aim of this work is to develop interpretability techniques for state-of-the-art deep networks that have been trained to solve the secondary-structure prediction problem. For doing so, a way to apply and aggregate saliency maps has been construed and applied to a near-state-of-the-art convolutional network, showing some further insights of the relationship between the inputs and the outputs. These results could be of double value: on one side, it may help biologists to get a better understanding on the underlying structural protein processes; on the other, machine learning researchers can understand better their machines and spot their flaws more easily.
+
+\end{abstract}
+\tableofcontents
+%\listoffigures
+%\listoftables
+%\lstlistoflistings
+%\listofsymbols{ll}{$w$ & The weight vector}
+%\acknowledgements{Thanks to no one.}
+%\dedicatory{To \dots}
+%% ----------------------------------------------------------------
+\mainmatter
+\include{Hints}
+\include{Introduction}
+\include{Theory}
+\include{Methods}
+\include{Results}
+\include{Discussion}
+\include{Conclusions}
+\appendix
+\include{AppendixA}
+\backmatter
+\bibliographystyle{ecs}
+\bibliography{ECS}
+\end{document}
+%% ----------------------------------------------------------------
