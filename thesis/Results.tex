@@ -1,24 +1,66 @@
 %% ----------------------------------------------------------------
 %% Results.tex
 %% ---------------------------------------------------------------- 
-\chapter{Results} \label{Chapter: Results}
+\chapter{Results \& Discussion} \label{Chapter: Results}
 
-Parameters are defined in Results (not in Methods)
+% Parameters are defined in Results (not in Methods)
 
-Report is a presentation of the final results, not the whole process.
+% Report is a presentation of the final results, not the whole process.
 
-Check that your paper is focused. Choose the point of the paper and its key conclusion before you begin writing, stick to your choices, and write the paper so that the reader gets the point already in the abstract and in the introduction. Leave  out results that are not required for supporting the key conclusion, or safely tuck them away in the supplementary information document. When editing, if you feel that your paper loses its focus at some point, take a step back and do a major rewrite.
+% Draw inferences from proofs
 
-Check that there is a clear question and a clear answer—it is all too common to focus on your results and what you have done, instead of stating and then solving a problem. Your results are meaningful only if they solve a meaningful problem. Remember that your paper is neither an account of your work nor a lab diary; it should be a story of an important problem and its solution. Emphasise the problem, both in the Introduction where it should really stand out, and in the Results section and the Discussion. Make it clear to the reader how each result contributes to solving the problem, and what the implications of solving the problem are.
+% Check that your paper is focused. Choose the point of the paper and its key conclusion before you begin writing, stick to your choices, and write the paper so that the reader gets the point already in the abstract and in the introduction. Leave  out results that are not required for supporting the key conclusion, or safely tuck them away in the supplementary information document. When editing, if you feel that your paper loses its focus at some point, take a step back and do a major rewrite.
 
-\begin{enumerate}
-\item What did I find?
-\item Let me describe the best bits
-\end{enumerate}
+% Check that there is a clear question and a clear answer—it is all too common to focus on your results and what you have done, instead of stating and then solving a problem. Your results are meaningful only if they solve a meaningful problem. Remember that your paper is neither an account of your work nor a lab diary; it should be a story of an important problem and its solution. Emphasise the problem, both in the Introduction where it should really stand out, and in the Results section and the Discussion. Make it clear to the reader how each result contributes to solving the problem, and what the implications of solving the problem are.
+
+%\begin{enumerate}
+%\item What did I find?
+%\item Let me describe the best bits
+%\item Here is my analysis and proof of it
+%\item Here's my conclusion(s) about it
+%\end{enumerate}
+
+\section{Network performance analysis}
+% SHow accuracy reached
+% SHow sequence accuracy distributions, both sorted per-accuracy and sorted per-length
+% CAp on 300 sequence length
+% DIscuss about the systematically lower ones. Suggest using SwissProt
+Refer to \ref{fig:targetfreq}.
+
+\section{Feature visualization}
+
+	\subsection{First layer filters}
+	
+	\subsection{Saliency maps on layers?}
 
 
-\section{Saliency maps}
+\section{Saliency maps on inputs}
+Talk about dimensions: saliency value, class, sequences, positions, window, amino-acids, aa/pssm (7 dimensions). From now on, individual saliency maps will refer to the saliency map of one sequence-position
 
-\subsection{Sheer aggregation}
+Options (all options could be applied either to aa or to pssm, 6 dimensions left)
+% PRove that saliencies on pssm are much more powerful than saliencies on aas
+	
+	\subsection{Saliency maps on single sample sequences}
+	% SHow per-class samples of this instances (either graph form, SeqLogo form) (either per-position or heat-map)
+	analyse per-class single sequence (sample-based) (4 dimensions left): aa-aggregated (3 dimensions) and added in the sequence position, either respecting each position (3 dimensions) or aggregating them in a heat map (2 dimensions)
 
-\subsection{Clustering techniques}
+	\subsection{Sheer addition}
+	aggregate all individual saliency maps % SHould I try to compare my results with known motifs? Absolutely yes!
+	sheer addition (4 dimensions left): class-aggregated (3 dimensions), aa-aggregated (3 dimensions), or class+aa-aggregated (2 dimensions)
+		\subsubsection{Per-aminoacid and class aggregations}
+		% INclude per-class aggregations (absolute value, aa aggregated) -> class profile (flatness, distribution, etc)
+		% XAxis labels should be centered on 0 and going to +-9
+		
+		\subsubsection{Per-class aggregations}
+		% INCLUDE per-class aggregations (either graph form, SeqLogo form, or both). Include just a few and leave the others as supplementary materials.
+		First thing to notice: pssm is way more relevant than one-hot encoded aas. No wonder, it learns faster.
+
+		\subsubsection{Per-aminoacid aggregations}
+		% INclude per-aminoacid aggregations? (Same, just a few and the others as supplementary)
+
+	\subsection{Clustering techniques}
+	aggregate all individual saliency maps % SHould I try to compare my results with known motifs? Absolutely yes!
+	clustering (5 dimensions left)
+	Using the per-class window-aggregated version of individual saliency maps (4 dimensions left)
+	Cosine distance metric.
+	Show either all profiles per-cluster (3 dimensions), or aggregated profiles (2 dimensions)

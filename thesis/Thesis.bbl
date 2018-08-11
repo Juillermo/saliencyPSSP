@@ -1,4 +1,4 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{32}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{{\tt #1}}\fi
@@ -234,6 +234,13 @@ Jian Zhou and Olga~G. Troyanskaya.
 \newblock {Deep Supervised and Convolutional Generative Stochastic Network for
   Protein Secondary Structure Prediction}.
 \newblock 2014.
+
+\bibitem[Zhou and Troyanskaya(2015)]{Zhou2015}
+Jian Zhou and Olga~G. Troyanskaya.
+\newblock {Predicting effects of noncoding variants with deep learning-based
+  sequence model}.
+\newblock {\em Nature Methods}, 12\penalty0 (10):\penalty0 931--934, 2015.
+\newblock ISSN 15487105.
 
 \bibitem[Zhou et~al.(2018)Zhou, Wang, Zhao, Xu, and Lu]{Zhou2018}
 Jiyun Zhou, Hongpeng Wang, Zhishan Zhao, Ruifeng Xu, and Qin Lu.

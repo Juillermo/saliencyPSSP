@@ -85,6 +85,8 @@ Iridis5 CITE
 "We fix the window size to 11 because the average length of an alpha helix is around eleven residues58 and that of a beta strand is around six59" \cite{Wang2016}
 
 \subsection{Framework}
+"With the recent booming of deep learning, there has also been a steady growth of programming frameworks that dramatically simplify the design and development of deep learning tools. With no single framework dominant over the others, the choice can be made based on the programming language that serves as interface or specific characteristics that each of them has. Popular frameworks nowadays are \textit{Caffe}, \textit{Theano}, \textit{Torch}, and \textit{Tensorflow}. A list of them along with their characteristics can be found in~\cite{Ravi2017}. Open-sourcing the code is a common practice in bio-medical research, and therefore there are a lot of examples available on public repositories such as \textit{GitHub}." [My lit review]
+
 "The successes of neural networks have led to the development of various programming frameworks to build and train neural net- works. Examples are PyTorch (http://pytorch.org/), Caffe (http:// caffe.berkeleyvision.org) and TensorFlow (https://www.tensorflow.org). Our framework of choice here is Lasagne (Dieleman et al., 2015), a well-established easy to use and extremely flexible light- weight Python library built on top of the Theano numerical compu- tation library (Bastien et al., 2016). While most other frameworks require the user to learn a dedicated programming language, Lasagne is Python-based and therefore relatively easy to use for bio- informaticians already programming in Python. Further Lasagne’s active community ensures that the latest neural network training al- gorithms and architectures are available to the user." \cite{Jurtz2017}
 
 "TensorFlow 1.0 (Abadi et al., 2016) and Keras 2.0 (Chollet, 2015; https://github.com/fchollet/keras) were used for the training of the deep learning." \cite{Fang2017}
@@ -94,16 +96,45 @@ Iridis5 CITE
 "We use Google’s open-sourced TensorFlow library (Abadi et al., 2016) to implement and train our networks." \cite{Heffernan2017}
 
 "Our models are implemented using TensorFlow, an open-source machine learning software library available at TensorFlow.org." \cite{Busia2017}
-\subsubsection{Lasagne}
-"Lasagne is a lightweight library to build and train neural networks (Dieleman et al., 2015). It is written in the Python programming language (Python Software Foundation, Python Language Reference, version 2.7) and built on top of another library called Theano (Bastien et al., 2012), which allows the user to define, optimize and evaluate mathematical expressions and most importantly for neural network training it implements efficient symbolic differentiation. Another key advantage of Theano, which is also inherited by Lasagne, is that it makes using a GPU easy and transparent.
 
-Lasagne is being constantly updated, providing its users with an easy way to implement and test the newest neural network architectures and training procedures. At the time of writing, the Lasagne library contains feed forward, convolutional and recurrent layers, various activation functions and many options for weight initialization and gradient descent optimizers including Nesterov momentum, RMSprop and ADAM (Kingma and Ba, 2014). 
+	\subsubsection{Lasagne}
+	"Lasagne is a lightweight library to build and train neural networks (Dieleman et al., 2015). It is written in the Python programming language (Python Software Foundation, Python Language Reference, version 2.7) and built on top of another library called Theano (Bastien et al., 2012), which allows the user to define, optimize and evaluate mathematical expressions and most importantly for neural network training it implements efficient symbolic differentiation. Another key advantage of Theano, which is also inherited by Lasagne, is that it makes using a GPU easy and transparent.
+	
+	Lasagne is being constantly updated, providing its users with an easy way to implement and test the newest neural network architectures and training procedures. At the time of writing, the Lasagne library contains feed forward, convolutional and recurrent layers, various activation functions and many options for weight initialization and gradient descent optimizers including Nesterov momentum, RMSprop and ADAM (Kingma and Ba, 2014). 
+	
+	The Lasagne documentation includes a tutorial and other code examples in a recipe directory." \cite{Jurtz2017}
 
-The Lasagne documentation includes a tutorial and other code examples in a recipe directory." \cite{Jurtz2017}
+\section{Feature visualization}
+First order filters. They only show the first layer of feature extraction.
+Optimization maximization. Bound to give unreal data. Not credible priors.
 
 
 \section{Saliency maps}
 
+Previous techniques apply to whole sequence (they were many-to-one and not many-to-many). Needs for methods of aggregating saliencies.
+
+Using gradient * input because of simpleness. Could be further expanded to DeepLIFT
+
+	\subsection{Analysing saliencies}
+	Talk about dimensions: saliency value, class, sequences, positions, window, amino-acids, aa/pssm (7 dimensions). From now on, individual saliency maps will refer to the saliency map of one sequence-position
+	
+	Per-sample saliency map
+	Saliency map aggregation: because many-to-many. How to do?
+	
+	Problems with saliency aggregation %INclude my plots with the sliding saliencies
+	On the right, saliencies of subsequent single positions. Each line of a plot represents one aminoacid. Each plot corresponds to one position. X axis is the window size (19)
+	Motifs slide through the saliencies, which makes:
+	Sheer aggregation to capture the sliding effect
+	Clustering of full saliencies useless 
+	
+	Solution:
+	By aggregating each saliency on its window length (right), the motifs are preserved %INclude my plots with the sliding window aggregations
+	Clustering on the saliencies (cosine) in the positions with high prediction for one class can show different kinds of motifs that activate that class
+	 
+		\subsection{Clustering on saliencies}
+		Using the per-class window-aggregated version of individual saliency maps (4 dimensions left)
+		Cosine distance metric.
+		Show either all profiles per-cluster (3 dimensions), or aggregated profiles (2 dimensions)
 
 \section{Open-source}
 "We developed the first open-source deep-learning based secondary structure prediction tool MUFold-SS. It was implemented and provided to the research community. The open source advantage adds significant value to this work, as it allows other researchers to easily apply this deep-learning framework for many other research problems." \cite{Fang2017}

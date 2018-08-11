@@ -19,6 +19,19 @@ Repeated entry---line 568 of file ECS.bib
  : @article{Jurtz2017
  :                   ,
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "He2015"
+Warning--I didn't find a database entry for "Libbrecht2015"
+Warning--I didn't find a database entry for "Alipanahi2015"
+Warning--I didn't find a database entry for "Ditzler2015"
+Warning--I didn't find a database entry for "Leung2014"
+Warning--I didn't find a database entry for "Zeng2015"
+Warning--I didn't find a database entry for "Fan2015"
+Warning--I didn't find a database entry for "Witteveen2014"
+Warning--I didn't find a database entry for "Chen2015"
+Warning--I didn't find a database entry for "Wang2015"
+Warning--I didn't find a database entry for "Zhang2015"
+Warning--I didn't find a database entry for "Liang2015"
+Warning--I didn't find a database entry for "Ravi2017"
 Warning--empty publisher in Ching2017
 Warning--empty journal in Fang2017
 Warning--empty journal in Ioffe2015
@@ -27,45 +40,45 @@ Warning--empty journal in Lin2016
 Warning--empty journal in Shrikumar2017
 Warning--empty journal in Szegedy2013
 Warning--empty journal in Zhou2014
-You've used 31 entries,
+You've used 32 entries,
             2638 wiz_defined-function locations,
-            785 strings with 12470 characters,
-and the built_in function-call counts, 15463 in all, are:
-= -- 1347
-> -- 1114
-< -- 13
-+ -- 405
-- -- 372
-* -- 1286
-:= -- 2690
-add.period$ -- 109
-call.type$ -- 31
-change.case$ -- 246
-chr.to.int$ -- 30
-cite$ -- 39
-duplicate$ -- 623
-empty$ -- 1008
-format.name$ -- 423
-if$ -- 3053
+            819 strings with 12898 characters,
+and the built_in function-call counts, 15946 in all, are:
+= -- 1398
+> -- 1134
+< -- 14
++ -- 412
+- -- 378
+* -- 1324
+:= -- 2768
+add.period$ -- 113
+call.type$ -- 32
+change.case$ -- 252
+chr.to.int$ -- 31
+cite$ -- 40
+duplicate$ -- 643
+empty$ -- 1046
+format.name$ -- 432
+if$ -- 3153
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 29
-newline$ -- 177
-num.names$ -- 124
-pop$ -- 390
+missing$ -- 30
+newline$ -- 183
+num.names$ -- 128
+pop$ -- 397
 preamble$ -- 1
-purify$ -- 217
+purify$ -- 222
 quote$ -- 0
-skip$ -- 465
+skip$ -- 481
 stack$ -- 0
-substring$ -- 354
-swap$ -- 50
+substring$ -- 385
+swap$ -- 51
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 336
+type$ -- 347
 warning$ -- 8
-while$ -- 108
+while$ -- 113
 width$ -- 0
-write$ -- 410
+write$ -- 425
 (There were 2 error messages)

@@ -22,6 +22,24 @@ def compute_single_saliency(X_batch, seq_len, batch_seq, label, sym_x, inference
     grads = get_gradients(X_batch)
     return np.array(grads)
 
+def compute_broken_saliency(X_batch, seq_len, batch_seq, label, sym_x, inference):
+    # FIRST HALF
+    gradients = theano.gradient.jacobian(inference[batch_seq, :seq_len // 2, ssConvertString.find(label)],
+                                         wrt=sym_x)
+    get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
+    grads = np.array(get_gradients(X_batch))
+    del get_gradients
+    del gradients
+
+    # SECOND HALF
+    gradients = theano.gradient.jacobian(inference[batch_seq, seq_len // 2:seq_len, ssConvertString.find(label)],
+                                         wrt=sym_x)
+    get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
+    grads2 = np.array(get_gradients(X_batch))
+
+    # TODO: FIX THE OVERLAPPING PART AT THE JOINT POINT
+    return np.concatenate((grads[:, batch_seq, seq_len], grads2[:, batch_seq, seq_len]), axis=0)
+
 
 def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
     """
@@ -55,33 +73,15 @@ def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
         fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
 
         try:
-            tot_grads = compute_single_saliency(X_batch=X_batch, seq_len=seq_len, batch_seq=batch_seq, label=label, sym_x=sym_x, inference=inference)
+            grads = compute_single_saliency(X_batch=X_batch, seq_len=seq_len, batch_seq=batch_seq, label=label, sym_x=sym_x, inference=inference)
 
-        except Exception as err:
-
-            print(err) # IF GPU OUT OF MEMORY
-            print("Computing broken saliency")
-
-            # FIRST HALF
-            gradients = theano.gradient.jacobian(inference[ini, :seq_len // 2, ssConvertString.find(label)],
-                                                 wrt=sym_x)
-            get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
-            grads = np.array(get_gradients(X_batch))
-            del get_gradients
-            del gradients
-
-            # SECOND HALF
-            gradients = theano.gradient.jacobian(inference[ini, seq_len // 2:seq_len, ssConvertString.find(label)],
-                                                 wrt=sym_x)
-            get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
-            grads2 = np.array(get_gradients(X_batch))
-
-            # TODO: FIX THE OVERLAPPING PART AT THE JOINT POINT
-            tot_grads = np.concatenate((grads[:, ini, seq_len], grads2[:, ini, seq_len]), axis=0)
+        except Exception as err: # IF GPU OUT OF MEMORY
+            print(err)
+            grads = compute_broken_saliency(X_batch=X_batch, seq_len=seq_len, batch_seq=batch_seq, label=label, sym_x=sym_x, inference=inference)
 
         with open(PATH_SALIENCIES + fname, 'wb') as f:
-            pickle.dump(tot_grads, f, protocol=2)
-
+            pickle.dump(grads, f, protocol=2)
+        print(batch_seq)
 
 
 
