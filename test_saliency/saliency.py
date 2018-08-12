@@ -14,31 +14,13 @@ from utils import ssConvertString, Jurtz_Data
 BATCH_SIZE = 64
 PATH_SALIENCIES = "/scratch/grm1g17/saliencies/"
 
-def compute_single_saliency(X_batch, seq_len, batch_seq, label, sym_x, inference):
-    gradients = theano.gradient.jacobian(inference[batch_seq, :seq_len, ssConvertString.find(label)],
-                                         wrt=sym_x)
+
+def compute_single_saliency(X_batch, sym_x, sym_y):
+    gradients = theano.gradient.jacobian(sym_y, wrt=sym_x)
     get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
 
     grads = get_gradients(X_batch)
     return np.array(grads)
-
-def compute_broken_saliency(X_batch, seq_len, batch_seq, label, sym_x, inference):
-    # FIRST HALF
-    gradients = theano.gradient.jacobian(inference[batch_seq, :seq_len // 2, ssConvertString.find(label)],
-                                         wrt=sym_x)
-    get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
-    grads = np.array(get_gradients(X_batch))
-    del get_gradients
-    del gradients
-
-    # SECOND HALF
-    gradients = theano.gradient.jacobian(inference[batch_seq, seq_len // 2:seq_len, ssConvertString.find(label)],
-                                         wrt=sym_x)
-    get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
-    grads2 = np.array(get_gradients(X_batch))
-
-    # TODO: FIX THE OVERLAPPING PART AT THE JOINT POINT
-    return np.concatenate((grads[:, batch_seq, seq_len], grads2[:, batch_seq, seq_len]), axis=0)
 
 
 def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
@@ -68,21 +50,40 @@ def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
 
     print("Computing saliencies")
     for batch_seq in range(ini, BATCH_SIZE):
-
         seq_len = int(np.sum(mask_batch[batch_seq]))
-        fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
 
         try:
-            grads = compute_single_saliency(X_batch=X_batch, seq_len=seq_len, batch_seq=batch_seq, label=label, sym_x=sym_x, inference=inference)
+            sym_y = inference[batch_seq, :seq_len, ssConvertString.find(label)]
+            grads = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
 
-        except Exception as err: # IF GPU OUT OF MEMORY
+        except Exception as err:
+            # IF GPU OUT OF MEMORY
             print(err)
-            grads = compute_broken_saliency(X_batch=X_batch, seq_len=seq_len, batch_seq=batch_seq, label=label, sym_x=sym_x, inference=inference)
+            # FIRST HALF
+            sym_y = inference[batch_seq, :seq_len // 2, ssConvertString.find(label)]
+            grads1 = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
 
+            # SECOND HALF
+            sym_y = inference[batch_seq, seq_len // 2:seq_len, ssConvertString.find(label)]
+            grads2 = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
+
+            # TODO: FIX THE OVERLAPPING PART AT THE JOINT POINT
+            grads = np.concatenate((grads1[:, batch_seq, seq_len], grads2[:, batch_seq, seq_len]), axis=0)
+
+        fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
         with open(PATH_SALIENCIES + fname, 'wb') as f:
-            pickle.dump(grads, f, protocol=2)
-        print(batch_seq)
+            try:
+                pickle.dump(grads, f, protocol=2)
+            except Exception as err:
+                # IF TOO BIG FOR PICKLE
+                print(err)
+                pickle.dump(grads[:len(grads) / 2], f, protocol=2)
 
+                fname = "saliencies{:5d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq + 10000, label)
+                with open(PATH_SALIENCIES + fname, 'wb') as f2:
+                    pickle.dump(grads[len(grads) / 2:], f2, protocol=2)
+
+        print(batch_seq)
 
 
 def main_saliencies_jurtz():
@@ -101,16 +102,15 @@ def main_saliencies_jurtz():
         compute_tensor_jurtz(X_batch, mask_batch, args.batch, args.label)
 
 
-
 if __name__ == "__main__":
     # main_saliencies()
     # main_SeqLogo()
     main_saliencies_jurtz()
     # repair_saliencies()
 
-
 # DEPRECATED
 from data_managing import load_data
+
 
 def compute_tensor_saliency(X_am, X_pssm, args):
     if X_am.ndim == 2:
@@ -121,7 +121,7 @@ def compute_tensor_saliency(X_am, X_pssm, args):
 
     # IT ACTUALLY FAILS, NEEDS TO TAKE DROPOUTS INTO ACCOUNT, SEE PREVIOUS VERSION
     gradients = theano.gradient.jacobian(model.outputs[0][:, :, ssConvertString.find(args.label)].flatten(),
-                         wrt=[model.inputs[0], model.inputs[1]])
+                                         wrt=[model.inputs[0], model.inputs[1]])
     get_gradients = K.function(inputs=[model.inputs[0], model.inputs[1], K.learning_phase()],
                                outputs=gradients)
     grads = get_gradients([X_am, X_pssm, 0])

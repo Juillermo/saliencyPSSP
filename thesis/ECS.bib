@@ -1,6 +1,23 @@
 %% ----------------------------------------------------------------
 %% ECS.bib
 %% ---------------------------------------------------------------- 
+@article{Sundararajan2017,
+	abstract = {We study the problem of attributing the prediction of a deep network to its input features, a problem previously studied by several other works. We identify two fundamental axioms---Sensitivity and Implementation Invariance that attribution methods ought to satisfy. We show that they are not satisfied by most known attribution methods, which we consider to be a fundamental weakness of those methods. We use the axioms to guide the design of a new attribution method called Integrated Gradients. Our method requires no modification to the original network and is extremely simple to implement; it just needs a few calls to the standard gradient operator. We apply this method to a couple of image models, a couple of text models and a chemistry model, demonstrating its ability to debug networks, to extract rules from a network, and to enable users to engage with models better.},
+	archivePrefix = {arXiv},
+	arxivId = {1703.01365},
+	author = {Sundararajan, Mukund and Taly, Ankur and Yan, Qiqi},
+	eprint = {1703.01365},
+	file = {:home/juillermo/Desktop/1703.01365.pdf:pdf},
+	isbn = {9781510855144},
+	issn = {1938-7228},
+	keywords = {Feature visualization,Saliency maps},
+	mendeley-groups = {AML},
+	mendeley-tags = {Saliency maps,Feature visualization},
+	title = {{Axiomatic Attribution for Deep Networks}},
+	year = {2017}
+}
+
+
 @article{Zhou2014,
 	abstract = {Predicting protein secondary structure is a fundamental problem in protein structure prediction. Here we present a new supervised generative stochastic network (GSN) based method to predict local secondary structure with deep hierarchical representations. GSN is a recently proposed deep learning technique (Bengio {\&} Thibodeau-Laufer, 2013) to globally train deep generative model. We present the supervised extension of GSN, which learns a Markov chain to sample from a conditional distribution, and applied it to protein structure prediction. To scale the model to full-sized, high-dimensional data, like protein sequences with hundreds of amino acids, we introduce a convolutional architecture, which allows efficient learning across multiple layers of hierarchical representations. Our architecture uniquely focuses on predicting structured low-level labels informed with both low and high-level representations learned by the model. In our application this corresponds to labeling the secondary structure state of each amino-acid residue. We trained and tested the model on separate sets of non-homologous proteins sharing less than 30{\%} sequence identity. Our model achieves 66.4{\%} Q8 accuracy on the CB513 dataset, better than the previously reported best performance 64.9{\%} (Wang et al., 2011) for this challenging secondary structure prediction problem.},
 	archivePrefix = {arXiv},
