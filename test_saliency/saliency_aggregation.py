@@ -21,11 +21,18 @@ def calculate_SeqLogo(args):
     for seq in range(args.num_seqs):
         try:
             try:
-                with open("saliencies" + str(seq) + args.label + ".pkl", "rb") as f:
+                fname = "saliencies" + str(seq) + args.label + ".pkl"
+                with open(fname, "rb") as f:
                     saliency = np.array(pickle.load(f))
             except OSError:
-                with open("saliencies{:4d}{:s}.pkl".format(seq, args.label), "rb") as f:
+                fname = "saliencies{:4d}{:s}.pkl".format(seq, args.label)
+                with open(fname, "rb") as f:
                     saliency = np.array(pickle.load(f))
+
+            if saliency.ndim != 3:
+                os.remove(fname)
+                print("File "+fname+" deleted")
+                raise OSError("saliency badly formatted")
 
             X_seq, mask_seq = dater.get_sequence(seq)
             end_seq = int(sum(mask_seq))
@@ -76,9 +83,6 @@ def calculate_points(args):
             except OSError:
                 with open("saliencies{:4d}{:s}.pkl".format(seq, args.label), "rb") as f:
                     saliency = np.array(pickle.load(f))
-
-            if saliency.ndim != 3:
-                raise OSError("saliency badly formatted")
 
             X_seq, mask_seq = dater.get_sequence(seq)
             end_seq = int(sum(mask_seq))
