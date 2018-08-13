@@ -18,7 +18,8 @@ def probe():
         found = re.search(r'(\d+)(\D)', el).groups()
         num = int(found[0])
         label = ssConvertString.find(found[1])
-        exists[num, label] += 1
+        if num < 6018:
+            exists[num, label] += 1
 
     os.chdir(origin)
     return exists
@@ -46,18 +47,7 @@ def repair_saliencies(args):
 
 
 def assert_all():
-    origin = os.getcwd()
-    os.chdir('/scratch/grm1g17/saliencies')
-    files = glob.glob('saliencies*')
-
-    exists = np.zeros((6018, 8))
-    for el in files:
-        found = re.search(r'(\d+)(\D)', el).groups()
-        num = int(found[0])
-        label = ssConvertString.find(found[1])
-        exists[num, label] = 1
-
-    os.chdir(origin)
+    exists = probe()
 
     seq_rem = 0
     sal_rem = 0

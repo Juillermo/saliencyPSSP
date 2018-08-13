@@ -52,7 +52,7 @@ def calculate_SeqLogo(args):
 
     os.chdir(origin)
     print("SeqLogo of " + str(args.num_seqs - fail_seqs) + " elements")
-    with open("SeqLogos/SeqLogo" + str(args.num_seqs) + args.label + ".pkl", "wb") as f:
+    with open("SeqLogo_data/SeqLogo" + str(args.num_seqs) + args.label + ".pkl", "wb") as f:
         pickle.dump(total, f, protocol=2)
 
 
@@ -108,32 +108,28 @@ def calculate_points(args):
         pickle.dump(points, f, protocol=2)
 
 
-def main_SeqLogo():
-    parser = argparse.ArgumentParser(description='Compute SeqLogo from saliencies')
+def main():
+    parser = argparse.ArgumentParser(
+        description='Aggregate saliencies either by sheer addition or compute points for clustering')
+
+    parser.add_argument('--func', type=str, default='sheer', metavar='func',
+                        help='Function: sheer addition of saliencies (default), or calculate points for clustering')
     parser.add_argument('--label', type=str, default='H', metavar='label',
-                        help='class to which gradients are computed (default H)')
+                        help='class from which to analyse the saliencies (default H)')
     parser.add_argument('--num-seqs', type=int, default=2, metavar='num_seqs',
                         help='number of sequences aggregated for SeqLogo (default 2)')
     args = parser.parse_args()
 
-    if args.num_seqs is not None:
+    if args.func is 'sheer':
         calculate_SeqLogo(args)
-
-
-def main_points():
-    parser = argparse.ArgumentParser(description='Compute points from saliencies for clustering')
-    parser.add_argument('--label', type=str, default='H', metavar='label',
-                        help='predicted class of which points are extracted (default H)')
-    parser.add_argument('--num-seqs', type=int, default=2, metavar='num_seqs',
-                        help='number of sequences from which points are extracted (default 2)')
-    args = parser.parse_args()
-
-    if args.num_seqs is not None:
+    elif args.func is 'points':
         calculate_points(args)
+    else:
+        raise ValueError('Function "'+args.func+'" not recognized, try with "sheer" or "points"')
 
 
 if __name__ == "__main__":
-    main_SeqLogo()
+    main()
 
 
 # DEPRECATED
@@ -232,4 +228,3 @@ def spot_best(X_am, X_pssm, labels):
 
     with open(("saliencies.pkl"), 'wb') as f:
         pickle.dump((saliency_info), f, protocol=2)
-

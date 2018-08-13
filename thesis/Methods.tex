@@ -53,24 +53,23 @@ CullPDB (Wang and Dunbrack, 2003)
 \end{figure}
 
 
-\section{Network of study}
+\section{Network of study}\label{sect:network}
 
-"I have chosen the algorithm developed by Jurtz \textit{et al} \cite{Jurtz2017} on the \textit{Lasagne} framework, which can be easily downloaded from their GitHub repository\footnote{https://github.com/vanessajurtz/lasagne4bio}. In their work, they hold a deep learning approach to solving the labelling problem, reaching an accuracy above the previous state-of-the-art (70,2\%~Q8).
+"developed by Jurtz \textit{et al} \cite{Jurtz2017} on the \textit{Lasagne} framework, which can be easily downloaded from their GitHub repository\footnote{https://github.com/vanessajurtz/lasagne4bio}. In their work, they hold a deep learning approach to solving the labelling problem, reaching an accuracy above the previous state-of-the-art (70,2\%~Q8).
 [...]
 Cross-entropy is used as the cost function and an L2 regularization term is included as well.
 [...]
 For my algorithm, I have used the code from the web as a frame (for fetching and formatting the training and test set, as well as for training and evaluation).
 [...]
-They use cross-entropy as the cost function, with gradient clipping at 20. For regularization purposes, they use an L2 regularization term on all the parameters ($\lambda=10^{-3}$), together with 50\% dropout technique after the bi-LSTM. Batch normalization~\cite{Ioffe2015} is applied in the first dense layer, between the linear combination and the non-linear operator. Parameters of the dense and convolutional layers are initialized with uniform glorot initialization~\cite{Glorot2010}, LSTMs parameters from a zero-centred gaussian distribution with 0.1 standard deviation, and biases to zero. Training occurs with mini-batches of 64 sequences (reshuffled after each epoch), and the update follows the RMSprop rule, with the learning rates of each parameter being dynamically adapted. Training is carried out on 5278 sequences from the training set and the remaining 256 are reserved for choosing the best epoch (validation)." [My homework]
+Batch normalization~\cite{Ioffe2015} is applied in the first dense layer, between the linear combination and the non-linear operator. Parameters of the dense and convolutional layers are initialized with uniform glorot initialization~\cite{Glorot2010}, [...] and biases to zero. Training occurs with mini-batches of 64 sequences (reshuffled after each epoch), and the update follows the RMSprop rule, with the learning rates of each parameter being dynamically adapted. Training is carried out on 5278 sequences from the training set and the remaining 256 are reserved for choosing the best epoch (validation)." [My homework]
 
 "where a single protein sequence has an average length of roughly 214 amino acid residues." \cite{Busia2017}
 
 My own network (simple)
 Three convolutional layers, with filters of size 3, 5 and 7, and 16 filters per size
 Skip connections from all previous layers (a la ResNet)
-Accuracy 67.7\% (similar to the state-of-the-art from 2 years ago, currently it’s around 70\%)
 Total window size: 19 (9 per side)
-400 epochs with "mini-batch size of 64
+
 With the new model all saliencies can be calculated in 3 days (as compared to the 240 days of the previous model)
 "the validation set was used to pick the weights from the best performing epoch" \cite{Jurtz2017}
 

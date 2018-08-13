@@ -173,31 +173,52 @@ An interpretable classifier explains its nonlinear classification decision in te
 			\includegraphics[width=0.6\linewidth]{discontinuity}
 		\end{figure}
 		
-		\textbf{LAYERWISE RELEVANCE PROPAGATION AND GRADIENT × INPUT}
-		"Bach et al. (Bach et al., 2015) proposed an approach for propagating importance scores called Layerwise Relevance Propagation (LRP).
+		"Gradients violate Sensitivity(a): For a concrete example, consider a one variable, one ReLU network, f(x) = 1 − ReLU(1−x). Suppose the baseline is x = 0 and the input is x = 2. The function changes from 0 to 1, but because f be- comes flat at x = 1, the gradient method gives attribution of 0 to x. Intuitively, gradients break Sensitivity because the prediction function may flatten at the input and thus have zero gradient despite the function value at the input being different from that at the baseline. This phenomenon has been reported in previous work (Shrikumar et al., 2016)." \cite{Sundararajan2017}
 		
-		Shrikumar et al. and Kindermans et al. (Shrikumar et al., 2016; Kindermans et al., 2016) showed that absent modifications to deal with numerical stability, the original LRP rules were equivalent within a scaling factor to an elementwise product between the saliency maps of Simonyan et al. and the input (in other words, gradient × input).
+		"A second set of approaches involve back-propagating the final pre- diction score through each layer of the network down to the individual features. These include DeepLift, Layer-wise relevance propagation (LRP), Deconvolutional networks (DeConvNets), and Guided back-propagation. These methods differ in the specific backpropagation logic for various activation functions (e.g., ReLU, MaxPool, etc.).
 		[...]
-		While gradient × input is often preferable to gradients alone as it leverages the sign and strength of the input, it still does not address the saturation problem in Fig. 1 or the thresholding artifact in Fig. 2." \cite{Shrikumar2017}
+		Unfortunately, Deconvolution networks (DeConvNets), and Guided back-propagation violate Sensitivity(a). This is because these methods back-propogate through a ReLU node only if the ReLU is turned on at the input. This makes the method similar to gradients, in that, the attribution is zero for features with zero gradient at the input despite a non-zero gradient at the baseline." \cite{Sundararajan2017}
 		
-		"Simonyan et al. [24] incorporate saliency information by multiplying the gradient by the actual data point." \cite{Montavon2017}
+		"Two networks are functionally equivalent if their outputs are equal for all inputs, despite having very different implementations. Attribution methods should satisfy Implementation Invariance, i.e., the attributions are always identical for two functionally equivalent networks.
+		[...]
+		gradients are invariant to implementation. In fact, the chain-rule for gradients ∂f/∂g = ∂f ∂h · ∂h ∂g is essentially about implementation invariance." \cite{Sundararajan2017}
 		
+		\textbf{LAYERWISE RELEVANCE PROPAGATION AND GRADIENT × INPUT}
+			"Bach et al. (Bach et al., 2015) proposed an approach for propagating importance scores called Layerwise Relevance Propagation (LRP).
+			
+			Shrikumar et al. and Kindermans et al. (Shrikumar et al., 2016; Kindermans et al., 2016) showed that absent modifications to deal with numerical stability, the original LRP rules were equivalent within a scaling factor to an elementwise product between the saliency maps of Simonyan et al. and the input (in other words, gradient × input).
+			[...]
+			While gradient × input is often preferable to gradients alone as it leverages the sign and strength of the input, it still does not address the saturation problem in Fig. 1 or the thresholding artifact in Fig. 2." \cite{Shrikumar2017}
+			
+			"Simonyan et al. [24] incorporate saliency information by multiplying the gradient by the actual data point." \cite{Montavon2017}
+			
+			"Gradients. For linear models, ML practitioners regularly inspect the products of the model coefficients and the feature values in order to debug predictions. Gradients (of the output with respect to the input) is a natural analog of the model coefficients for a deep network, and therefore the product of the gradient and feature values is a reasonable starting point for an attribution method (Baehrens et al., 2010; Simonyan et al., 2013); see the third column of Figure 2 for examples. The problem with gradients is that they break sensitivity, a property that all attribution methods should satisfy.
+			[...]
+			Practically, the lack of sensitivity causes gradients to focus on irrelevant features" \cite{Sundararajan2017}
+			
 		\textbf{INTEGRATED GRADIENTS}
-		"Instead of computing the gradients at only the current value of the input, one can integrate the gradients as the inputs are scaled up from some starting value (eg: all zeros) to their current value (Sundararajan et al., 2016). This ad- dressess the saturation and thresholding problems of Fig. 1 and Fig. 2, but numerically obtaining high-quality inte- grals adds computational overhead. Further, this approach can still give highly misleading results (see Section 3.4.3)." \cite{Shrikumar2017}
+			"Instead of computing the gradients at only the current value of the input, one can integrate the gradients as the inputs are scaled up from some starting value (eg: all zeros) to their current value (Sundararajan et al., 2016). This addressess the saturation and thresholding problems of Fig. 1 and Fig. 2, but numerically obtaining high-quality integrals adds computational overhead. Further, this approach can still give highly misleading results (see Section 3.4.3)." \cite{Shrikumar2017}
 		
 		\textbf{DeepLIFT}
-		"Our approach is unique in two regards: first, it frames the question of importance in terms of differences from a ‘reference’ state, where the ‘reference’ is chosen by the user according to what is appropriate for the problem at hand. In contrast to most gradient-based methods, using a difference-from-reference allows DeepLIFT to propagate an importance signal even in situations where the gradient is zero and avoids artifacts caused by discontinuities in the gradient. Second, by optionally giving separate consideration to the effects of positive and negative contributions at nonlinearities, DeepLIFT can reveal dependencies missed by other approaches. As DeepLIFT scores are com- puted using a backpropagation-like algorithm, they can be obtained efficiently in a single backward pass through the network after a prediction has been made." \cite{Shrikumar2017}
+			"Our approach is unique in two regards: first, it frames the question of importance in terms of differences from a ‘reference’ state, where the ‘reference’ is chosen by the user according to what is appropriate for the problem at hand. In contrast to most gradient-based methods, using a difference-from-reference allows DeepLIFT to propagate an importance signal even in situations where the gradient is zero and avoids artifacts caused by discontinuities in the gradient. Second, by optionally giving separate consideration to the effects of positive and negative contributions at nonlinearities, DeepLIFT can reveal dependencies missed by other approaches. As DeepLIFT scores are com- puted using a backpropagation-like algorithm, they can be obtained efficiently in a single backward pass through the network after a prediction has been made." \cite{Shrikumar2017}
+			
+			"We now discuss two axioms (desirable characteristics) for attribution methods. We find that other feature attribution methods in literature break at least one of the two axioms. These methods include DeepLift (Shrikumar et al., 2016; 2017), Layer-wise relevance propagation (LRP) (Binder et al., 2016), Deconvolutional networks \cite{Zeiler2014}, and Guided back-propagation (Springenberg et al., 2014)." \cite{Sundararajan2017}
+			
+			"Methods like DeepLift and LRP tackle the Sensitivity issue by employing a baseline, and in some sense try to compute “discrete gradients” instead of (instantaeneous) gradients at the input. (The two methods differ in the specifics of how they compute the discrete gradient). But the idea is that a large, discrete step will avoid flat regions, avoiding a break- age of sensitivity.
+			[...]
+			Methods like LRP and DeepLift replace gradients with discrete gradients and still use a modified form of backpropagation to compose discrete gradients into attributions. Unfortunately, the chain rule does not hold for discrete gra- dients in general. Formally f(x1)−f(x0) / g(x1)−g(x0) != f(x1)−f(x0) / h(x1)−h(x0) · h(x1)−h(x0) / g(x1)−g(x0) , and therefore these methods fail to satisfy implementation invariance.
+			If an attribution method fails to satisfy Implementation Invariance, the attributions are potentially sensitive to unimportant aspects of the models." \cite{Sundararajan2017}
 		
 		\textbf{Deep Taylor Decomposition}
-		"The main goal of this paper is to reconcile the functional and rule-based approaches for obtaining these decompositions, in a similar way to the error backpropagation algorithm [23] that also has a functional and a message passing interpretation. We call the resulting framework deep Taylor decomposition. This new technique seeks to replace the analytically intractable standard Taylor decomposition problem by a multitude of simpler analytically tractable Taylor decompositions—one per neuron.
-		[...]
-		Our method is based on deep Taylor decomposition and efficiently utilizes the structure of the network by backpropagating the explanations from the output to the input layer.
-		[...]
-		In this paper, we focus instead on the interpretation of the prediction of individual data points, for which portions of the trained model may either be relevant or not relevant.
-		[...]
-		The classification decision is first decomposed in terms of contributions R1, R2, R3 of respective hidden neurons x1, x2, x3, and then, the contribution of each hidden neuron is independently redistributed onto the pixels, leading to a relevance map (or heatmap) in the pixel space, that explains the classification “0”.
-		A main result of this work is the observation that application
-		of deep Taylor decomposition to neural networks used for image classification, yields rules that are similar to those proposed by [22] (the αβ-rule and the ?-rule), but with specific instantiations of their hyperparameters, previously set heuristically." \cite{Montavon2017}
+			"The main goal of this paper is to reconcile the functional and rule-based approaches for obtaining these decompositions, in a similar way to the error backpropagation algorithm [23] that also has a functional and a message passing interpretation. We call the resulting framework deep Taylor decomposition. This new technique seeks to replace the analytically intractable standard Taylor decomposition problem by a multitude of simpler analytically tractable Taylor decompositions—one per neuron.
+			[...]
+			Our method is based on deep Taylor decomposition and efficiently utilizes the structure of the network by backpropagating the explanations from the output to the input layer.
+			[...]
+			In this paper, we focus instead on the interpretation of the prediction of individual data points, for which portions of the trained model may either be relevant or not relevant.
+			[...]
+			The classification decision is first decomposed in terms of contributions R1, R2, R3 of respective hidden neurons x1, x2, x3, and then, the contribution of each hidden neuron is independently redistributed onto the pixels, leading to a relevance map (or heatmap) in the pixel space, that explains the classification “0”.
+			A main result of this work is the observation that application
+			of deep Taylor decomposition to neural networks used for image classification, yields rules that are similar to those proposed by [22] (the αβ-rule and the ?-rule), but with specific instantiations of their hyperparameters, previously set heuristically." \cite{Montavon2017}
 
 
 \section{Deep Learning in biology}
@@ -426,7 +447,7 @@ As the number of proteins with known sequence continues to outpace the number of
 	
 	"In the 21-st century, various machine learning methods, especially artificial neural networks, have been utilized to improve the performance, e.g., SVMs [Sujun and Zhirong, 2001], recurrent neural networks (RNNs) [Pollastri et al., 2002], probabilistic graphical models such as conditional neural fields combining CRFs with neural networks [Wang et al., 2011], generative stochastic networks [Zhou and Troyanskaya, 2014]." \cite{Li2016}
 
-	\subsubsection{Hall of fame}
+	\subsubsection{Hall of fame}\label{sect:HoF}
 	\begin{table}[h]
 		\begin{tabular}{cccc}
 			\textbf{Names} & \textbf{Q8} & \textbf{Architecture} & \textbf{Date} \\

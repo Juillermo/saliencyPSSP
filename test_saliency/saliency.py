@@ -77,11 +77,11 @@ def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
             except Exception as err:
                 # IF TOO BIG FOR PICKLE
                 print(err)
-                pickle.dump(grads[:len(grads) / 2], f, protocol=2)
+                pickle.dump( grads[ :int(len(grads)/2)], f, protocol=2)
 
                 fname = "saliencies{:5d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq + 10000, label)
                 with open(PATH_SALIENCIES + fname, 'wb') as f2:
-                    pickle.dump(grads[len(grads) / 2:], f2, protocol=2)
+                    pickle.dump( grads[int(len(grads)/2): ], f2, protocol=2)
 
         print(batch_seq)
 

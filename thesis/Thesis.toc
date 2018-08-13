@@ -1,13 +1,63 @@
-\contentsline {chapter}{\numberline {1}Results \& Discussion}{1}{chapter.2}
-\contentsline {section}{\numberline {1.1}Network performance analysis}{1}{section.3}
-\contentsline {section}{\numberline {1.2}Feature visualization}{1}{section.4}
-\contentsline {subsection}{\numberline {1.2.1}First layer filters}{1}{subsection.5}
-\contentsline {subsection}{\numberline {1.2.2}Saliency maps on layers?}{1}{subsection.6}
-\contentsline {section}{\numberline {1.3}Saliency maps on inputs}{1}{section.7}
-\contentsline {subsection}{\numberline {1.3.1}Saliency maps on single sample sequences}{1}{subsection.8}
-\contentsline {subsection}{\numberline {1.3.2}Sheer addition}{2}{subsection.9}
-\contentsline {subsubsection}{\numberline {1.3.2.1}Per-aminoacid and class aggregations}{2}{subsubsection.10}
-\contentsline {subsubsection}{\numberline {1.3.2.2}Per-class aggregations}{2}{subsubsection.11}
-\contentsline {subsubsection}{\numberline {1.3.2.3}Per-aminoacid aggregations}{2}{subsubsection.12}
-\contentsline {subsection}{\numberline {1.3.3}Clustering techniques}{2}{subsection.13}
-\contentsline {chapter}{Bibliography}{3}{dummy.14}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.2}
+\contentsline {chapter}{\numberline {2}Theory}{3}{chapter.8}
+\contentsline {section}{\numberline {2.1}Deep Learning}{3}{section.9}
+\contentsline {subsection}{\numberline {2.1.1}Convolutional Neural Networks}{4}{subsection.10}
+\contentsline {subsection}{\numberline {2.1.2}Drawbacks of deep-learning}{6}{subsection.11}
+\contentsline {section}{\numberline {2.2}Interpretability techniques}{7}{section.12}
+\contentsline {subsection}{\numberline {2.2.1}Feature visualization}{9}{subsection.13}
+\contentsline {subsubsection}{\numberline {2.2.1.1}Linear combination of filters}{9}{subsubsection.14}
+\contentsline {subsubsection}{\numberline {2.2.1.2}Activation maximization}{10}{subsubsection.16}
+\contentsline {subsection}{\numberline {2.2.2}Saliency maps}{11}{subsection.18}
+\contentsline {subsubsection}{\numberline {2.2.2.1}Perturbation-based forward propagation approaches (sensitivity analysis)}{13}{subsubsection.19}
+\contentsline {subsubsection}{\numberline {2.2.2.2}Backpropagation-based approaches}{14}{subsubsection.20}
+\contentsline {section}{\numberline {2.3}Deep Learning in biology}{18}{section.21}
+\contentsline {subsubsection}{\numberline {2.3.0.1}Genomics}{19}{subsubsection.22}
+\contentsline {subsubsection}{\numberline {2.3.0.2}Transcriptomics}{19}{subsubsection.23}
+\contentsline {subsubsection}{\numberline {2.3.0.3}Proteomics}{19}{subsubsection.24}
+\contentsline {subsubsection}{\numberline {2.3.0.4}Structural biology}{20}{subsubsection.25}
+\contentsline {subsubsection}{\numberline {2.3.0.5}Multiomics}{20}{subsubsection.26}
+\contentsline {subsection}{\numberline {2.3.1}CNNs on biological sequence data}{20}{subsection.27}
+\contentsline {subsection}{\numberline {2.3.2}Interpretability techniques on biological problems}{21}{subsection.28}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Feature visualization}{22}{subsubsection.29}
+\contentsline {subsubsection}{\numberline {2.3.2.2}Saliency maps}{24}{subsubsection.30}
+\contentsline {section}{\numberline {2.4}Secondary Structure Prediction}{24}{section.31}
+\contentsline {subsection}{\numberline {2.4.1}Features}{27}{subsection.32}
+\contentsline {subsubsection}{\numberline {2.4.1.1}Beyond one-hot}{29}{subsubsection.33}
+\contentsline {subsection}{\numberline {2.4.2}PSI-BLAST profiles}{29}{subsection.34}
+\contentsline {subsection}{\numberline {2.4.3}Targets}{31}{subsection.35}
+\contentsline {subsubsection}{\numberline {2.4.3.1}Q3}{31}{subsubsection.36}
+\contentsline {subsubsection}{\numberline {2.4.3.2}Q8}{32}{subsubsection.37}
+\contentsline {subsubsection}{\numberline {2.4.3.3}Accuracy}{33}{subsubsection.38}
+\contentsline {subsection}{\numberline {2.4.4}State of the art}{33}{subsection.39}
+\contentsline {subsubsection}{\numberline {2.4.4.1}Initial research}{33}{subsubsection.40}
+\contentsline {subsubsection}{\numberline {2.4.4.2}Recently}{34}{subsubsection.41}
+\contentsline {subsubsection}{\numberline {2.4.4.3}Hall of fame}{35}{subsubsection.42}
+\contentsline {chapter}{\numberline {3}Methods}{37}{chapter.43}
+\contentsline {section}{\numberline {3.1}Dataset}{37}{section.44}
+\contentsline {subsection}{\numberline {3.1.1}CullPDB53}{37}{subsection.47}
+\contentsline {subsection}{\numberline {3.1.2}CB513 \& CB6133}{38}{subsection.48}
+\contentsline {section}{\numberline {3.2}Network of study}{39}{section.50}
+\contentsline {subsection}{\numberline {3.2.1}Local and non-local interactions}{40}{subsection.52}
+\contentsline {subsection}{\numberline {3.2.2}Window size}{40}{subsection.53}
+\contentsline {subsection}{\numberline {3.2.3}Framework}{40}{subsection.54}
+\contentsline {subsubsection}{\numberline {3.2.3.1}Lasagne}{41}{subsubsection.55}
+\contentsline {section}{\numberline {3.3}Feature visualization}{41}{section.56}
+\contentsline {section}{\numberline {3.4}Saliency maps}{41}{section.57}
+\contentsline {subsection}{\numberline {3.4.1}Analysing saliencies}{42}{subsection.58}
+\contentsline {subsection}{\numberline {3.4.2}Clustering on saliencies}{42}{subsection.59}
+\contentsline {section}{\numberline {3.5}Open-source}{42}{section.60}
+\contentsline {chapter}{\numberline {4}Results \& Discussion}{43}{chapter.61}
+\contentsline {section}{\numberline {4.1}Outlier analysis}{43}{section.62}
+\contentsline {section}{\numberline {4.2}Feature visualization}{44}{section.64}
+\contentsline {subsection}{\numberline {4.2.1}First layer filters}{44}{subsection.65}
+\contentsline {subsection}{\numberline {4.2.2}Saliency maps on layers?}{44}{subsection.66}
+\contentsline {section}{\numberline {4.3}Saliency maps on inputs}{44}{section.67}
+\contentsline {subsection}{\numberline {4.3.1}Saliency maps on single sample sequences}{44}{subsection.68}
+\contentsline {subsection}{\numberline {4.3.2}Sheer addition}{45}{subsection.69}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Per-aminoacid and class aggregations}{45}{subsubsection.70}
+\contentsline {subsubsection}{\numberline {4.3.2.2}Per-class aggregations}{45}{subsubsection.71}
+\contentsline {subsubsection}{\numberline {4.3.2.3}Per-aminoacid aggregations}{45}{subsubsection.72}
+\contentsline {subsection}{\numberline {4.3.3}Clustering techniques}{45}{subsection.73}
+\contentsline {chapter}{\numberline {5}Conclusions}{47}{chapter.74}
+\contentsline {chapter}{\numberline {A}Saliency aggregations}{49}{appendix.77}
+\contentsline {chapter}{Bibliography}{51}{dummy.78}
