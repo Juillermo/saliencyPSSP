@@ -77,6 +77,9 @@ def calculate_points(args):
                 with open("saliencies{:4d}{:s}.pkl".format(seq, args.label), "rb") as f:
                     saliency = np.array(pickle.load(f))
 
+            if saliency.ndim != 3:
+                raise OSError("saliency badly formatted")
+
             X_seq, mask_seq = dater.get_sequence(seq)
             end_seq = int(sum(mask_seq))
             for pos in range(end_seq):

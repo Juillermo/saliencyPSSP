@@ -68,20 +68,20 @@ def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
             grads2 = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
 
             # TODO: FIX THE OVERLAPPING PART AT THE JOINT POINT
-            grads = np.concatenate((grads1[:, batch_seq, seq_len], grads2[:, batch_seq, seq_len]), axis=0)
+            grads = np.concatenate((grads1[:seq_len // 2], grads2[seq_len // 2:]), axis=0)
 
         fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
         with open(PATH_SALIENCIES + fname, 'wb') as f:
             try:
-                pickle.dump(grads, f, protocol=2)
+                pickle.dump(grads[:seq_len, batch_seq, :seq_len], f, protocol=2)
             except Exception as err:
                 # IF TOO BIG FOR PICKLE
                 print(err)
-                pickle.dump( grads[ :int(len(grads)/2)], f, protocol=2)
+                pickle.dump(grads[:int(len(grads) / 2)], f, protocol=2)
 
                 fname = "saliencies{:5d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq + 10000, label)
                 with open(PATH_SALIENCIES + fname, 'wb') as f2:
-                    pickle.dump( grads[int(len(grads)/2): ], f2, protocol=2)
+                    pickle.dump(grads[int(len(grads) / 2):], f2, protocol=2)
 
         print(batch_seq)
 
