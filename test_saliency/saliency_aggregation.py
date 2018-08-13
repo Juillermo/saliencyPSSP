@@ -20,8 +20,12 @@ def calculate_SeqLogo(args):
     total = np.zeros((2 * WINDOW + 1, 42))  # WINDOW-size, n aminoacids + pssm
     for seq in range(args.num_seqs):
         try:
-            with open("saliencies" + str(seq) + args.label + ".pkl", "rb") as f:
-                saliency = np.array(pickle.load(f))
+            try:
+                with open("saliencies" + str(seq) + args.label + ".pkl", "rb") as f:
+                    saliency = np.array(pickle.load(f))
+            except OSError:
+                with open("saliencies{:4d}{:s}.pkl".format(seq, args.label), "rb") as f:
+                    saliency = np.array(pickle.load(f))
 
             X_seq, mask_seq = dater.get_sequence(seq)
             end_seq = int(sum(mask_seq))
@@ -66,8 +70,12 @@ def calculate_points(args):
     points = []
     for seq in range(args.num_seqs):
         try:
-            with open("saliencies" + str(seq) + args.label + ".pkl", "rb") as f:
-                saliency = np.array(pickle.load(f))
+            try:
+                with open("saliencies" + str(seq) + args.label + ".pkl", "rb") as f:
+                    saliency = np.array(pickle.load(f))
+            except OSError:
+                with open("saliencies{:4d}{:s}.pkl".format(seq, args.label), "rb") as f:
+                    saliency = np.array(pickle.load(f))
 
             X_seq, mask_seq = dater.get_sequence(seq)
             end_seq = int(sum(mask_seq))
