@@ -4,10 +4,9 @@ import argparse
 
 import numpy as np
 
-from utils import Jurtz_Data, convertPredictQ8Result2HumanReadable, ssConvertString
+from utils import Jurtz_Data, convertPredictQ8Result2HumanReadable, ssConvertString, WINDOW
 
-WINDOW = 9
-SALIENCIES_SCRATCH_PATH = '/scratch/grm1g17/saliencies'
+SALIENCIES_SCRATCH_PATH = '/scratch/grm1g17/saliencies/'
 
 
 def calculate_aa_pssm(args):
