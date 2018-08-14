@@ -32,7 +32,7 @@ def compute_complex_saliency(X_batch, mask_batch, batch_seq, inference, sym_x, b
             grads1 = grads1[:seq_len // 2, batch_seq, :seq_len]
         except Exception:
             print(err)
-            print("Is it in the first part?")
+            print("XXXXXXX Is it in the first part?")
 
         try:
             # SECOND HALF
@@ -41,12 +41,13 @@ def compute_complex_saliency(X_batch, mask_batch, batch_seq, inference, sym_x, b
             grads2 = grads2[seq_len // 2:seq_len, batch_seq, :seq_len]
         except Exception:
             print(err)
-            print("Or in the second?")
+            print("XXXXXXXX Or in the second?")
 
         grads = np.concatenate((grads1, grads2), axis=0)
 
-    assert grads.shape[0] == grads.shape[1], "{:s} is not equal to {:s}".format(str(grads.shape[0]),
-                                                                                str(grads.shape[1]))
+    assert grads.shape[0] == grads.shape[1], "{:d} is not equal to {:d} for sequence with length {:d}".format(
+        grads.shape[0],
+        grads.shape[1], seq_len)
     fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
     with open(PATH_SALIENCIES + fname, 'wb') as f:
         pickle.dump(grads, f, protocol=2)
