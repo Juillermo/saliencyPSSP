@@ -20,7 +20,7 @@ def compute_complex_saliency(X_batch, mask_batch, batch_seq, inference, sym_x, b
     try:
         sym_y = inference[batch_seq, :seq_len, ssConvertString.find(label)]
         grads = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
-        grads = grads[:, batch_seq, :seq_len]
+        grads = grads[:seq_len, batch_seq, :seq_len]
 
     except Exception as err:
         # IF GPU OUT OF MEMORY
@@ -33,13 +33,15 @@ def compute_complex_saliency(X_batch, mask_batch, batch_seq, inference, sym_x, b
         # SECOND HALF
         sym_y = inference[batch_seq, seq_len // 2:seq_len, ssConvertString.find(label)]
         grads2 = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
-        grads2 = grads2[seq_len // 2:, batch_seq, :seq_len]
+        grads2 = grads2[seq_len // 2:seq_len, batch_seq, :seq_len]
 
         grads = np.concatenate((grads1, grads2), axis=0)
 
+    assert grads.shape[0] == grads.shape[1]
+
     fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
     with open(PATH_SALIENCIES + fname, 'wb') as f:
-        pickle.dump(grads[:seq_len], f, protocol=2)
+        pickle.dump(grads, f, protocol=2)
 
 
 def compute_single_saliency(X_batch, sym_x, sym_y):
