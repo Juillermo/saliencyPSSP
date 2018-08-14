@@ -189,9 +189,9 @@ def main():
     parser = argparse.ArgumentParser(
         description='Aggregate saliencies either by sheer addition, compute points for clustering, or aggregate points as aa/pssm')
 
-    parser.add_argument('--func', type=str, default='sheer', metavar='func',
+    parser.add_argument('--func', default='sheer', choices=['sheer', 'points', 'aapssm'],
                         help='Function: "sheer" addition of saliencies (default), calculate "points" for clustering, or calculate "aampssm" values')
-    parser.add_argument('--label', type=str, default='H', metavar='label',
+    parser.add_argument('--label', default='H', choices=[el for el in ssConvertString],
                         help='class from which to analyse the saliencies (default H)')
     parser.add_argument('--num-seqs', type=int, default=2, metavar='num_seqs',
                         help='number of sequences aggregated for SeqLogo (default 2)')
@@ -247,8 +247,6 @@ def calculate_SeqLogo_fang(args):
     with open("SeqLogo" + str(args.num_seqs) + args.label + ".pkl", "wb") as f:
         pickle.dump(total, f, protocol=2)
 
-
-# DEPRECATED
 
 def spot_best(X_am, X_pssm, labels):
     ## NEEDS REVISION
