@@ -48,7 +48,7 @@ def compute_complex_saliency(X_batch, mask_batch, batch_seq, inference, sym_x, b
     assert grads.shape[0] == grads.shape[
         1], "You see, there is a problem over here. {:d} is not equal to {:d} for sequence with length {:d}, and I don't know why this is happening. I did concatenate grad1 with shape {:s} with grads2 with shape {:s}, but the fact is that I got grads with shape {:s}. Does this make any sense?".format(
         grads.shape[0],
-        grads.shape[1], seq_len, grads1.shape, grads2.shape, grads.shape)
+        grads.shape[1], seq_len, str(grads1.shape), str(grads2.shape), str(grads.shape))
     fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
     with open(PATH_SALIENCIES + fname, 'wb') as f:
         pickle.dump(grads, f, protocol=2)
