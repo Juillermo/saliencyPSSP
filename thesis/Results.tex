@@ -20,19 +20,19 @@
 %\item Here's my conclusion(s) about it
 %\end{enumerate}
 
-I have trained the network described in section \ref{sect:network} for 400 epochs with the same parameters as the ones used by \cite{Jurtz2017}; i.e., gradient clipping at 20, regularization term $\lambda=10^{-3}$, and training-validation split at the 5278th sequence. The resulting network reaches an accuracy of 67.7\% on the test set, which is not to far from the 70\% of the state-of-the-art (see section \ref{sect:HoF}). I believe that such a small difference does not undermine the effectiveness of the other results, and furthermore alights the computational burden of a more complicated model.
+I have trained the network described in section \ref{sect:network} for 400 epochs with the same parameters as the ones used by \cite{Jurtz2017}; i.e., gradient clipping at 20, regularization term $\lambda=10^{-3}$, and training-validation split at the 5278th sequence. The resulting network reaches an accuracy of 67.7\% on the test set, which is not to far from the 70\% of the state-of-the-art (see section \ref{sect:HoF}). I believe that such a small difference does not undermine the effectiveness of the other results, while notoriously alighting the computational burden of a more complicated model.
 
 \section{Outlier analysis} \label{sect:outliers}
 
-In order to analyse the performance space a bit better and, the average accuracy per sequence has also been calculated and shown in Figure \ref{fig:per_seq_acc}. The distribution exhibits the typical funnel shape that one could expect from processes with random variables forming groups of different sizes: the bigger the groups, the smaller the variance. The funnel ceases to shrink at length about 400, so it would be particularly interesting to understand why the network is classifying worse (60\% and below) some of the sequences above that length.
+In order to analyse the performance space a bit better, the average accuracy per sequence has been calculated and it has been plotted in Figure \ref{fig:per_seq_acc} with respect to the sequence length. The distribution exhibits the typical funnel shape that one could expect from processes with random variables forming groups of different sizes: the bigger the groups, the smaller the variance. The funnel ceases to shrink at length about 400, so it would be particularly interesting to understand why the network is classifying worse (60\% and below) some of the sequences above that length.
 
 % CHeck alpha-helix size
-If we observe the color scheme, we can understand right away that sequences rich in $\alpha$-helix are generally better predicted than $\beta$-sheets and coils. An explanation could be that while $\alpha$-helix sizes are up to CHECK NUMBER, which is inside the window size, $\beta$-sheets interact with amino-aids further away in the sequence, which is not possible to be captured with the window of the network, of lateral size of 9.
+If we observe the color scheme of the figure, we can understand right away that sequences rich in $\alpha$-helix are generally better predicted than $\beta$-sheets and coils. An explanation could be that while $\alpha$-helix sizes are up to CHECK NUMBER, which is inside the window size, $\beta$-sheets interact with amino-aids further away in the sequence, which is not possible to be captured with the window of the network, of lateral size of 9.
 
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Figures/per_seq_acc}
-\caption{The mean accuracy per sequence by sequence length. The 5504 sequences of the training set are shown on the left and the 514 of the test set on the right. Each point represents a single protein, and its colour corresponds to the amount of $\beta$-sheet (red), $\alpha$-helix (green), and coils (blue) it has. A purple point, for instance, would predominantly have $\beta$-sheets and coils.}
+\caption{The mean accuracy per sequence by sequence length. The 5504 sequences of the training set are shown on the left and the 514 of the test set on the right. Each point represents a single protein, and its colour corresponds to the amount of $\beta$-sheets (red), $\alpha$-helices (green), and coils (blue) it has. A purple point, for instance, would predominantly have $\beta$-sheets and coils.}
 \label{fig:per_seq_acc}
 \end{figure}
 % EXtra: include the same graph but colour the high-appearing classes and the low appearing classes differently (RB)
@@ -45,11 +45,15 @@ If we observe the color scheme, we can understand right away that sequences rich
 
 
 \section{Saliency maps on inputs}
-Talk about dimensions: saliency value, class, sequences, positions, window, amino-acids, aa/pssm (7 dimensions). From now on, individual saliency maps will refer to the saliency map of one sequence-position
+
+Before anything else, it is worth commenting that the saliency map outputs have many dimensions, since each position at each sequence has a saliency map with shape $8x42x19$, corresponding to the 8 classes (outputs), the 42 inputs and the total window size. The results can be shown in multiple different ways depending on which dimensions are preserved and which are aggregated. 
+
+%Talk about dimensions: saliency value, class, sequences, positions, window, amino-acids, aa/pssm (7 dimensions). From now on, individual saliency maps will refer to the saliency map of one sequence-position
+
+\subsubsection*{Analysis on amino-acids and pssm}
+
 
 Options (all options could be applied either to aa or to pssm, 6 dimensions left)
-% PRove that saliencies on pssm are much more powerful than saliencies on aas
-One way to prove it is to show that for every single position, the (addition / maximum after aggregated by window but not by class) of pssm saliencies is bigger than the (addition / maximum etc) of aas saliencies
 	
 	\subsection{Saliency maps on single sample sequences}
 	% SHow per-class samples of this instances (either graph form, SeqLogo form) (either per-position or heat-map)

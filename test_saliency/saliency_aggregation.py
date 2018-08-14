@@ -4,10 +4,72 @@ import argparse
 
 import numpy as np
 
-from utils import Jurtz_Data, convertPredictQ8Result2HumanReadable
+from utils import Jurtz_Data, convertPredictQ8Result2HumanReadable, ssConvertString
 
 WINDOW = 9
 SALIENCIES_SCRATCH_PATH = '/scratch/grm1g17/saliencies'
+
+
+def calculate_aa_pssm(args):
+    origin = os.getcwd()
+    os.chdir(SALIENCIES_SCRATCH_PATH)
+
+    dater = Jurtz_Data()
+
+    fail_seqs = 0
+    points = []
+    for seq in range(args.num_seqs):
+        try:
+            X_seq, mask_seq = dater.get_sequence(seq)
+            end_seq = int(sum(mask_seq))
+            seq_saliency = np.zeros((8, end_seq, 2))
+            for label in ssConvertString:
+                try:
+                    with open("saliencies" + str(seq) + label + ".pkl", "rb") as f:
+                        saliency = np.array(pickle.load(f))
+                except OSError:
+                    with open("saliencies{:4d}{:s}.pkl".format(seq, label), "rb") as f:
+                        saliency = np.array(pickle.load(f))
+
+                for pos in range(end_seq):
+                    proc_saliency = np.zeros((2 * WINDOW + 1, 42))  # window-size, n aminoacids
+                    # Pre-WINDOW
+                    if pos > WINDOW:
+                        init = pos - WINDOW
+                        proc_saliency[:WINDOW] += np.multiply(saliency[pos, init:pos, :], X_seq[init:pos])
+                    elif pos != 0:
+                        init = WINDOW - pos
+                        proc_saliency[init:WINDOW] += np.multiply(saliency[pos, 0:pos, :], X_seq[0:pos])
+
+                    # Window
+                    proc_saliency[WINDOW] += np.multiply(saliency[pos, pos, :], X_seq[pos])
+
+                    # Post-WINDOW
+                    if pos + WINDOW + 1 <= end_seq:
+                        end = pos + WINDOW + 1
+                        proc_saliency[WINDOW + 1:] += np.multiply(saliency[pos, pos + 1:end, :], X_seq[pos + 1:end])
+                    elif pos != end_seq:
+                        end = end_seq
+                        proc_saliency[WINDOW + 1:-(pos + WINDOW + 1 - end)] += np.multiply(
+                            saliency[pos, pos + 1:end, :],
+                            X_seq[pos + 1:end])
+                    seq_saliency[ssConvertString.find(label), pos, :] = [np.sum(proc_saliency[..., :21]),
+                                                                         np.sum(proc_saliency[..., 21:])]
+            for pos in range(end_seq):
+                points.append((np.sum(seq_saliency[:, pos, 0], axis=0), np.sum(seq_saliency[:, pos, 1], axis=0)))
+            print(seq)
+        except OSError:
+            fail_seqs += 1
+            print(str(seq) + " Not found")
+
+    os.chdir(origin)
+
+    points = np.array(points)
+    print(points.shape)
+
+    print("aa/pssm analysis of " + str(args.num_seqs - fail_seqs) + " elements")
+    with open("aa_pssm" + str(args.num_seqs) + ".pkl", "wb") as f:
+        pickle.dump(points, f, protocol=2)
 
 
 def calculate_SeqLogo(args):
@@ -31,7 +93,7 @@ def calculate_SeqLogo(args):
 
             if saliency.ndim != 3:
                 os.remove(fname)
-                print("File "+fname+" deleted")
+                print("File " + fname + " deleted")
                 raise OSError("saliency badly formatted")
 
             X_seq, mask_seq = dater.get_sequence(seq)
@@ -125,10 +187,10 @@ def calculate_points(args):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Aggregate saliencies either by sheer addition or compute points for clustering')
+        description='Aggregate saliencies either by sheer addition, compute points for clustering, or aggregate points as aa/pssm')
 
     parser.add_argument('--func', type=str, default='sheer', metavar='func',
-                        help='Function: sheer addition of saliencies (default), or calculate points for clustering')
+                        help='Function: "sheer" addition of saliencies (default), calculate "points" for clustering, or calculate "aampssm" values')
     parser.add_argument('--label', type=str, default='H', metavar='label',
                         help='class from which to analyse the saliencies (default H)')
     parser.add_argument('--num-seqs', type=int, default=2, metavar='num_seqs',
@@ -139,8 +201,10 @@ def main():
         calculate_SeqLogo(args)
     elif args.func is 'points':
         calculate_points(args)
+    elif args.func is 'aapssm':
+        calculate_aa_pssm(args)
     else:
-        raise ValueError('Function "'+args.func+'" not recognized, try with "sheer" or "points"')
+        raise ValueError('Function "' + args.func + '" not recognized, try with "sheer", "points", or "aapssm"')
 
 
 if __name__ == "__main__":
