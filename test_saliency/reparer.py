@@ -3,6 +3,7 @@ import os
 import re
 import argparse
 import importlib
+import pickle
 
 import numpy as np
 import theano.tensor as T
@@ -11,10 +12,11 @@ import lasagne as nn
 from saliency import BATCH_SIZE, compute_complex_saliency
 from utils import ssConvertString, Jurtz_Data
 
+SALIENCIES_SCRATCH_PATH = '/scratch/grm1g17/saliencies'
 
 def probe():
     origin = os.getcwd()
-    os.chdir('/scratch/grm1g17/saliencies')
+    os.chdir(SALIENCIES_SCRATCH_PATH)
     files = glob.glob('saliencies*')
 
     exists = np.zeros((6018, 8))
@@ -27,6 +29,39 @@ def probe():
 
     os.chdir(origin)
     return exists
+
+def scrapper():
+    origin = os.getcwd()
+    os.chdir(SALIENCIES_SCRATCH_PATH)
+
+    fail_seqs = 0
+    deleted = 0
+    for seq in range(6018):
+        for label in ssConvertString:
+            try:
+                try:
+                    fname = "saliencies" + str(seq) + label + ".pkl"
+                    with open(fname, "rb") as f:
+                        saliency = np.array(pickle.load(f))
+                except OSError:
+                    fname = "saliencies{:4d}{:s}.pkl".format(seq, label)
+                    with open(fname, "rb") as f:
+                        saliency = np.array(pickle.load(f))
+
+                if saliency.ndim != 3 or saliency.shape[0] != saliency.shape[1]:
+                    os.remove(fname)
+                    print("File " + fname + " deleted")
+                    deleted += 1
+                    raise OSError("saliency badly formatted")
+
+                print(seq)
+            except OSError:
+                fail_seqs += 1
+                print(str(seq) + " Not found")
+
+    os.chdir(origin)
+    print(str(deleted)+" saliencies deleted")
+    print(str(6018 * 8 - fail_seqs) + " saliencies remaining")
 
 
 def repair_saliencies(args):
@@ -91,6 +126,8 @@ def main():
         assert_all()
     elif args.function == "repair":
         repair_saliencies(args)
+    elif args.function == "scrap":
+        scrapper()
     else:
         print("No valid function selected")
 

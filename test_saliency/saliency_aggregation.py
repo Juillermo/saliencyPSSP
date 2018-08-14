@@ -91,7 +91,7 @@ def calculate_SeqLogo(args):
                 with open(fname, "rb") as f:
                     saliency = np.array(pickle.load(f))
 
-            if saliency.ndim != 3 or saliency:
+            if saliency.ndim != 3 or saliency.shape[0] != saliency.shape[1]:
                 os.remove(fname)
                 print("File " + fname + " deleted")
                 raise OSError("saliency badly formatted")
