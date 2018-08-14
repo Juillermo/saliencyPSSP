@@ -15,6 +15,33 @@ BATCH_SIZE = 64
 PATH_SALIENCIES = "/scratch/grm1g17/saliencies/"
 
 
+def compute_complex_saliency(X_batch, mask_batch, batch_seq, inference, sym_x, batch, label):
+    seq_len = int(np.sum(mask_batch[batch_seq]))
+    try:
+        sym_y = inference[batch_seq, :seq_len, ssConvertString.find(label)]
+        grads = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
+        grads = grads[:, batch_seq, :seq_len]
+
+    except Exception as err:
+        # IF GPU OUT OF MEMORY
+        print(err)
+        # FIRST HALF
+        sym_y = inference[batch_seq, :seq_len // 2, ssConvertString.find(label)]
+        grads1 = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
+        grads1 = grads1[:seq_len // 2, batch_seq, :seq_len]
+
+        # SECOND HALF
+        sym_y = inference[batch_seq, seq_len // 2:seq_len, ssConvertString.find(label)]
+        grads2 = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
+        grads2 = grads2[seq_len // 2:, batch_seq, :seq_len]
+
+        grads = np.concatenate((grads1, grads2), axis=0)
+
+    fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
+    with open(PATH_SALIENCIES + fname, 'wb') as f:
+        pickle.dump(grads[:seq_len], f, protocol=2)
+
+
 def compute_single_saliency(X_batch, sym_x, sym_y):
     gradients = theano.gradient.jacobian(sym_y, wrt=sym_x)
     get_gradients = theano.function(inputs=[sym_x], outputs=gradients)
@@ -50,32 +77,8 @@ def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
 
     print("Computing saliencies")
     for batch_seq in range(ini, BATCH_SIZE):
-        seq_len = int(np.sum(mask_batch[batch_seq]))
-
-        try:
-            sym_y = inference[batch_seq, :seq_len, ssConvertString.find(label)]
-            grads = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
-            grads = grads[:, batch_seq, :seq_len]
-
-        except Exception as err:
-            # IF GPU OUT OF MEMORY
-            print(err)
-            # FIRST HALF
-            sym_y = inference[batch_seq, :seq_len // 2, ssConvertString.find(label)]
-            grads1 = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
-            grads1 = grads1[:seq_len // 2, batch_seq, :seq_len]
-
-            # SECOND HALF
-            sym_y = inference[batch_seq, seq_len // 2:seq_len, ssConvertString.find(label)]
-            grads2 = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
-            grads2 = grads2[seq_len // 2:, batch_seq, :seq_len]
-
-            grads = np.concatenate((grads1, grads2), axis=0)
-
-        fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
-        with open(PATH_SALIENCIES + fname, 'wb') as f:
-            pickle.dump(grads[:seq_len], f, protocol=2)
-
+        compute_complex_saliency(X_batch=X_batch, sym_x=sym_x, batch_seq=batch_seq, mask_batch=mask_batch,
+                                 inference=inference, batch=batch, label=label)
         print(batch_seq)
 
 

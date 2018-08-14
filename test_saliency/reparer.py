@@ -2,11 +2,15 @@ import glob
 import os
 import re
 import argparse
+import importlib
 
 import numpy as np
+import theano.tensor as T
+import lasagne as nn
 
-from saliency import BATCH_SIZE, compute_tensor_jurtz
+from saliency import BATCH_SIZE, compute_complex_saliency
 from utils import ssConvertString, Jurtz_Data
+
 
 def probe():
     origin = os.getcwd()
@@ -24,8 +28,21 @@ def probe():
     os.chdir(origin)
     return exists
 
+
 def repair_saliencies(args):
     dater = Jurtz_Data()
+
+    metadata_path = "dump_pureConv-20180804-010835-47.pkl"
+    metadata = np.load(metadata_path)
+    config_name = metadata['config_name']
+    config = importlib.import_module("%s" % config_name)
+    print("Using configurations: '%s'" % config_name)
+    l_in, l_out = config.build_model()
+
+    sym_x = T.tensor3()
+    inference = nn.layers.get_output(
+        l_out, sym_x, deterministic=True)
+    nn.layers.set_all_param_values(l_out, metadata['param_values'])
 
     batch_range = range(6018 // BATCH_SIZE)
     if args.dir == 'b':
@@ -42,8 +59,8 @@ def repair_saliencies(args):
                 for label in ssConvertString:
                     if not exists[seq, ssConvertString.find(label)]:
                         print("Repairing sequence {:d} and batch {:d} for label {:s}".format(seq, batch, label))
-                        compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=batch_seq)
-                break
+                        compute_complex_saliency(X_batch=X_batch, mask_batch=mask_batch, batch=batch, label=label,
+                                                 batch_seq=batch_seq, inference=inference, sym_x=sym_x)
 
 
 def assert_all():

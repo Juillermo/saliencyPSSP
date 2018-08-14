@@ -197,11 +197,11 @@ def main():
                         help='number of sequences aggregated for SeqLogo (default 2)')
     args = parser.parse_args()
 
-    if args.func is 'sheer':
+    if args.func == 'sheer':
         calculate_SeqLogo(args)
-    elif args.func is 'points':
+    elif args.func == 'points':
         calculate_points(args)
-    elif args.func is 'aapssm':
+    elif args.func == 'aapssm':
         calculate_aa_pssm(args)
     else:
         raise ValueError('Function "' + args.func + '" not recognized, try with "sheer", "points", or "aapssm"')
