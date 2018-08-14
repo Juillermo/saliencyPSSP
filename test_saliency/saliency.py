@@ -26,20 +26,24 @@ def compute_complex_saliency(X_batch, mask_batch, batch_seq, inference, sym_x, b
         # IF GPU OUT OF MEMORY
         print(err)
         try:
-        # FIRST HALF
+            # FIRST HALF
             sym_y = inference[batch_seq, :seq_len // 2, ssConvertString.find(label)]
             grads1 = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
             grads1 = grads1[:seq_len // 2, batch_seq, :seq_len]
+        except Exception:
+            print(err)
+            print("Is it in the first part?")
 
+        try:
             # SECOND HALF
             sym_y = inference[batch_seq, seq_len // 2:seq_len, ssConvertString.find(label)]
             grads2 = compute_single_saliency(X_batch=X_batch, sym_x=sym_x, sym_y=sym_y)
             grads2 = grads2[seq_len // 2:seq_len, batch_seq, :seq_len]
-
-            grads = np.concatenate((grads1, grads2), axis=0)
         except Exception:
             print(err)
-            print("Nothing to do, I insist")
+            print("Or in the second?")
+
+        grads = np.concatenate((grads1, grads2), axis=0)
 
     assert grads.shape[0] == grads.shape[1], "{:s} is not equal to {:s}".format(str(grads.shape[0]),
                                                                                 str(grads.shape[1]))

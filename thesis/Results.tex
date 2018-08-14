@@ -50,14 +50,25 @@ Before anything else, it is worth commenting that the saliency map outputs have 
 
 %Talk about dimensions: saliency value, class, sequences, positions, window, amino-acids, aa/pssm (7 dimensions). From now on, individual saliency maps will refer to the saliency map of one sequence-position
 
-\subsubsection*{Analysis on amino-acids and pssm}
+\subsubsection*{Analysis on amino-acids and \textit{pssm}}
+When looking at typical secondary-structure prediction algorithm, there is one point that may raise some suspicion: the inclusion of half of the inputs as one-hot encoded (amino-acids) and the other half as dense vectors (\textit{pssm}). One could thing that this discrepancy may strongly favour the information coming from the dense part, since the weights associated to it will learn much faster in a typical gradient descent learning schema.
+
+Saliency maps can be used to prove whether this hypothesis is right by inspecting which of the input groups is being most decisive in the classification process. For doing so, each saliency map is divided into two groups of $8x21x19$, and all the values inside added up to a single saliency score. Thus, each position of each sequence will have two scores, one for the amino-acids and one for the \textit{pssm}.
 
 
 Options (all options could be applied either to aa or to pssm, 6 dimensions left)
 	
 	\subsection{Saliency maps on single sample sequences}
+	\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{Figures/sample_8classes}
+\caption{}
+\label{fig:sample_8classes}
+\end{figure}
+
+	
 	% SHow per-class samples of this instances (either graph form, SeqLogo form) (either per-position or heat-map)
-	analyse per-class single sequence (sample-based) (4 dimensions left): aa-aggregated (3 dimensions) and added in the sequence position, either respecting each position (3 dimensions) or aggregating them in a heat map (2 dimensions), or aggregating the positions in a heatmap but containing the 8 classes (3 dimensions) (Colour the labels with the RGB either form Figure \ref{fig:per_seq_acc} or with the colour code from \ref{sect:sheer}).
+	analyse per-class single sequence (sample-based) (4 dimensions left): aa-aggregated (3 dimensions) and added in the sequence position, either respecting each position (3 dimensions) or aggregating them in a heat map (2 dimensions), or aggregating the positions in a heat-map but containing the 8 classes (3 dimensions) (Colour the labels with the RGB either form Figure \ref{fig:per_seq_acc} or with the colour code from \ref{sect:sheer}).
 	
 	Have the x labels including amino-acid, prediction, and real label. Colour classes with the codes mentioned in the previous paragraph. Consider marking mismatches in bold.
 	
