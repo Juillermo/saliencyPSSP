@@ -44,7 +44,7 @@ def scrap():
     os.chdir(SALIENCIES_SCRATCH_PATH)
     for seq in range(len(exists)):
         for label in ssConvertString:
-            if exists[seq, label]:
+            if exists[seq, ssConvertString.find(label)]:
                 try:
                     try:
                         fname = "saliencies" + str(seq) + label + ".pkl"
@@ -77,7 +77,7 @@ def process():
     dater = Jurtz_Data()
 
     fail_seqs = 0
-    deleted = 0
+    processed = 0
     origin = os.getcwd()
     os.chdir(SALIENCIES_SCRATCH_PATH)
     for seq in range(len(exists_sal)):
@@ -124,6 +124,7 @@ def process():
                                 X_seq[pos + 1:end])
 
                         processed_seq[pos, ssConvertString.find(label)] = saliency_pos
+                        processed += 1
 
             except OSError:
                 fail_seqs += 1
@@ -133,7 +134,7 @@ def process():
         np.save(PROCESSED_SCRATCH_PATH + fname, processed_seq)
 
     os.chdir(origin)
-    print(str(deleted) + " saliencies processed")
+    print(str(processed) + " saliencies processed")
     print(str(fail_seqs) + " saliencies failed")
 
 
@@ -189,18 +190,20 @@ def assert_all():
 
 def main():
     parser = argparse.ArgumentParser(description='For seen saliency files and repairing them')
-    parser.add_argument('--function', type=str, default='assert', metavar='function',
-                        help='which function of the file to use (assert, repair)')
+    parser.add_argument('--func', type=str, default='assert', metavar='func',
+                        help='which function of the file to use (assert, repair, scrap, process)')
     parser.add_argument('--dir', type=str, default='f', metavar='dir',
                         help='direction of the reparation process (f or b)')
     args = parser.parse_args()
 
-    if args.function == "assert":
+    if args.func == "assert":
         assert_all()
-    elif args.function == "repair":
+    elif args.func == "repair":
         repair_saliencies(args)
-    elif args.function == "scrap":
+    elif args.func == "scrap":
         scrap()
+    elif args.func == "process":
+        process()
     else:
         print("No valid function selected")
 
