@@ -4,9 +4,8 @@ import argparse
 
 import numpy as np
 
+from reparer import SALIENCIES_SCRATCH_PATH, PROCESSED_SCRATCH_PATH
 from utils import Jurtz_Data, convertPredictQ8Result2HumanReadable, ssConvertString, WINDOW
-
-SALIENCIES_SCRATCH_PATH = '/scratch/grm1g17/saliencies/'
 
 
 def calculate_aa_pssm(args):
@@ -55,7 +54,8 @@ def calculate_aa_pssm(args):
                     seq_saliency[ssConvertString.find(label), pos, :] = [np.sum(proc_saliency[..., :21]),
                                                                          np.sum(proc_saliency[..., 21:])]
             for pos in range(end_seq):
-                points.append((np.sum(seq_saliency[:, pos, 0], axis=0), np.sum(seq_saliency[:, pos, 1], axis=0)))
+                points.append(
+                    (np.sum(abs(seq_saliency[:, pos, 0]), axis=0), np.sum(abs(seq_saliency[:, pos, 1]), axis=0)))
             print(seq)
         except OSError:
             fail_seqs += 1
@@ -67,11 +67,10 @@ def calculate_aa_pssm(args):
     print(points.shape)
 
     print("aa/pssm analysis of " + str(args.num_seqs - fail_seqs) + " elements")
-    with open("aa_pssm" + str(args.num_seqs) + ".pkl", "wb") as f:
-        pickle.dump(points, f, protocol=2)
+    np.save("aa_pssm" + str(args.num_seqs - fail_seqs) + ".npy", points)
 
 
-def calculate_SeqLogo(args):
+def calculate_sheer(args):
     origin = os.getcwd()
     os.chdir(SALIENCIES_SCRATCH_PATH)
 
@@ -123,8 +122,8 @@ def calculate_SeqLogo(args):
             print(str(seq) + " Not found")
 
     os.chdir(origin)
-    print("SeqLogo of " + str(args.num_seqs - fail_seqs) + " elements")
-    with open("SeqLogo_data/SeqLogo" + str(args.num_seqs) + args.label + ".pkl", "wb") as f:
+    print("Sheer addition of " + str(args.num_seqs - fail_seqs) + " elements")
+    with open("sheer_data/sheer" + str(args.num_seqs) + args.label + ".pkl", "wb") as f:
         pickle.dump(total, f, protocol=2)
 
 
@@ -188,8 +187,8 @@ def main():
     parser = argparse.ArgumentParser(
         description='Aggregate saliencies either by sheer addition, compute points for clustering, or aggregate points as aa/pssm')
 
-    parser.add_argument('--func', default='sheer', choices=['sheer', 'points', 'aapssm'],
-                        help='Function: "sheer" addition of saliencies (default), calculate "points" for clustering, or calculate "aampssm" values')
+    parser.add_argument('--func', choices=['sheer', 'points', 'aapssm'],
+                        help='Function: "sheer" addition of saliencies, calculate "points" for clustering, or calculate "aampssm" values')
     parser.add_argument('--label', default='H', choices=[el for el in ssConvertString],
                         help='class from which to analyse the saliencies (default H)')
     parser.add_argument('--num-seqs', type=int, default=2, metavar='num_seqs',
@@ -197,7 +196,7 @@ def main():
     args = parser.parse_args()
 
     if args.func == 'sheer':
-        calculate_SeqLogo(args)
+        calculate_sheer(args)
     elif args.func == 'points':
         calculate_points(args)
     elif args.func == 'aapssm':
@@ -208,99 +207,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# DEPRECATED
-
-def calculate_SeqLogo_fang(args):
-    _, _, mask, _ = load_data("", num_seqs=args.num_seqs)
-    del _
-    WINDOW = 9
-
-    total = np.zeros((2, 2 * WINDOW + 1, 21))  # one-hot/pssm, WINDOW-size, n aminoacids
-    for seq in range(args.num_seqs):
-        with open("saliencies/saliencies" + str(seq) + args.label + ".pkl", "rb") as f:
-            saliencies = np.array(pickle.load(f))
-
-        end_seq = int(sum(mask[seq]))
-        for pos in range(end_seq):
-            # Pre-WINDOW
-            if pos > WINDOW:
-                init = pos - WINDOW
-                total[:, :WINDOW] += saliencies[:, pos, 0, init:pos, :]
-            elif pos != 0:
-                init = WINDOW - pos
-                total[:, init:WINDOW] += saliencies[:, pos, 0, 0:pos, :]
-
-            # Window
-            total[:, WINDOW] = saliencies[:, pos, 0, pos, :]
-
-            # Post-WINDOW
-            if pos + WINDOW + 1 <= end_seq:
-                end = pos + WINDOW + 1
-                total[:, WINDOW + 1:] = saliencies[:, pos, 0, pos + 1:end, :]
-            elif pos != end_seq:
-                end = end_seq
-                total[:, WINDOW + 1:-(pos + WINDOW + 1 - end)] = saliencies[:, pos, 0, pos + 1:end, :]
-
-    with open("SeqLogo" + str(args.num_seqs) + args.label + ".pkl", "wb") as f:
-        pickle.dump(total, f, protocol=2)
-
-
-def spot_best(X_am, X_pssm, labels):
-    ## NEEDS REVISION
-
-    num_seqs = np.size(X_am, 0)
-    seqlen = np.size(X_am, 1)
-
-    # 29 aminoacids per side
-    window = 29
-
-    ## Load model
-    model = load_model("modelQ8.h5")
-
-    ## Make predictions
-    predictions = model.predict([X_am, X_pssm])
-    print(predictions.shape)
-
-    start_time = time.time()
-    prev_time = start_time
-
-    saliencies = np.zeros((2, num_seqs, seqlen, seqlen, 21))
-    saliency_info = pd.DataFrame(
-        columns=["Seq", "Pos", "Class", "Prediction", "Aminoacids", "Predictions", "True labels"])
-
-    for seq in range(num_seqs):
-
-        gato = decode(X_am[seq])
-        perro = convertPredictQ8Result2HumanReadable(predictions[seq])
-        conejo = "".join([ssConvertMap[el] for el in labels[seq]])
-
-        for pos in range(seqlen):
-            if labels[seq, pos] == np.argmax(predictions[seq, pos]):
-                new_row = len(saliency_info)
-
-                target_class = labels[seq, pos]
-
-                ## Compute string aminoacids and predictions
-                saliency_info.loc[new_row, "Class"] = ssConvertMap[target_class]
-                saliency_info.loc[new_row, "Prediction"] = predictions[seq, pos, target_class]
-
-                if pos >= window:
-                    init = pos - window
-                else:
-                    init = 0
-
-                if pos + window >= seqlen:
-                    end = seqlen
-                else:
-                    end = pos + window + 1
-
-                saliency_info.loc[new_row, "Aminoacids"] = gato[init: pos] + " " + gato[pos] + " " + gato[pos + 1: end]
-                saliency_info.loc[new_row, "Predictions"] = perro[init:pos] + " " + perro[pos] + " " + perro[
-                                                                                                       pos + 1:end]
-                saliency_info.loc[new_row, "True labels"] = conejo[init:pos] + " " + conejo[pos] + " " + conejo[
-                                                                                                         pos + 1:end]
-
-    with open(("saliencies.pkl"), 'wb') as f:
-        pickle.dump((saliency_info), f, protocol=2)

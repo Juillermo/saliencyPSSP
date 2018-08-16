@@ -1,0 +1,1505 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Title:         Seq2Logo: 
+%%Creator:       Seq2Logo (Martin Thomsen)
+%%CreationDate:  2018-08-16
+%%BoundingBox:   0 0 640 480
+%%Pages:         1
+%%Orientation:   Portrait
+%%DocumentFonts: 
+%%EndComments
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                  USER DEFINED VARIABLES                    %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/page_width               640 def
+/page_height              480 def
+/title                    () def %title
+/lines_per_page           2 def %1
+/yaxis_label              (Bits) def %Bits
+/xaxis_label              () def
+/end_type                 () def
+/yaxis_scale              2.41768009 def %0.365078687092
+/depleted_yaxis_scale     1.50926077 def %0.190242668933
+/yaxis_tic_interval       0.5 def %0.1
+/yaxis_minor_tic_interval 0.25 def %0.02
+/stacks_per_line          40 def %9
+/rotate_numbers           false def
+/show_yaxis               true def
+/show_xaxis               true def
+/fineprint                (Created by Seq2Logo) def
+/color_dict               <<
+(D) [0.9 0.0 0.0]
+(E) [0.9 0.0 0.0]
+(R) [0.0 0.0 1.0]
+(K) [0.0 0.0 1.0]
+(H) [0.0 0.0 1.0]
+(N) [0.0 0.85 0.0]
+(Q) [0.0 0.85 0.0]
+(S) [0.0 0.85 0.0]
+(G) [0.0 0.85 0.0]
+(T) [0.0 0.85 0.0]
+(Y) [0.0 0.85 0.0]
+>> def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                    HARDCODED VARIABLES                     %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/debug                    false                 def
+%/title     title stringwidth pop 20 string cvs def
+/UseCIEColor              true                  def
+/default_color            [0.0 0.0 0.0]         def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                    CALCULATE PARAMETERS                    %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/framesize              page_height 2 exp page_width 2 exp add
+                        lines_per_page div sqrt 40 div ceiling   def % 20
+/fontsize               framesize 1.10 mul ceiling               def % 22
+/fine_fontsize          fineprint () ne
+                           { framesize 0.65 mul ceiling }
+                           { 0 }ifelse                           def % 13
+/title_fontsize         title () ne
+                           { framesize 1.20 mul ceiling }
+                           { 0 }ifelse                           def % 24
+/number_fontsize        framesize 0.85 mul ceiling               def % 17
+/SetTitleFont           { /Times-Bold findfont title_fontsize
+                           scalefont setfont } bind              def
+/SetStringFont          { /Helvetica findfont fontsize
+                           scalefont setfont } bind              def
+/SetPrimeFont           { /Symbol findfont fontsize
+                           scalefont setfont } bind              def
+/SetFineFont            { /Helvetica findfont fine_fontsize
+                           scalefont setfont } bind              def
+/SetNumberFont          { /Helvetica findfont number_fontsize
+                           scalefont setfont } bind              def
+/SetLogoFont            { tc (I) eq %Exchanging '|' from Helvetica with 'I' from Courier to optain bars
+                           { /Courier-Bold findfont char_width
+                             scalefont setfont }
+                           { /Helvetica-Bold findfont char_width
+                             scalefont setfont } ifelse } bind   def
+/logo_margin            framesize 1.2 mul                        def % 25.2
+/xaxis_label_height     framesize 0.6 mul                        def % 12.6
+/stroke_width           framesize 0.06 mul                       def % 1.26
+/tic_length             framesize 0.5 mul                        def % 10.5
+/line_width             page_width logo_margin 2 mul sub         def % 589.6    592
+/line_height            page_height logo_margin 2 mul sub
+                        title_fontsize sub fine_fontsize sub
+                        lines_per_page div                       def % 395
+/line_margin_left       framesize 2 div fontsize add
+                        SetStringFont
+                        yaxis_scale depleted_yaxis_scale gt
+                        { yaxis_scale }{ depleted_yaxis_scale neg }ifelse
+                        yaxis_minor_tic_interval div ceiling
+                        yaxis_minor_tic_interval mul
+                        20 string cvs stringwidth pop add        def % 72.45   74.8184
+/line_margin_right      framesize 1.0 mul                        def % 21      20
+/line_margin_bottom     framesize 1.5 mul                        def % 31.5    30
+/line_margin_top        framesize 0.5 mul                        def % 10.5    10
+/stack_margin           0.3                                      def
+/stack_width            line_width line_margin_left sub
+                        line_margin_right sub
+                        stacks_per_line div                      def % 55.1277777778 12.4295
+/stack_height           line_height line_margin_top sub
+                        line_margin_bottom sub                   def % 241.009723894 355
+depleted_yaxis_scale 0 gt{
+   /depleted_height     stack_height depleted_yaxis_scale mul
+                        yaxis_scale depleted_yaxis_scale add div def % 125.590276106
+   /stack_height        stack_height yaxis_scale mul
+                        yaxis_scale depleted_yaxis_scale add div def
+   /show_depleted_yaxis true                                     def
+}{
+   /depleted_height     0                                        def
+   /show_depleted_yaxis false                                    def
+}ifelse
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                         PROCEDURES                         %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/DrawBox { % <height> <width> DrawBox
+ %grafical boxes for debugging
+ /w exch def %width
+ /h exch def %height
+ gsave
+   stroke_width 0.1 mul setlinewidth
+   w 0 rlineto
+   0 h rlineto
+   w neg 0 rlineto
+   0 h neg rlineto
+   stroke
+ grestore
+} bind def
+
+/StartLogo { % StartLogo
+ %Initiation of a logo
+ gsave
+   debug {
+      logo_margin dup moveto
+      page_height logo_margin dup add sub
+      page_width logo_margin dup add sub
+      DrawBox
+   } if
+
+   title () ne { DrawTitle } if
+   xaxis_label () ne { DrawXaxisLabel } if
+   fineprint () ne { DrawFineprint } if
+   %Move to the First Line
+   logo_margin
+   page_height logo_margin sub title_fontsize sub line_height sub
+   moveto
+ } bind def
+
+/DrawTitle { % DrawTitle
+ %top middle
+ gsave
+   SetTitleFont
+   page_width title stringwidth pop sub 2 div
+   page_height title_fontsize sub logo_margin sub title_fontsize 4 div add
+   moveto
+   title show
+   debug { title_fontsize title_fontsize 4 div sub title stringwidth pop neg DrawBox } if
+ grestore
+} bind def
+
+/DrawXaxisLabel { % DrawXaxisLabel
+ %bottom left
+ gsave
+   SetStringFont
+   logo_margin logo_margin moveto
+   xaxis_label show
+   debug { fontsize xaxis_label stringwidth pop neg DrawBox } if
+ grestore
+} bind def
+
+/DrawFineprint { % DrawFineprint
+ %bottom right
+ gsave
+   SetFineFont
+   page_width logo_margin sub fineprint stringwidth pop sub
+   logo_margin
+   moveto
+   fineprint show
+   debug { fine_fontsize fineprint stringwidth pop neg DrawBox } if
+ grestore
+} bind def
+
+/EndLogo { % EndLogo
+ grestore
+ showpage
+} bind def
+
+/StartLine { % StartLine
+ %Initiating a new line
+ gsave
+   debug { line_height line_width DrawBox } if %LOGOLINE BOX
+
+   % Move to lower left corner of content area
+   line_margin_left line_margin_bottom depleted_height add rmoveto
+   show_yaxis { DrawYaxis } if
+   end_type () ne { end_type (d) eq { (5) }{ (N) } ifelse DrawEnd } if
+
+   debug { %PLOTTING BOX
+      stack_height
+      line_width line_margin_left sub line_margin_right sub
+      DrawBox
+      depleted_height neg
+      line_width line_margin_left sub line_margin_right sub
+      DrawBox
+   } if
+} bind def
+
+/EndLine { % EndLine
+ end_type () ne { end_type (d) eq { (3) }{ (C) } ifelse DrawEnd } if
+ grestore
+ 0 line_height neg rmoveto
+} bind def
+
+/DrawYaxis { % DrawYaxis
+ gsave
+   /str 10 string def % string to hold number
+   stroke_width 2 div neg 0 rmoveto
+   SetNumberFont
+   stroke_width setlinewidth
+   gsave % Draw Yaxis Bar
+      0 stack_height rlineto
+      0 stack_height neg rmoveto
+      show_depleted_yaxis { 0 depleted_height neg rlineto } if
+      stroke
+   grestore
+   % Draw the positive tics
+   stack_height yaxis_scale DrawTics
+   % Draw the negative tics
+   show_depleted_yaxis { depleted_height neg depleted_yaxis_scale DrawTics } if
+   % Draw the Label
+   yaxis_label () ne { DrawYaxisLabel } if
+ grestore
+} bind def
+
+/DrawTics { % <height> <unit_height> DrawTics
+ /unit_height exch def
+ /height exch def
+ height 0 ge {
+   /startvalue 0 def
+   /major_tic 0 def
+   /sgn 1 def
+ }{ 
+   /startvalue yaxis_minor_tic_interval def 
+   /major_tic yaxis_tic_interval def
+   /sgn -1 def
+ } ifelse
+
+ startvalue yaxis_minor_tic_interval unit_height yaxis_minor_tic_interval 0.1 mul add % <start> <increment> <end> for-loop % Added a fraction of a step, so the last Tic gets printed
+ {/loopnumber exch def
+   gsave
+      0 loopnumber unit_height div height mul rmoveto
+      loopnumber 10 add major_tic 10 add ge
+      { % Draw long tic and show number
+         tic_length neg 0 rlineto
+         /stringnumber loopnumber sgn mul 10 str cvrs def % string representing the number
+         stringnumber CharBoxSize % Computing character box height /cbh
+         stroke_width stringnumber stringwidth pop add neg cbh 2 div neg rmoveto
+         stringnumber show
+         % computing next major tic
+         /major_tic major_tic yaxis_tic_interval add def
+      }{ % Draw small tic
+         tic_length 2 div neg 0 rlineto
+      } ifelse
+      stroke
+   grestore
+ } for
+} bind def
+
+/DrawYaxisLabel { % DrawYaxisLabel
+ % Far left and vertical centered against the line
+ gsave
+   SetStringFont
+   line_margin_left fontsize 0.75 mul sub neg
+   stack_height depleted_height sub yaxis_label stringwidth pop sub 2 div
+   rmoveto
+   90 rotate
+   yaxis_label show
+ grestore
+} bind def
+
+/CharBoxSize { % (char) CharBoxSize /cbh /cbw /lly /llx
+ %Saving the height and width of a characters bounding box plus lower left corner points
+ gsave
+   newpath
+   0 0 moveto
+   true charpath %Making a path of given character using charpath
+   flattenpath
+   pathbbox % compute bounding box of 1 pt. char => <lx> <ly> <ux> <uy>
+ grestore
+ 2 index sub exch 3 index sub exch
+ /cbh exch def
+ /cbw exch def
+ /lly exch def
+ /llx exch def
+} bind def
+
+/DrawEnd { % (character) DrawEnd
+ /tc exch def
+ gsave
+   SetStringFont
+   tc (5) eq tc (N) eq or { fontsize neg 1.08 }{ fontsize 0.25 mul 1.15 } ifelse
+   fontsize mul neg depleted_height sub rmoveto
+   tc show
+   end_type (d) eq { DrawPrime } if
+   debug { fontsize tc stringwidth pop neg DrawBox } if
+ grestore
+} bind def
+
+/DrawPrime { % DrawPrime
+ gsave
+   SetPrimeFont
+   (¢) show
+ grestore
+} bind def
+
+/StartStack { % <stackNumber> startstack
+ show_xaxis { ShowNumber }{ pop } ifelse
+ gsave
+   debug { stack_height stack_width DrawBox } if
+} bind def
+
+/DepletedStack { % DepletedStack
+ grestore
+ gsave
+} bind def
+
+/EndStack { % EndStack
+ grestore
+ stack_width 0 rmoveto
+} bind def
+
+/ShowNumber { % <number> ShowNumber
+ /n exch def
+ DrawXBar
+ show_depleted_yaxis not { DrawXTic } if
+ n () ne { DrawNumber } if
+} bind def
+
+/DrawXBar { % /n DrawXBar
+ gsave
+   stroke_width setlinewidth
+   stack_width 0 rlineto
+   stroke
+ grestore
+} bind def
+
+/DrawXTic { % /n DrawXTic
+ gsave
+   stack_width 2 div 0 rmoveto
+   n () eq
+      { 0 tic_length 4 div neg rlineto }
+      { 0 tic_length 2 div neg rlineto }
+   ifelse
+   stroke
+ grestore
+} bind def
+
+/DrawNumber { % /n DrawNumber
+ gsave
+   SetNumberFont
+   stack_width 2 div tic_length 2 div neg stroke_width sub
+   show_depleted_yaxis { depleted_height sub } if
+   rmoveto
+   n stringwidth sub neg % find the length of the number
+   rotate_numbers {
+      (0) CharBoxSize % Computing character box height /cbh
+      cbh 2 div neg % adjusting position to height of number
+      90 rotate % rotating the number
+   } {
+      2 div
+      number_fontsize 0.75 mul neg
+   } ifelse
+   rmoveto
+   n show
+ grestore
+} bind def
+
+/ShowSymbol{ % <w> <h> (s) ShowSymbol
+ % Draw a character whose height is proportional to symbol bits
+ /char exch def           % Symbol
+ /interval exch def       % Height
+ /fraction_width exch def % Width
+ /char_width stack_width 2 stack_margin mul sub def
+ /bh interval abs yaxis_scale div stack_height mul def % Block height = CH + margin*2
+ bh 2.1 stack_margin mul gt {
+   /char_height bh 2 stack_margin mul sub def
+   /sm stack_margin def
+ }{
+   /char_height bh def
+   /sm 0 def
+ } ifelse
+ char_height 0.1 gt { % BUG FIX: Drawing a char with a very small height can create errors when scaling
+   interval 0.0 lt {
+      /char_height char_height neg def
+      /bh bh neg def
+      0 bh rmoveto
+   } if
+   debug { bh abs stack_width DrawBox } if
+   gsave
+      stack_margin sm rmoveto
+      debug { char_height abs char_width DrawBox } if
+      1 fraction_width sub char_width mul 2 div 0 rmoveto
+      fraction_width char_width mul char_height char DrawChar
+   grestore
+ } if
+ interval 0.0 gt { 0 bh rmoveto } if 
+} bind def
+
+/DrawChar { % <width> <height> (char) DrawChar
+ /tc exch def    % character string
+ /ysize exch abs def % character height
+ /xsize exch def % character width
+ gsave
+   % SET CHARACTER FONT AND COLOR
+   SetLogoFont
+   tc SetColor
+   % RESCALE CHARACTER
+   %ysize 0 lt { FlipChar } if
+   ScaleChar
+   % COMPUTE LLX AND LLY
+   tc CharBoxSize
+   % REPOSITION CHARACTERS
+   %llx neg lly neg translate
+   llx neg lly neg rmoveto
+   % SPECIAL ADJUSTMENT
+   % STRING SEARCH
+   %(abbc) (ab) search ==> (bc) (ab) ( ) true
+   %(abbc) (BB) search ==> (abbc) false
+   %(gpqyjQ) tc search { pop pop pop 0 lly neg rmoveto }{ pop } ifelse
+   tc show
+ grestore
+} bind def
+
+/SetColor{ % (char) SetColor
+ dup color_dict exch known {
+   color_dict exch get aload pop setrgbcolor
+ }{
+   pop
+   default_color aload pop setrgbcolor
+ } ifelse
+} bind def
+
+/ScaleChar { % ScaleChar
+ % Scaling the character to fit altered height and width
+ /xystretch { 1 1 } bind def % width height stretch factor
+ 2 { % Compute the font scaling factors
+   gsave
+      xystretch scale
+      tc CharBoxSize
+      cbh 0.0 ne cbw 0.0 ne and { /xystretch { xsize cbw div ysize cbh div } bind def } if
+   grestore
+ } repeat
+ xystretch scale % Scaling the character
+} bind def
+
+%%EndProlog
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                            DATA                            %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Page: 1 1
+
+StartLogo
+ StartLine
+   (1) StartStack
+      1.000000 -0.000000 (I) ShowSymbol
+      1.000000 0.000000 (C) ShowSymbol
+      1.000000 0.000000 (F) ShowSymbol
+      1.000000 0.000000 (L) ShowSymbol
+      1.000000 0.000000 (A) ShowSymbol
+      1.000000 0.000000 (X) ShowSymbol
+      1.000000 0.000000 (M) ShowSymbol
+   DepletedStack
+      1.000000 -0.000000 (Y) ShowSymbol
+      1.000000 -0.000000 (V) ShowSymbol
+      1.000000 -0.000000 (S) ShowSymbol
+      1.000000 -0.000000 (R) ShowSymbol
+      1.000000 -0.000000 (W) ShowSymbol
+      1.000000 -0.000000 (Q) ShowSymbol
+      1.000000 -0.000000 (G) ShowSymbol
+      1.000000 -0.000001 (H) ShowSymbol
+      1.000000 -0.000001 (K) ShowSymbol
+      1.000000 -0.000001 (E) ShowSymbol
+      1.000000 -0.000001 (N) ShowSymbol
+      1.000000 -0.000001 (D) ShowSymbol
+      1.000000 -0.000002 (T) ShowSymbol
+      1.000000 -0.000002 (P) ShowSymbol
+   EndStack
+   (2) StartStack
+      1.000000 -0.000000 (W) ShowSymbol
+      1.000000 0.000000 (Y) ShowSymbol
+      1.000000 0.000000 (F) ShowSymbol
+      1.000000 0.000000 (L) ShowSymbol
+      1.000000 0.000000 (C) ShowSymbol
+      1.000000 0.000000 (E) ShowSymbol
+      1.000000 0.000000 (M) ShowSymbol
+      1.000000 0.000001 (A) ShowSymbol
+      1.000000 0.000001 (R) ShowSymbol
+      1.000000 0.000002 (S) ShowSymbol
+   DepletedStack
+      1.000000 -0.000000 (I) ShowSymbol
+      1.000000 -0.000000 (H) ShowSymbol
+      1.000000 -0.000000 (V) ShowSymbol
+      1.000000 -0.000001 (X) ShowSymbol
+      1.000000 -0.000001 (G) ShowSymbol
+      1.000000 -0.000001 (D) ShowSymbol
+      1.000000 -0.000001 (Q) ShowSymbol
+      1.000000 -0.000002 (K) ShowSymbol
+      1.000000 -0.000003 (P) ShowSymbol
+      1.000000 -0.000004 (N) ShowSymbol
+      1.000000 -0.000012 (T) ShowSymbol
+   EndStack
+   (3) StartStack
+      1.000000 0.000000 (H) ShowSymbol
+      1.000000 0.000000 (P) ShowSymbol
+      1.000000 0.000000 (Q) ShowSymbol
+      1.000000 0.000000 (D) ShowSymbol
+      1.000000 0.000000 (N) ShowSymbol
+      1.000000 0.000000 (K) ShowSymbol
+      1.000000 0.000000 (E) ShowSymbol
+      1.000000 0.000000 (F) ShowSymbol
+      1.000000 0.000000 (C) ShowSymbol
+      1.000000 0.000001 (S) ShowSymbol
+      1.000000 0.000001 (X) ShowSymbol
+      1.000000 0.000005 (I) ShowSymbol
+      1.000000 0.000007 (A) ShowSymbol
+      1.000000 0.000013 (L) ShowSymbol
+   DepletedStack
+      1.000000 -0.000000 (R) ShowSymbol
+      1.000000 -0.000001 (T) ShowSymbol
+      1.000000 -0.000001 (W) ShowSymbol
+      1.000000 -0.000001 (G) ShowSymbol
+      1.000000 -0.000003 (M) ShowSymbol
+      1.000000 -0.000005 (Y) ShowSymbol
+      1.000000 -0.000022 (V) ShowSymbol
+   EndStack
+   (4) StartStack
+      1.000000 0.000001 (P) ShowSymbol
+      1.000000 0.000003 (C) ShowSymbol
+      1.000000 0.000010 (M) ShowSymbol
+   DepletedStack
+      1.000000 -0.000000 (W) ShowSymbol
+      1.000000 -0.000001 (A) ShowSymbol
+      1.000000 -0.000001 (F) ShowSymbol
+      1.000000 -0.000002 (G) ShowSymbol
+      1.000000 -0.000004 (Y) ShowSymbol
+      1.000000 -0.000005 (I) ShowSymbol
+      1.000000 -0.000006 (E) ShowSymbol
+      1.000000 -0.000006 (L) ShowSymbol
+      1.000000 -0.000007 (Q) ShowSymbol
+      1.000000 -0.000008 (D) ShowSymbol
+      1.000000 -0.000011 (K) ShowSymbol
+      1.000000 -0.000025 (X) ShowSymbol
+      1.000000 -0.000031 (V) ShowSymbol
+      1.000000 -0.000032 (H) ShowSymbol
+      1.000000 -0.000037 (S) ShowSymbol
+      1.000000 -0.000040 (R) ShowSymbol
+      1.000000 -0.000063 (N) ShowSymbol
+      1.000000 -0.000109 (T) ShowSymbol
+   EndStack
+   (5) StartStack
+      1.000000 0.000000 (E) ShowSymbol
+      1.000000 0.000000 (K) ShowSymbol
+      1.000000 0.000000 (D) ShowSymbol
+      1.000000 0.000000 (H) ShowSymbol
+      1.000000 0.000001 (C) ShowSymbol
+      1.000000 0.000003 (A) ShowSymbol
+      1.000000 0.000005 (M) ShowSymbol
+      1.000000 0.000042 (I) ShowSymbol
+   DepletedStack
+      1.000000 -0.000000 (Q) ShowSymbol
+      1.000000 -0.000000 (P) ShowSymbol
+      1.000000 -0.000000 (W) ShowSymbol
+      1.000000 -0.000001 (N) ShowSymbol
+      1.000000 -0.000001 (G) ShowSymbol
+      1.000000 -0.000001 (S) ShowSymbol
+      1.000000 -0.000002 (L) ShowSymbol
+      1.000000 -0.000002 (R) ShowSymbol
+      1.000000 -0.000007 (T) ShowSymbol
+      1.000000 -0.000013 (Y) ShowSymbol
+      1.000000 -0.000030 (X) ShowSymbol
+      1.000000 -0.000043 (F) ShowSymbol
+      1.000000 -0.000081 (V) ShowSymbol
+   EndStack
+   (6) StartStack
+      1.000000 0.000001 (C) ShowSymbol
+      1.000000 0.000001 (D) ShowSymbol
+      1.000000 0.000001 (H) ShowSymbol
+      1.000000 0.000001 (W) ShowSymbol
+      1.000000 0.000002 (Y) ShowSymbol
+      1.000000 0.000003 (L) ShowSymbol
+      1.000000 0.000008 (Q) ShowSymbol
+      1.000000 0.000009 (A) ShowSymbol
+      1.000000 0.000021 (S) ShowSymbol
+      1.000000 0.000052 (P) ShowSymbol
+      1.000000 0.000076 (R) ShowSymbol
+   DepletedStack
+      1.000000 -0.000000 (F) ShowSymbol
+      1.000000 -0.000001 (I) ShowSymbol
+      1.000000 -0.000003 (N) ShowSymbol
+      1.000000 -0.000003 (M) ShowSymbol
+      1.000000 -0.000008 (G) ShowSymbol
+      1.000000 -0.000014 (X) ShowSymbol
+      1.000000 -0.000017 (V) ShowSymbol
+      1.000000 -0.000022 (T) ShowSymbol
+      1.000000 -0.000022 (K) ShowSymbol
+      1.000000 -0.000036 (E) ShowSymbol
+   EndStack
+   (7) StartStack
+      1.000000 0.000000 (C) ShowSymbol
+      1.000000 0.000001 (F) ShowSymbol
+      1.000000 0.000002 (W) ShowSymbol
+      1.000000 0.000003 (M) ShowSymbol
+      1.000000 0.000007 (I) ShowSymbol
+      1.000000 0.000013 (R) ShowSymbol
+      1.000000 0.000018 (Y) ShowSymbol
+      1.000000 0.000026 (E) ShowSymbol
+      1.000000 0.000119 (A) ShowSymbol
+   DepletedStack
+      1.000000 -0.000001 (L) ShowSymbol
+      1.000000 -0.000010 (V) ShowSymbol
+      1.000000 -0.000011 (P) ShowSymbol
+      1.000000 -0.000015 (X) ShowSymbol
+      1.000000 -0.000018 (H) ShowSymbol
+      1.000000 -0.000047 (Q) ShowSymbol
+      1.000000 -0.000055 (K) ShowSymbol
+      1.000000 -0.000077 (T) ShowSymbol
+      1.000000 -0.000082 (S) ShowSymbol
+      1.000000 -0.000088 (D) ShowSymbol
+      1.000000 -0.000090 (G) ShowSymbol
+      1.000000 -0.000277 (N) ShowSymbol
+   EndStack
+   (8) StartStack
+      1.000000 0.000001 (W) ShowSymbol
+      1.000000 0.000001 (I) ShowSymbol
+      1.000000 0.000001 (F) ShowSymbol
+      1.000000 0.000002 (M) ShowSymbol
+      1.000000 0.000003 (L) ShowSymbol
+      1.000000 0.000003 (R) ShowSymbol
+      1.000000 0.000003 (C) ShowSymbol
+      1.000000 0.000003 (Y) ShowSymbol
+      1.000000 0.000006 (T) ShowSymbol
+      1.000000 0.000007 (E) ShowSymbol
+      1.000000 0.000015 (D) ShowSymbol
+      1.000000 0.000050 (X) ShowSymbol
+      1.000000 0.000092 (A) ShowSymbol
+      1.000000 0.000364 (S) ShowSymbol
+   DepletedStack
+      1.000000 -0.000001 (V) ShowSymbol
+      1.000000 -0.000002 (Q) ShowSymbol
+      1.000000 -0.000004 (H) ShowSymbol
+      1.000000 -0.000010 (K) ShowSymbol
+      1.000000 -0.000032 (P) ShowSymbol
+      1.000000 -0.000106 (N) ShowSymbol
+      1.000000 -0.001026 (G) ShowSymbol
+   EndStack
+   (9) StartStack
+      1.000000 0.000002 (W) ShowSymbol
+      1.000000 0.000004 (M) ShowSymbol
+      1.000000 0.000006 (Q) ShowSymbol
+      1.000000 0.000007 (L) ShowSymbol
+      1.000000 0.000018 (X) ShowSymbol
+      1.000000 0.000103 (A) ShowSymbol
+      1.000000 0.000135 (E) ShowSymbol
+   DepletedStack
+      1.000000 -0.000001 (F) ShowSymbol
+      1.000000 -0.000001 (I) ShowSymbol
+      1.000000 -0.000004 (Y) ShowSymbol
+      1.000000 -0.000011 (C) ShowSymbol
+      1.000000 -0.000012 (V) ShowSymbol
+      1.000000 -0.000016 (P) ShowSymbol
+      1.000000 -0.000020 (D) ShowSymbol
+      1.000000 -0.000058 (H) ShowSymbol
+      1.000000 -0.000092 (G) ShowSymbol
+      1.000000 -0.000138 (R) ShowSymbol
+      1.000000 -0.000155 (K) ShowSymbol
+      1.000000 -0.000207 (S) ShowSymbol
+      1.000000 -0.000367 (N) ShowSymbol
+      1.000000 -0.000435 (T) ShowSymbol
+   EndStack
+   (10) StartStack
+      1.000000 0.000011 (G) ShowSymbol
+      1.000000 0.000031 (D) ShowSymbol
+      1.000000 0.000048 (N) ShowSymbol
+      1.000000 0.000103 (E) ShowSymbol
+      1.000000 0.000152 (F) ShowSymbol
+      1.000000 0.000205 (A) ShowSymbol
+      1.000000 0.000216 (L) ShowSymbol
+   DepletedStack
+      1.000000 -0.000002 (W) ShowSymbol
+      1.000000 -0.000003 (Q) ShowSymbol
+      1.000000 -0.000013 (P) ShowSymbol
+      1.000000 -0.000014 (K) ShowSymbol
+      1.000000 -0.000029 (R) ShowSymbol
+      1.000000 -0.000033 (C) ShowSymbol
+      1.000000 -0.000034 (S) ShowSymbol
+      1.000000 -0.000058 (H) ShowSymbol
+      1.000000 -0.000110 (I) ShowSymbol
+      1.000000 -0.000119 (M) ShowSymbol
+      1.000000 -0.000140 (Y) ShowSymbol
+      1.000000 -0.000158 (X) ShowSymbol
+      1.000000 -0.000159 (T) ShowSymbol
+      1.000000 -0.000381 (V) ShowSymbol
+   EndStack
+   (11) StartStack
+      1.000000 0.000039 (W) ShowSymbol
+      1.000000 0.000246 (F) ShowSymbol
+      1.000000 0.000384 (P) ShowSymbol
+      1.000000 0.000573 (C) ShowSymbol
+      1.000000 0.000855 (A) ShowSymbol
+      1.000000 0.000978 (M) ShowSymbol
+   DepletedStack
+      1.000000 -0.000373 (Y) ShowSymbol
+      1.000000 -0.000462 (I) ShowSymbol
+      1.000000 -0.000476 (K) ShowSymbol
+      1.000000 -0.000638 (Q) ShowSymbol
+      1.000000 -0.000750 (L) ShowSymbol
+      1.000000 -0.000862 (V) ShowSymbol
+      1.000000 -0.000912 (H) ShowSymbol
+      1.000000 -0.000952 (X) ShowSymbol
+      1.000000 -0.001138 (E) ShowSymbol
+      1.000000 -0.001269 (R) ShowSymbol
+      1.000000 -0.001307 (D) ShowSymbol
+      1.000000 -0.001445 (N) ShowSymbol
+      1.000000 -0.001841 (S) ShowSymbol
+      1.000000 -0.001908 (G) ShowSymbol
+      1.000000 -0.004098 (T) ShowSymbol
+   EndStack
+   (12) StartStack
+      1.000000 0.000136 (W) ShowSymbol
+      1.000000 0.000212 (T) ShowSymbol
+      1.000000 0.000321 (L) ShowSymbol
+      1.000000 0.000491 (F) ShowSymbol
+      1.000000 0.000512 (I) ShowSymbol
+      1.000000 0.001168 (G) ShowSymbol
+      1.000000 0.002923 (V) ShowSymbol
+      1.000000 0.005623 (D) ShowSymbol
+      1.000000 0.007718 (X) ShowSymbol
+      1.000000 0.012611 (C) ShowSymbol
+      1.000000 0.016952 (A) ShowSymbol
+   DepletedStack
+      1.000000 -0.000235 (Y) ShowSymbol
+      1.000000 -0.000278 (H) ShowSymbol
+      1.000000 -0.000349 (M) ShowSymbol
+      1.000000 -0.000490 (E) ShowSymbol
+      1.000000 -0.000963 (P) ShowSymbol
+      1.000000 -0.001161 (K) ShowSymbol
+      1.000000 -0.001441 (R) ShowSymbol
+      1.000000 -0.001717 (Q) ShowSymbol
+      1.000000 -0.006357 (N) ShowSymbol
+      1.000000 -0.013513 (S) ShowSymbol
+   EndStack
+   (13) StartStack
+      1.000000 0.001432 (W) ShowSymbol
+      1.000000 0.001721 (V) ShowSymbol
+      1.000000 0.002712 (I) ShowSymbol
+      1.000000 0.002748 (F) ShowSymbol
+      1.000000 0.004090 (M) ShowSymbol
+      1.000000 0.005578 (Y) ShowSymbol
+      1.000000 0.006409 (X) ShowSymbol
+      1.000000 0.009727 (C) ShowSymbol
+      1.000000 0.014724 (Q) ShowSymbol
+   DepletedStack
+      1.000000 -0.001503 (S) ShowSymbol
+      1.000000 -0.004126 (H) ShowSymbol
+      1.000000 -0.005542 (L) ShowSymbol
+      1.000000 -0.008996 (K) ShowSymbol
+      1.000000 -0.010182 (A) ShowSymbol
+      1.000000 -0.013988 (E) ShowSymbol
+      1.000000 -0.022598 (P) ShowSymbol
+      1.000000 -0.030653 (N) ShowSymbol
+      1.000000 -0.035978 (R) ShowSymbol
+      1.000000 -0.043462 (D) ShowSymbol
+      1.000000 -0.045216 (T) ShowSymbol
+      1.000000 -0.067309 (G) ShowSymbol
+   EndStack
+   (14) StartStack
+      1.000000 0.000050 (Q) ShowSymbol
+      1.000000 0.000145 (H) ShowSymbol
+      1.000000 0.000628 (D) ShowSymbol
+      1.000000 0.001420 (P) ShowSymbol
+      1.000000 0.001590 (L) ShowSymbol
+      1.000000 0.002181 (S) ShowSymbol
+      1.000000 0.002661 (T) ShowSymbol
+   DepletedStack
+      1.000000 -0.000000 (G) ShowSymbol
+      1.000000 -0.000112 (N) ShowSymbol
+      1.000000 -0.000681 (E) ShowSymbol
+      1.000000 -0.000778 (W) ShowSymbol
+      1.000000 -0.000815 (R) ShowSymbol
+      1.000000 -0.000897 (K) ShowSymbol
+      1.000000 -0.004553 (I) ShowSymbol
+      1.000000 -0.004721 (C) ShowSymbol
+      1.000000 -0.009818 (A) ShowSymbol
+      1.000000 -0.020971 (M) ShowSymbol
+      1.000000 -0.021389 (F) ShowSymbol
+      1.000000 -0.023112 (X) ShowSymbol
+      1.000000 -0.027556 (Y) ShowSymbol
+      1.000000 -0.066419 (V) ShowSymbol
+   EndStack
+   (15) StartStack
+      1.000000 0.000415 (F) ShowSymbol
+      1.000000 0.000428 (I) ShowSymbol
+      1.000000 0.002134 (C) ShowSymbol
+      1.000000 0.014378 (Y) ShowSymbol
+      1.000000 0.016381 (G) ShowSymbol
+      1.000000 0.027988 (Q) ShowSymbol
+      1.000000 0.045394 (A) ShowSymbol
+   DepletedStack
+      1.000000 -0.000741 (M) ShowSymbol
+      1.000000 -0.001595 (W) ShowSymbol
+      1.000000 -0.002651 (H) ShowSymbol
+      1.000000 -0.007170 (L) ShowSymbol
+      1.000000 -0.009747 (V) ShowSymbol
+      1.000000 -0.011816 (X) ShowSymbol
+      1.000000 -0.023915 (N) ShowSymbol
+      1.000000 -0.026836 (S) ShowSymbol
+      1.000000 -0.035775 (D) ShowSymbol
+      1.000000 -0.045527 (R) ShowSymbol
+      1.000000 -0.113305 (K) ShowSymbol
+      1.000000 -0.168507 (P) ShowSymbol
+      1.000000 -0.179534 (E) ShowSymbol
+      1.000000 -0.224143 (T) ShowSymbol
+   EndStack
+   (16) StartStack
+      1.000000 0.000553 (G) ShowSymbol
+      1.000000 0.000565 (K) ShowSymbol
+      1.000000 0.001271 (N) ShowSymbol
+      1.000000 0.001616 (R) ShowSymbol
+      1.000000 0.002167 (D) ShowSymbol
+      1.000000 0.002835 (Q) ShowSymbol
+      1.000000 0.003157 (P) ShowSymbol
+      1.000000 0.003541 (E) ShowSymbol
+      1.000000 0.005803 (Y) ShowSymbol
+      1.000000 0.007634 (S) ShowSymbol
+      1.000000 0.013171 (L) ShowSymbol
+      1.000000 0.017645 (M) ShowSymbol
+      1.000000 0.020061 (T) ShowSymbol
+   DepletedStack
+      1.000000 -0.000176 (H) ShowSymbol
+      1.000000 -0.001065 (W) ShowSymbol
+      1.000000 -0.010532 (A) ShowSymbol
+      1.000000 -0.010575 (C) ShowSymbol
+      1.000000 -0.012172 (F) ShowSymbol
+      1.000000 -0.032222 (X) ShowSymbol
+      1.000000 -0.160223 (I) ShowSymbol
+      1.000000 -0.365293 (V) ShowSymbol
+   EndStack
+   (17) StartStack
+      1.000000 0.000267 (I) ShowSymbol
+      1.000000 0.001200 (S) ShowSymbol
+      1.000000 0.003032 (K) ShowSymbol
+      1.000000 0.003078 (C) ShowSymbol
+      1.000000 0.003304 (L) ShowSymbol
+      1.000000 0.003582 (W) ShowSymbol
+      1.000000 0.003588 (F) ShowSymbol
+      1.000000 0.004036 (X) ShowSymbol
+      1.000000 0.009199 (G) ShowSymbol
+      1.000000 0.014970 (P) ShowSymbol
+      1.000000 0.016210 (Y) ShowSymbol
+      1.000000 0.016682 (M) ShowSymbol
+      1.000000 0.042454 (A) ShowSymbol
+   DepletedStack
+      1.000000 -0.006984 (V) ShowSymbol
+      1.000000 -0.012034 (H) ShowSymbol
+      1.000000 -0.025567 (Q) ShowSymbol
+      1.000000 -0.026952 (N) ShowSymbol
+      1.000000 -0.027386 (E) ShowSymbol
+      1.000000 -0.041859 (R) ShowSymbol
+      1.000000 -0.049274 (D) ShowSymbol
+      1.000000 -0.107338 (T) ShowSymbol
+   EndStack
+   (18) StartStack
+      1.000000 0.001181 (N) ShowSymbol
+      1.000000 0.003359 (L) ShowSymbol
+      1.000000 0.021957 (C) ShowSymbol
+      1.000000 0.027452 (T) ShowSymbol
+      1.000000 0.180960 (M) ShowSymbol
+   DepletedStack
+      1.000000 -0.000008 (P) ShowSymbol
+      1.000000 -0.001473 (H) ShowSymbol
+      1.000000 -0.001481 (S) ShowSymbol
+      1.000000 -0.002358 (G) ShowSymbol
+      1.000000 -0.002479 (R) ShowSymbol
+      1.000000 -0.002575 (D) ShowSymbol
+      1.000000 -0.004541 (E) ShowSymbol
+      1.000000 -0.006943 (X) ShowSymbol
+      1.000000 -0.006944 (Q) ShowSymbol
+      1.000000 -0.007214 (W) ShowSymbol
+      1.000000 -0.009006 (K) ShowSymbol
+      1.000000 -0.086261 (A) ShowSymbol
+      1.000000 -0.111907 (Y) ShowSymbol
+      1.000000 -0.200692 (V) ShowSymbol
+      1.000000 -0.426346 (F) ShowSymbol
+      1.000000 -0.618255 (I) ShowSymbol
+   EndStack
+   (19) StartStack
+      1.000000 0.005564 (L) ShowSymbol
+      1.000000 0.013798 (G) ShowSymbol
+      1.000000 0.044914 (D) ShowSymbol
+      1.000000 0.063056 (N) ShowSymbol
+      1.000000 0.064307 (P) ShowSymbol
+      1.000000 0.098032 (X) ShowSymbol
+   DepletedStack
+      1.000000 -0.003066 (F) ShowSymbol
+      1.000000 -0.004716 (W) ShowSymbol
+      1.000000 -0.005696 (C) ShowSymbol
+      1.000000 -0.009753 (I) ShowSymbol
+      1.000000 -0.017396 (Q) ShowSymbol
+      1.000000 -0.018243 (M) ShowSymbol
+      1.000000 -0.023510 (Y) ShowSymbol
+      1.000000 -0.069444 (V) ShowSymbol
+      1.000000 -0.076041 (A) ShowSymbol
+      1.000000 -0.099893 (S) ShowSymbol
+      1.000000 -0.121282 (K) ShowSymbol
+      1.000000 -0.148368 (T) ShowSymbol
+      1.000000 -0.177321 (R) ShowSymbol
+      1.000000 -0.234901 (H) ShowSymbol
+      1.000000 -0.319605 (E) ShowSymbol
+   EndStack
+   (20) StartStack
+      1.000000 0.004460 (V) ShowSymbol
+      1.000000 0.012956 (M) ShowSymbol
+      1.000000 0.013460 (W) ShowSymbol
+      1.000000 0.024164 (R) ShowSymbol
+      1.000000 0.027745 (Y) ShowSymbol
+      1.000000 0.029140 (H) ShowSymbol
+      1.000000 0.065645 (L) ShowSymbol
+      1.000000 0.066350 (I) ShowSymbol
+      1.000000 0.088779 (G) ShowSymbol
+      1.000000 0.102405 (Q) ShowSymbol
+      1.000000 0.119513 (T) ShowSymbol
+      1.000000 0.141429 (K) ShowSymbol
+      1.000000 0.243578 (A) ShowSymbol
+      1.000000 0.282013 (D) ShowSymbol
+      1.000000 0.473765 (P) ShowSymbol
+      1.000000 0.722278 (E) ShowSymbol
+   DepletedStack
+      1.000000 -0.022187 (F) ShowSymbol
+      1.000000 -0.029321 (C) ShowSymbol
+      1.000000 -0.044833 (X) ShowSymbol
+      1.000000 -0.132463 (S) ShowSymbol
+      1.000000 -0.209823 (N) ShowSymbol
+   EndStack
+   (21) StartStack
+      1.000000 0.005381 (M) ShowSymbol
+      1.000000 0.005528 (F) ShowSymbol
+      1.000000 0.006196 (W) ShowSymbol
+      1.000000 0.008488 (I) ShowSymbol
+      1.000000 0.009579 (Q) ShowSymbol
+      1.000000 0.012082 (P) ShowSymbol
+      1.000000 0.014602 (L) ShowSymbol
+      1.000000 0.024234 (V) ShowSymbol
+      1.000000 0.025900 (Y) ShowSymbol
+      1.000000 0.074461 (E) ShowSymbol
+      1.000000 0.088940 (X) ShowSymbol
+      1.000000 0.467217 (K) ShowSymbol
+      1.000000 1.592771 (A) ShowSymbol
+   DepletedStack
+      1.000000 -0.011306 (R) ShowSymbol
+      1.000000 -0.023449 (H) ShowSymbol
+      1.000000 -0.029879 (D) ShowSymbol
+      1.000000 -0.029988 (G) ShowSymbol
+      1.000000 -0.042812 (C) ShowSymbol
+      1.000000 -0.072023 (N) ShowSymbol
+      1.000000 -0.213075 (T) ShowSymbol
+      1.000000 -0.409614 (S) ShowSymbol
+   EndStack
+   (22) StartStack
+      1.000000 0.004267 (S) ShowSymbol
+      1.000000 0.005350 (E) ShowSymbol
+      1.000000 0.010500 (T) ShowSymbol
+      1.000000 0.014684 (Q) ShowSymbol
+      1.000000 0.019199 (F) ShowSymbol
+      1.000000 0.023623 (I) ShowSymbol
+      1.000000 0.068741 (W) ShowSymbol
+      1.000000 0.110261 (V) ShowSymbol
+      1.000000 0.168715 (Y) ShowSymbol
+      1.000000 0.233627 (M) ShowSymbol
+      1.000000 0.248797 (X) ShowSymbol
+   DepletedStack
+      1.000000 -0.000331 (A) ShowSymbol
+      1.000000 -0.002777 (D) ShowSymbol
+      1.000000 -0.003586 (C) ShowSymbol
+      1.000000 -0.006186 (H) ShowSymbol
+      1.000000 -0.011086 (G) ShowSymbol
+      1.000000 -0.032766 (R) ShowSymbol
+      1.000000 -0.158046 (N) ShowSymbol
+      1.000000 -0.227244 (L) ShowSymbol
+      1.000000 -0.350084 (P) ShowSymbol
+      1.000000 -0.421014 (K) ShowSymbol
+   EndStack
+   (23) StartStack
+      1.000000 0.006573 (D) ShowSymbol
+      1.000000 0.008587 (P) ShowSymbol
+      1.000000 0.014423 (Q) ShowSymbol
+      1.000000 0.019904 (N) ShowSymbol
+      1.000000 0.032454 (R) ShowSymbol
+      1.000000 0.040765 (K) ShowSymbol
+      1.000000 0.057843 (V) ShowSymbol
+      1.000000 0.116365 (A) ShowSymbol
+      1.000000 0.137642 (X) ShowSymbol
+      1.000000 0.140505 (Y) ShowSymbol
+      1.000000 0.263241 (I) ShowSymbol
+      1.000000 0.486815 (L) ShowSymbol
+   DepletedStack
+      1.000000 -0.006594 (C) ShowSymbol
+      1.000000 -0.007357 (M) ShowSymbol
+      1.000000 -0.015303 (S) ShowSymbol
+      1.000000 -0.018826 (E) ShowSymbol
+      1.000000 -0.019375 (G) ShowSymbol
+      1.000000 -0.030779 (H) ShowSymbol
+      1.000000 -0.031584 (T) ShowSymbol
+      1.000000 -0.104545 (W) ShowSymbol
+      1.000000 -0.142313 (F) ShowSymbol
+   EndStack
+   (24) StartStack
+      1.000000 0.006346 (W) ShowSymbol
+      1.000000 0.018018 (C) ShowSymbol
+      1.000000 0.026472 (L) ShowSymbol
+      1.000000 0.043042 (K) ShowSymbol
+      1.000000 0.048438 (R) ShowSymbol
+      1.000000 0.049348 (Q) ShowSymbol
+      1.000000 0.064419 (H) ShowSymbol
+      1.000000 0.112505 (I) ShowSymbol
+      1.000000 0.339713 (X) ShowSymbol
+      1.000000 0.535905 (A) ShowSymbol
+      1.000000 0.616588 (N) ShowSymbol
+   DepletedStack
+      1.000000 -0.001772 (D) ShowSymbol
+      1.000000 -0.006844 (F) ShowSymbol
+      1.000000 -0.007228 (Y) ShowSymbol
+      1.000000 -0.008543 (M) ShowSymbol
+      1.000000 -0.022998 (T) ShowSymbol
+      1.000000 -0.043520 (V) ShowSymbol
+      1.000000 -0.085272 (S) ShowSymbol
+      1.000000 -0.091497 (E) ShowSymbol
+      1.000000 -0.105607 (G) ShowSymbol
+      1.000000 -0.952651 (P) ShowSymbol
+   EndStack
+   (25) StartStack
+      1.000000 0.000942 (I) ShowSymbol
+      1.000000 0.002595 (V) ShowSymbol
+      1.000000 0.012290 (Y) ShowSymbol
+      1.000000 0.012664 (M) ShowSymbol
+      1.000000 0.234877 (X) ShowSymbol
+   DepletedStack
+      1.000000 -0.001082 (C) ShowSymbol
+      1.000000 -0.002004 (G) ShowSymbol
+      1.000000 -0.002039 (A) ShowSymbol
+      1.000000 -0.003065 (F) ShowSymbol
+      1.000000 -0.003829 (W) ShowSymbol
+      1.000000 -0.006602 (H) ShowSymbol
+      1.000000 -0.006772 (L) ShowSymbol
+      1.000000 -0.008371 (R) ShowSymbol
+      1.000000 -0.014619 (Q) ShowSymbol
+      1.000000 -0.041996 (P) ShowSymbol
+      1.000000 -0.042633 (E) ShowSymbol
+      1.000000 -0.042980 (T) ShowSymbol
+      1.000000 -0.089666 (K) ShowSymbol
+      1.000000 -0.114181 (S) ShowSymbol
+      1.000000 -0.164913 (N) ShowSymbol
+      1.000000 -0.964508 (D) ShowSymbol
+   EndStack
+   (26) StartStack
+      1.000000 0.000180 (F) ShowSymbol
+      1.000000 0.000839 (Y) ShowSymbol
+      1.000000 0.003247 (V) ShowSymbol
+      1.000000 0.004403 (N) ShowSymbol
+      1.000000 0.005425 (W) ShowSymbol
+      1.000000 0.008925 (R) ShowSymbol
+      1.000000 0.011089 (M) ShowSymbol
+      1.000000 0.011571 (I) ShowSymbol
+      1.000000 0.017654 (E) ShowSymbol
+      1.000000 0.031783 (X) ShowSymbol
+      1.000000 0.040579 (L) ShowSymbol
+      1.000000 0.047351 (T) ShowSymbol
+      1.000000 0.050791 (S) ShowSymbol
+      1.000000 0.071796 (A) ShowSymbol
+      1.000000 0.079990 (Q) ShowSymbol
+      1.000000 0.155930 (K) ShowSymbol
+   DepletedStack
+      1.000000 -0.001070 (C) ShowSymbol
+      1.000000 -0.003758 (H) ShowSymbol
+      1.000000 -0.010141 (G) ShowSymbol
+      1.000000 -0.064049 (D) ShowSymbol
+      1.000000 -0.095494 (P) ShowSymbol
+   EndStack
+   (27) StartStack
+      1.000000 0.004017 (C) ShowSymbol
+      1.000000 0.006279 (F) ShowSymbol
+      1.000000 0.009380 (Y) ShowSymbol
+      1.000000 0.010953 (G) ShowSymbol
+      1.000000 0.011283 (V) ShowSymbol
+      1.000000 0.019739 (E) ShowSymbol
+      1.000000 0.035526 (X) ShowSymbol
+      1.000000 0.072336 (I) ShowSymbol
+      1.000000 0.096655 (N) ShowSymbol
+      1.000000 0.115393 (M) ShowSymbol
+      1.000000 0.166718 (K) ShowSymbol
+      1.000000 0.272559 (A) ShowSymbol
+      1.000000 0.306096 (L) ShowSymbol
+   DepletedStack
+      1.000000 -0.001443 (W) ShowSymbol
+      1.000000 -0.001651 (Q) ShowSymbol
+      1.000000 -0.009058 (T) ShowSymbol
+      1.000000 -0.011211 (H) ShowSymbol
+      1.000000 -0.014971 (D) ShowSymbol
+      1.000000 -0.037010 (S) ShowSymbol
+      1.000000 -0.045989 (P) ShowSymbol
+      1.000000 -0.056874 (R) ShowSymbol
+   EndStack
+   (28) StartStack
+      1.000000 0.000128 (Q) ShowSymbol
+      1.000000 0.000463 (W) ShowSymbol
+      1.000000 0.003631 (I) ShowSymbol
+      1.000000 0.004079 (M) ShowSymbol
+      1.000000 0.010977 (L) ShowSymbol
+      1.000000 0.013353 (X) ShowSymbol
+      1.000000 0.016136 (E) ShowSymbol
+      1.000000 0.017146 (P) ShowSymbol
+      1.000000 0.017351 (N) ShowSymbol
+      1.000000 0.019345 (K) ShowSymbol
+      1.000000 0.054735 (D) ShowSymbol
+      1.000000 0.157264 (A) ShowSymbol
+   DepletedStack
+      1.000000 -0.002503 (V) ShowSymbol
+      1.000000 -0.002666 (F) ShowSymbol
+      1.000000 -0.005133 (Y) ShowSymbol
+      1.000000 -0.005824 (R) ShowSymbol
+      1.000000 -0.027207 (G) ShowSymbol
+      1.000000 -0.039409 (H) ShowSymbol
+      1.000000 -0.059050 (C) ShowSymbol
+      1.000000 -0.092670 (T) ShowSymbol
+      1.000000 -0.285981 (S) ShowSymbol
+   EndStack
+   (29) StartStack
+      1.000000 0.001236 (G) ShowSymbol
+      1.000000 0.001600 (N) ShowSymbol
+      1.000000 0.009087 (I) ShowSymbol
+      1.000000 0.017904 (C) ShowSymbol
+      1.000000 0.020361 (M) ShowSymbol
+      1.000000 0.024034 (X) ShowSymbol
+      1.000000 0.027499 (Y) ShowSymbol
+      1.000000 0.033336 (F) ShowSymbol
+      1.000000 0.069128 (A) ShowSymbol
+      1.000000 0.091573 (L) ShowSymbol
+   DepletedStack
+      1.000000 -0.002040 (W) ShowSymbol
+      1.000000 -0.002173 (D) ShowSymbol
+      1.000000 -0.002415 (H) ShowSymbol
+      1.000000 -0.003151 (E) ShowSymbol
+      1.000000 -0.006838 (Q) ShowSymbol
+      1.000000 -0.008507 (R) ShowSymbol
+      1.000000 -0.022773 (K) ShowSymbol
+      1.000000 -0.034607 (S) ShowSymbol
+      1.000000 -0.056724 (P) ShowSymbol
+      1.000000 -0.080096 (V) ShowSymbol
+      1.000000 -0.085380 (T) ShowSymbol
+   EndStack
+   (30) StartStack
+      1.000000 0.002958 (F) ShowSymbol
+      1.000000 0.003627 (W) ShowSymbol
+      1.000000 0.007382 (I) ShowSymbol
+      1.000000 0.008281 (M) ShowSymbol
+      1.000000 0.017501 (L) ShowSymbol
+      1.000000 0.026140 (Q) ShowSymbol
+      1.000000 0.029528 (X) ShowSymbol
+      1.000000 0.054132 (R) ShowSymbol
+      1.000000 0.082729 (A) ShowSymbol
+      1.000000 0.083421 (E) ShowSymbol
+   DepletedStack
+      1.000000 -0.001104 (V) ShowSymbol
+      1.000000 -0.001680 (N) ShowSymbol
+      1.000000 -0.002190 (C) ShowSymbol
+      1.000000 -0.008542 (P) ShowSymbol
+      1.000000 -0.010621 (H) ShowSymbol
+      1.000000 -0.026829 (Y) ShowSymbol
+      1.000000 -0.028559 (G) ShowSymbol
+      1.000000 -0.040331 (K) ShowSymbol
+      1.000000 -0.065944 (D) ShowSymbol
+      1.000000 -0.118573 (S) ShowSymbol
+      1.000000 -0.232580 (T) ShowSymbol
+   EndStack
+   (31) StartStack
+      1.000000 0.004463 (I) ShowSymbol
+      1.000000 0.017766 (G) ShowSymbol
+      1.000000 0.022967 (A) ShowSymbol
+      1.000000 0.029445 (T) ShowSymbol
+      1.000000 0.032600 (L) ShowSymbol
+      1.000000 0.040488 (Q) ShowSymbol
+      1.000000 0.046899 (R) ShowSymbol
+      1.000000 0.048607 (K) ShowSymbol
+      1.000000 0.061123 (E) ShowSymbol
+      1.000000 0.157679 (N) ShowSymbol
+   DepletedStack
+      1.000000 -0.000173 (Y) ShowSymbol
+      1.000000 -0.002599 (W) ShowSymbol
+      1.000000 -0.003741 (F) ShowSymbol
+      1.000000 -0.005363 (M) ShowSymbol
+      1.000000 -0.007357 (X) ShowSymbol
+      1.000000 -0.011423 (H) ShowSymbol
+      1.000000 -0.016656 (C) ShowSymbol
+      1.000000 -0.019056 (S) ShowSymbol
+      1.000000 -0.033250 (V) ShowSymbol
+      1.000000 -0.039128 (D) ShowSymbol
+      1.000000 -0.057284 (P) ShowSymbol
+   EndStack
+   (32) StartStack
+      1.000000 0.001024 (A) ShowSymbol
+      1.000000 0.001098 (M) ShowSymbol
+      1.000000 0.003205 (T) ShowSymbol
+      1.000000 0.003210 (C) ShowSymbol
+      1.000000 0.008338 (Q) ShowSymbol
+      1.000000 0.010501 (Y) ShowSymbol
+      1.000000 0.011099 (L) ShowSymbol
+      1.000000 0.053063 (H) ShowSymbol
+      1.000000 0.057000 (N) ShowSymbol
+   DepletedStack
+      1.000000 -0.000246 (W) ShowSymbol
+      1.000000 -0.000455 (G) ShowSymbol
+      1.000000 -0.001463 (F) ShowSymbol
+      1.000000 -0.002937 (I) ShowSymbol
+      1.000000 -0.004001 (R) ShowSymbol
+      1.000000 -0.006904 (V) ShowSymbol
+      1.000000 -0.007824 (P) ShowSymbol
+      1.000000 -0.009668 (X) ShowSymbol
+      1.000000 -0.010360 (S) ShowSymbol
+      1.000000 -0.018277 (K) ShowSymbol
+      1.000000 -0.029368 (D) ShowSymbol
+      1.000000 -0.041179 (E) ShowSymbol
+   EndStack
+   (33) StartStack
+      1.000000 0.000151 (P) ShowSymbol
+      1.000000 0.000276 (M) ShowSymbol
+      1.000000 0.000341 (K) ShowSymbol
+      1.000000 0.000652 (N) ShowSymbol
+      1.000000 0.000716 (S) ShowSymbol
+   DepletedStack
+      1.000000 -0.000012 (C) ShowSymbol
+      1.000000 -0.000129 (D) ShowSymbol
+      1.000000 -0.000160 (Q) ShowSymbol
+      1.000000 -0.000199 (G) ShowSymbol
+      1.000000 -0.000517 (T) ShowSymbol
+      1.000000 -0.001206 (E) ShowSymbol
+      1.000000 -0.001503 (A) ShowSymbol
+      1.000000 -0.001515 (R) ShowSymbol
+      1.000000 -0.001606 (L) ShowSymbol
+      1.000000 -0.002097 (I) ShowSymbol
+      1.000000 -0.003264 (V) ShowSymbol
+      1.000000 -0.013030 (H) ShowSymbol
+      1.000000 -0.017462 (X) ShowSymbol
+      1.000000 -0.034862 (F) ShowSymbol
+      1.000000 -0.057686 (W) ShowSymbol
+      1.000000 -0.131266 (Y) ShowSymbol
+   EndStack
+   (34) StartStack
+      1.000000 0.000426 (E) ShowSymbol
+      1.000000 0.000592 (W) ShowSymbol
+      1.000000 0.000621 (H) ShowSymbol
+      1.000000 0.000846 (R) ShowSymbol
+      1.000000 0.000905 (D) ShowSymbol
+      1.000000 0.001729 (N) ShowSymbol
+      1.000000 0.002616 (G) ShowSymbol
+      1.000000 0.002782 (Q) ShowSymbol
+      1.000000 0.003836 (K) ShowSymbol
+      1.000000 0.006471 (S) ShowSymbol
+      1.000000 0.006832 (P) ShowSymbol
+      1.000000 0.015823 (T) ShowSymbol
+   DepletedStack
+      1.000000 -0.000796 (Y) ShowSymbol
+      1.000000 -0.000895 (F) ShowSymbol
+      1.000000 -0.002854 (M) ShowSymbol
+      1.000000 -0.003790 (C) ShowSymbol
+      1.000000 -0.021275 (L) ShowSymbol
+      1.000000 -0.026504 (I) ShowSymbol
+      1.000000 -0.044429 (X) ShowSymbol
+      1.000000 -0.049759 (A) ShowSymbol
+      1.000000 -0.087459 (V) ShowSymbol
+   EndStack
+   (35) StartStack
+      1.000000 0.000065 (D) ShowSymbol
+      1.000000 0.000203 (H) ShowSymbol
+      1.000000 0.000207 (E) ShowSymbol
+      1.000000 0.000273 (S) ShowSymbol
+      1.000000 0.000386 (Y) ShowSymbol
+      1.000000 0.000435 (A) ShowSymbol
+      1.000000 0.000450 (K) ShowSymbol
+      1.000000 0.000519 (P) ShowSymbol
+      1.000000 0.000534 (N) ShowSymbol
+      1.000000 0.000592 (Q) ShowSymbol
+      1.000000 0.000734 (R) ShowSymbol
+      1.000000 0.001007 (T) ShowSymbol
+      1.000000 0.013628 (M) ShowSymbol
+   DepletedStack
+      1.000000 -0.000078 (G) ShowSymbol
+      1.000000 -0.000109 (W) ShowSymbol
+      1.000000 -0.000932 (C) ShowSymbol
+      1.000000 -0.008297 (F) ShowSymbol
+      1.000000 -0.014456 (X) ShowSymbol
+      1.000000 -0.032127 (L) ShowSymbol
+      1.000000 -0.035622 (I) ShowSymbol
+      1.000000 -0.065971 (V) ShowSymbol
+   EndStack
+   (36) StartStack
+      1.000000 0.000001 (W) ShowSymbol
+      1.000000 0.000011 (H) ShowSymbol
+      1.000000 0.000045 (Y) ShowSymbol
+      1.000000 0.000080 (K) ShowSymbol
+      1.000000 0.000119 (D) ShowSymbol
+      1.000000 0.000160 (M) ShowSymbol
+      1.000000 0.000188 (N) ShowSymbol
+      1.000000 0.000192 (R) ShowSymbol
+      1.000000 0.000546 (E) ShowSymbol
+      1.000000 0.000723 (T) ShowSymbol
+      1.000000 0.000737 (A) ShowSymbol
+   DepletedStack
+      1.000000 -0.000008 (C) ShowSymbol
+      1.000000 -0.000012 (I) ShowSymbol
+      1.000000 -0.000027 (L) ShowSymbol
+      1.000000 -0.000038 (Q) ShowSymbol
+      1.000000 -0.000045 (S) ShowSymbol
+      1.000000 -0.000059 (F) ShowSymbol
+      1.000000 -0.000401 (V) ShowSymbol
+      1.000000 -0.000915 (X) ShowSymbol
+      1.000000 -0.004707 (G) ShowSymbol
+      1.000000 -0.015776 (P) ShowSymbol
+   EndStack
+   (37) StartStack
+      1.000000 0.000035 (K) ShowSymbol
+      1.000000 0.000076 (S) ShowSymbol
+      1.000000 0.000139 (T) ShowSymbol
+      1.000000 0.000247 (C) ShowSymbol
+      1.000000 0.000654 (M) ShowSymbol
+      1.000000 0.000730 (A) ShowSymbol
+      1.000000 0.001565 (X) ShowSymbol
+      1.000000 0.003170 (I) ShowSymbol
+      1.000000 0.003567 (L) ShowSymbol
+      1.000000 0.003904 (F) ShowSymbol
+   DepletedStack
+      1.000000 -0.000009 (D) ShowSymbol
+      1.000000 -0.000015 (N) ShowSymbol
+      1.000000 -0.000022 (E) ShowSymbol
+      1.000000 -0.000044 (G) ShowSymbol
+      1.000000 -0.000060 (R) ShowSymbol
+      1.000000 -0.000073 (H) ShowSymbol
+      1.000000 -0.000104 (P) ShowSymbol
+      1.000000 -0.000125 (Q) ShowSymbol
+      1.000000 -0.000205 (Y) ShowSymbol
+      1.000000 -0.000206 (W) ShowSymbol
+      1.000000 -0.004523 (V) ShowSymbol
+   EndStack
+   (38) StartStack
+      1.000000 0.000005 (N) ShowSymbol
+      1.000000 0.000245 (A) ShowSymbol
+      1.000000 0.000505 (M) ShowSymbol
+      1.000000 0.000571 (E) ShowSymbol
+      1.000000 0.000855 (L) ShowSymbol
+      1.000000 0.001160 (I) ShowSymbol
+      1.000000 0.001353 (X) ShowSymbol
+   DepletedStack
+      1.000000 -0.000005 (C) ShowSymbol
+      1.000000 -0.000019 (F) ShowSymbol
+      1.000000 -0.000022 (H) ShowSymbol
+      1.000000 -0.000025 (D) ShowSymbol
+      1.000000 -0.000036 (W) ShowSymbol
+      1.000000 -0.000185 (G) ShowSymbol
+      1.000000 -0.000280 (P) ShowSymbol
+      1.000000 -0.000653 (Y) ShowSymbol
+      1.000000 -0.001015 (Q) ShowSymbol
+      1.000000 -0.001498 (R) ShowSymbol
+      1.000000 -0.001550 (T) ShowSymbol
+      1.000000 -0.001557 (S) ShowSymbol
+      1.000000 -0.002367 (V) ShowSymbol
+      1.000000 -0.003752 (K) ShowSymbol
+   EndStack
+   (39) StartStack
+      1.000000 0.000058 (H) ShowSymbol
+      1.000000 0.000083 (M) ShowSymbol
+      1.000000 0.000270 (Q) ShowSymbol
+      1.000000 0.000316 (L) ShowSymbol
+      1.000000 0.000397 (C) ShowSymbol
+      1.000000 0.001085 (I) ShowSymbol
+      1.000000 0.001414 (A) ShowSymbol
+      1.000000 0.006252 (X) ShowSymbol
+   DepletedStack
+      1.000000 -0.000033 (V) ShowSymbol
+      1.000000 -0.000134 (R) ShowSymbol
+      1.000000 -0.000142 (K) ShowSymbol
+      1.000000 -0.000189 (W) ShowSymbol
+      1.000000 -0.000379 (F) ShowSymbol
+      1.000000 -0.000453 (N) ShowSymbol
+      1.000000 -0.000474 (E) ShowSymbol
+      1.000000 -0.000579 (P) ShowSymbol
+      1.000000 -0.000663 (Y) ShowSymbol
+      1.000000 -0.000741 (D) ShowSymbol
+      1.000000 -0.000913 (G) ShowSymbol
+      1.000000 -0.001842 (T) ShowSymbol
+      1.000000 -0.002148 (S) ShowSymbol
+   EndStack
+   (40) StartStack
+      1.000000 0.000000 (Y) ShowSymbol
+      1.000000 0.000033 (M) ShowSymbol
+      1.000000 0.000048 (R) ShowSymbol
+      1.000000 0.000060 (C) ShowSymbol
+      1.000000 0.000136 (A) ShowSymbol
+      1.000000 0.000152 (L) ShowSymbol
+      1.000000 0.000216 (Q) ShowSymbol
+      1.000000 0.000222 (E) ShowSymbol
+      1.000000 0.000224 (I) ShowSymbol
+      1.000000 0.000502 (K) ShowSymbol
+      1.000000 0.000709 (X) ShowSymbol
+   DepletedStack
+      1.000000 -0.000002 (H) ShowSymbol
+      1.000000 -0.000017 (W) ShowSymbol
+      1.000000 -0.000037 (F) ShowSymbol
+      1.000000 -0.000053 (G) ShowSymbol
+      1.000000 -0.000093 (D) ShowSymbol
+      1.000000 -0.000156 (P) ShowSymbol
+      1.000000 -0.000612 (S) ShowSymbol
+      1.000000 -0.000869 (N) ShowSymbol
+      1.000000 -0.001151 (V) ShowSymbol
+      1.000000 -0.001908 (T) ShowSymbol
+   EndStack
+ EndLine
+ StartLine
+   (41) StartStack
+      1.000000 0.000003 (I) ShowSymbol
+      1.000000 0.000003 (L) ShowSymbol
+      1.000000 0.000005 (C) ShowSymbol
+      1.000000 0.000005 (H) ShowSymbol
+      1.000000 0.000007 (M) ShowSymbol
+      1.000000 0.000008 (E) ShowSymbol
+      1.000000 0.000011 (R) ShowSymbol
+      1.000000 0.000054 (Q) ShowSymbol
+      1.000000 0.000065 (X) ShowSymbol
+   DepletedStack
+      1.000000 -0.000001 (Y) ShowSymbol
+      1.000000 -0.000001 (W) ShowSymbol
+      1.000000 -0.000003 (F) ShowSymbol
+      1.000000 -0.000003 (V) ShowSymbol
+      1.000000 -0.000015 (A) ShowSymbol
+      1.000000 -0.000022 (K) ShowSymbol
+      1.000000 -0.000028 (P) ShowSymbol
+      1.000000 -0.000041 (N) ShowSymbol
+      1.000000 -0.000100 (T) ShowSymbol
+      1.000000 -0.000144 (D) ShowSymbol
+      1.000000 -0.000204 (G) ShowSymbol
+      1.000000 -0.000232 (S) ShowSymbol
+   EndStack
+   (42) StartStack
+      1.000000 0.000000 (F) ShowSymbol
+      1.000000 0.000001 (C) ShowSymbol
+      1.000000 0.000001 (V) ShowSymbol
+      1.000000 0.000002 (I) ShowSymbol
+      1.000000 0.000003 (M) ShowSymbol
+      1.000000 0.000005 (X) ShowSymbol
+      1.000000 0.000006 (A) ShowSymbol
+   DepletedStack
+      1.000000 -0.000000 (S) ShowSymbol
+      1.000000 -0.000000 (E) ShowSymbol
+      1.000000 -0.000000 (D) ShowSymbol
+      1.000000 -0.000001 (W) ShowSymbol
+      1.000000 -0.000001 (L) ShowSymbol
+      1.000000 -0.000001 (H) ShowSymbol
+      1.000000 -0.000001 (P) ShowSymbol
+      1.000000 -0.000002 (R) ShowSymbol
+      1.000000 -0.000002 (Y) ShowSymbol
+      1.000000 -0.000003 (N) ShowSymbol
+      1.000000 -0.000003 (K) ShowSymbol
+      1.000000 -0.000006 (T) ShowSymbol
+      1.000000 -0.000007 (G) ShowSymbol
+      1.000000 -0.000008 (Q) ShowSymbol
+   EndStack
+   (43) StartStack
+      1.000000 0.000000 (A) ShowSymbol
+      1.000000 0.000000 (C) ShowSymbol
+      1.000000 0.000000 (D) ShowSymbol
+      1.000000 0.000000 (E) ShowSymbol
+      1.000000 0.000000 (F) ShowSymbol
+      1.000000 0.000000 (G) ShowSymbol
+      1.000000 0.000000 (H) ShowSymbol
+      1.000000 0.000000 (I) ShowSymbol
+      1.000000 0.000000 (K) ShowSymbol
+      1.000000 0.000000 (L) ShowSymbol
+      1.000000 0.000000 (M) ShowSymbol
+      1.000000 0.000000 (N) ShowSymbol
+      1.000000 0.000000 (P) ShowSymbol
+      1.000000 0.000000 (Q) ShowSymbol
+      1.000000 0.000000 (R) ShowSymbol
+      1.000000 0.000000 (S) ShowSymbol
+      1.000000 0.000000 (T) ShowSymbol
+      1.000000 0.000000 (V) ShowSymbol
+      1.000000 0.000000 (W) ShowSymbol
+      1.000000 0.000000 (X) ShowSymbol
+      1.000000 0.000000 (Y) ShowSymbol
+   EndStack
+ EndLine
+EndLogo
+
+%%EOF

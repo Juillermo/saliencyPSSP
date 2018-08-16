@@ -20,19 +20,20 @@
 %\item Here's my conclusion(s) about it
 %\end{enumerate}
 
-I have trained the network described in section \ref{sect:network} for 400 epochs with the same parameters as the ones used by \cite{Jurtz2017}; i.e., gradient clipping at 20, regularization term $\lambda=10^{-3}$, and training-validation split at the 5278th sequence. The resulting network reaches an accuracy of 67.7\% on the test set, which is not to far from the 70\% of the state-of-the-art (see section \ref{sect:HoF}). I believe that such a small difference does not undermine the effectiveness of the other results, while notoriously alighting the computational burden of a more complicated model.
+I have trained the network described in section \ref{sect:network} for 400 epochs with the same parameters as the ones used by \cite{Jurtz2017}; i.e., gradient clipping at 20, regularization term $\lambda=10^{-3}$, and training-validation split at the 5278th sequence. The resulting network reaches an accuracy of 67.7\% on the test set, which is not far from the 71\% of the state-of-the-art (see section \ref{sect:HoF}).
+I believe that the techniques of analysis here presented and the conclusions withdrawn from them can be transferred to current state-of-the-art methods without losing validity.
 
 \section{Outlier analysis} \label{sect:outliers}
 
 In order to analyse the performance space a bit better, the average accuracy per sequence has been calculated and it has been plotted in Figure \ref{fig:per_seq_acc} with respect to the sequence length. The distribution exhibits the typical funnel shape that one could expect from processes with random variables forming groups of different sizes: the bigger the groups, the smaller the variance. The funnel ceases to shrink at length about 400, so it would be particularly interesting to understand why the network is classifying worse (60\% and below) some of the sequences above that length.
 
 % CHeck alpha-helix size
-If we observe the color scheme of the figure, we can understand right away that sequences rich in $\alpha$-helix are generally better predicted than $\beta$-sheets and coils. An explanation could be that while $\alpha$-helix sizes are up to CHECK NUMBER, which is inside the window size, $\beta$-sheets interact with amino-aids further away in the sequence, which is not possible to be captured with the window of the network, of lateral size of 9.
+If we observe the colour scheme of the figure, we can understand right away that sequences rich in $\alpha$-helix are generally better predicted than $\beta$-sheets and coils. An explanation could be that while $\alpha$-helix sizes are up to CHECK NUMBER, which is inside the window size, $\beta$-sheets interact with amino-aids further away in the sequence, which is not possible to be captured with the window of the network, of lateral size of 9.
 
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Figures/per_seq_acc}
-\caption{The mean accuracy per sequence by sequence length. The 5504 sequences of the training set are shown on the left and the 514 of the test set on the right. Each point represents a single protein, and its colour corresponds to the amount of $\beta$-sheets (red), $\alpha$-helices (green), and coils (blue) it has. A purple point, for instance, would predominantly have $\beta$-sheets and coils.}
+\caption{\textit{The mean accuracy per sequence by sequence length.} The 5504 sequences of the training set are shown on the left and the 514 of the test set on the right. Each point represents a single protein, and its colour corresponds to the amount of $\beta$-sheets (red), $\alpha$-helices (green), and coils (blue) it has. A purple point, for instance, would predominantly have $\beta$-sheets and coils.}
 \label{fig:per_seq_acc}
 \end{figure}
 % EXtra: include the same graph but colour the high-appearing classes and the low appearing classes differently (RB)
@@ -41,57 +42,84 @@ If we observe the color scheme of the figure, we can understand right away that 
 
 	\subsection{First layer filters}
 	
-	\subsection{Saliency maps on layers?}
+	\subsection*{Saliency maps on layers?}
 
 
 \section{Saliency maps on inputs}
 
-Before anything else, it is worth commenting that the saliency map outputs have many dimensions, since each position at each sequence has a saliency map with shape $8x42x19$, corresponding to the 8 classes (outputs), the 42 inputs and the total window size. The results can be shown in multiple different ways depending on which dimensions are preserved and which are aggregated. 
+Before going through the analysis, it is worth commenting that the saliency map outputs have many dimensions, since each position at each sequence has a saliency map with shape 8x42x19, corresponding to the 8 classes (outputs), the 42 inputs and and the total window size of 19. The results can be shown in multiple ways, depending on which dimensions are preserved and which are aggregated. 
 
 %Talk about dimensions: saliency value, class, sequences, positions, window, amino-acids, aa/pssm (7 dimensions). From now on, individual saliency maps will refer to the saliency map of one sequence-position
 
 \subsubsection*{Analysis on amino-acids and \textit{pssm}}
 When looking at typical secondary-structure prediction algorithm, there is one point that may raise some suspicion: the inclusion of half of the inputs as one-hot encoded (amino-acids) and the other half as dense vectors (\textit{pssm}). One could thing that this discrepancy may strongly favour the information coming from the dense part, since the weights associated to it will learn much faster in a typical gradient descent learning schema.
 
-Saliency maps can be used to prove whether this hypothesis is right by inspecting which of the input groups is being most decisive in the classification process. For doing so, each saliency map is divided into two groups of $8x21x19$, and all the values inside added up to a single saliency score. Thus, each position of each sequence will have two scores, one for the amino-acids and one for the \textit{pssm}.
+Saliency maps can be used to prove whether this hypothesis is right by inspecting which of the input groups is being most decisive in the classification process. For doing so, each saliency map is divided into two groups of $8x21x19$, and all the values inside each group are added up to a single \textbf{saliency score}. Thus, each position of each sequence will have two scores, one for the amino-acids and one for the \textit{pssm}, and its comparison will give us which part of the inputs is more decisive. The results are shown in Figure \ref{fig:aa_pssm}, from where it can be appreciated that there are considerably more positions in which the input from \textit{pssm} was more determinant (around 1.1 millions) than the ones with more determinant amino-acid inputs (about 200 thousands). Furthermore, in most of the cases amino-acid inputs had more impact it was only by a narrow margin, with 70\% of the cases having only up to two times bigger saliency scores. On the contrary, more than 60\% of the positions with higher \textit{pssm} saliency score did this with a more than twice higher score.
 
-
-Options (all options could be applied either to aa or to pssm, 6 dimensions left)
-	
-	\subsection{Saliency maps on single sample sequences}
-	\begin{figure}
+\begin{figure}
 \centering
-\includegraphics[width=1\linewidth]{Figures/sample_8classes}
-\caption{}
-\label{fig:sample_8classes}
+\includegraphics[width=1\linewidth]{Figures/aa_pssm}
+\caption{\textit{Amino-acids versus pssm comparison.} On the left, a histogram of the positions whose amino-acid saliency score was higher than the pssm score, with the total amount in the title. The bins represent the superiority ratio, i.e. how many times bigger was the score. On the right, the analogous histogram for pssm superior scores.}
+\label{fig:aa_pssm}
 \end{figure}
 
-	
-	% SHow per-class samples of this instances (either graph form, SeqLogo form) (either per-position or heat-map)
-	analyse per-class single sequence (sample-based) (4 dimensions left): aa-aggregated (3 dimensions) and added in the sequence position, either respecting each position (3 dimensions) or aggregating them in a heat map (2 dimensions), or aggregating the positions in a heat-map but containing the 8 classes (3 dimensions) (Colour the labels with the RGB either form Figure \ref{fig:per_seq_acc} or with the colour code from \ref{sect:sheer}).
-	
-	Have the x labels including amino-acid, prediction, and real label. Colour classes with the codes mentioned in the previous paragraph. Consider marking mismatches in bold.
-	
-	Have as the sample one of the sequences with low accuracy and high length from \ref{sect:outliers}
 
-	\subsection{Sheer addition} \label{sect:sheer}
-	aggregate all individual saliency maps % SHould I try to compare my results with known motifs? Absolutely yes!
-	sheer addition (4 dimensions left): class-aggregated (3 dimensions), aa-aggregated (3 dimensions), or class+aa-aggregated (2 dimensions)
-		\subsubsection{Per-aminoacid and class aggregations}
-		% INclude per-class aggregations (absolute value, aa aggregated) -> class profile (flatness, distribution, etc)
-		% XAxis labels should be centered on 0 and going to +-9
+%Options (all options could be applied either to aa or to pssm, 6 dimensions left)
+	
+	\subsection{Sequence-specific saliency maps}
+	This section will present the sort of analysis that can be done for a specific sequence. This can be specially useful for analysing the sequences whose accuracy was remarkably lower (outliers). Each sequence has a number of saliency maps equal to its length, $l$, and they can either be inspected one by one or be overlapped through the sequence, obtaining a single 8x42x$l$ \textbf{sequence map}.
+	
+	% analyse per-class single sequence (sample-based) (4 dimensions left): aa-aggregated (3 dimensions) and added in the sequence position, either respecting each position (3 dimensions) or aggregating them in a heat map (2 dimensions), or aggregating the positions in a heat-map but containing the 8 classes (3 dimensions) (Colour the labels with the RGB either form Figure \ref{fig:per_seq_acc} or with the colour code from \ref{sect:sheer}).
 		
-		\subsubsection{Per-class aggregations}
-		% INCLUDE per-class aggregations (either graph form, SeqLogo form, or both). Include just a few and leave the others as supplementary materials.
-		First thing to notice: pssm is way more relevant than one-hot encoded aas. No wonder, it learns faster.
+	%Have the x labels including amino-acid, prediction, and real label. Colour classes with the codes mentioned in the previous paragraph. Consider marking mismatches in bold.
+	
+	Figure \ref{fig:sliding} shows consecutive saliency maps belonging to a single class. The patterns they present are generally preserved (note the differences in scales), just being shifted by one position on the window axis. This suggests that the algorithm is not differentiating that much between specific amino-acid positions, but rather looking for them to be in the vicinity. For this reason, we can consider that overlapping them in a single sequence map does preserve most of the information, as it is shown in Figure \ref{fig:sample_8classes}. This sort of map reveals which amino-acids of the vecinity are mostly responsible for a prediction in a particular position. For instance, the \textit{E} predictions on the left side have to do with the presence of amino-acids \textit{A},\textit{V} and \textit{L}, while the failure to predict \textit{H} on position 109 is likely related to the presence of amino-acid \textit{D} at position 110. Note that these saliency values come from the aggregation of all the 42 inputs and not only from the one-hot encoded side, which explains why positions 105 and 106 have different values in spite of having the same amino-acid (\textit{D}). For a deeper look into the whole \textit{pssm} spectrum, we would need to narrow the scope down to a single class, as it is done in Figure \ref{fig:sample_Hclass}. This figure reveals that indeed is common that the real amino-acid in the sequence is not among the most influential ones from the \textit{pssm} for making the decision. Note that the pssm values of the amino-acids do not need to have always contributions of the same sign (such as \textit{P} or \textit{D} in the figure), revealing that the network is capturing something more than pure presence, location and combinations of amino-acids are also important.
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{Figures/sliding}
+	\caption{\textit{Saliency maps for consecutive positions in a sequence.} In every sub-figure there are 42 lines of the 42 inputs, corresponding to their saliency values for class \textit{H}.}
+	\label{fig:sliding}
+	\end{figure}
 
-		\subsubsection{Per-aminoacid aggregations}
-		% INclude per-aminoacid aggregations? (Same, just a few and the others as supplementary)
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{Figures/sample_8classes}
+	\caption{\textit{Fragment of a sequence map aggregated by input.} Each line corresponds to the aggregated saliency values of one of the eight output classes. The upper $x$ axis displays the amino-acids in the sequence. The lower $x$ axis contains the positions in the sequence and two sets of labels: the predictions on top and the true values at the bottom. The code of colours of the labels is the same as the lines and is set according to the class of the predictions.}
+	\label{fig:sample_8classes}
+	\end{figure}
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{Figures/sample_Hclass}
+	\caption{\textit{Fragment of sequence map for class H.} The layout of the figure is the same as of Figure \ref{fig:sample_8classes}. The image has been generated by \textit{SeqLogo} \cite{Thomsen2012}.}
+	\label{fig:sample_Hclass}
+	\end{figure}
 
-	\subsection{Clustering techniques}
-	aggregate all individual saliency maps % SHould I try to compare my results with known motifs? Absolutely yes!
-	clustering (5 dimensions left)
-	Using the per-class window-aggregated version of individual saliency maps (4 dimensions left)
-	Cosine distance metric.
-	Show either all profiles per-cluster (3 dimensions), or aggregated profiles (2 dimensions)
-	Show t-SNE with points coloured by cluster
+	
+
+	% HAve as the sample one of the sequences with low accuracy and high length from \ref{sect:outliers}?
+
+	\subsection{Class-specific saliency maps}
+		\subsubsection{Sheer addition} \label{sect:sheer}
+		aggregate all individual saliency maps % SHould I try to compare my results with known motifs? Absolutely yes!
+		sheer addition (4 dimensions left): class-aggregated (3 dimensions), aa-aggregated (3 dimensions), or class+aa-aggregated (2 dimensions)
+			\subsubsection*{Per-aminoacid and class aggregations}
+			% INclude per-class aggregations (absolute value, aa aggregated) -> class profile (flatness, distribution, etc)
+			% XAxis labels should be centered on 0 and going to +-9
+			
+			\subsubsection*{Per-class aggregations}
+			% INCLUDE per-class aggregations (either graph form, SeqLogo form, or both). Include just a few and leave the others as supplementary materials.
+			First thing to notice: pssm is way more relevant than one-hot encoded aas. No wonder, it learns faster.
+	
+			\subsubsection*{Per-aminoacid aggregations}
+			% INclude per-aminoacid aggregations? (Same, just a few and the others as supplementary)
+	
+		\subsubsection{Clustering techniques}
+		aggregate all individual saliency maps % SHould I try to compare my results with known motifs? Absolutely yes!
+		clustering (5 dimensions left)
+		Using the per-class window-aggregated version of individual saliency maps (4 dimensions left)
+		Cosine distance metric.
+		Show either all profiles per-cluster (3 dimensions), or aggregated profiles (2 dimensions)
+		Show t-SNE with points coloured by cluster

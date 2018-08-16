@@ -111,44 +111,4 @@ def main_saliencies_jurtz():
 
 
 if __name__ == "__main__":
-    # main_saliencies()
-    # main_SeqLogo()
     main_saliencies_jurtz()
-    # repair_saliencies()
-
-# DEPRECATED
-from data_managing import load_data
-
-
-def compute_tensor_saliency(X_am, X_pssm, args):
-    if X_am.ndim == 2:
-        X_am = X_am[None, ...]
-        X_pssm = X_pssm[None, ...]
-
-    model = load_model("modelQ8.h5")
-
-    # IT ACTUALLY FAILS, NEEDS TO TAKE DROPOUTS INTO ACCOUNT, SEE PREVIOUS VERSION
-    gradients = theano.gradient.jacobian(model.outputs[0][:, :, ssConvertString.find(args.label)].flatten(),
-                                         wrt=[model.inputs[0], model.inputs[1]])
-    get_gradients = K.function(inputs=[model.inputs[0], model.inputs[1], K.learning_phase()],
-                               outputs=gradients)
-    grads = get_gradients([X_am, X_pssm, 0])
-
-    with open("saliencies/saliencies" + str(args.seq) + str(args.label) + ".pkl", 'wb') as f:
-        pickle.dump(grads, f, protocol=2)
-
-
-def main_saliencies():
-    parser = argparse.ArgumentParser(description='Compute saliencies')
-    parser.add_argument('--label', type=str, default='H', metavar='label',
-                        help='class to which gradients are computed (default H)')
-    parser.add_argument('--seq', type=int, default=0, metavar='seq',
-                        help='sequence of which the gradient is calculated (default 0)')
-    args = parser.parse_args()
-
-    if args.seq is not None:
-        first_seq = args.seq
-        num_seqs = 1
-
-        X_am, X_pssm, mask, labels = load_data("", first_seq=first_seq, num_seqs=num_seqs)
-        compute_tensor_saliency(X_am, X_pssm, args)
