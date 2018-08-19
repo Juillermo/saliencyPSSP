@@ -1,6 +1,47 @@
 %% ----------------------------------------------------------------
 %% ECS.bib
 %% ---------------------------------------------------------------- 
+@article{Rost1993,
+	abstract = {We have trained a two-layered feed-forward neural network on a non-redundant data base of 130 protein chains to predict the secondary structure of water-soluble proteins. A new key aspect is the use of evolutionary information in the form of multiple sequence alignments that are used as input in place of single sequences. The inclusion of protein family information in this form increases the prediction accuracy by six to eight percentage points. A combination of three levels of networks results in an overall three state accuracy of 70.8{\%} for globular proteins (sustained performance). If four membrane protein chains are included in the evaluation, the overall accuracy drops to 70.2{\%}. The prediction is well balanced between $\alpha$-helix, $\beta$-strand and loop: 65{\%} of the observed strand residues are predicted correctly. The accuray in predicting the content of three secondary structure types is comparable to that of circular dichroism spectroscopy. The performance accuracy is verified by a sevenfold cross-validation test, and an additional test on 26 recently solved proteins. Of particular practical importance is the definition of a position-specific reliability index. For half of the residues predicted with a high level of reliability the overall accuracy increases to better than 82{\%}. A further strength of the method is the more realistic prediction of segment length. The protein family prediction method is available for testing by academic researchers via an electronic mail server.},
+	archivePrefix = {arXiv},
+	arxivId = {arXiv:1011.1669v3},
+	author = {Rost, Burkhard and Sander, Chris},
+	doi = {10.1006/jmbi.1993.1413},
+	eprint = {arXiv:1011.1669v3},
+	isbn = {0022-2836 (Print)},
+	issn = {00222836},
+	journal = {Journal of Molecular Biology},
+	keywords = {Multiple sequence alignments,Neural network,Protein secondary structure prediction,Secondary structure,Secondary structure content},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	pmid = {8345525},
+	title = {{Prediction of protein secondary structure at better than 70{\%} accuracy}},
+	year = {1993}
+}
+
+@article{Kabsch1983,
+	abstract = {For a successful analysis of the relation between amino acid sequence and protein structure, an unambiguous and physically meaningful definition of secondary structure is essential. We have developed a set of simple and physically motivated criteria for secondary structure, programmed as a pattern-recognition process of hydrogen-bonded and geometrical features extracted from x-ray coordinates. Cooperative secondary structure is recognized as repeats of the elementary hydrogen-bonding patterns “turn” and “bridge.” Repeating turns are “helices,” repeating bridges are “ladders,” connected ladders are “sheets.” Geometric structure is defined in terms of the concepts torsion and curvature of differential geometry. Local chain “chirality” is the torsional handedness of four consecutive C$\alpha$ positions and is positive for right-handed helices and negative for ideal twisted $\beta$-sheets. Curved pieces are defined as “bends.” Solvent “exposure” is given as the number of water molecules in possible contact with a residue. The end result is a compilation of the primary structure, including SS bonds, secondary structure, and solvent exposure of 62 different globular proteins. The presentation is in linear form: strip graphs for an overall view and strip tables for the details of each of 10.925 residues. The dictionary is also available in computer-readable form for protein structure prediction work.},
+	archivePrefix = {arXiv},
+	arxivId = {0006-3525/83/122577-6},
+	author = {Kabsch, Wolfgang and Sander, Christian},
+	doi = {10.1002/bip.360221211},
+	eprint = {83/122577-6},
+	file = {:home/juillermo/Desktop/a810f3f43cd1aaeea04782ae4234cb61a3f8.pdf:pdf},
+	isbn = {0006-3525 (Print) 0006-3525 (Linking)},
+	issn = {10970282},
+	journal = {Biopolymers},
+	keywords = {Computational Biology,Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Computational Biology,Secondary structure},
+	number = {12},
+	pages = {2577--2637},
+	pmid = {6667333},
+	primaryClass = {0006-3525},
+	title = {{Dictionary of protein secondary structure: Pattern recognition of hydrogen‐bonded and geometrical features}},
+	volume = {22},
+	year = {1983}
+}
+
 @article{Sundararajan2017,
 	abstract = {We study the problem of attributing the prediction of a deep network to its input features, a problem previously studied by several other works. We identify two fundamental axioms---Sensitivity and Implementation Invariance that attribution methods ought to satisfy. We show that they are not satisfied by most known attribution methods, which we consider to be a fundamental weakness of those methods. We use the axioms to guide the design of a new attribution method called Integrated Gradients. Our method requires no modification to the original network and is extremely simple to implement; it just needs a few calls to the standard gradient operator. We apply this method to a couple of image models, a couple of text models and a chemistry model, demonstrating its ability to debug networks, to extract rules from a network, and to enable users to engage with models better.},
 	archivePrefix = {arXiv},

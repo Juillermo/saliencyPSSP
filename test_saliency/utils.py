@@ -56,6 +56,7 @@ class Jurtz_Data():
         self.subset = None
         self.X = None
         self.mask = None
+        self.split_value = None
 
     def get_batch_from_seq(self, sequence):
         self.update_data(sequence)
@@ -91,3 +92,17 @@ class Jurtz_Data():
         elif sequence >= 5504 and self.subset is not "test":
             self.X, self.mask, _, _ = self.get_test(Jurtz_Data.TEST_PATH)
             self.subset = "test"
+
+    def get_all_data(self):
+        X_train, X_valid, labels_train, labels_valid, mask_train, mask_valid, _ = self.get_train(Jurtz_Data.TRAIN_PATH)
+        X_test, mask_test, labels_test, _ = self.get_test(Jurtz_Data.TRAIN_PATH)
+        # print X_train[:-30].shape, X_valid.shape, X_test[:-126].shape
+        self.split_value = len(X_train[:-30]) + len(X_valid)
+        # print split_value
+
+        X = np.concatenate((X_train[:-30], X_valid, X_test[:-126]))
+        labels = np.concatenate((labels_train[:-30], labels_valid, labels_test[:-126]))
+        mask = np.concatenate((mask_train[:-30], mask_valid, mask_test[:-126]))
+        # print X.shape
+
+        return X, labels, mask

@@ -2,14 +2,15 @@ import pickle
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
 
-from utils import WINDOW, ssConvertString, pssmString_jurtz, aaString_jurtz
+from utils import WINDOW, ssConvertString, pssmString_jurtz, aaString_jurtz, Jurtz_Data
 
 FIGURES_PATH = "../thesis/Figures/"
 SEQLOGO_PATH = "SeqLogo_data/"
-
-CLASS_COLOURS = {'L': 'blue', 'S': 'slateblue',
-                 'E': 'red', 'T': 'coral', 'B': 'lightsalmon',
+CLASS_NAMES = "HGIEBLTS"
+CLASS_COLOURS = {'L': 'blue', 'S': 'slateblue', 'T': 'dodgerblue',
+                 'E': 'red', 'B': 'lightsalmon',
                  'H': 'green', 'G': 'limegreen', 'I': 'lightgreen'}
 
 first = [int("E6", 16) / 255.0, 0, 0]
@@ -25,6 +26,86 @@ SEQLOGO_COLOURS = {'D': first, 'E': first,
 def toSeqLogo(total):
     for row in range(len(total)):
         print(" ".join("{:.8f}".format(el) for el in total[row, 21:]))
+
+
+def plot_outliers():
+    dater = Jurtz_Data()
+    X, labels, mask = dater.get_all_data()
+    split_value = dater.split_value
+    lengths_train = np.sum(mask[:split_value], axis=1)
+    lengths_test = np.sum(mask[split_value:], axis=1)
+
+    predictions_path = "../secondary_proteins_prediction/predictions/predictions_train_valid_pureConv-20180804-010835-47.npy"
+    predictions = np.load(predictions_path)
+    # print "train_val", predictions.shape
+
+    predictions_path = "../secondary_proteins_prediction/predictions/predictionstest_pureConv-20180804-010835-47.npy"
+    predictions2 = np.load(predictions_path)
+    # print "test", predictions2[:-126].shape
+
+    predictions = np.concatenate((predictions, predictions2[:-126]))
+
+    # print "total", predictions.shape
+
+    def calculate_seq_accuracy(predictions, labels):
+        num_seq = len(mask)
+        seq_len = predictions.shape[1]
+
+        tot_acc = 0
+        seq_acc = np.zeros(num_seq)
+        for seq in range(num_seq):
+            for pos in range(seq_len):
+                if mask[seq, pos]:
+                    if labels[seq, pos] == np.argmax(predictions[seq, pos]):
+                        seq_acc[seq] += 1
+                        tot_acc += 1
+                else:
+                    break
+
+            seq_acc[seq] /= np.sum(mask[seq])
+
+        # print tot_acc / np.sum(mask)
+        return seq_acc
+
+    seq_acc = calculate_seq_accuracy(predictions, labels)
+    seq_acc_train = seq_acc[:split_value]
+    seq_acc_test = seq_acc[split_value:]
+
+    # print len(lengths_train[lengths_train > 300])
+    # print len(lengths_test[lengths_test > 300])
+
+    colors = np.zeros((len(labels), 3))
+    for seq in range(len(labels)):
+        for label in labels[seq, :int(np.sum(mask[seq]))]:
+            if label in [ssConvertString.find('E'), ssConvertString.find('B')]:
+                colors[seq, 0] += 1
+            elif label in [ssConvertString.find('H'), ssConvertString.find('G'), ssConvertString.find('I')]:
+                colors[seq, 1] += 1
+            elif label in [ssConvertString.find('L'), ssConvertString.find('S'), ssConvertString.find('T')]:
+                colors[seq, 2] += 1
+        colors[seq] = colors[seq] / np.sum(mask[seq])
+
+    def print_length_vs_acc(lengths, seqs, ax, label, colors):
+        seq_len = 700
+
+        for seq in range(len(seqs)):
+            ax.plot(lengths[seq], seqs[seq], marker="X", linewidth=0, label="sequences", color=colors[seq])
+        ax.plot(np.mean(seqs) * np.ones(seq_len), label="mean", color='orange')
+        ax.set(title='Per-sequence accuracy (' + label + '), mean: {:.2f}'.format(np.mean(seqs)),
+               ylabel="accuracy", xlabel="sequence length", ylim=[0, 1])
+        blue_line = mlines.Line2D([], [], color='orange', label='mean accuracy')
+        ax.legend(handles=[blue_line])
+
+    fig, ax = plt.subplots(1, 2, figsize=(15, 4))
+
+    print_length_vs_acc(lengths_train[:], seq_acc_train[:], ax[0], 'train', colors[:split_value])
+    print_length_vs_acc(lengths_test, seq_acc_test, ax[1], 'test', colors[split_value:])
+
+    # print_length_vs_acc(lengths_train[lengths_train > 300], seq_acc_train[lengths_train > 300], ax[1][0], 'train')
+    # print_length_vs_acc(lengths_test[lengths_test > 300], seq_acc_test[lengths_test > 300], ax[1][1], 'test')
+
+    plt.tight_layout()
+    plt.savefig('thesis/Figures/per_seq_acc.eps', format='eps')
 
 
 def plot_aa_pssm():
@@ -176,13 +257,13 @@ def plot_single_sequence():
 
         toSeqLogo(tot_sal[5])
 
-    plot_heatmap()
+    # plot_heatmap()
 
     tot_sal = np.sum(tot_sal, axis=2)
 
     def plot_lines():
         fig, ax = plt.subplots(figsize=(10, 2.8))
-        for j, label in enumerate("HGIETBLS"):
+        for j, label in enumerate(CLASS_NAMES):
             ax.plot(tot_sal[ssConvertString.find(label), WINDOW:-WINDOW].T, marker='.', label=label,
                     color=CLASS_COLOURS[label])
 
@@ -206,7 +287,7 @@ def plot_single_sequence():
         fig.savefig(FIGURES_PATH + "sample_8classes.eps", format='eps')
         plt.show()
 
-    # plot_lines()
+    plot_lines()
 
 
 def plot_sheer_sequences():
@@ -244,7 +325,7 @@ def plot_sheer_sequences():
                 fig, axes = plt.subplots(1, 2, figsize=(12, 3))
                 ax = axes[0]
                 ax1 = axes[1]
-                for j, label in enumerate("HGIETBLS"):
+                for j, label in enumerate(CLASS_NAMES):
                     ax.plot(totals[ssConvertString.find(label), :, aaString_jurtz.find(aa)], label=label, marker='.',
                             color=CLASS_COLOURS[label])
                     ax1.plot(totals[ssConvertString.find(label), :, pssmString_jurtz.find(aa) + 21], label=label,
@@ -253,7 +334,7 @@ def plot_sheer_sequences():
 
                 ax.legend(loc='right')
                 # vmax = np.max(abs(totals[:, :, :21]))
-                #ax.set(title=aa)
+                # ax.set(title=aa)
                 # ax.set(ylim=[-vmax, vmax], title="Aggregated saliencies (one-hot): " + aa)
                 ax.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
                 # ax.yaxis.set(ticks=[])
@@ -270,60 +351,54 @@ def plot_sheer_sequences():
                 fig.savefig(FIGURES_PATH + "class_agg_aa.eps")
                 plt.show()
 
-    def plot_SeqLogo_class_aa(totals):
-        fig2, axes2 = plt.subplots(1, 2, figsize=(20, 5))
+    def plot_sheer_class_aa(totals):
+        fig2, axes2 = plt.subplots(1, 2, figsize=(12, 3))
         ax2 = axes2[0]
         ax21 = axes2[1]
-        for i, target_class in enumerate("HGIETBLS"):
-            fig, axes = plt.subplots(1, 2, figsize=(20, 5))
-            ax = axes[0]
-            ax1 = axes[1]
 
+        legend_names = [el for el in CLASS_NAMES]
+        omg_cosa = []
+        for i, target_class in enumerate(legend_names):
             tot_aa = np.sum(abs(totals[ssConvertString.find(target_class), :, :21]), axis=1)
             tot_pssm = np.sum(abs(totals[ssConvertString.find(target_class), :, 21:]), axis=1)
 
-            ax.plot(tot_aa, marker='.', color=class_colours[target_class])
-            ax1.plot(tot_pssm, marker='.', color=class_colours[target_class])
+            ax3 = ax2.twinx()
+            ax3.plot(tot_aa, marker='.', label=target_class, color=CLASS_COLOURS[target_class])
+            ax3.yaxis.set(ticks=[])
 
-            ax2.plot(tot_aa, marker='.', label=target_class, color=class_colours[target_class])
-            ax21.plot(tot_pssm, marker='.', label=target_class, color=class_colours[target_class])
+            ax22 = ax21.twinx()
+            ax22.plot(tot_pssm, marker='.', label=target_class, color=CLASS_COLOURS[target_class])
+            ax22.yaxis.set(ticks=[])
 
-            vmax = np.max(np.concatenate((tot_aa, tot_pssm), axis=0))
-            ax.set(ylim=[0, vmax], title="Aggregated saliencies (one-hot): " + target_class)
-            ax.xaxis.set(ticks=range(19))
-            ax.margins(0)
+            omg_cosa.append(mlines.Line2D([], [], color=CLASS_COLOURS[target_class], marker='.', label=target_class))
 
-            ax1.set(ylim=[0, vmax], title="Aggregated saliencies (pssm): " + target_class)
-            ax1.xaxis.set(ticks=range(19))
-            ax1.margins(0)
-
-            plt.tight_layout()
-
-        vmax = np.max(
-            np.concatenate((np.sum(abs(totals[..., :21]), axis=2), np.sum(abs(totals[..., 21:]), axis=2)), axis=0))
-        ax2.set(ylim=[0, vmax], title="Aggregated saliencies (one-hot): all")
-        ax2.xaxis.set(ticks=range(19))
+        ax2.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
         ax2.margins(0)
-        ax2.legend()
+        ax2.legend(omg_cosa, legend_names)
+        ax2.yaxis.set(ticks=[])
+        # ax2.legend()
 
-        ax21.legend(loc='right')
-        ax21.set(ylim=[0, vmax], title="Aggregated saliencies (pssm): all")
-        ax21.xaxis.set(ticks=range(19))
+        ax21.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
         ax21.margins(0)
-        ax21.legend()
+        ax21.legend(omg_cosa, legend_names)  # , legend_names)
+        ax21.yaxis.set(ticks=[])
 
         plt.tight_layout()
+        fig2.show()
+        fig2.savefig(FIGURES_PATH + "sheer_class_aa.eps")
 
     # plot_sheer_class(totals)
     plot_sheer_aa(totals)
+    # plot_sheer_class_aa(totals)
     return totals
 
 
+plot_outliers()
 # b, p, a = plot_aa_pssm()
 # sal = collect_saliencies()
 # plot_sliding_saliencies()
 # plot_single_sequence()
-totals = plot_sheer_sequences()
+# totals = plot_sheer_sequences()
 
 if __name__ == "__main__":
     # main()

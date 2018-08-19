@@ -2,52 +2,77 @@ This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Thesis.aux
 A level-1 auxiliary file: Hints.aux
+A level-1 auxiliary file: Theory.aux
 A level-1 auxiliary file: Results.aux
 The style file: ecs.bst
 Database file #1: ECS.bib
-Repeated entry---line 585 of file ECS.bib
+Repeated entry---line 526 of file ECS.bib
+ : @article{Zhou2014
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 626 of file ECS.bib
  : @article{Jurtz2017
  :                   ,
 I'm skipping whatever remains of this entry
-You've used 2 entries,
+Warning--I didn't find a database entry for "He2015"
+Warning--I didn't find a database entry for "Libbrecht2015"
+Warning--I didn't find a database entry for "Alipanahi2015"
+Warning--I didn't find a database entry for "Ditzler2015"
+Warning--I didn't find a database entry for "Leung2014"
+Warning--I didn't find a database entry for "Zeng2015"
+Warning--I didn't find a database entry for "Fan2015"
+Warning--I didn't find a database entry for "Witteveen2014"
+Warning--I didn't find a database entry for "Chen2015"
+Warning--I didn't find a database entry for "Wang2015"
+Warning--I didn't find a database entry for "Zhang2015"
+Warning--I didn't find a database entry for "Liang2015"
+Warning--empty publisher in Ching2017
+Warning--empty journal in Fang2017
+Warning--empty journal in Lanchantin2016
+Warning--empty journal in Lin2016
+Warning--empty journal in Shrikumar2017
+Warning--empty journal in Sundararajan2017
+Warning--empty journal in Szegedy2013
+Warning--empty journal in Zhou2014
+You've used 30 entries,
             2638 wiz_defined-function locations,
-            595 strings with 5413 characters,
-and the built_in function-call counts, 1187 in all, are:
-= -- 104
-> -- 88
-< -- 1
-+ -- 32
-- -- 30
-* -- 108
-:= -- 213
-add.period$ -- 8
-call.type$ -- 2
-change.case$ -- 18
-chr.to.int$ -- 2
-cite$ -- 2
-duplicate$ -- 39
-empty$ -- 70
-format.name$ -- 34
-if$ -- 227
-int.to.chr$ -- 1
+            795 strings with 12314 characters,
+and the built_in function-call counts, 14879 in all, are:
+= -- 1288
+> -- 1086
+< -- 12
++ -- 395
+- -- 363
+* -- 1227
+:= -- 2599
+add.period$ -- 106
+call.type$ -- 30
+change.case$ -- 239
+chr.to.int$ -- 29
+cite$ -- 38
+duplicate$ -- 602
+empty$ -- 965
+format.name$ -- 411
+if$ -- 2937
+int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 2
-newline$ -- 18
-num.names$ -- 8
-pop$ -- 20
+missing$ -- 28
+newline$ -- 172
+num.names$ -- 120
+pop$ -- 381
 preamble$ -- 1
-purify$ -- 16
+purify$ -- 211
 quote$ -- 0
-skip$ -- 32
+skip$ -- 451
 stack$ -- 0
-substring$ -- 43
-swap$ -- 2
-text.length$ -- 0
+substring$ -- 304
+swap$ -- 48
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 22
-warning$ -- 0
-while$ -- 8
+type$ -- 325
+warning$ -- 8
+while$ -- 101
 width$ -- 0
-write$ -- 35
-(There was 1 error message)
+write$ -- 397
+(There were 2 error messages)

@@ -5,7 +5,9 @@ import argparse
 import numpy as np
 
 from reparer import SALIENCIES_SCRATCH_PATH, PROCESSED_SCRATCH_PATH
-from utils import Jurtz_Data, convertPredictQ8Result2HumanReadable, ssConvertString, WINDOW
+from utils import Jurtz_Data, ssConvertString, WINDOW
+
+SHEER_PATH = "sheer_data/"
 
 
 def calculate_aa_pssm(args):
@@ -127,6 +129,32 @@ def calculate_sheer(args):
         pickle.dump(total, f, protocol=2)
 
 
+def calculate_sheer_abs(args):
+    origin = os.getcwd()
+    os.chdir(PROCESSED_SCRATCH_PATH)
+
+    fail_seqs = 0
+    total = np.zeros((8, 2 * WINDOW + 1, 42))  # classes, WINDOW-size, aminoacids+pssm
+
+    for seq in range(args.num_seqs):
+        try:
+            fname = "saliencies{:4d}.npy".format(seq)
+            processed_seq = np.load(fname)
+
+            for saliency_map in processed_seq:
+                total += abs(saliency_map)
+            print(seq)
+
+        except OSError:
+            fail_seqs += 1
+            print(str(seq) + " Not found")
+
+    os.chdir(origin)
+    success_seqs = args.num_seqs - fail_seqs
+    print("Sheer addition of " + str(success_seqs) + " elements, absolute value")
+    np.save(SHEER_PATH + "sheer" + str(success_seqs) + ".npy", total)
+
+
 def calculate_points(args):
     origin = os.getcwd()
     os.chdir(SALIENCIES_SCRATCH_PATH)
@@ -187,8 +215,8 @@ def main():
     parser = argparse.ArgumentParser(
         description='Aggregate saliencies either by sheer addition, compute points for clustering, or aggregate points as aa/pssm')
 
-    parser.add_argument('--func', choices=['sheer', 'points', 'aapssm'],
-                        help='Function: "sheer" addition of saliencies, calculate "points" for clustering, or calculate "aampssm" values')
+    parser.add_argument('--func', choices=['sheer', 'points', 'aapssm', 'sheerabs'],
+                        help='Function: "sheer" addition of saliencies, "points" for clustering, "aampssm" values, "sheerabs" addition')
     parser.add_argument('--label', default='H', choices=[el for el in ssConvertString],
                         help='class from which to analyse the saliencies (default H)')
     parser.add_argument('--num-seqs', type=int, default=2, metavar='num_seqs',
@@ -201,6 +229,8 @@ def main():
         calculate_points(args)
     elif args.func == 'aapssm':
         calculate_aa_pssm(args)
+    elif args.func == 'sheerabs':
+        calculate_sheer_abs(args)
     else:
         raise ValueError('Function "' + args.func + '" not recognized, try with "sheer", "points", or "aapssm"')
 
