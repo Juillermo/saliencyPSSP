@@ -12,64 +12,30 @@ SHEER_PATH = "sheer_data/"
 
 def calculate_aa_pssm(args):
     origin = os.getcwd()
-    os.chdir(SALIENCIES_SCRATCH_PATH)
-
-    dater = Jurtz_Data()
+    os.chdir(PROCESSED_SCRATCH_PATH)
 
     fail_seqs = 0
     points = []
     for seq in range(args.num_seqs):
         try:
-            X_seq, mask_seq = dater.get_sequence(seq)
-            end_seq = int(sum(mask_seq))
-            seq_saliency = np.zeros((8, end_seq, 2))
-            for label in ssConvertString:
-                try:
-                    with open("saliencies" + str(seq) + label + ".pkl", "rb") as f:
-                        saliency = np.array(pickle.load(f))
-                except OSError:
-                    with open("saliencies{:4d}{:s}.pkl".format(seq, label), "rb") as f:
-                        saliency = np.array(pickle.load(f))
+            fname = "saliencies{:4d}.npy".format(seq)
+            processed_seq = np.load(fname)
 
-                for pos in range(end_seq):
-                    proc_saliency = np.zeros((2 * WINDOW + 1, 42))  # window-size, n aminoacids
-                    # Pre-WINDOW
-                    if pos > WINDOW:
-                        init = pos - WINDOW
-                        proc_saliency[:WINDOW] += np.multiply(saliency[pos, init:pos, :], X_seq[init:pos])
-                    elif pos != 0:
-                        init = WINDOW - pos
-                        proc_saliency[init:WINDOW] += np.multiply(saliency[pos, 0:pos, :], X_seq[0:pos])
-
-                    # Window
-                    proc_saliency[WINDOW] += np.multiply(saliency[pos, pos, :], X_seq[pos])
-
-                    # Post-WINDOW
-                    if pos + WINDOW + 1 <= end_seq:
-                        end = pos + WINDOW + 1
-                        proc_saliency[WINDOW + 1:] += np.multiply(saliency[pos, pos + 1:end, :], X_seq[pos + 1:end])
-                    elif pos != end_seq:
-                        end = end_seq
-                        proc_saliency[WINDOW + 1:-(pos + WINDOW + 1 - end)] += np.multiply(
-                            saliency[pos, pos + 1:end, :],
-                            X_seq[pos + 1:end])
-                    seq_saliency[ssConvertString.find(label), pos, :] = [np.sum(proc_saliency[..., :21]),
-                                                                         np.sum(proc_saliency[..., 21:])]
-            for pos in range(end_seq):
-                points.append(
-                    (np.sum(abs(seq_saliency[:, pos, 0]), axis=0), np.sum(abs(seq_saliency[:, pos, 1]), axis=0)))
+            for saliency_map in processed_seq:
+                points.append((np.sum(abs(saliency_map[..., :21])), np.sum(saliency_map[..., 21:])))
             print(seq)
+
         except OSError:
             fail_seqs += 1
             print(str(seq) + " Not found")
 
-    os.chdir(origin)
-
     points = np.array(points)
     print(points.shape)
 
-    print("aa/pssm analysis of " + str(args.num_seqs - fail_seqs) + " elements")
-    np.save("aa_pssm" + str(args.num_seqs - fail_seqs) + ".npy", points)
+    os.chdir(origin)
+    success_seqs = args.num_seqs - fail_seqs
+    print("aa/pssm analysis of " + str(success_seqs) + " elements")
+    np.save(SHEER_PATH + "aa_pssm" + str(success_seqs) + ".npy", points)
 
 
 def calculate_sheer(args):
