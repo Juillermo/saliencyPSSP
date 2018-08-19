@@ -3,9 +3,10 @@ import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 
-from utils import WINDOW, ssConvertString, pssmString_jurtz
+from utils import WINDOW, ssConvertString, pssmString_jurtz, aaString_jurtz
 
 FIGURES_PATH = "../thesis/Figures/"
+SEQLOGO_PATH = "SeqLogo_data/"
 
 CLASS_COLOURS = {'L': 'blue', 'S': 'slateblue',
                  'E': 'red', 'T': 'coral', 'B': 'lightsalmon',
@@ -208,10 +209,121 @@ def plot_single_sequence():
     # plot_lines()
 
 
+def plot_sheer_sequences():
+    totals = np.zeros((8, 19, 42))
+    for i, target_class in enumerate(ssConvertString):
+        num_seqs = 6018
+        with open("SeqLogo_data/SeqLogo" + str(num_seqs) + target_class + ".pkl", "rb") as f:
+            totals[i] = pickle.load(f)
+
+    totals += totals[:, ::-1, :]
+    totals /= 2
+
+    def plot_sheer_class(totals):
+        fig, axes = plt.subplots(1, 3, figsize=(6 * 3 / 2, 6.65 / 2))
+        for i, target_class in enumerate(["H", "E", "L"]):
+            ax = axes[i]
+            tot_sal = totals[ssConvertString.find(target_class)]
+            vmax = np.max(abs(tot_sal[..., 21:]))
+            cax = ax.imshow(tot_sal[..., 21:].T, cmap='PiYG', vmin=-vmax, vmax=vmax)
+            # fig.colorbar(cax)
+
+            ax.set(title="Class " + target_class)
+            ax.yaxis.set(ticks=range(len(pssmString_jurtz)), ticklabels=pssmString_jurtz)
+            ax.xaxis.set(ticks=range(2 * WINDOW + 1),
+                         ticklabels=range(-WINDOW, WINDOW + 1))
+            ax.margins(0)
+
+        plt.tight_layout()
+        fig.savefig(FIGURES_PATH + "class_agg_class.eps", format='eps')
+        plt.show()
+
+    def plot_sheer_aa(totals):
+        for i, aa in enumerate(pssmString_jurtz):
+            if aa == "G":
+                fig, axes = plt.subplots(1, 2, figsize=(12, 3))
+                ax = axes[0]
+                ax1 = axes[1]
+                for j, label in enumerate("HGIETBLS"):
+                    ax.plot(totals[ssConvertString.find(label), :, aaString_jurtz.find(aa)], label=label, marker='.',
+                            color=CLASS_COLOURS[label])
+                    ax1.plot(totals[ssConvertString.find(label), :, pssmString_jurtz.find(aa) + 21], label=label,
+                             marker='.',
+                             color=CLASS_COLOURS[label])
+
+                ax.legend(loc='right')
+                # vmax = np.max(abs(totals[:, :, :21]))
+                #ax.set(title=aa)
+                # ax.set(ylim=[-vmax, vmax], title="Aggregated saliencies (one-hot): " + aa)
+                ax.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
+                # ax.yaxis.set(ticks=[])
+                ax.margins(0)
+
+                # vmax = np.max(abs(totals[:, :, 21:]))
+                ax1.legend(loc='right')
+                # ax1.set(ylim=[-vmax, vmax])  # , title="Aggregated saliencies (pssm): " + aa)
+                ax1.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
+                # ax1.yaxis.set(ticks=[])
+                ax1.margins(0)
+
+                plt.tight_layout()
+                fig.savefig(FIGURES_PATH + "class_agg_aa.eps")
+                plt.show()
+
+    def plot_SeqLogo_class_aa(totals):
+        fig2, axes2 = plt.subplots(1, 2, figsize=(20, 5))
+        ax2 = axes2[0]
+        ax21 = axes2[1]
+        for i, target_class in enumerate("HGIETBLS"):
+            fig, axes = plt.subplots(1, 2, figsize=(20, 5))
+            ax = axes[0]
+            ax1 = axes[1]
+
+            tot_aa = np.sum(abs(totals[ssConvertString.find(target_class), :, :21]), axis=1)
+            tot_pssm = np.sum(abs(totals[ssConvertString.find(target_class), :, 21:]), axis=1)
+
+            ax.plot(tot_aa, marker='.', color=class_colours[target_class])
+            ax1.plot(tot_pssm, marker='.', color=class_colours[target_class])
+
+            ax2.plot(tot_aa, marker='.', label=target_class, color=class_colours[target_class])
+            ax21.plot(tot_pssm, marker='.', label=target_class, color=class_colours[target_class])
+
+            vmax = np.max(np.concatenate((tot_aa, tot_pssm), axis=0))
+            ax.set(ylim=[0, vmax], title="Aggregated saliencies (one-hot): " + target_class)
+            ax.xaxis.set(ticks=range(19))
+            ax.margins(0)
+
+            ax1.set(ylim=[0, vmax], title="Aggregated saliencies (pssm): " + target_class)
+            ax1.xaxis.set(ticks=range(19))
+            ax1.margins(0)
+
+            plt.tight_layout()
+
+        vmax = np.max(
+            np.concatenate((np.sum(abs(totals[..., :21]), axis=2), np.sum(abs(totals[..., 21:]), axis=2)), axis=0))
+        ax2.set(ylim=[0, vmax], title="Aggregated saliencies (one-hot): all")
+        ax2.xaxis.set(ticks=range(19))
+        ax2.margins(0)
+        ax2.legend()
+
+        ax21.legend(loc='right')
+        ax21.set(ylim=[0, vmax], title="Aggregated saliencies (pssm): all")
+        ax21.xaxis.set(ticks=range(19))
+        ax21.margins(0)
+        ax21.legend()
+
+        plt.tight_layout()
+
+    # plot_sheer_class(totals)
+    plot_sheer_aa(totals)
+    return totals
+
+
 # b, p, a = plot_aa_pssm()
 # sal = collect_saliencies()
 # plot_sliding_saliencies()
-plot_single_sequence()
+# plot_single_sequence()
+totals = plot_sheer_sequences()
 
 if __name__ == "__main__":
     # main()

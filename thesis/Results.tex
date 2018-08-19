@@ -73,7 +73,7 @@ Saliency maps can be used to prove whether this hypothesis is right by inspectin
 		
 	%Have the x labels including amino-acid, prediction, and real label. Colour classes with the codes mentioned in the previous paragraph. Consider marking mismatches in bold.
 	
-	Figure \ref{fig:sliding} shows consecutive saliency maps belonging to a single class. The patterns they present are generally preserved (note the differences in scales), just being shifted by one position on the window axis. This suggests that the algorithm is not differentiating that much between specific amino-acid positions, but rather looking for them to be in the vicinity. For this reason, we can consider that overlapping them in a single sequence map does preserve most of the information, as it is shown in Figure \ref{fig:sample_8classes}. This sort of map reveals which amino-acids of the vecinity are mostly responsible for a prediction in a particular position. For instance, the \textit{E} predictions on the left side have to do with the presence of amino-acids \textit{A},\textit{V} and \textit{L}, while the failure to predict \textit{H} on position 109 is likely related to the presence of amino-acid \textit{D} at position 110. Note that these saliency values come from the aggregation of all the 42 inputs and not only from the one-hot encoded side, which explains why positions 105 and 106 have different values in spite of having the same amino-acid (\textit{D}). For a deeper look into the whole \textit{pssm} spectrum, we would need to narrow the scope down to a single class, as it is done in Figure \ref{fig:sample_Hclass}. This figure reveals that indeed is common that the real amino-acid in the sequence is not among the most influential ones from the \textit{pssm} for making the decision. Note that the pssm values of the amino-acids do not need to have always contributions of the same sign (such as \textit{P} or \textit{D} in the figure), revealing that the network is capturing something more than pure presence, location and combinations of amino-acids are also important.
+	Figure \ref{fig:sliding} shows consecutive saliency maps belonging to a single class. The patterns they present are generally preserved (note the differences in scales), just being shifted by one position on the window axis. This suggests that the algorithm is not differentiating that much between specific amino-acid positions, but rather looking for them to be in the vicinity. For this reason, we can consider that overlapping them in a single sequence map does preserve most of the information, as it is shown in Figure \ref{fig:sample_8classes}. This sort of map reveals which amino-acids of the vicinity are mostly responsible for a prediction in a particular position. For instance, the  predictions of class \textit{E} on the left side of the shown fragment have to do with the presence of amino-acids \textit{A}, \textit{V} and \textit{L}, while the failure to predict class \textit{H} on position 109 is likely related to the presence of amino-acid \textit{D} at position 110. Note that these saliency values come from the aggregation of all the 42 inputs and not only from the one-hot encoded side, which explains why positions 105 and 106 have different values in spite of having the same amino-acid (\textit{D}). For a deeper look into the whole \textit{pssm} spectrum, we would need to narrow the scope down to a single class, as it is done in Figure \ref{fig:sample_Hclass}. This figure reveals that is indeed common that the real amino-acid in the sequence is not among the most influential ones from the \textit{pssm} for making the decision. Note that the pssm values of the amino-acids not always need to have contributions of the same sign (such as \textit{P} or \textit{D} in the figure), revealing that the network is capturing something more than pure presence: location and combinations of amino-acids are also important.
 	
 	\begin{figure}
 	\centering
@@ -86,7 +86,7 @@ Saliency maps can be used to prove whether this hypothesis is right by inspectin
 	\begin{figure}
 	\centering
 	\includegraphics[width=1\linewidth]{Figures/sample_8classes}
-	\caption{\textit{Fragment of a sequence map aggregated by input.} Each line corresponds to the aggregated saliency values of one of the eight output classes. The upper $x$ axis displays the amino-acids in the sequence. The lower $x$ axis contains the positions in the sequence and two sets of labels: the predictions on top and the true values at the bottom. The code of colours of the labels is the same as the lines and is set according to the class of the predictions.}
+	\caption{\textit{Fragment of a sequence map aggregated by input.} Each line corresponds to the aggregated saliency values of one of the eight output classes. The upper $x$ axis displays the amino-acids in the sequence. The labels at lower $x$ axis contains three sets of labels in this order: the predictions, the true values, and the positions in the sequence. The code of colours of the labels is the same as the lines and is set according to the class of the predictions.}
 	\label{fig:sample_8classes}
 	\end{figure}
 	
@@ -98,28 +98,66 @@ Saliency maps can be used to prove whether this hypothesis is right by inspectin
 	\end{figure}
 
 	
-
 	% HAve as the sample one of the sequences with low accuracy and high length from \ref{sect:outliers}?
 
 	\subsection{Class-specific saliency maps}
-		\subsubsection{Sheer addition} \label{sect:sheer}
-		aggregate all individual saliency maps % SHould I try to compare my results with known motifs? Absolutely yes!
-		sheer addition (4 dimensions left): class-aggregated (3 dimensions), aa-aggregated (3 dimensions), or class+aa-aggregated (2 dimensions)
+	Instead of looking at the saliency information along single sequences, aggregating the information from all the 1.3 millions saliency maps could give us some broader information of what the network has learned. Again, the high dimensionality of the data to explore requires us to seek for meaningful ways to aggregate and represent the data.
+	
+		\subsubsection*{Sheer addition} \label{sect:sheer}
+		A simple way to aggregate the saliency maps would be adding them up with element-wise addition, thus composing a single saliency map of size 8x42x19. This mega-saliency map should convey rough information of the general features of the network. Since there is no a sense of ``left" or ``right" in the sequences, the aggregation should be \textit{side-invariant} and therefore an extra \textit{mirroring} operation is applied to the aggregation in order to make the aggregated saliency map symmetric along the centre of the window.
+		
+		To start with, Figure \ref{fig:class_agg_class} shows the aggregated saliency maps of the three main classes. There are a few details to notice here. First, higher saliency values concentrate around the centre of the window, meaning that most relevant information is located around 5 positions from the predicted one. Second, most amino-acids preserve the same sign along the window of a class, although a few exceptions also occur. Third, as it could be expected, class \textit{L} generally presents inverse patterns w.r.t. classes \textit{H} and \textit{E}. This makes sense since coils appear wherever there are no $\alpha$-helices or $\beta$-strands, they are complementary. Lastly, each class has a ``feature amino-acid" that is their best indicator, amino-acid \textit{A} for class \textit{H}, \textit{V} for \textit{E}, and \textit{P} for \textit{L}.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{Figures/class_agg_class}
+			\caption{\textit{Per-class aggregated saliency maps of the main three classes along the window.} Only the saliency of \textit{pssm} value is shown here. Green means positive saliency values and purple means negative.}
+			\label{fig:class_agg_class}
+		\end{figure}
+		
+		Figure \ref{fig:class_agg_aa} shows the same information from the mega-saliency map but from a different perspective: it focuses on how a single amino-acid and shows how its position affects its influence on the the eight classes. As it has been discussed above, the \textit{one-hot encoded} amino-acid half of the input appears to be less significant than the \textit{pssm} half (about one fifth in this case). Both graphs show similar patterns, although it differs more for some other amino-acids (not shown). The figure shows that amino-acid \textit{G} favours $\beta$-strands on its sides and \textit{turns} and coils on its spot. 
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\linewidth]{Figures/class_agg_aa}
+			\caption{\textit{Per-class aggregated saliency map of for amino-acid G along the window.} On the left the information from the \textit{one-hot encoded} part, on the right the values corresponding to the \textit{pssm} half of the input; plotted in different scales.}
+			\label{fig:class_agg_aa}
+		\end{figure}
+
+
+		% SHould I try to compare my results with known motifs? Absolutely yes!
+
 			\subsubsection*{Per-aminoacid and class aggregations}
 			% INclude per-class aggregations (absolute value, aa aggregated) -> class profile (flatness, distribution, etc)
 			% XAxis labels should be centered on 0 and going to +-9
+			\begin{figure}
+		\centering
+		\includegraphics[width=1\linewidth]{Figures/per-class}
+		\caption{}
+		\label{fig:per-class}
+		\end{figure}
 			
-			\subsubsection*{Per-class aggregations}
-			% INCLUDE per-class aggregations (either graph form, SeqLogo form, or both). Include just a few and leave the others as supplementary materials.
-			First thing to notice: pssm is way more relevant than one-hot encoded aas. No wonder, it learns faster.
+			
 	
-			\subsubsection*{Per-aminoacid aggregations}
-			% INclude per-aminoacid aggregations? (Same, just a few and the others as supplementary)
-	
-		\subsubsection{Clustering techniques}
+		\subsubsection*{Clustering techniques}
 		aggregate all individual saliency maps % SHould I try to compare my results with known motifs? Absolutely yes!
-		clustering (5 dimensions left)
-		Using the per-class window-aggregated version of individual saliency maps (4 dimensions left)
-		Cosine distance metric.
-		Show either all profiles per-cluster (3 dimensions), or aggregated profiles (2 dimensions)
-		Show t-SNE with points coloured by cluster
+		%clustering (5 dimensions left)
+		%Using the per-class window-aggregated version of individual saliency maps (4 dimensions left)
+		%Cosine distance metric.
+		%Show either all profiles per-cluster (3 dimensions), or aggregated profiles (2 dimensions)
+		%Show t-SNE with points coloured by cluster
+		
+		\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{Figures/clusters}
+\caption{}
+\label{fig:clusters}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{tsne}
+\caption{}
+\label{fig:tsne}
+\end{figure}
+
