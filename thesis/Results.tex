@@ -27,17 +27,15 @@ I believe that the techniques of analysis here presented and the conclusions wit
 
 In order to analyse the performance space a bit better, the average accuracy per sequence has been calculated and it has been plotted in Figure \ref{fig:per_seq_acc} with respect to the sequence length. The distribution exhibits the typical funnel shape that one could expect from processes with random variables forming groups of different sizes: the bigger the groups, the smaller the variance. The funnel ceases to shrink at length about 400, so it would be particularly interesting to understand why the network is classifying worse (60\% and below) some of the sequences above that length.
 
-% RErun this plot
-% CHeck alpha-helix size
-If we observe the colour scheme of the figure, we can understand right away that sequences rich in $\alpha$-helix are generally better predicted than $\beta$-sheets and coils. An explanation could be that while $\alpha$-helix sizes are up to CHECK NUMBER, which is inside the window size, $\beta$-sheets interact with amino-aids further away in the sequence, which is not possible to be captured with the window of the network, of lateral size of 9.
+If we observe the colour scheme of the figure, we can understand right away that sequences rich in $\alpha$-helix are generally better predicted than $\beta$-sheets and coils. An explanation could be that while $\alpha$-helix sizes are up to five positions away, which is inside the window size, $\beta$-sheets interact with amino-aids further away in the sequence, which is not possible to be captured with the window of the network, of lateral size of nine.
 
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Figures/per_seq_acc}
-\caption{\textit{The mean accuracy per sequence by sequence length.} The 5504 sequences of the training set are shown on the left and the 514 of the test set on the right. Each point represents a single protein, and its colour corresponds to the amount of $\beta$-sheets (red), $\alpha$-helices (green), and coils (blue) it has. A purple point, for instance, would predominantly have $\beta$-sheets and coils.}
+\caption{\textit{The mean accuracy per sequence by sequence length.} The 5504 sequences of the training set are shown on the left and the 514 of the test set on the right. Each point represents a single protein, and its colour corresponds to the amount of $\beta$-sheets~(red), $\alpha$-helices (green), and coils (blue) it has. A purple point, for instance, would predominantly have $\beta$-sheets and coils.}
 \label{fig:per_seq_acc}
 \end{figure}
-% EXtra: include the same graph but colour the high-appearing classes and the low appearing classes differently (RB)
+% EXtra: include the same graph but colour the high-appearing classes and the low appearing classes differently (RB). Maybe not, in any case some correlations plot
 
 \section{Feature visualization}
 
@@ -55,12 +53,12 @@ Before going through the analysis, it is worth commenting that the saliency map 
 \subsubsection*{Analysis on amino-acids and \textit{pssm}}
 When looking at typical secondary-structure prediction algorithm, there is one point that may raise some suspicion: the inclusion of half of the inputs as one-hot encoded (amino-acids) and the other half as dense vectors (\textit{pssm}). One could thing that this discrepancy may strongly favour the information coming from the dense part, since the weights associated to it will learn much faster in a typical gradient descent learning schema.
 
-Saliency maps can be used to prove whether this hypothesis is right by inspecting which of the input groups is being most decisive in the classification process. For doing so, each saliency map is divided into two groups of $8x21x19$, and all the values inside each group are added up to a single \textbf{saliency score}. Thus, each position of each sequence will have two scores, one for the amino-acids and one for the \textit{pssm}, and its comparison will give us which part of the inputs is more decisive. The results are shown in Figure \ref{fig:aa_pssm}, from where it can be appreciated that there are considerably more positions in which the input from \textit{pssm} was more determinant (around 1.1 millions) than the ones with more determinant amino-acid inputs (about 200 thousands). Furthermore, in most of the cases amino-acid inputs had more impact it was only by a narrow margin, with 70\% of the cases having only up to two times bigger saliency scores. On the contrary, more than 60\% of the positions with higher \textit{pssm} saliency score did this with a more than twice higher score.
+Saliency maps can be used to prove whether this hypothesis is right by inspecting which of the input groups is being most decisive in the classification process. For doing so, each saliency map is divided into two groups of $8x21x19$, one corresponding to the values for one-hot amino-acids and the other for the \textit{pssm} inputs, and all the values inside each group are added up in absolute value to a single \textbf{saliency score}. Thus, each position of each sequence will have two scores, one for the amino-acids and one for the \textit{pssm}, and its comparison will give us which part of the inputs is more decisive and quantifies this difference. Only a single case out of the close to 1.3 millions positions showed a higher one-hot than \textit{pssm} score, and the different only accounted for 1\% of their value. The rest of the scores were in favour of the \textit{pssm} saliency scores, with the distribution shown Figure \ref{fig:aa_pssm}. From the figure we can know that almost the totality of the \textit{pssm} scores were at least four times bigger than the one-hot ones, and therefore we can solidly confirm that the influence of the one-hot data on the input is minor and its omission would not cause much loss in the performance of the network. Consequently, further results focus only on the effect of the \textit{pssm} on classification.
 
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Figures/aa_pssm}
-\caption{\textit{Amino-acids versus pssm comparison.} On the left, a histogram of the positions whose amino-acid saliency score was higher than the pssm score, with the total amount in the title. The bins represent the superiority ratio, i.e. how many times bigger was the score. On the right, the analogous histogram for pssm superior scores.}
+\caption{\textit{Pssm saliency superiority.} This figure shows a cumulative histogram of the number of positions whose \textit{pssm} saliency score was higher than the one-hot score. The $x$ axis represent the superiority ratio, i.e. how many times bigger was the score.}
 \label{fig:aa_pssm}
 \end{figure}
 
@@ -74,7 +72,9 @@ Saliency maps can be used to prove whether this hypothesis is right by inspectin
 		
 	%Have the x labels including amino-acid, prediction, and real label. Colour classes with the codes mentioned in the previous paragraph. Consider marking mismatches in bold.
 	
-	Figure \ref{fig:sliding} shows consecutive saliency maps belonging to a single class. The patterns they present are generally preserved (note the differences in scales), just being shifted by one position on the window axis. This suggests that the algorithm is not differentiating that much between specific amino-acid positions, but rather looking for them to be in the vicinity. For this reason, we can consider that overlapping them in a single sequence map does preserve most of the information, as it is shown in Figure \ref{fig:sample_8classes}. This sort of map reveals which amino-acids of the vicinity are mostly responsible for a prediction in a particular position. For instance, the  predictions of class \textit{E} on the left side of the shown fragment have to do with the presence of amino-acids \textit{A}, \textit{V} and \textit{L}, while the failure to predict class \textit{H} on position 109 is likely related to the presence of amino-acid \textit{D} at position 110. Note that these saliency values come from the aggregation of all the 42 inputs and not only from the one-hot encoded side, which explains why positions 105 and 106 have different values in spite of having the same amino-acid (\textit{D}). Another issue worth noting is a non-realistic inconsistency when making the predictions: the algorithm assigns labels individually per-position and does not take into account the labels it is providing at the sides. This leads to situations such as having individual \textit{G}s, when these only come at least in groups of three. Different approaches in the state-of-the-art for dealing with this are adding a \textit{struct2struct} machine on top of the predictions~\cite{Rost1993,Fang2017}, iterative processes that learn from previous step's prediction~\cite{Heffernan2017}, or probabilistic methods that convey information about adjacent positions, like \textit{Conditional random fields}~\cite{Wang2016} or \textit{next-step conditioning}~\cite{Busia2017}.
+	Figure \ref{fig:sliding} shows consecutive saliency maps belonging to a single class. The patterns they present are generally preserved (note the differences in scales), just being shifted by one position on the window axis. This suggests that the algorithm is not differentiating that much between specific amino-acid positions, but rather looking for them to be in the vicinity. For this reason, we can consider that overlapping them in a single sequence map does preserve most of the information, as it is shown in Figure \ref{fig:sample_8classes}. This sort of map reveals which amino-acids of the vicinity are mostly responsible for a prediction in a particular position. For instance, the  predictions of class \textit{E} on the left side of the shown fragment have to do with the presence of amino-acids \textit{A}, \textit{V} and \textit{L}, while the failure to predict class \textit{H} on position 109 is likely related to the presence of amino-acid \textit{D} at position 110. Note that these saliency values come from the aggregation of all the 42 inputs and not only from the one-hot encoded side, which explains why positions 105 and 106 have different values in spite of having the same amino-acid (\textit{D}). It is specially important to take this into account since we have discussed before that one-hot amino-acid information is not as decisive for making the predictions.
+	
+	Another issue worth noting is a non-realistic inconsistency among predictions: the algorithm assigns labels individually per-position and does not take into account the labels it is providing at the sides. This leads to situations such as having individual \textit{G}s, when these only come at least in groups of three. Different approaches in the state-of-the-art for dealing with this are adding a \textit{struct2struct} machine on top of the predictions~\cite{Rost1993,Fang2017}, iterative processes that learn from previous step's prediction~\cite{Heffernan2017}, or probabilistic methods that convey information about adjacent positions, like \textit{Conditional random fields}~\cite{Wang2016} or \textit{next-step conditioning}~\cite{Busia2017}.
 	
 	For a deeper look into the whole \textit{pssm} spectrum, we would need to narrow the scope down to a single class, as it is done in Figure \ref{fig:sample_Hclass}. This figure reveals that is indeed common that the real amino-acid in the sequence is not among the most influential ones from the \textit{pssm} for making the decision. Note that the pssm values of the amino-acids not always need to have contributions of the same sign (such as \textit{P} or \textit{D} in the figure), revealing that the network is capturing something more than pure presence: location and combinations of amino-acids are also important.
 	
@@ -96,44 +96,43 @@ Saliency maps can be used to prove whether this hypothesis is right by inspectin
 	\begin{figure}
 	\centering
 	\includegraphics[width=1\linewidth]{Figures/sample_Hclass}
-	\caption{\textit{Fragment of sequence map for class H.} The layout of the figure is the same as of Figure \ref{fig:sample_8classes}. The image has been generated by \textit{SeqLogo} \cite{Thomsen2012}.}
+	\caption{\textit{Fragment of sequence map for class H in SeqLogo form.} The saliency of the \textit{pssm} values is shown here. The frame and labels of the figure is the same as in Figure \ref{fig:sample_8classes}. The image has been generated by \textit{SeqLogo} \cite{Thomsen2012}.}
 	\label{fig:sample_Hclass}
 	\end{figure}
 
 	
 	% HAve as the sample one of the sequences with low accuracy and high length from \ref{sect:outliers}?
 
-	\subsection{Class-specific saliency maps}
+	\subsection{Class-specific and pssm-specific saliency maps}
 	Instead of looking at the saliency information along single sequences, aggregating the information from all the 1.3 millions saliency maps could give us some broader information of what the network has learned. Again, the high dimensionality of the data to explore requires us to seek for meaningful ways to aggregate and represent the data.
 	
 		\subsubsection*{Sheer addition} \label{sect:sheer}
 		A simple way to aggregate the saliency maps would be adding them up with element-wise addition, thus composing a single saliency map of size 8x42x19. This mega-saliency map should convey rough information of the general features of the network. Since there is no a sense of ``left" or ``right" in the sequences, the aggregation should be \textit{side-invariant} and therefore an extra \textit{mirroring} operation is applied to the aggregation in order to make the aggregated saliency map symmetric along the centre of the window.
 		
-		To start with, Figure \ref{fig:class_agg_class} shows the aggregated saliency maps of the three main classes. There are a few details to notice here. First, higher saliency values concentrate around the centre of the window, meaning that most relevant information is located around 5 positions from the predicted one. Second, most amino-acids preserve the same sign along the window of a class, although a few exceptions also occur. Third, as it could be expected, class \textit{L} generally presents inverse patterns w.r.t. classes \textit{H} and \textit{E}. This makes sense since coils appear wherever there are no $\alpha$-helices or $\beta$-strands, they are complementary. Lastly, each class has a ``feature amino-acid" that is their best indicator, amino-acid \textit{A} for class \textit{H}, \textit{V} for \textit{E}, and \textit{P} for \textit{L}.
+		To start with, Figure \ref{fig:class_agg_class} shows the aggregated class-specific saliency maps for the three main classes and the 21 \textit{pssm} values. There are a few details to notice here. First, higher saliency values concentrate around the centre of the window, meaning that most relevant information is located around 5 positions from the predicted one. Second, most \textit{pssm} values preserve the same sign along the window of a class, although a few exceptions also occur. Third, as it could be expected, class \textit{L} generally presents inverse patterns with respect to classes \textit{H} and \textit{E}. This makes sense since coils appear wherever there are no $\alpha$-helices or $\beta$-strands, they are complementary. Lastly, each class has a ``feature" \textit{pssm} value that is their best indicator: \textit{A} for class \textit{H}; \textit{V} for \textit{E}; and \textit{P} for \textit{L}.
 		
 		\begin{figure}
 			\centering
 			\includegraphics[width=1\linewidth]{Figures/class_agg_class}
-			\caption{\textit{Per-class aggregated saliency maps of the main three classes along the window.} Only the saliency of \textit{pssm} value is shown here. Green means positive saliency values and purple means negative.}
+			\caption{\textit{Per-class aggregated saliency maps of the main three classes along the window.} Only the saliency values of \textit{pssm} are shown here. Green means positive saliency values and purple means negative.}
 			\label{fig:class_agg_class}
 		\end{figure}
 		
-		Figure \ref{fig:class_agg_aa} shows the same information from the mega-saliency map but from a different perspective: it focuses on how a single amino-acid and shows how its position affects its influence on the the eight classes. As it has been discussed above, the \textit{one-hot encoded} amino-acid half of the input appears to be less significant than the \textit{pssm} half (about one fifth in this case). Both graphs show similar patterns, although some amino-acids show wider differences between both halves of the input (not shown). The figure shows that amino-acid \textit{G} favours $\beta$-strands on its sides and \textit{turns} and coils on its spot. 
+		Figure \ref{fig:class_agg_aa} shows the same information but from a different perspective: as it is \textit{pssm-specific}, it focuses on how a single \textit{pssm}'s position affects the classification on the eight classes. These plots show important effects of the position, as all of them make significant shifts at the centre of the window. \textit{Pssm} value \textit{G} strongly favours coils at its spot, but foresees the presence of $\beta$-strands a few positions away. \textit{Pssm} value \textit{K} has a somehow similar behaviour, although with a more intricate ladder of classes as you move further away from the centre. \textit{Pssm} value \textit{M} is generally favouring $\alpha$-helices, although $3_{10}$-helices gain equal importance at the very centre. Note the difference in scales, which indicates that \textit{pssm}-values of \textit{G} are in any case more influential than the other two.
 		
 		\begin{figure}
 			\centering
 			\includegraphics[width=1\linewidth]{Figures/class_agg_aa}
-			\caption{\textit{Per-class aggregated saliency map of for amino-acid G along the window.} On the left the information from the \textit{one-hot encoded} part, on the right the values corresponding to the \textit{pssm} half of the input; plotted in different scales.}
+			\caption{\textit{Per-class aggregated saliency map of amino-acids G, K, and M, in this order.} \textit{Y} axis is in 1000s. Note the change in scale, particularly for the left-most plot~(amino-acid \textit{G}).}
 			\label{fig:class_agg_aa}
 		\end{figure}
 		
-		Lastly, we can use the aggregated saliency maps to investigate on the spread of the classes, i.e. how centred or spread is the influence for the class prediction.
-		Figure \ref{fig:sheer_class_aa}
+		We can use the aggregated saliency maps to investigate on the span of the class influence, i.e. how much of the further away positions the network uses to predict the class. For performing this analysis the addition of the saliency maps must be done in absolute value and then aggregated by the \textit{pssm} dimension as well. Figure \ref{fig:sheer_class_aa} reveals the results for this operation. $\alpha$-helices (\textit{H}) and $\beta$-bridges (\textit{B}) seem to have the highest side influence, although $\beta$-strand's \textit{E} influence gets more weight for further positions. Most classes show a quasi-linear descend on influence from one to five-positions away and some tail afterwards. Coils are the most centred classes.
 
 		\begin{figure}
 			\centering
 			\includegraphics[width=1\linewidth]{Figures/sheer_class_aa}
-			\caption{}
+			\caption{\textit{Classes overall influence along the window size.} All lines are normalized to have the same hight , as the analysis focuses on the shapes rather than the values. Labels include a measurement of the \textit{kurtosis} of the distributions.}
 			\label{fig:sheer_class_aa}
 		\end{figure}
 

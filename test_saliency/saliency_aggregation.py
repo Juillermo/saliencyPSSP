@@ -101,7 +101,6 @@ def calculate_sheer_abs(args):
 
     fail_seqs = 0
     total = np.zeros((8, 2 * WINDOW + 1, 42))  # classes, WINDOW-size, aminoacids+pssm
-
     for seq in range(args.num_seqs):
         try:
             fname = "saliencies{:4d}.npy".format(seq)
@@ -123,58 +122,29 @@ def calculate_sheer_abs(args):
 
 def calculate_points(args):
     origin = os.getcwd()
-    os.chdir(SALIENCIES_SCRATCH_PATH)
-
-    dater = Jurtz_Data()
+    os.chdir(PROCESSED_SCRATCH_PATH)
 
     fail_seqs = 0
     points = []
     for seq in range(args.num_seqs):
         try:
-            try:
-                with open("saliencies" + str(seq) + args.label + ".pkl", "rb") as f:
-                    saliency = np.array(pickle.load(f))
-            except OSError:
-                with open("saliencies{:4d}{:s}.pkl".format(seq, args.label), "rb") as f:
-                    saliency = np.array(pickle.load(f))
+            fname = "saliencies{:4d}.npy".format(seq)
+            processed_seq = np.load(fname)
 
-            X_seq, mask_seq = dater.get_sequence(seq)
-            end_seq = int(sum(mask_seq))
-            for pos in range(end_seq):
-                total = np.zeros((2 * WINDOW + 1, 42))  # window-size, n aminoacids
-                # Pre-WINDOW
-                if pos > WINDOW:
-                    init = pos - WINDOW
-                    total[:WINDOW] += np.multiply(saliency[pos, init:pos, :], X_seq[init:pos])
-                elif pos != 0:
-                    init = WINDOW - pos
-                    total[init:WINDOW] += np.multiply(saliency[pos, 0:pos, :], X_seq[0:pos])
+            for processsed_pos in processed_seq:
+                points.append(np.sum(processsed_pos[..., 21:], axis=1))
 
-                # Window
-                total[WINDOW] += np.multiply(saliency[pos, pos, :], X_seq[pos])
-
-                # Post-WINDOW
-                if pos + WINDOW + 1 <= end_seq:
-                    end = pos + WINDOW + 1
-                    total[WINDOW + 1:] += np.multiply(saliency[pos, pos + 1:end, :], X_seq[pos + 1:end])
-                elif pos != end_seq:
-                    end = end_seq
-                    total[WINDOW + 1:-(pos + WINDOW + 1 - end)] += np.multiply(saliency[pos, pos + 1:end, :],
-                                                                               X_seq[pos + 1:end])
-                points.append(np.sum(total[:, 21:], axis=0))
             print(seq)
         except OSError:
             fail_seqs += 1
             print(str(seq) + " Not found")
 
     os.chdir(origin)
-
-    points = np.array(points)
-    print(points.shape)
-
-    print("Clustering points of " + str(args.num_seqs - fail_seqs) + " elements")
-    with open("points" + str(args.num_seqs) + args.label + ".pkl", "wb") as f:
-        pickle.dump(points, f, protocol=2)
+    success_seqs = args.num_seqs - fail_seqs
+    print("Clustering points of " + str(success_seqs) + " elements")
+    np.save(SHEER_PATH + "points" + str(success_seqs) + ".npy", np.array(points))
+    print(len(points))
+    print(points[0].shape)
 
 
 def main():

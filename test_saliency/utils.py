@@ -95,7 +95,7 @@ class Jurtz_Data():
 
     def get_all_data(self):
         X_train, X_valid, labels_train, labels_valid, mask_train, mask_valid, _ = self.get_train(Jurtz_Data.TRAIN_PATH)
-        X_test, mask_test, labels_test, _ = self.get_test(Jurtz_Data.TRAIN_PATH)
+        X_test, mask_test, labels_test, _ = self.get_test(Jurtz_Data.TEST_PATH)
         # print X_train[:-30].shape, X_valid.shape, X_test[:-126].shape
         self.split_value = len(X_train[:-30]) + len(X_valid)
         # print split_value
