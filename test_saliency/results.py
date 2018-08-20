@@ -5,9 +5,12 @@ import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 
 from utils import WINDOW, ssConvertString, pssmString_jurtz, aaString_jurtz, Jurtz_Data
+#from saliency_aggregation import SHEER_PATH
 
 FIGURES_PATH = "../thesis/Figures/"
 SEQLOGO_PATH = "SeqLogo_data/"
+SHEER_PATH = "sheer_data/"
+
 CLASS_NAMES = "HGIEBLTS"
 CLASS_COLOURS = {'L': 'blue', 'S': 'slateblue', 'T': 'dodgerblue',
                  'E': 'red', 'B': 'lightsalmon',
@@ -109,10 +112,9 @@ def plot_outliers():
 
 
 def plot_aa_pssm():
-    num_seqs = 6018
-    with open("aa_pssm" + str(num_seqs) + ".pkl", "rb") as f:
-        aa_pssm = pickle.load(f)
-        print("Total shape", aa_pssm.shape)
+    num_seqs = 6016
+    aa_pssm = np.load(SHEER_PATH+"aa_pssm" + str(num_seqs) + ".npy")
+    print("Total shape", aa_pssm.shape)
 
     aa_tot = aa_pssm[:, 0]
     pssm_tot = aa_pssm[:, 1]
@@ -155,7 +157,6 @@ def plot_aa_pssm():
     plt.tight_layout()
     # plt.savefig(FIGURES_PATH + "aa_pssm.eps", format="eps")
     plt.show()
-    # plt.savefig("../thesis/Figures/aa_pssm.eps", format="eps")
 
     return base_diff, pssm_tot, aa_tot
 
@@ -351,7 +352,11 @@ def plot_sheer_sequences():
                 fig.savefig(FIGURES_PATH + "class_agg_aa.eps")
                 plt.show()
 
-    def plot_sheer_class_aa(totals):
+    def plot_sheer_class_aa():
+        abs_sheer = np.load(SHEER_PATH + "sheer6016.npy")
+        abs_sheer += abs_sheer[:, ::-1, :]
+        abs_sheer /= 2
+
         fig2, axes2 = plt.subplots(1, 2, figsize=(12, 3))
         ax2 = axes2[0]
         ax21 = axes2[1]
@@ -359,8 +364,8 @@ def plot_sheer_sequences():
         legend_names = [el for el in CLASS_NAMES]
         omg_cosa = []
         for i, target_class in enumerate(legend_names):
-            tot_aa = np.sum(abs(totals[ssConvertString.find(target_class), :, :21]), axis=1)
-            tot_pssm = np.sum(abs(totals[ssConvertString.find(target_class), :, 21:]), axis=1)
+            tot_aa = np.sum(abs_sheer[ssConvertString.find(target_class), :, :21], axis=1)
+            tot_pssm = np.sum(abs_sheer[ssConvertString.find(target_class), :, 21:], axis=1)
 
             ax3 = ax2.twinx()
             ax3.plot(tot_aa, marker='.', label=target_class, color=CLASS_COLOURS[target_class])
@@ -388,17 +393,17 @@ def plot_sheer_sequences():
         fig2.savefig(FIGURES_PATH + "sheer_class_aa.eps")
 
     # plot_sheer_class(totals)
-    plot_sheer_aa(totals)
-    # plot_sheer_class_aa(totals)
+    # plot_sheer_aa(totals)
+    plot_sheer_class_aa()
     return totals
 
 
-plot_outliers()
-# b, p, a = plot_aa_pssm()
+#plot_outliers()
+b, p, a = plot_aa_pssm()
 # sal = collect_saliencies()
 # plot_sliding_saliencies()
 # plot_single_sequence()
-# totals = plot_sheer_sequences()
+#totals = plot_sheer_sequences()
 
 if __name__ == "__main__":
     # main()

@@ -1,4 +1,4 @@
-\begin{thebibliography}{30}
+\begin{thebibliography}{31}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{{\tt #1}}\fi
@@ -154,6 +154,13 @@ Chris Olah, Alexander Mordvintsev, and Ludwig Schubert.
   Visualization}}.
 \newblock {\em Distill}, 2017.
 \newblock ISSN 2476-0757.
+
+\bibitem[Rost and Sander(1993)]{Rost1993}
+Burkhard Rost and Chris Sander.
+\newblock {Prediction of protein secondary structure at better than 70{\%}
+  accuracy}.
+\newblock {\em Journal of Molecular Biology}, 1993.
+\newblock ISSN 00222836.
 
 \bibitem[Shrikumar et~al.(2017)Shrikumar, Greenside, and
   Kundaje]{Shrikumar2017}

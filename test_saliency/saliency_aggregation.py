@@ -22,7 +22,7 @@ def calculate_aa_pssm(args):
             processed_seq = np.load(fname)
 
             for saliency_map in processed_seq:
-                points.append((np.sum(abs(saliency_map[..., :21])), np.sum(saliency_map[..., 21:])))
+                points.append((np.sum(abs(saliency_map[..., :21])), np.sum(abs(saliency_map[..., 21:]))))
             print(seq)
 
         except OSError:
