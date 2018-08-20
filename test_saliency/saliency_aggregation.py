@@ -148,9 +148,8 @@ def calculate_points(args):
     print(points[0].shape)
 
 
-def clustering():
-    num_seqs = 6016
-    points = np.load(SHEER_PATH + "points" + str(num_seqs) + ".npy")
+def clustering(args):
+    points = np.load(SHEER_PATH + "points" + str(args.num_seqs) + ".npy")
     print(points.shape)
 
     n_clusters = 4
@@ -158,15 +157,15 @@ def clustering():
     model = AgglomerativeClustering(n_clusters=n_clusters, linkage="average", affinity="cosine")
     model.fit(points)
 
-    np.save(SHEER_PATH + "cluster_labels" + str(num_seqs) + ".npy", model.labels_)
+    np.save(SHEER_PATH + "cluster_labels" + str(args.num_seqs) + ".npy", model.labels_)
 
 
 def main():
     parser = argparse.ArgumentParser(
         description='Aggregate saliencies either by sheer addition, compute points for clustering, or aggregate points as aa/pssm')
 
-    parser.add_argument('--func', choices=['sheer', 'points', 'aapssm', 'sheerabs'],
-                        help='Function: "sheer" addition of saliencies, "points" for clustering, "aampssm" values, "sheerabs" addition')
+    parser.add_argument('--func', choices=['sheer', 'points', 'aapssm', 'sheerabs', 'cluster'],
+                        help='Function: "sheer" addition of saliencies, "points" for clustering, "aampssm" values, "sheerabs" addition, "cluster" points')
     parser.add_argument('--label', default='H', choices=[el for el in ssConvertString],
                         help='class from which to analyse the saliencies (default H)')
     parser.add_argument('--num-seqs', type=int, default=2, metavar='num_seqs',
@@ -181,6 +180,8 @@ def main():
         calculate_aa_pssm(args)
     elif args.func == 'sheerabs':
         calculate_sheer_abs(args)
+    elif args.func == 'cluster':
+        clustering(args)
     else:
         raise ValueError('Function "' + args.func + '" not recognized, try with "sheer", "points", or "aapssm"')
 
