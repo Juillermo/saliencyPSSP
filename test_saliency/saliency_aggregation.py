@@ -3,6 +3,7 @@ import pickle
 import argparse
 
 import numpy as np
+from sklearn.cluster import AgglomerativeClustering
 
 from reparer import SALIENCIES_SCRATCH_PATH, PROCESSED_SCRATCH_PATH
 from utils import Jurtz_Data, ssConvertString, WINDOW
@@ -145,6 +146,19 @@ def calculate_points(args):
     np.save(SHEER_PATH + "points" + str(success_seqs) + ".npy", np.array(points))
     print(len(points))
     print(points[0].shape)
+
+
+def clustering():
+    num_seqs = 6016
+    points = np.load(SHEER_PATH + "points" + str(num_seqs) + ".npy")
+    print(points.shape)
+
+    n_clusters = 4
+
+    model = AgglomerativeClustering(n_clusters=n_clusters, linkage="average", affinity="cosine")
+    model.fit(points)
+
+    np.save(SHEER_PATH + "cluster_labels" + str(num_seqs) + ".npy", model.labels_)
 
 
 def main():
