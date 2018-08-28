@@ -1,17 +1,16 @@
 %% ----------------------------------------------------------------
 %% Results.tex
-%% 333 ---------------------------------------------------------------- 
+%% 2126
+%% ---------------------------------------------------------------- 
 \chapter{Results \& Discussion} \label{Chapter: Results}
 
 % Parameters are defined in Results (not in Methods)
-
 % Report is a presentation of the final results, not the whole process.
-
 % Draw inferences from proofs
 
 % Check that your paper is focused. Choose the point of the paper and its key conclusion before you begin writing, stick to your choices, and write the paper so that the reader gets the point already in the abstract and in the introduction. Leave  out results that are not required for supporting the key conclusion, or safely tuck them away in the supplementary information document. When editing, if you feel that your paper loses its focus at some point, take a step back and do a major rewrite.
 
-% Check that there is a clear question and a clear answer—it is all too common to focus on your results and what you have done, instead of stating and then solving a problem. Your results are meaningful only if they solve a meaningful problem. Remember that your paper is neither an account of your work nor a lab diary; it should be a story of an important problem and its solution. Emphasise the problem, both in the Introduction where it should really stand out, and in the Results section and the Discussion. Make it clear to the reader how each result contributes to solving the problem, and what the implications of solving the problem are.
+% Check that there is a clear question and a clear answer —it is all too common to focus on your results and what you have done, instead of stating and then solving a problem. Your results are meaningful only if they solve a meaningful problem. Remember that your paper is neither an account of your work nor a lab diary; it should be a story of an important problem and its solution. Emphasise the problem, both in the Introduction where it should really stand out, and in the Results section and the Discussion. Make it clear to the reader how each result contributes to solving the problem, and what the implications of solving the problem are.
 
 %\begin{enumerate}
 %\item What did I find?
@@ -20,7 +19,7 @@
 %\item Here's my conclusion(s) about it
 %\end{enumerate}
 
-I have trained the network described in section \ref{sect:network} for 400 epochs with the same parameters as the ones used by \cite{Jurtz2017}; i.e., gradient clipping at 20, regularization term $\lambda=10^{-3}$, and training-validation split at the 5278th sequence. The resulting network reaches an accuracy of 67.7\% on the test set, which is not far from the 71\% of the state-of-the-art (see section \ref{sect:HoF}).
+I have trained the network described in section \ref{sect:network} for 400 epochs with the same parameters as the ones used by \cite{Jurtz2017}; i.e., gradient clipping at 20, regularization term $\lambda=10^{-4}$, learning rate varying from $\mu=0.025$ down to $10^{-4}$ throughout the epochs. The resulting network reaches an accuracy of 67.7\% on the test set, which is not far from the 71\% of the state-of-the-art (see section \ref{sect:HoF}).
 I believe that the techniques of analysis here presented and the conclusions withdrawn from them can be transferred to current state-of-the-art methods without losing validity.
 
 \section{Outlier analysis} \label{sect:outliers}
@@ -46,7 +45,7 @@ If we observe the colour scheme of the figure, we can understand right away that
 
 \section{Saliency maps on inputs}
 
-Before going through the analysis, it is worth commenting that the saliency map outputs have many dimensions, since each position at each sequence has a saliency map with shape 8x42x19, corresponding to the 8 classes (outputs), the 42 inputs and and the total window size of 19. The results can be shown in multiple ways, depending on which dimensions are preserved and which are aggregated. 
+Before going through the analysis, it is worth recalling that the saliency map outputs has dimensions 8x42x19, for each position at each sequence, corresponding to the 8 classes (outputs), the 42 inputs and and the total window size of 19 (as explained in Section \ref{sect:saliency}).
 
 %Talk about dimensions: saliency value, class, sequences, positions, window, amino-acids, aa/pssm (7 dimensions). From now on, individual saliency maps will refer to the saliency map of one sequence-position
 

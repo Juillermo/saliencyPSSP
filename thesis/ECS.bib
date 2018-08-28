@@ -1,6 +1,170 @@
 %% ----------------------------------------------------------------
 %% ECS.bib
 %% ---------------------------------------------------------------- 
+@article{He2015,
+	abstract = {Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learn- ing residual functions with reference to the layer inputs, in- stead of learning unreferenced functions. We provide com- prehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth. On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—8× deeper than VGG nets [41] but still having lower complex- ity. An ensemble of these residual nets achieves 3.57{\{}{\%}{\}} error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classification task. We also present analysis on CIFAR-10 with 100 and 1000 layers. The depth of representations is of central importance for many visual recognition tasks. Solely due to our ex- tremely deep representations, we obtain a 28{\{}{\%}{\}} relative im- provement on the COCO object detection dataset. Deep residual nets are foundations of our submissions to ILSVRC {\{}{\&}{\}} COCO 2015 competitions1, where we also won the 1st places on the tasks of ImageNet detection, ImageNet local- ization, COCO detection, and COCO segmentation.},
+	archivePrefix = {arXiv},
+	arxivId = {1512.03385},
+	author = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+	doi = {10.3389/fpsyg.2013.00124},
+	eprint = {1512.03385},
+	isbn = {978-1-4673-6964-0},
+	issn = {1664-1078},
+	journal = {arXiv preprint arXiv:1512.03385v1},
+	keywords = {CNN,deep learning,denoising auto-encoder,image denoising},
+	mendeley-groups = {AML},
+	mendeley-tags = {CNN},
+	pmid = {23554596},
+	title = {{ResNet}},
+	year = {2015}
+}
+
+@article{Shrikumar2016,
+	abstract = {The purported "black box" nature of neural networks is a barrier to adoption in applications where interpretability is essential. Here we present DeepLIFT (Learning Important FeaTures), an efficient and effective method for computing importance scores in a neural network. DeepLIFT compares the activation of each neuron to its 'reference activation' and assigns contribution scores according to the difference. We apply DeepLIFT to models trained on natural images and genomic data, and show significant advantages over gradient-based methods.},
+	archivePrefix = {arXiv},
+	arxivId = {1605.01713},
+	author = {Shrikumar, Avanti and Greenside, Peyton and Shcherbina, Anna and Kundaje, Anshul},
+	eprint = {1605.01713},
+	issn = {1938-7228},
+	journal = {arXiv:1605.01713 [cs]},
+	keywords = {Saliency maps},
+	mendeley-groups = {AML},
+	mendeley-tags = {Saliency maps},
+	title = {{Not Just a Black Box: Learning Important Features Through Propagating Activation Differences}},
+	year = {2016}
+}
+
+@article{TheTheanoDevelopmentTeam2016,
+	abstract = {Theano is a Python library that allows to define, optimize, and evaluate mathematical expressions involving multi-dimensional arrays efficiently. Since its introduction, it has been one of the most used CPU and GPU mathematical compilers - especially in the machine learning community - and has shown steady performance improvements. Theano is being actively and continuously developed since 2008, multiple frameworks have been built on top of it and it has been used to produce many state-of-the-art machine learning models. The present article is structured as follows. Section I provides an overview of the Theano software and its community. Section II presents the principal features of Theano and how to use them, and compares them with other similar projects. Section III focuses on recently-introduced functionalities and improvements. Section IV compares the performance of Theano against Torch7 and TensorFlow on several machine learning models. Section V discusses current limitations of Theano and potential ways of improving it.},
+	archivePrefix = {arXiv},
+	arxivId = {1605.02688},
+	author = {{The Theano Development Team} and Al-Rfou, Rami and Alain, Guillaume and Almahairi, Amjad and Angermueller, Christof and Bahdanau, Dzmitry and Ballas, Nicolas and Bastien, Fr{\'{e}}d{\'{e}}ric and Bayer, Justin and Belikov, Anatoly and Belopolsky, Alexander and Bengio, Yoshua and Bergeron, Arnaud and Bergstra, James and Bisson, Valentin and Snyder, Josh Bleecher and Bouchard, Nicolas and Boulanger-Lewandowski, Nicolas and Bouthillier, Xavier and de Br{\'{e}}bisson, Alexandre and Breuleux, Olivier and Carrier, Pierre-Luc and Cho, Kyunghyun and Chorowski, Jan and Christiano, Paul and Cooijmans, Tim and C{\^{o}}t{\'{e}}, Marc-Alexandre and C{\^{o}}t{\'{e}}, Myriam and Courville, Aaron and Dauphin, Yann N. and Delalleau, Olivier and Demouth, Julien and Desjardins, Guillaume and Dieleman, Sander and Dinh, Laurent and Ducoffe, M{\'{e}}lanie and Dumoulin, Vincent and Kahou, Samira Ebrahimi and Erhan, Dumitru and Fan, Ziye and Firat, Orhan and Germain, Mathieu and Glorot, Xavier and Goodfellow, Ian and Graham, Matt and Gulcehre, Caglar and Hamel, Philippe and Harlouchet, Iban and Heng, Jean-Philippe and Hidasi, Bal{\'{a}}zs and Honari, Sina and Jain, Arjun and Jean, S{\'{e}}bastien and Jia, Kai and Korobov, Mikhail and Kulkarni, Vivek and Lamb, Alex and Lamblin, Pascal and Larsen, Eric and Laurent, C{\'{e}}sar and Lee, Sean and Lefrancois, Simon and Lemieux, Simon and L{\'{e}}onard, Nicholas and Lin, Zhouhan and Livezey, Jesse A. and Lorenz, Cory and Lowin, Jeremiah and Ma, Qianli and Manzagol, Pierre-Antoine and Mastropietro, Olivier and McGibbon, Robert T. and Memisevic, Roland and van Merri{\"{e}}nboer, Bart and Michalski, Vincent and Mirza, Mehdi and Orlandi, Alberto and Pal, Christopher and Pascanu, Razvan and Pezeshki, Mohammad and Raffel, Colin and Renshaw, Daniel and Rocklin, Matthew and Romero, Adriana and Roth, Markus and Sadowski, Peter and Salvatier, John and Savard, Fran{\c{c}}ois and Schl{\"{u}}ter, Jan and Schulman, John and Schwartz, Gabriel and Serban, Iulian Vlad and Serdyuk, Dmitriy and Shabanian, Samira and Simon, {\'{E}}tienne and Spieckermann, Sigurd and Subramanyam, S. Ramana and Sygnowski, Jakub and Tanguay, J{\'{e}}r{\'{e}}mie and van Tulder, Gijs and Turian, Joseph and Urban, Sebastian and Vincent, Pascal and Visin, Francesco and de Vries, Harm and Warde-Farley, David and Webb, Dustin J. and Willson, Matthew and Xu, Kelvin and Xue, Lijun and Yao, Li and Zhang, Saizheng and Zhang, Ying},
+	doi = {1605.02688},
+	eprint = {1605.02688},
+	journal = {arXiv e-prints},
+	keywords = {Framework},
+	mendeley-groups = {AML},
+	mendeley-tags = {Framework},
+	month = {may},
+	title = {{Theano: A Python framework for fast computation of mathematical expressions}},
+	url = {http://arxiv.org/abs/1605.02688},
+	year = {2016}
+}
+
+@book{Goodfellow-et-al-2016,
+	title={Deep Learning},
+	author={Ian Goodfellow and Yoshua Bengio and Aaron Courville},
+	publisher={MIT Press},
+	note={\url{http://www.deeplearningbook.org}},
+	year={2016}
+}
+
+@article{Srivastava2014,
+	abstract = {Deep neural nets with a large number of parameters are very powerful machine learning systems. However, overfitting is a serious problem in such networks. Large networks are also slow to use, making it difficult to deal with overfitting by combining the predictions of many different large neural nets at test time. Dropout is a technique for addressing this problem. The key idea is to randomly drop units (along with their connections) from the neural network during training. This prevents units from co-adapting too much. During training, dropout samples from an exponential number of different " thinned " networks. At test time, it is easy to approximate the effect of averaging the predictions of all these thinned networks by simply using a single unthinned network that has smaller weights. This significantly reduces overfitting and gives major improvements over other regularization methods. We show that dropout improves the performance of neural networks on supervised learning tasks in vision, speech recognition, document classification and computational biology, obtaining state-of-the-art results on many benchmark data sets.},
+	archivePrefix = {arXiv},
+	arxivId = {1102.4807},
+	author = {Srivastava, Nitish and Hinton, Geoffrey and Krizhevsky, Alex and Sutskever, Ilya and Salakhutdinov, Ruslan},
+	doi = {10.1214/12-AOS1000},
+	eprint = {1102.4807},
+	isbn = {1532-4435},
+	issn = {15337928},
+	journal = {Journal of Machine Learning Research},
+	keywords = {Machine Learning,deep learning,model combination,neural networks,regularization},
+	mendeley-groups = {AML},
+	mendeley-tags = {Machine Learning},
+	pmid = {23285570},
+	title = {{Dropout: A Simple Way to Prevent Neural Networks from Overfitting}},
+	year = {2014}
+}
+@article{SergeyIoffe2015,
+	abstract = {The objective of this case study was to obtain some first-hand information about the functional consequences of a cosmetic tongue split operation for speech and tongue motility. One male patient who had performed the operation on himself was interviewed and underwent a tongue motility assessment, as well as an ultrasound examination. Tongue motility was mildly reduced as a result of tissue scarring. Speech was rated to be fully intelligible and highly acceptable by 4 raters, although 2 raters noticed slight distortions of the sibilants /s/ and /z/. The 3-dimensional ultrasound demonstrated that the synergy of the 2 sides of the tongue was preserved. A notably deep posterior genioglossus furrow indicated compensation for the reduced length of the tongue blade. It is concluded that the tongue split procedure did not significantly affect the participant's speech intelligibility and tongue motility.},
+	archivePrefix = {arXiv},
+	arxivId = {arXiv:1011.1669v3},
+	author = {{Sergey Ioffe}, Google and {Christian Szegedy}, Google},
+	doi = {10.1007/s13398-014-0173-7.2},
+	eprint = {arXiv:1011.1669v3},
+	isbn = {9780874216561},
+	issn = {10282092},
+	journal = {Icml},
+	keywords = {Blechnaceae,Indonesia,Machine Learning,New species,Stenochlaena},
+	mendeley-groups = {AML},
+	mendeley-tags = {Machine Learning},
+	pmid = {15003161},
+	title = {{Batch Normalization}},
+	year = {2015}
+}
+
+@misc{Dieleman2015,
+	abstract = {core contributors, in alphabetical order: Eric Battenberg (@ebattenberg) Sander Dieleman (@benanne) Daniel Nouri (@dnouri) Eben Olson (@ebenolson) A{\"{a}}ron van den Oord (@avdnoord) Colin Raffel (@craffel) Jan Schl{\"{u}}ter (@f0k) S{\o}ren Kaae S{\o}nderby (@skaae) extra contributors, in chronological order: Daniel Maturana (@dimatura): documentation, cuDNN layers, LRN Jonas Degrave (@317070): get{\_}all{\_}param{\_}values() fix Jack Kelly (@JackKelly): help with recurrent layers G{\'{a}}bor Tak{\'{a}}cs (@takacsg84): support broadcastable parameters in lasagne.updates Diogo Moitinho de Almeida (@diogo149): MNIST example fixes Brian McFee (@bmcfee): MaxPool2DLayer fix Martin Thoma (@MartinThoma): documentation Jeffrey De Fauw (@JeffreyDF): documentation, ADAM fix Michael Heilman (@mheilman): NonlinearityLayer, lasagne.random Gregory Sanders (@instagibbs): documentation fix Jon Crall (@erotemic): check for non-positive input shapes Hendrik Weideman (@hjweide): set{\_}all{\_}param{\_}values() test, MaxPool2DCCLayer fix Kashif Rasul (@kashif): ADAM simplification Peter de Rivaz (@peterderivaz): documentation fix},
+	author = {Dieleman, Sander and Schl{\"{u}}ter, Jan and Raffel, Colin and Olson, Eben and S{\o}nderby, S{\o}ren Kaae and Nouri, Daniel and Maturana, Daniel and Thoma, Martin and Battenberg, Eric and Kelly, Jack and Fauw, Jeffrey De and Heilman, Michael and Diogo149 and McFee, Brian and Weideman, Hendrik and Takacsg84 and Peterderivaz and Jon and Instagibbs and Rasul, Dr Kashif and CongLiu and Britefury and Degrave, Jonas},
+	booktitle = {Zenodo},
+	doi = {10.5281/zenodo.27878},
+	keywords = {Framework},
+	mendeley-groups = {AML},
+	mendeley-tags = {Framework},
+	title = {{Lasagne: First release.}},
+	year = {2015}
+}
+
+@article{Cuff1999,
+	abstract = {A new dataset of 396 protein domains is developed and used to evaluate the performance of the protein secondary structure prediction algorithms DSC, PHD, NNSSP, and PREDATOR. The maximum theoretical Q3 accuracy for combination of these methods is shown to be 78{\%}. A simple consensus prediction on the 396 domains, with automatically generated multiple sequence alignments gives an average Q3 prediction accuracy of 72.9{\%}. This is a 1{\%} improvement over PHD, which was the best single method evaluated. Segment Overlap Accuracy (SOV) is 75.4{\%} for the consensus method on the 396-protein set. The secondary structure definition method DSSP defines 8 states, but these are reduced by most authors to 3 for prediction. Application of the different published 8- to 3-state reduction methods shows variation of over 3{\%} on apparent prediction accuracy. This suggests that care should be taken to compare methods by the same reduction method. Two new sequence datasets (CB513 and CB251) are derived which are suitable for cross-validation of secondary structure prediction methods without artifacts due to internal homology. A fully automatic World Wide Web service that predicts protein secondary structure by a combination of methods is available via http://barton.ebi.ac.uk/.},
+	author = {Cuff, J a and Barton, G J},
+	doi = {10.1002/(SICI)1097-0134(19990301)34:4<508::AID-PROT10>3.0.CO;2-4 [pii]},
+	isbn = {0887-3585 (Print)$\backslash$r0887-3585 (Linking)},
+	issn = {0887-3585},
+	journal = {Proteins},
+	keywords = {Secondary structure,bench-,combination of methods,protein,secondary structure predic-,tion},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	pmid = {10081963},
+	title = {{Evaluation and improvement of multiple sequence methods for protein secondary structure prediction.}},
+	year = {1999}
+}
+
+@article{Sønderby2014,
+	abstract = {Prediction of protein secondary structure from the amino acid sequence is a classical bioinformatics problem. Common methods use feed forward neural networks or SVMs combined with a sliding window, as these models does not naturally handle sequential data. Recurrent neural networks are an generalization of the feed forward neural network that naturally handle sequential data. We use a bidirectional recurrent neural network with long short term memory cells for prediction of secondary structure and evaluate using the CB513 dataset. On the secondary structure 8-class problem we report better performance (0.674) than state of the art (0.664). Our model includes feed forward networks between the long short term memory cells, a path that can be further explored.},
+	archivePrefix = {arXiv},
+	arxivId = {1412.7828},
+	author = {S{\o}nderby, S{\o}ren Kaae and Winther, Ole},
+	eprint = {1412.7828},
+	journal = {arXiv:1412.7828},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Protein Secondary Structure Prediction with Long Short Term Memory Networks}},
+	year = {2014}
+}
+
+@misc{Berman2003,
+	abstract = {In recognition of the growing international and interdisciplinary nature of structural biology, three organizations have formed a collaboration to oversee the newly formed worldwide Protein Data Bank (wwPDB; http://www.wwpdb.org/},
+	author = {Berman, Helen and Henrick, Kim and Nakamura, Haruki},
+	booktitle = {Nature Structural Biology},
+	doi = {10.1038/nsb1203-980},
+	isbn = {1072-8368 (Print)$\backslash$n1072-8368 (Linking)},
+	issn = {10728368},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	pmid = {14634627},
+	title = {{Announcing the worldwide Protein Data Bank}},
+	year = {2003}
+}
+
+@article{Wang2003,
+	abstract = {PISCES is a public server for culling sets of protein sequences from the Protein Data Bank (PDB) by sequence identity and structural quality criteria. PISCES can provide lists culled from the entire PDB or from lists of PDB entries or chains provided by the user. The sequence identities are obtained from PSI-BLAST alignments with position-specific substitution matrices derived from the non-redundant protein sequence database. PISCES therefore provides better lists than servers that use BLAST, which is unable to identify many relationships below 40{\%} sequence identity and often overestimates sequence identity by aligning only well-conserved fragments. PDB sequences are updated weekly. PISCES can also cull non-PDB sequences provided by the user as a list of GenBank identifiers, a FASTA format file, or BLAST/PSI-BLAST output.},
+	author = {Wang, Guoli and Dunbrack, Roland L.},
+	doi = {10.1093/bioinformatics/btg224},
+	isbn = {1367-4803 (Print)$\backslash$r1367-4803 (Linking)},
+	issn = {13674803},
+	journal = {Bioinformatics},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	pmid = {12912846},
+	title = {{PISCES: A protein sequence culling server}},
+	year = {2003}
+}
+
 @article{Rost1993,
 	abstract = {We have trained a two-layered feed-forward neural network on a non-redundant data base of 130 protein chains to predict the secondary structure of water-soluble proteins. A new key aspect is the use of evolutionary information in the form of multiple sequence alignments that are used as input in place of single sequences. The inclusion of protein family information in this form increases the prediction accuracy by six to eight percentage points. A combination of three levels of networks results in an overall three state accuracy of 70.8{\%} for globular proteins (sustained performance). If four membrane protein chains are included in the evaluation, the overall accuracy drops to 70.2{\%}. The prediction is well balanced between $\alpha$-helix, $\beta$-strand and loop: 65{\%} of the observed strand residues are predicted correctly. The accuray in predicting the content of three secondary structure types is comparable to that of circular dichroism spectroscopy. The performance accuracy is verified by a sevenfold cross-validation test, and an additional test on 26 recently solved proteins. Of particular practical importance is the definition of a position-specific reliability index. For half of the residues predicted with a high level of reliability the overall accuracy increases to better than 82{\%}. A further strength of the method is the more realistic prediction of segment length. The protein family prediction method is available for testing by academic researchers via an electronic mail server.},
 	archivePrefix = {arXiv},

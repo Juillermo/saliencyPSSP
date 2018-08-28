@@ -155,7 +155,7 @@ def clustering(args):
     n_clusters = 4
 
     model = AgglomerativeClustering(n_clusters=n_clusters, linkage="average", affinity="cosine")
-    model.fit(points)
+    model.fit(points[:,5])
 
     np.save(SHEER_PATH + "cluster_labels" + str(args.num_seqs) + ".npy", model.labels_)
 
