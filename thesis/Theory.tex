@@ -1,6 +1,6 @@
 %% ----------------------------------------------------------------
 %% Theory.tex
-%% 432
+%% 5100
 %% ---------------------------------------------------------------- 
 \chapter{Theory} \label{Chapter: Theory}
 
@@ -19,475 +19,206 @@ The Deep Learning term was created in contrast to ``shallow" Machine Learning. T
 
 Multi-Layer Perceptrons (MLPs), Recurrent Neural Networks (RNNs) and Convolutional Neural Networks (CNNs) can be found among the most popular deep networks. MLPs are composed by consecutive layers of fully-connected units that pass the information in one direction, and hence are called \textit{feedforward}. RNNs differ from MLPs in that units are also allowed to have connections to themselves. Instead of having an input vector that produces an output in a \textit{one-go} fashion, RNNs store information from previous inputs and are particularly well-suited for inputs that are sequentially correlated. CNNs slide a local filter throughout the input, allowing obtaining location-invariant information. A deeper look into this kind of network is shown in the following sub-section.
 
-	\subsection{Convolutional Neural Networks}
+	\subsection{Convolutional Neural Networks} \label{sect:cnn}
+	As mentioned above, CNNs (\cite{LeCun1998}) work by having filters that operate along some spatially correlated input. Filters are small patches that hold one weight per position. They perform element-wise multiplication with a patch from the input of the same size and add them up into a single output that is located at its centre. A non-linear function is then applied to the output space in order to obtain more expressive models. By performing this operation at all possible overlapping input patches, they produce a feature map that is somehow linked to the underlying input space. Since the same small filter is applied to the whole input space, they capture features or motifs that are location-independent. Moreover, just a small set of weights is used for a arbitrarily large input space, making them much more efficient and able to build deeper networks.
 	
+	When defining a convolution operation, there are two extra parameters that need to be taken into account: \textit{padding} and \textit{strides}. Padding consists of augmenting the input space by adding margins with zero value. This is especially useful for preserving the size of the input into the feature space, which is done by adding a margin of half of the filter size. The strides define the size of the steps taken every time the filter is slid, determining the amount of overlapping in the produced feature map. Figure \ref{fig:padding} shows a simple schematic of how a filter with padding and strides works.
 	
-	"Convolutional Neural Networks (CNN) are one of the most popular deep learning architectures nowadays. They provide especially good results over other methods in image recognition and natural language processing. Among their strengths, they are able to detect features independently of their location in the input vector, and the reduced number of weights per layer favours the possibility of making the architecture remarkably deep (even more than 100 layers~\cite{He2015}).
-	
-	Instead of having fully-connected layers of neurons, CNNs perform the transformation of the data by sliding a filter (convolutional operator) over the output of the previous layer. Several convolutions may be performed in parallel on the same layer, and different layers are usually interleaved with pooling operations (average or max) that reduce the dimensionality of the data and help smoothing out local deformations.
-	In the field of bio-informatics, CNNs are useful for image processing. Another interesting application is to sequence data (proteins, DNA), where they are able to recognise specific motifs with independence of their location~\cite{Jurtz2017}." [My lit review]
-	
-	"In convolutional neural networks (CNNs) information also flows only from the input to the output, layer by layer. They are however not fully connected, but instead slide a filter (a set of weights) over the input that feeds into a different neuron in the next layer each time it is moved as illustrated in Figure 1B. The filter will thereby identify features in input irrespectively of where they appear. This concept is visualized in Figure 1C using the example of a convolutional filter detecting a motif in an amino acid sequence. Pooling such as mean pooling (averaging of nearby positions) enables the network to become invariant to small local deformations in the input. Convolutional neural networks often consist of many convolutional filters and many convolutional and pooling layers to enable the network to integrate the information from the different filters and various levels of abstraction (LeCun et al.,2015). When applied to biological problems, convolutional neural networks are ideally suited to locate motifs, for example in a protein sequence, independent of their position within the sequence." \cite{Jurtz2017}
-	
-	"Max-pooling provides a way of reducing the input or hidden layer size by selecting only the maximally activated neuron from a number of neighboring neurons. Alternatively mean pooling can be performed where the mean activation is calculated among neighboring neurons. Pooling is often used in convolutional neural networks (LeCun et al., 2015). To make a convolutional neural network independent of the input sequence length, global max-pooling can be applied where only the maximally activated neuron of the input or hidden layer is selected for each of the convolutional filters. In this way, the number of hidden neurons generated by the convolutional filters is equal to the number of filters and not influenced by the input sequence length." \cite{Jurtz2017}
-	
-	"Each convolution layer consists of four consecutive operations: 1) The convolution operation with certain kernel size. 2) The batch normalization (Ioffe and Szegedy, 2015) operation is applied to help speed up
-	the training process and acts as a regularizer. 3) The activation operation, ‘ReLU,’ (Radford et al., 2015) was used as an activation function. 4) The dropout (Srivastava et al., 2014) operation to prevent the neural network from overfitting randomly drops neurons during the deep network training process such that the network can avoid too much co-adapting." \cite{Fang2017}
-	
-	"The proposed Deep3I network (see Fig. 2) differs from the previous net- work (Li and Yu, 2016; Busia and Jaitly, 2017) in that the latter ones used residual blocks and multi-scale layer containing CNN layers with a convolution window size of 3, 7, and 9 to discover protein local and global context. Deep3I consists of stacked CNN layers, whose convolution window size is only 3. When stacked deep convolution blocks are put together, they can perform both local and global context extraction. Applying convolution on top of convolution, the sliding window will cover a wide range of protein sequences by using this hierarchical convolutional operation." \cite{Fang2017}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=1\linewidth]{cnnwang}
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{Figures/padding}
+	\caption{\textit{Convolution operation with a 3x3 filter, padding of 1x1 and strides of 2x2}. The blue cells represent the input space, the white ones are the result of padding and the green cells conform the output space. The filter operation is performed onto the shaded input cells and produce the shaded output cells. Due to the strides, the filter jumps two positions while sliding. Figure reproduced from \cite{Dumoulin2016}.}
+	\label{fig:padding}
 	\end{figure}
 	
-	"Although a fully-connected layer–where every input of interest is connected to every neuron in the layer by a distinct weight–is usually considered the simplest type of layer in a neural network, in some senses a convolutional layer can be thought of as a further simplification. Whereas fully-connected layers can be understood as an attempt to capture information from the inputs simultaneously by defining a large number of neurons with distinct weights, convolutional layers consist of filters–smaller groups of neurons– which look at segments of the input sequence at a time. Thus, a convolutional filter can be interpreted as sliding along the input sequence, reusing the same few weights on each local patch of the input. [...] The convolutional filters, CF and CF’, are defined by their width–the number of inputs examined at a time–and depth–the number of neurons in the filter. [...] one of the major benefits of convolutions compared to a the previous fixed-window, fully-connected approach: in situations where local properties of the data are critical, stacking small filters–each of which examines a small local input patch at a time–introduces the ability to learn and maintain information about sequence dependencies at different scales. [...] filters in lower layers focus on extracting information from small local contexts–in this case, of three residues–while filters in higher layers cover correlations which are more spatially spread-out in the input sequence." \cite{Busia2017}
+	A convolutional layer typically includes a few sets of filters with varying size, producing a set of feature maps. Convolutional layers stack onto each other, building more and more abstract concepts. They can also be interleaved by pooling layers that shrink the maps by applying operations to their inputs in a similar fashion as the filters. Typical pooling operations are \textit{max-pool}, which takes the maximum value in a patch, or \textit{average pooling}, which averages over all units in the patch. The whole structure can be capped by a fully-connected MLP that performs a classification task, and all the weights trained by \textit{backpropagation}.
 	
-	"Convolutional neural networks (CNN) [LeCun et al., 1998], a specific type of deep neural networks using translation-invariant convolutional kernels, can be applied to extracting local con- textual features and have proven to be effective for many natural language processing (NLP) tasks [Yih et al., 2011; Zhang et al., 2015]. Inspired by their success in text classification, in this paper, CNNs with various kernel sizes are used to extract multiscale local contexts from a protein sequence." \cite{Li2016}
+	CNNs have found an increased use in the last few years, thanks to advances in the techniques to build them that led to more sophisticated networks. They have had particular success for the tasks of image classification, object detection, text recognition, speech recognition, natural language processing, among others (\cite{Gu2017}).
 	
 	\subsection{Drawbacks of deep-learning}
 	Despite the benefits of improved performance, deep learning still finds some resistance in the broader public due to varied reasons. A First, its higher complexity imposes a steeper learning curve. Second, the lack of mature set of tools and samples due to its novelty makes its access difficult, although there has been an increasing, active community that is swiftly covering these needs. Third, the high computational times are only partially relieved by GPUs. Last, deep networks are hard to interpret and obtaining information from the middle layers renders futile. Their \textit{black box} behaviour hinders developers in both understanding where networks fail and why certain outputs are produced. This drawback has been of big concern lately, and the research community has switched the focus on developing \textit{interpretability techniques} to overcome it.
 	
+	%"Deep neural networks are highly expressive models that have recently achieved state of the art performance on speech and visual recognition tasks. While their expressiveness is the reason they succeed, it also causes them to learn uninterpretable solutions that could have counter-intuitive properties." \cite{Szegedy2013}
+	
+	%Nonlinear methods such as Deep Neural Networks (DNNs) are the gold standard for various challenging machine learning problems, e.g., image classification, natural language processing or human action recognition. Although these methods perform impressively well, they have a significant disadvantage, the lack of transparency, limiting the interpretability of the solution and thus the scope of application in practice. Especially DNNs act as black boxes due to their multilayer nonlinear structure. \cite{Montavon2017}
+	
+	%"The purported “black box” nature of neural networks is a barrier to adoption in applications where interpretability is essential." \cite{Shrikumar2017}
+	
 
 \section{Interpretability techniques}
 
-"There is a growing sense that neural networks need to be interpretable to humans. The field of neural network interpretability has formed in response to these concerns. As it matures, two major threads of research have begun to coalesce: feature visualization and attribution. 
+Due to the \textit{black box} nature of non-linear deep networks, they cannot be easily interpreted by humans. This is a significant different from previous shallow, linear models, where a look at the weights can give you already an idea of what the network is doing and which inputs are more important. Unfortunately, linear models are limited in their power and cannot tackle complex problems, so in many situations we are forced to employ deep alternatives and sacrifice the interpretability benefits. For this reason, in recent years researchers have been developing interpretability techniques to increase our understanding of deep networks. Although still not as clear as with linear models, we can get some insights of what deep networks are learning and why they take their decisions. Two main groups of techniques have emerged in the literature: \textit{feature visualization} and \textit{saliency maps}. While the first group focuses on the transformations and latent spaces that are formed in the hidden feature layers, the second group tries to detect which parts of the input had more relevance when performing a classification.
 
-\textbf{Feature visualization} answers questions about what a network — or parts of a network — are looking for by generating examples.
-
-\textbf{Attribution} (or saliency maps) studies what part of an example is responsible for the network activating a particular way." \cite{Olah2017}
-
-"One of the challenges of neural networks is understanding what exactly goes on at each layer.
-We know that after training, each layer progressively extracts higher and higher-level features of the image, until the final layer essentially makes a decision on what the image shows.
-For example, the first layer maybe looks for edges or corners.
-Intermediate layers interpret the basic features to look for overall shapes or components, like a door or a leaf.
-The final few layers assemble those into complete interpretations---these neurons activate in response to very complex things such as entire buildings or trees." \cite{Mordvintsev2015}
-
-"Deep neural networks are highly expressive models that have recently achieved state of the art performance on speech and visual recognition tasks. While their expressiveness is the reason they succeed, it also causes them to learn uninterpretable solutions that could have counter-intuitive properties." \cite{Szegedy2013}
-
-"Nonlinear methods such as Deep Neural Networks (DNNs) are the gold standard for various challenging machine learning problems, e.g., image classification, natural language processing or human action recognition. Although these methods perform impressively well, they have a significant disadvantage, the lack of transparency, limiting the interpretability of the solution and thus the scope of application in practice. Especially DNNs act as black boxes due to their multilayer nonlinear structure.
-[...]
-An interpretable classifier explains its nonlinear classification decision in terms of the inputs. For instance, in image classification problems, the classifier should not only indicate whether an image of interest belongs to a certain category or not, but also explain what structures (e.g. pixels in the image) were the basis for its decision (cf. Figure 1). This additional information helps to better assess the quality of a particular prediction, or to verify the overall reasoning ability of the trained classifier. Also, information about which pixels are relevant in a particular image, could be used for determining which region of the image should be the object of further anal- ysis. Linear models readily provide explanations in terms of input variables (see for example [19], [20]). However, because of the limited expressive power of these models, they perform poorly on complex tasks such as image recognition. Extending linear analysis techniques to more realistic nonlinear models such as deep neural networks, is therefore of high practicala relevance." \cite{Montavon2017}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{deeptaylor}\\
-\end{figure}
-
-"Networks with Rectified Linear Units (ReLUs) create nonlinearities that must be addressed. Several variants exist for handling this [448,454]. Backpropagation-based methods are a highly active area of research. Researchers are still actively identifying weaknesses [455], and new methods are being developed to address them [219,456,457]. Lundberg and Lee [458] noted that several importance scoring methods including integrated gradients and LIME could all be considered approximations to Shapely values [459], which have a long history in game theory for assigning contributions to players in cooperative games." \cite{Ching2017}
-
-"The purported “black box” nature of neural networks is a barrier to adoption in applications where interpretability is essential." \cite{Shrikumar2017}
-
-	\subsection{Feature visualization}
+	\subsection{Feature visualization}\label{sect:featvis}
 	
-	"While quantitative analyses and comparisons of such models exist, and visualizations of the first layer representations are common in the literature, one area where more work needs to be done is the qualitative analysis of representations learned beyond the first level. [...] Our aim was to explore ways of visualizing what a unit computes in an arbitrary layer of a deep network. The goal was to have this visualization in the input space (of images), to have an efficient way of computing it, and to make it as general as possible (in the sense of it being applicable to a large class of neural-network-like models)." \cite{Erhan2009}
+	Feature visualization techniques aim to understand what is learned at each layer. A typical example happens with CNNs for image recognition. There was some intuition that the base layers would look for simple patters, like edges or dots, and successive layers would build more complex patterns (eyes, leaves) and end up with full objects at upper neurons. Visualizing first layers was a common practice by then, but it could only reach the basic edge detection level, which is not as useful, as it is a feature shared by most image recognition networks, so other methods of visualization arose.
 	
-		\subsubsection{Linear combination of filters}
-		"Lee et al. (2008) showed one way of visualizing what the units in the second hidden layer of a network are responding to. They made the assumption that a unit can be characterized by the filters of the previous layer to which it is most strongly connected (i.e. whose weight to the upper unit is large in magnitude). By taking a weighted linear combination of the previous layer filters [...].
-		Lee et al. (2009) used an extended version of this method for visualizing units of the third layer [...].
-		Such a technique is simple and efficient. One disadvantage is that it is not clear how to automatically choose the appropriate number of filters to keep at each layer. [...], this method also bypasses the nonlinearities between layers" \cite{Erhan2009}
-		
-		It is also bad because there is a unbalanced overlapping that is stronger on the middle than the sides.
-		\begin{figure}
-		\centering
-		\includegraphics[width=0.7\linewidth]{Figures/overlapping}
-		\caption{}
-		\label{fig:overlapping}
-		\end{figure}
+		\subsubsection*{Linear combination of filters}
+		The most naive approach to represent higher-level filters is to stack them onto lower-level ones and get visualizations similar to the low-level filters, as performed by \cite{Lee2009}, who built higher level filters from the filters of lower layers that hold highest weights. Despite its simplicity and unprecedented results for the time, this technique presents some problems. \cite{Erhan2009} point out that the method ignores non-linearities and that ``it is not clear how to automatically choose the appropriate number of filters to keep at each layer."
 			
-		\subsubsection{Activation maximization}
-		"we look for input patterns of bounded norm which maximize the activation of a given hidden unit (The total sum of the input to the unit from the previous layer plus its bias.); since the activation function of a unit in the first layer is a linear function of the input, in the case of the first layer, this input pattern is proportional to the filter itself. [...] 
-		One simple way of doing this is to find, for a given unit, the input sample(s) (from either the training or the test set) that give rise to the highest activation of the unit. Unfortunately, this still leaves us with the problem of choosing how many samples to keep for each unit and the problem of how to “combine” these samples. Ideally, we would like to find out what these samples have in common. Furthermore, it may be that only some subsets of the input vector contribute to the high activation, and it is not easy to determine which by inspection.
-		[...]
-		maximizing the activation of a unit as an optimization problem.
+		\subsubsection*{Activation maximization}
+		Activation maximization techniques were first coined by \cite{Erhan2009} and hold a different approach than previous methods, instead of looking at filters they take the visualizations to the input space. The goal is to find inputs that maximize the activation of the specific neuron (set of neurons) that is inspected. The simplest way of doing so would be finding which samples from the training or test set achieve this and try to figure out what they have in common. This simple idea may give us some intuition about the unit, but it is barely as good with networks that are trained in other tasks than image recognition, as is may be much harder to spot the similarities. Besides, it is not straightforward how to obtain the key common features of the images (apart from intuition) and we do not even know how many samples should be gathered per unit.
+		
+		\cite{Erhan2009} came out with a more principled way of finding maximally activating samples outside of the dataset. They proposed to artificially produce the samples by starting with random noise and tweaking the input space in the direction that increases the activation via \textit{gradient ascent}, while keeping the norm constant. Since most neural networks learn by backpropagation, they are already differentiable and the calculation of the gradients can be recycled for this technique. Formally, we can define the optimization problem as
 		\begin{equation}
-		x* = arg \max\limits_{x \; s.t. ||x||=\rho} h_{ij}(\theta,x)
+		x^* = arg \max\limits_{x \; s.t. ||x||=\rho} h_{ij}(\theta,x) \; ,
+		\label{eq:opt}
 		\end{equation}
-		This is, in general, a non-convex optimization problem. But it is a problem for which we can at least try to find a local minimum. This can be done most easily by performing simple gradient ascent in the input space [...] 
-		the unit can then be characterized by the minimum or set of minima found. In the latter case, one can either average the results, or choose the one which maximizes the activation, or display all the local minima obtained to characterize that unit.
-		This optimization technique (we will call it “activation maximization”) does involve a choice of hyperparameters: the learning rate and a stopping criterion" \cite{Erhan2009}
+		where $x$ is an input vector, $h_{ij}$ the activation unit we want to visualize, and $x^*$ the maximally activating sample. A visual instance of this process can be seen in Figure~\ref{fig:randopt}.
 		
-		"the response of an internal unit to input images, as a function in image space, appears to be unimodal, or at least that the maximum is found reliably and consistently for all the random initializations tested. This is interesting because finding this dominant mode is relatively easy, and displaying it then provides a good characterization of what the unit does." \cite{Erhan2009}
-		
-		"We tested the activation maximization procedure on image patches of 20 × 20 pixels (instead of 12×12) and found that the optimization does not converge to a single global minimum. Moreover, the input distribution that is sampled with the units clamped to 1 has many different modes and its expectation is not meaningful or interpretable any-more. [...] 
-		It is perhaps unrealistic to expect that as we scale the datasets to larger and larger images, one could still find a simple representation of a higher layer unit. We should note, however, that there is a recent trend of developing convolutional versions of deep architectures (Kavukcuoglu et al., 2009; Lee et al., 2009; Desjardins \& Bengio, 2008): it is likely that one will be able to apply the same techniques in that scenario and still be able to recover good visualizations, even with large inputs." \cite{Erhan2009}
-		
-		"One way to visualize what goes on is to turn the network upside down and ask it to enhance an input image in such a way as to elicit a particular interpretation. Say you want to know what sort of image would result in “Banana.” Start with an image full of random noise, then gradually tweak the image towards what the neural net considers a banana (see related work in [1], [2], [3], [4]). By itself, that doesn’t work very well, but it does if we impose a prior constraint that the image should have similar statistics to natural images, such as neighboring pixels needing to be correlated." \cite{Mordvintsev2015}
-		
-		"Neural networks are, generally speaking, differentiable with respect to their inputs. If we want to find out what kind of input would cause a certain behavior --- whether that's an internal neuron firing or the final output behavior --- we can use derivatives to iteratively tweak the input towards that goal [3]." \cite{Olah2017}
-		\begin{figure}[h]
+		\begin{figure}
 			\centering
-			\includegraphics[width=1\linewidth]{randopt}
+			\includegraphics[width=0.8\linewidth]{randopt}
+			\caption{\textit{Activation maximization method.} The process starts with random noise and performs gradient ascent to find the input sample that maximizes the activation of a unit (or a channel, in this case). Figure reproduced from \cite{Olah2017}.}
+			\label{fig:randopt}
 		\end{figure}
 		
-		" Optimization can give us an example input that causes the desired behavior --- but why bother with that? Couldn't we just look through the dataset for examples that cause the desired behavior?
-		
-		It turns out that optimization approach can be a powerful way to understand what a model is really looking for, because it separates the things causing behavior from things that merely correlate with the causes. [...] A neuron may not be detecting what you initially thought. Optimization also has the advantage of ﬂexibility. For example, if we want to study how neurons jointly represent information, we can easily ask how a particular example would need to be different for an additional neuron to activate. This ﬂexibility can also be helpful in visualizing how features evolve as the network trains. If we were limited to understanding the model on the ﬁxed examples in our dataset, topics like these ones would be much harder to explore. " \cite{Olah2017}
-		\begin{figure}[h]
+		This technique brings the benefit of keeping the most relevant bits that are captured by the unit and discard all non-relevant information. It can also be easily applied to group of neurons, such as channels, layers or other arbitrary collections, and it can be applied at different stages of the training process in order to visualize how the learning evolves. However, it also has some drawbacks: the optimization function is non-convex and the algorithm can arrive to different local minima, so special techniques need to be added to find all the relevant ones (\cite{Nguyen2016,Olah2017}); the gradient ascent requires setting a stopping criterion and a learning rate and the process can produce highly unrealistic samples. This last issue could be potentially mitigated by the introduction of duly prior constrains, such as ``neighboring pixels needing to be correlated" in natural images (\cite{Mordvintsev2015}). \cite{Montavon2018} materialize the inclusion of this prior knowledge in an \textit{expert term} in Equation \ref{eq:opt} and argue that its determination is crucial in the resulting sample, and suggest seeking slightly under-fitting expert terms.	
+		\begin{figure}
 			\centering
-			\includegraphics[width=1\linewidth]{optimization}
+			\includegraphics[width=0.7\linewidth]{optimization}
+			\caption{\textit{Maximally activating samples from training/test set (above) and activation maximization outcome (below) for four different units.} A single activation maximization local minimum does not capture all the variety of the neuron, so a multi-faceted set of them should be sought. Figure reproduced from \cite{Olah2017}.}
+			\label{optimization}
 		\end{figure}
 	
-	\subsection{Saliency maps}
-	"Bach et al. [22] have introduced the concept of pixel-wise decomposition of a classification decision, and how such decomposition can be achieved either by Taylor decomposition, or by a relevance propagation algorithm. Specifically, the authors distinguish between (1) functional approaches that view the neural network as a function and disregard its topology, and (2) message passing approaches, where the decomposition stems from a simple propagation rule applied uniformly to all neurons of the deep network.
-	[...]
-	the methods proposed in [27], [28] do not explain the decision of a classifier but rather perform sensitivity analysis by computing the gradient of the decision function. This results in an analysis of variations of that function, without however seeking to provide a full explanation why a certain data point has been predicted in a certain way. Specifically, the gradient of a function does not contain information on the saliency of a feature in the data to which the function is applied. Simonyan et al. [24] incorporate saliency information by multiplying the gradient by the actual data point.
-	The method proposed by Zeiler and Fergus [21] was designed to visualize and understand the features of a convolutional neural network with max-pooling and rectified linear units. The method performs a backpropagation pass on the network, where a set of rules is applied uniformly to all layers of the network, resulting in an assignment of values onto pixels. The method however does not aim to attribute a defined meaning to the assigned pixel values, except for the fact that they should form a visually interpretable pat- tern. [22] proposed a layer-wise propagation method where the backpropagated signal is interpreted as relevance, and obeys a conservation property. The proposed propagation rules were designed according to this property, and were shown quantitatively to better support the classification decision [25]. However, the practical choice of propagation rules among all possible ones was mainly heuristic and lacked a strong theoretical justification" \cite{Montavon2017}
 	
-	"Shrikumar et al. and Kindermans et al. (Shrikumar et al., 2016; Kindermans et al., 2016) showed that absent modifications to deal with numerical stability, the original LRP rules were equivalent within a scaling factor to an elementwise product between the saliency maps of Simonyan et al. and the input (in other words, gradient × input)." \cite{Shrikumar2017}
+	\subsection{Saliency maps (or how to assign importance scores)}
 	
-	"When we assign blame to a certain cause we implicitly consider the absence of the cause as a base-line for comparing outcomes. In a deep network, we model the absence using a single baseline input. For most deep networks, a natural baseline exists in the input space where the prediction is neutral. For instance, in object recognition networks, it is the black image. The need for a baseline has	also been pointed out by prior work on attribution (Shrikumar et al., 2016; Binder et al., 2016)." \cite{Sundararajan2017}
-		
-		\subsubsection{Perturbation-based forward propagation approaches (sensitivity analysis)}
-		"To further test the robustness of the activation maximization method, we perform a sensitivity analysis in order to test whether the units are selective to these patterns found by the optimization routine, and whether these patterns strongly activate other units as well. The figure on the right shows the post-sigmoidal activation of unit j (columns) when the input to the network is the “optimal” pattern i (rows), found by our gradient procedure for unit i, normalized across columns in order to eliminate the effect of units that are activated for very many patterns in general. The strong values on the diagonal suggest that the results of the optimization have uncovered patterns that are mostly specific to a particular unit." \cite{Erhan2009}
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width=0.2\linewidth]{sensitivity}
-		\end{figure}
-		
-		"Simonyan et al. [24], however, demonstrated that DeConvNets can be interpreted as a sensitivity analysis of the network input/output relation." \cite{Mahendran2015}
-		
-		"the methods proposed in [27], [28] do not explain the decision of a classifier but rather perform sensitivity analysis by computing the gradient of the decision function. This results in an analysis of variations of that function, without however seeking to provide a full explanation why a certain data point has been predicted in a certain way. Specifically, the gradient of a function does not contain information on the saliency of a feature in the data to which the function is applied. Simonyan et al. [24] incorporate saliency information by multiplying the gradient by the actual data point." \cite{Montavon2017}
-		
-		"Zeiler and Fergus [36], who backtrack the network computations to identify which image patches are responsible for certain neural activations" \cite{Mahendran2015}
-		
-		"These approaches make perturbations to individual inputs or neurons and observe the impact on later neurons in the network. Zeiler \& Fergus (Zeiler \& Fergus, 2013) occluded different segments of an input image and visualized the change in the activations of later layers. “In-silico muta- genesis” (Zhou \& Troyanskaya, 2015) introduced virtual mutations at individual positions in a genomic sequence and quantified the their impact on the output. Zintgraf et al. (Zintgraf et al., 2017) proposed a clever strategy for analyzing the difference in a prediction after marginalizing over each input patch. However, such methods can be com- putationally inefficient as each perturbation requires a sep- arate forward propagation through the network. They may also underestimate the importance of features that have sat- urated their contribution to the output." \cite{Shrikumar2017}
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width=0.6\linewidth]{saturation}
-		\end{figure}
+	Saliency maps are a series of techniques that are developed in order to reveal which parts of an input sample are mainly responsible for the output decision that the network makes. They can be a powerful tool both for spotting spurious rules learned by the system (in cases where we can easily judge whether a result is wrong) and learning more about the underlying processes (when we cannot explain the reason of a result, as it is common in biology). An example of a saliency map visualization can be seen in Figure \ref{fig:deeptaylor}.
+	
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/deeptaylor}
+	\caption{\textit{Basic sample of a saliency map.} Here, the network is detecting the digit zero (on the left) and the pixels that contributed to the classification are highlighted (on the right). Image reproduced form \cite{Montavon2017}.}
+	\label{fig:deeptaylor}
+	\end{figure}
 
-		\subsubsection{Backpropagation-based approaches}
-		"In contrast to perturbation methods, backpropagation approaches are computationally efficient as they propagate an importance signal from the output neuron backwards through the layers towards the input in a single pass.
-		DeepLIFT belongs to this family of approaches.
-		[...]
+	
+	The most simple approach to achieve this goal is performing a sensitivity analysis, i.e. making modifications of the input sample and register how variations in each input (or combinations of them) affect the output of the system. These techniques can be applied for other units different from the post-softmax to give ideas of intermediate layers as well. The set of techniques that perform it can be grouped by the name \textit{perturbation-based approaches} and they all face the same problem: when the input space is moderately big, exploring a decent amount of variations and combinations is intractable, or conspicuously computationally expensive at the least. A second concern relates to its inability to capture the importance of neurons that are already saturated. One example of such methods specifically applied to CNNs are DeConvNets (\cite{Zeiler2014}), a machine that assigns scores to certain patches of the input image based on their contribution.
+	
+	A second series of approaches that mostly overcome the computational problems are based in back-propagation. The most intuitive idea behind them is that the gradient of an input already tells you its sensitivity (how much the output will change from a small change in the input) and it can be calculated on a single back-prop operation instead of performing a profligate number of feed-forward passings with small variations in the inputs (\cite{Shrikumar2017}). It can be thought as a linear approximation of the function around the sample point $x_0$ by applying first-order Taylor expansion, as introduced by \cite{Simonyan2014}:
+	\begin{align}
+	f(x) \approx w x + b \; , \nonumber \\
+	w = \left. \frac{\partial f}{\partial x} \right|_{x_0} \; .
+	\end{align}
 		
-		\textbf{GRADIENTS, DECONVOLUTIONAL NETWORKS AND GUIDED BACKPROPAGATION}
-		Simonyan et al. \cite{Simonyan2014} proposed using the gradient of the output w.r.t. pixels of an input image to compute a “saliency map” of the image in the context of image classification tasks. The authors showed that this was similar to deconvolutional networks \cite{Zeiler2014} except for the handling of the nonlinearity at rectified linear units (ReLUs). When backpropagating importance using gradients, the gradient coming into a ReLU during the backward pass is zero’d out if the input to the ReLU during the forward pass is negative. By contrast, when backpropagating an importance signal in deconvolutional networks, the importance signal coming into a ReLU during the backward pass is zero’d out if and only if it is neg-ative, with no regard to sign of the input to the ReLU during the forward pass.
-		Springenberg et al., (Springenberg et al., 2014) combined these two approaches into Guided Backpropagation, which zero’s out the importance signal at a ReLU if either the input to the ReLU during the for-ward pass is negative or the importance signal during the backward pass is negative. Guided Backpropagation can be thought of as equivalent to computing gradients, with the caveat that any gradients that become negative during the backward pass are discarded at ReLUs. Due to the zeroing out of negative gradients, both guided backpropagation and deconvolutional networks can fail to highlight inputs that contribute negatively to the output. Additionally, none of the three approaches would address the saturation problem illustrated in Fig. 1, as the gradient of y w.r.t. h is negative (causing Guided Backprop and deconvolutional networks to assign zero importance), and the gradient of h w.r.t both i1 and i2 is zero when i1 + i2 > 1 (causing both gradients and Guided Backprop to be zero). Discontinuities in the gradients can also cause undesirable artifacts." \cite{Shrikumar2017}
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width=0.6\linewidth]{discontinuity}
-		\end{figure}
-		
-		"Gradients violate Sensitivity(a): For a concrete example, consider a one variable, one ReLU network, f(x) = 1 − ReLU(1−x). Suppose the baseline is x = 0 and the input is x = 2. The function changes from 0 to 1, but because f be- comes flat at x = 1, the gradient method gives attribution of 0 to x. Intuitively, gradients break Sensitivity because the prediction function may flatten at the input and thus have zero gradient despite the function value at the input being different from that at the baseline. This phenomenon has been reported in previous work (Shrikumar et al., 2016)." \cite{Sundararajan2017}
-		
-		"A second set of approaches involve back-propagating the final prediction score through each layer of the network down to the individual features. These include DeepLift, Layer-wise relevance propagation (LRP), Deconvolutional networks (DeConvNets), and Guided back-propagation. These methods differ in the specific backpropagation logic for various activation functions (e.g., ReLU, MaxPool, etc.).
-		[...]
-		Unfortunately, Deconvolution networks (DeConvNets), and Guided back-propagation violate Sensitivity(a). This is because these methods back-propogate through a ReLU node only if the ReLU is turned on at the input. This makes the method similar to gradients, in that, the attribution is zero for features with zero gradient at the input despite a non-zero gradient at the baseline." \cite{Sundararajan2017}
-		
-		"Two networks are functionally equivalent if their outputs are equal for all inputs, despite having very different implementations. Attribution methods should satisfy Implementation Invariance, i.e., the attributions are always identical for two functionally equivalent networks.
-		[...]
-		gradients are invariant to implementation. In fact, the chain-rule for gradients ∂f/∂g = ∂f ∂h · ∂h ∂g is essentially about implementation invariance." \cite{Sundararajan2017}
-		
-		\textbf{LAYERWISE RELEVANCE PROPAGATION AND GRADIENT × INPUT}
-			"Bach et al. (Bach et al., 2015) proposed an approach for propagating importance scores called Layerwise Relevance Propagation (LRP).
-			
-			Shrikumar et al. and Kindermans et al. (Shrikumar et al., 2016; Kindermans et al., 2016) showed that absent modifications to deal with numerical stability, the original LRP rules were equivalent within a scaling factor to an elementwise product between the saliency maps of Simonyan et al. and the input (in other words, gradient × input).
-			[...]
-			While gradient × input is often preferable to gradients alone as it leverages the sign and strength of the input, it still does not address the saturation problem in Fig. 1 or the thresholding artifact in Fig. 2." \cite{Shrikumar2017}
-			
-			"Simonyan et al. [24] incorporate saliency information by multiplying the gradient by the actual data point." \cite{Montavon2017}
-			
-			"Gradients. For linear models, ML practitioners regularly inspect the products of the model coefficients and the feature values in order to debug predictions. Gradients (of the output with respect to the input) is a natural analog of the model coefficients for a deep network, and therefore the product of the gradient and feature values is a reasonable starting point for an attribution method (Baehrens et al., 2010; Simonyan et al., 2013); see the third column of Figure 2 for examples. The problem with gradients is that they break sensitivity, a property that all attribution methods should satisfy.
-			[...]
-			Practically, the lack of sensitivity causes gradients to focus on irrelevant features" \cite{Sundararajan2017}
-			
-		\textbf{INTEGRATED GRADIENTS}
-			"Instead of computing the gradients at only the current value of the input, one can integrate the gradients as the inputs are scaled up from some starting value (eg: all zeros) to their current value (Sundararajan et al., 2016). This addressess the saturation and thresholding problems of Fig. 1 and Fig. 2, but numerically obtaining high-quality integrals adds computational overhead. Further, this approach can still give highly misleading results (see Section 3.4.3)." \cite{Shrikumar2017}
-		
-		\textbf{DeepLIFT}
-			"Our approach is unique in two regards: first, it frames the question of importance in terms of differences from a ‘reference’ state, where the ‘reference’ is chosen by the user according to what is appropriate for the problem at hand. In contrast to most gradient-based methods, using a difference-from-reference allows DeepLIFT to propagate an importance signal even in situations where the gradient is zero and avoids artifacts caused by discontinuities in the gradient. Second, by optionally giving separate consideration to the effects of positive and negative contributions at nonlinearities, DeepLIFT can reveal dependencies missed by other approaches. As DeepLIFT scores are com- puted using a backpropagation-like algorithm, they can be obtained efficiently in a single backward pass through the network after a prediction has been made." \cite{Shrikumar2017}
-			
-			"We now discuss two axioms (desirable characteristics) for attribution methods. We find that other feature attribution methods in literature break at least one of the two axioms. These methods include DeepLift (Shrikumar et al., 2016; 2017), Layer-wise relevance propagation (LRP) (Binder et al., 2016), Deconvolutional networks \cite{Zeiler2014}, and Guided back-propagation (Springenberg et al., 2014)." \cite{Sundararajan2017}
-			
-			"Methods like DeepLift and LRP tackle the Sensitivity issue by employing a baseline, and in some sense try to compute “discrete gradients” instead of (instantaeneous) gradients at the input. (The two methods differ in the specifics of how they compute the discrete gradient). But the idea is that a large, discrete step will avoid flat regions, avoiding a break- age of sensitivity.
-			[...]
-			Methods like LRP and DeepLift replace gradients with discrete gradients and still use a modified form of backpropagation to compose discrete gradients into attributions. Unfortunately, the chain rule does not hold for discrete gra- dients in general. Formally f(x1)−f(x0) / g(x1)−g(x0) != f(x1)−f(x0) / h(x1)−h(x0) · h(x1)−h(x0) / g(x1)−g(x0) , and therefore these methods fail to satisfy implementation invariance.
-			If an attribution method fails to satisfy Implementation Invariance, the attributions are potentially sensitive to unimportant aspects of the models." \cite{Sundararajan2017}
-		
-		\textbf{Deep Taylor Decomposition}
-			"The main goal of this paper is to reconcile the functional and rule-based approaches for obtaining these decompositions, in a similar way to the error backpropagation algorithm [23] that also has a functional and a message passing interpretation. We call the resulting framework deep Taylor decomposition. This new technique seeks to replace the analytically intractable standard Taylor decomposition problem by a multitude of simpler analytically tractable Taylor decompositions—one per neuron.
-			[...]
-			Our method is based on deep Taylor decomposition and efficiently utilizes the structure of the network by backpropagating the explanations from the output to the input layer.
-			[...]
-			In this paper, we focus instead on the interpretation of the prediction of individual data points, for which portions of the trained model may either be relevant or not relevant.
-			[...]
-			The classification decision is first decomposed in terms of contributions R1, R2, R3 of respective hidden neurons x1, x2, x3, and then, the contribution of each hidden neuron is independently redistributed onto the pixels, leading to a relevance map (or heatmap) in the pixel space, that explains the classification “0”.
-			A main result of this work is the observation that application
-			of deep Taylor decomposition to neural networks used for image classification, yields rules that are similar to those proposed by [22] (the αβ-rule and the ?-rule), but with specific instantiations of their hyperparameters, previously set heuristically." \cite{Montavon2017}
-
+	Some other similar methods were developed, with their main differences residing in the treatment of ReLUs in the back-propagation process, such as \textit{guided backpropagation} (\cite{Springenberg2014}). However, they do not give solid explanations for assigning importance since they do not hold basic principles such as conservation (all the importance scores at any layer should sum up to the output score). This principle was later introduced by \cite{Bach2015} with the \textit{Layer-wise Relevance Propagation} (LRP) method, although it has been later discussed that the rules it follows are mainly heuristic and more principled ways of choosing the rules have been suggested (\cite{Montavon2017}). It was later proven that these rules were basically equivalent to having element-wise multiplication of the original saliency maps by the input itself (\cite{Shrikumar2016}). Finally, a last wave of methods propose enhanced method by including a reference point and hence accomplishing a proper Taylor approximation. Main examples are \textit{integrated gradients} (\cite{Sundararajan2017}), Deep Taylor Decomposition (\cite{Montavon2017}), and DeepLIFT (\cite{Shrikumar2017}). They overcome problems of previous methods such as saturation or discontinuities in the gradients.
 
 \section{Deep Learning in biology}
 
-"The field of biology has gone through major changes in the past decades thanks to new technologies that allow measuring and harvesting increasing amounts of data. Despite its obvious potential for pushing forward our knowledge, such data comes with intrinsic difficulties for its analysis; namely (i) \textbf{extremely bulky datasets} that require highly efficient algorithms and machines, and long processing times; (ii) \textbf{high-dimensionality}, that hinders biologists from getting direct insights from the data distributions, and brings the so-called \textit{curse of dimensionality} to stage; (iii)~\textbf{complicated interactions} and data dependencies, due to the high complexity of processes such as gene regulatory networks or protein folding and binding; (iv)~\textbf{heterogeneous and multi-platform resources}, imposing difficulties at integrating data from different sources in the same mathematical model.
-
-In order to carry analysis on the data, biologists traditionally utilised machine learning algorithms and statistical models, performing data simplification (e.g. clustering, dimensionality reduction), prediction, classification, or modelling. They not only offer the intrinsic benefits of their outcome, but also great insight on the underlying bio-chemical processes by inspection of the learned parameters that the models produce. Despite their (sometimes moderate) success, these methods usually depend on key prior information for achieving their goals, usually coming from online records of annotations related to the data at task, which are not always exhaustive enough. They also bring the drawback of requiring expertise in the field for the careful selection of the right features~\cite{Libbrecht2015}.
-
-This scenario is seeing a major improvement with the recent explosion of the set of techniques under the label \textit{deep learning}. Such algorithms differ from \textit{shallow} machine learning methods in the sense that they include more layers of non-linearities, providing stronger modelling power for complex and hierarchical relations in the data. Such property allows them to cope with some of the afore-mentioned problems, as (i) they are able to learn \textit{intermediate key features} from the data on their own, freeing biologists from the tedious process of hand-crafting them; (ii) they are also good at dealing with high-dimensionality; and (iii) their higher generalization properties make them more suitable for integrating heterogeneous sources." [My lit review]
-
-"slowly spreading into biology and bioinformatics. One potential cause of this is the lack of examples or code templates tailored to bioinformatics problems combined with the notion that the implementation and training of deep learning methods is complicated and computationally challenging" \cite{Jurtz2017}
-
-% TODO: Grab just some examples example of each of this subsubsections
-"
-\subsubsection{Genomics}
-The DNA encodes the information about all the proteins that the cells need, alongside with purely regulatory sections, or parts that appear to have no purpose. New techniques in genome sequencing, such as \textit{high-throughput sequencing~(HTS)}, have provided unprecedented quantities of genomic data at ever-lower costs. The availability of huge amounts of data makes deep learning an appropriate tool for helping in the task.
-
-Due to the sequential nature of the data, RNNs are especially suited for structural annotations of the DNA chain. CNNs can also be of help at detecting specific motifs. Successful applications of deep learning in the field of genomics include the detection of non-coding regulatory fragments~\cite{Zhou2015}, or protein binding site prediction~\cite{Alipanahi2015}. Deep learning is also useful for \textit{metagenomics}, i.e. the analysis of microbial genome from specific environments, where Ditzler \textit{et al.} showed that in spite of having similar accuracy than shallow MLPs, it provided useful hierarchical representations of the data~\cite{Ditzler2015}.
-
-\subsubsection{Transcriptomics}
-Transciptomics refers to the study of the processes through which specific DNA sequences are copied into different types of RNA strands: \textit{messenger RNA} (mRNA), \textit{long non-coding RNA} (lncRNA), and \textit{microRNA} (miRNA). Deep learning techniques have been applied for predicting splicing sites in mRNA (5\% AUC improvement~\cite{Leung2014}), monitoring gene expression on images (5\% AUC improvement with CNNs~\cite{Zeng2015}), classifying lncRNA (3,4\% higher accuracy~\cite{Fan2015}), or identifying \textit{expression quantitative trait loci (eQTL)}(with few points improvement in AUC over baseline methods~\cite{Witteveen2014}).
-
-\subsubsection{Proteomics}
-Proteomics is the large-scale study of proteins, usually looking at the scope of the entire collection of proteins that an organism produces. Although the data from this field is still not enough for consistent use of deep learning methods, some unsupervised techniques have helped building hierarchical representations of the interaction of protein networks~\cite{Chen2015}.
-
-\subsubsection{Structural biology}
-Structural biology applications include protein folding and drug design. Proteins are the basic building unit of cells. They are formed by chains of amino-acids that fold into different shapes, which will determine the function that the protein performs. Modifications on the structure can alter their dynamics and influence the appearing of the diseases. Techniques for 3D measuring of their shapes are hard and costly, so it has only been done in very small sample sets. Deep learning can be used as an alternative for predicting the structure purely from the protein sequence. An intermediate typical phase consists on the prediction of the \textit{secondary structure}, which is whether the specific sections of the protein assemble into an $\alpha$-helix or a $\beta$-sheet (a few points improvement  over previous methods~\cite{Jurtz2017}). This annotation task is particularly well suited for RNNs, as explained before.
-
-Other problem addressed by deep-learning include the classification of intrinsic disordered proteins (IDPs)~\cite{Wang2015}, or predicting binding behaviour for RNA-binding proteins (few points AUC improvement over baseline methods~\cite{Zhang2015}).
-
-\subsubsection{Multiomics}
-Multiomics refers to the combination of data and problems for the different omics fields, which can lead to more powerful models as they include interactions between the different processes of regulatory networks. Deep learning is especially well suited for performing this sort of study thanks to its capability of assimilating heterogeneous data and learning highly complex interactions. One particular example of this use can be found in epigenomics, which are the processes by which gene expression is changing without any modification of the DNA (5\% to 10\% improvement in AUC over previous methods~\cite{Zhou2015}). This requires the inclusion of data from genes, RNA, methylation, and histone modifications into the same model. Another example is the detection and clustering of cancer diseases from multiple source of data~\cite{Liang2015}.
-" [My lit review]
+Recent advances in measuring techniques have produced vast amounts of biological data, which usually is highly dimensional and reflects incredibly complex underlying processes. Such settings demand more powerful models, and deep learning has found there a natural field in which to be applied. Among the most prominent application domains in which it has been successfully implemented are images (bioimaging, medical imaging), brain/body machine interfaces (\textit{BMI}s) and \textit{omics} (\cite{Mahmud2018}). The omics term includes research of sequence data at the cellular level, namely the DNA (\textit{genomics}), RNA (\textit{transcriptomics}), proteins (\textit{proteomics}), and their interaction (\textit{multiomics}). Sequential data is particularly interesting for deep learning, since it is one of the kind of problems in which it excels, particularly with the application of RNNs and CNNs. They have been widely employed for structural annotation of the DNA chain (\cite{Jones2017}), protein classification (\cite{Min2017}), splicing code (\cite{Mamoshina2016}) and transcription factors (\cite{Ching2017}), among others.
 
 	\subsection{CNNs on biological sequence data}
-	DeepCNF uses 2D convolutions with filters of size window times feature vector size.
+	As it has been mentioned in Section \ref{sect:cnn}, CNNs are mostly useful on data which is spatially correlated, which is the case of sequential data. Some reasons for this is that they can accept input sequences of arbitrary size and they are able to capture motifs in them irrespectively of where the are located (\cite{Jurtz2017}). While applying convolutions to 2D input images is a well-known task, it is not as common to apply to one-dimensional data. It is nevertheless fairly intuitive. Filters cover the whole depth (channels) of the data and have variable width depending on the number of neighbouring positions that we want them to capture. Filters slide only in the direction of the sequence, with possibilities of different strides and padding, as in normal 2D convolution. Many simultaneous convolutions operations can be performed at any layer with varying parameters in order to obtain a set of feature maps (sequences) that will serve as input for the next layer. While signals as inputs contain real-value data, categorical sequences (such as DNA or amino-acid chains) are presented in their one-hot version, defining the depth of protein chains as 21 (different possible amino-acids) and four for DNA and RNA (the four bases). Some extra depth can be added with additional known features of the element, such as solvent accessibility or \textit{pssm} values in the case of amino-acids.
+	
+	There are two main ways in which to apply convolutions to sequence data depending on the problem: structural annotation or sequence classification. The first kind of problems requires the network to assign a specific label or value to each of the positions in the input sequence and therefore the network has to maintain the input length throughout the convolution layers, which can be done with half padding and strides of one. The second problem produces a single output (classification) for a whole sequence. Doing so requires a shrinking process that cannot be achieved by normal means of convolution and pooling operations, since they have fixed reduction sizes and input sequences may have varying lengths. The final step reduction can be achieved by a global max-pooling that retrieves the highest value of the sequence feature map at a single channel, therefore producing a fixed-size vector that can be fed to a soft-max layer (\cite{Jurtz2017}).
 
-	"Amino Acids C, A, D, A, D are encoded as ‘one-hot’ vectors with a 1 at the position corresponding to the amino acid type (A, C or D), and zero otherwise. A filter (blue) is slid over the input sequence. The filter here has a length of three amino acids. At each position the filter has a preference for different amino acid types. The filter output is calculated by taking the sum of the element-wise product of the input and the filter position-specific weights. Each time the filter is moved, it feeds into a different hidden neuron in the hidden layer, here visualized in the f1 row. Multiple filters will give multiple inputs to the next layer {f1, f2, f3, ...}. A filter can be visualized as a sequence motif. This helps to understand which amino acids the filter prefers at each sequence position. When the filter is slid over the input sequence, it functions as motif detector and becomes activated when the input matches its preference. For example, this filter has negative output for sub-sequences ADC and positive for DCD." \cite{Jurtz2017}
-	\begin{figure}[h]
+	%\begin{figure}[h]
+	%	\centering
+	%	\includegraphics[width=0.7\linewidth]{cnnbio}
+	%\end{figure}
+
+	\subsection{Interpretability techniques on biological sequence problems}
+	The bio-medical field is one with special pressures into having interpretable systems. On one hand, the costs of false positive-negatives is expensive when it comes to diagnosis, and finding spurious rule is of particular importance. On the other hand, inspecting what networks are learning can provide with valuable information about the underlying biological processes. Unlike with image classification processes, sequence properties relies sheerly on the arrange of the limited number of possible elements, and being able to find which motifs lead to certain outputs is of particular relevance. Apart from this, having non-interpretable models can impinge the trust of experts in the biomedical field and deter them for using the more advanced deep learning versions since they are not able to understand them.
+
+		\subsubsection*{Feature visualization methods}
+		As discussed in Section \ref{sect:featvis}, a first approximation to visualize hidden features is to inspect the filters of the first layer of a CNN. This gives you a first idea of which basic features the network is building, but is unable to go further than that, so it remains relevant only for shallow structures. When it comes to biological sequential data, an efficient way to convey the information that is also familiar for biology experts are the \textit{Seq2Logo} charts (\cite{Thomsen2012}). 1D~convolutional filters can be represented in this way by pairing up their values with the amino-acid of the one-hot row they cover. Two samples of such representations can be seen in Figure \ref{fig:seqlogo}.
+		
+		\begin{figure}
 		\centering
-		\includegraphics[width=0.7\linewidth]{cnnbio}
-	\end{figure}
+		\includegraphics[width=0.7\linewidth]{Figures/seqlogo}
+		\caption{\textit{Two first-layer filters for a protein sequence problem shown as Seq2Logo.} The $x$ axis represents the span of the filters, width 10 in both filters presented here. While the left filter captures the appearance of two specific amino-acids anywhere around, the right one is more restrictive in terms of the position the must apper at. Figure reproduced from \cite{Fontal2017}.}
+		\label{fig:seqlogo}
+		\end{figure}
 		
-	"Convolutional Neural Networks (CNNs) have been used to overcome the limitations of windowing by applying layers of shifting convolutional kernels across the input sequence (Wang et al., 2016). The addition of each subsequent convolutional layer includes a window of information from the layer prior. This has the effect of growing the size of the window being applied to the input data, each time a layer is added. However, even though the effective window size increases at each layer, the total window is still finite and limited. DeepCNF for example uses five CNN layers, each with a window size of 11 (five on either side), this is only able to capture information from residues plus or minus 25 sequence positions away." \cite{Heffernan2017}
-
-	\subsection{Interpretability techniques on biological problems}
-	"In recent years, there has been an explosion of deep learning models which have lead to groundbreaking results in many fields such as computer vision[13], natural language processing[25], and computational biology [2, 19, 27, 11, 14, 22]. However, although these models have proven to be very accurate, they have widely been viewed as “black boxes” due to their complexity, making them hard to understand. This is particularly unfavorable in the biomedical domain, where understanding a model’s predictions is extremely important for doctors and researchers trying to use the model.
-	 [...]
-	While making accurate predictions is important in biomedical tasks, it is equally important to understand why models make their predictions. Accurate, but uninterpretable models are often very slow to emerge in practice due to the inability to understand their predictions, making biomedical domain experts reluctant to use them. Consequently, we aim to obtain a better understanding of why certain models work better than others, and investigate how they make their predictions by introducing several visualization techniques.
-	[...]
-	The main difference between our work and previous works on images and natural language is that instead of trying to understand the DNNs given human understanding of such human perception tasks, we attempt to uncover critical signals in DNA sequences given our understanding of DNNs." \cite{Lanchantin2016}
+		Some works have gone further by applying activation maximization techniques as well. \cite{Fontal2017} attempted to apply it for protein sub-cellular localization prediction by applying gradient ascent on the pre-softmax units with a L2 regularization parameter. \cite{Lanchantin2016} applied it to TF binding-site classification of genetic sequences with the same method (applied to post-softmax) and found that 30\% of them could be found in known motif databases. As another means of visualizing hidden layer features, \cite{Lanchantin2016} also included temporal output scores for the RNNs models.
 	
-	% TODO: Talk briefly about Fontal, Lanchantin, and the other related papers.
+		\subsubsection*{Saliency maps}
+		As a simplified version of saliency maps, \cite{Alipanahi2015} and \cite{Quang2016} spotted the segment in the input genetic sequence that had highest activation of the first-layer filters and compared them to known motifs. This approach only makes sense as long as the network has a single layer, but cannot be applied to deeper networks.
+		
+		\cite{Alipanahi2015} and \cite{Zhou2015} showed how genetic mutations affected the output, which is a natural way of performing perturbation-based approaches for the field. \cite{Umarov2017,Fontal2017} substituted small windows of the sequence ---by random genetic code and the general amino-acid X, respectively--- and assessed the differences in the output along the sequence by sliding these windows. \cite{Kelley2016} introduced in the centre of DNA sequences known motifs. All of these can be categorized in the \textit{perturbation-based approach} group, therefore need high computational times and cannot be exhaustive enough: how many window sizes and up to which range should be tried to localize the influence accurately?.
+		
+		Gradient-based approaches have barely been translated to the biological field yet. \cite{Lanchantin2016} include saliency maps with the form of gradient * input for TF binding sites classification, extracted the size 9 window with highest score from each saliency map and compared them with a database of known motifs, matching almost half of the motifs thus produced. Figure \ref{fig:demo} shows a sample of their saliency maps along with other interpretability methods.
+		
+		\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{Figures/demo}
+		\caption{\textit{Deep Motif dashboard including varied interpretability techniques for TF Binding Site classification.} This figure includes activation maximization methods (top), saliency maps (middle) and temporal outputs (bottom) for CNNs, RNNs, and a combination of both. Figure reproduced from \cite{Lanchantin2016}.}
+		\label{fig:demo}
+		\end{figure}
 
-		\subsubsection{Feature visualization}
-		"The networks whose filters were saved and plotted only used one-hot encoding so as to be able to represent all features as PSSM-logos. The visualization of the convolutional filters was based on the methodology used in [37]. The convolutional filters are represented as a matrix of filter\_width columns and aa\_encoding rows. So as to visualize the relative importance of each of the positions in the filter, each of them is rescaled in a way that the height of the highest column is 1. After this transformation, each filter can be visualized as a PSSM logo where the position importance is proportional to the height of the column and the height of each letter is proportional to the importance of the amino acid in that position. Seq2logo [42] is used in order to generate the PSSM-logo plots. The Seq2Logo default amino acid colour coding is used: negatively charged (DE) residues are red, polar uncharged residues (NQSGTY) are green, positively charged (RKH) residues are blue and the remaining are black." \cite{Fontal2017}
-		% TODO: Show filters from Fontal
-
-		"For TFBS prediction, Alipanahi et al.[2] was the first to implement a visualization method on a DNN model. They visualize their CNN model by extracting motifs based on the input subsequence corresponding to the strongest activation location for each convolutional filter (which we call convolution activation). Since they only have one convolutional layer, it is trivial to map the activations back, but this method does not work as well with deeper models. We attempted this technique on our models and found that our approach using saliency maps outperforms it in finding motif patterns (details in section 4). Quang and Xie [19] use the same visualization method on their convolutional-recurrent model for noncoding variant prediction." \cite{Lanchantin2016}
-
-		"In the case of the NN trained in this project, where the inputs are protein sequences encoded as one-hot vectors, the optimized inputs lose the one-hot vector encoding but can be forced to behave as a Position Probability Matrix (PPM) which can then be represented as a motif. Formally, the following equation, where Si is the score (defined as the unscaled values for class Ci pre Softmax transformation) and X is the input sequence, is optimized:
-		arg max Si(X) + λ ? X ?2 2.
-		λ is the regularisation parameter. The L2-regularization term is introduced in order to minimize the number of significant amino acids per position in the optimized input sequence. The score used is the value of the pre-Softmax layer because the post-Softmax value can be maximized by just minimizing the scores of the other classes, and the objective is to get an ideal input for the desired class, not an input modified to score low in the remaining classes." \cite{Fontal2017}
+		\cite{Shrikumar2017} developed the new back-propagation based technique \textit{DeepLIFT} and simulated a motif detection task within genomic sequence to prove their effectiveness. \cite{Finnegan2017} utilised Markov chain Monte Carlo methods to withdraw samples from the maximum entropy distribution and assessed importance score by looking at the variance of the samples at each position. This technique was applied for previously trained DNA-protein binding CNN and proved to be better than DeepLIFT.
 		
-		Fontal didn't add any prior, thus risking having unnatural samples.
-	
-		"Now we introduce an approach to extract a class-specific visualization for a DNN model, where we attempt to find the best sequence which maximizes the probability of a positive TFBS, which we call class optimization. Formally, we optimize the following equation where S+(X) is the probability (or score) of an input sequence X (matrix in our case) being a positive TFBS computed by the softmax equation of our trained DNN model for a specific TF:
-		arg maxS+(X) + λ?X?2 2
-		where λ is the regularization parameter. We find a locally optimal X through stochastic gradient descent, where the optimization is with respect to the input sequence. In this optimization, the model weights remain unchanged. This is similar to the methods used in Simonyan et al.[21] to optimize toward a specific image class. This visualization method depicts the notion of a positive TFBS class for a particular TF and is not specific to any test sequence." \cite{Lanchantin2016}
-		
-		% TODO: show an optimization maximation sample from Lanchantin
-	
-		"In order to focus on higher probable regions of the input space, the 2-norm regularizer can be replaced by a data density model p(x) which is called “expert” by Montavon et al.(2017). This leads to the following optimization problem:
-		max x log p(ωc|x) + log p(x).
-		Here, the prototype is encouraged to simultaneously produce strong class response and to  resemble  the  data.   By  application  of  Bayes’  rule,  the  newly  defined  objective  can  be identified, up to modeling errors and a constant term, as the class-conditioned data density p(x|ωc).  The learned prototype thus corresponds to the most likely input x for the class ωc.  A possible choice for the expert is the Gaussian Restricted Boltzmann Machine (RBM).
-		The RBM is a two-layer, bipartite, undirected graphical model with a set of binary hidden units p(h), a set of (binary or real-valued) visible units p(v), with symmetric connections between the two layers represented by a weight matrix W.  The probabilistic semantics for an RBM is defined by its energy function" \cite{Montavon2018}
-		
-		% TODO: mention temporal output scores from Lanchantin?
-		
-		% TODO: include Maximum entropy methods
-	
-		\subsubsection{Saliency maps}
-		\textbf{Signal masking approach}
-		"This method was developed along the course of the project in order to evaluate the effect of removing the signal from certain regions of the input sequences. It is a way of assessing, for a trained model, which parts of the input sequence have a higher importance to determine the final classification." \cite{Fontal2017}
-		% TODO: show signal masking approach from Fontal
-		
-		\textbf{Gradient-based approach}
-		"Our first visualization method is finding a test sequence’s saliency map which uses first-order derivatives to describe the importance of each nucleotide in making the final prediction. [...] we seek to visualize the influence of each position (i.e. nucleotide) on the prediction. Our approach is similar to the methods used on images by \cite{Simonyan2014} and Baehrens et al.[4]. Given a sequence X0 of length |X0|, and class c ∈ C, a DNN model provides a score function Sc(X0). We rank the nucleotides of X0 based on their influence on the score Sc(X0). Since Sc(X) is a highly non-linear function of X with deep neural nets, it is hard to directly see the influence of each nucleotide of X on Sc. Mathematically, around the point X0, Sc(X) can be approximated by a linear function by computing the first-order Taylor expansion:
-		Sc(X) ≈ wTX + b = ?|X| wixi + b
-		where w is the derivative of Sc with respect to the sequence variable X at the point X0:
-		w =∂Sc∂X|X0 = saliency map
-		This derivative is simply one step of backpropagation in the DNN model, and is therefore easy to compute. We do a pointwise multiplication of the saliency map with the one-hot encoded sequence to get the derivative values for the actual nucleotide characters of the sequence (A,T,C, or G) so we can see the influence of the character at each position on the output score. Finally, we take the element-wise magnitude of the resulting derivative vector to visualize how important each character is regardless of derivative direction. We call the resulting vector a “saliency map[21]” because it tells us which nucleotides need to be changed the least in order to affect the class score the most. As we can see from equation 5, the saliency map is simply a weighted sum of the input nucleotides, where the each weight, wi, indicates the influence of that nucleotide position on the output score.
-		[...]
-		From each positive test sequence (thus, 500 total for each TF dataset) we extract a motif from the saliency map by selecting the contiguous length-9 subsequence that achieves the highest sum of contiguous length-9 saliency map values." \cite{Lanchantin2016}
-		% TODO: show saliency maps form Lanchantin
-		He uses gradient * input.
-		
-		% TODO: include DeepLift over here
-		They prove that the method is working right by comparing the motifs with motif database of known samples.
+		All these methods address classification problems where there is a single output (classification task) for the whole sequence, but, to the best of my knowledge, interpretability techniques have not been applied to structural tagging problems.
 		
 			
-\section{Secondary Structure Prediction}
+\section{Protein Secondary Structure Prediction}
 
 %TODO: Read through \cite{Wang2016}'s bibliography 1-12 and improve this section + add references.
 
-Soon after they have been formed, proteins fold into 3D structures that primarily determine their function in the cell. Protein functions are of great value for the medical field, as their knowledge can help drug design, disease treatment, or early diagnosis.
-However, due to the molecular scale, these structures cannot be easily measured, and any attempt to do so remains costly. A more feasible alternative is utilizing computational tools to predict protein structures from amino-acid sequences alone, as these can be easily obtained from DNA sequencing and they are widely available on heavily annotated public databases. \cite{Hattori2017} points out that from the nearly 85 millions proteins whose sequences are known, we only know the structure of about 130 thousands.
+Secondary structure prediction is a long-time studied problem that spans more than 50 years already (\cite{Pauling1951}). It has gone through many different stages as mathematical and computational methods evolved, being recently benefited from deep learning as well, to the point of approaching the theoretical accuracy limit (\cite{Heffernan2017})\footnote{Since there is 12\% structure homology between proteins (\cite{Rost2001}).}. Due to its long history, it has also been suggested that it effectively works as a problem benchmark for new techniques dealing with sequence data.
 
-(Dill and MacCallum, 2012)
-"it is a problem which has remained unsolved since its inception half a century ago (Gibson and Scheraga, 1967)" \cite{Heffernan2017}
-"site-specific mutation experiments (Drozdetskiy et al., 2015)." \cite{Fang2017}
-"Accurately and reliably predicting structures, especially 3D structures, from protein sequences is one of the most challenging tasks in computational biology, and has been of great interest in bioinformatics [Ashraf and Yaohang, 2014]."\cite{Li2016}
-(Yaseen and Li, 2014)
+Predicting the secondary structure of a protein purely from its sequence can be seen as a middle step for tackling the much-harder problem of predicting 3D structure. This last problem is of great importance in the biomedical field since the protein structures is the principal indicator of their function, and obtaining this information can be of great use at drug design, disease treatment or early diagnosis, among others. However, due to the molecular scale, these structures cannot be easily measured, and any attempt to do so remains costly. A more feasible alternative is utilising computational tools to predict protein structures from amino-acid sequences alone, as these can be easily obtained from DNA sequencing and they are widely available on heavily annotated public databases (\cite{Dill2012}). In fact, from the nearly 85 millions proteins whose sequences are known, we only know the structure of about 130 thousands (\cite{Hattori2017}).
 
-3D protein structure prediction from the sequence is a rather complex task, and thus researchers have focused firstly on the prediction of the so-called secondary structure, which consists on detecting local structures that can be used later for an easier modelling of the tertiary (3D) structure. Broadly, there are three kinds of local structures: $\alpha$-helix, $\beta$-sheet, and coil, which includes everything else. A finer classification schema developed by DSSP comprehends eight classes, three helices, two sheets, and three coils.
-
-(Kabsch and Sander, 1983)
-"Secondary structure prediction can be dated back to 1951 when Pauling and Corey proposed helical and sheet conformations of protein backbone based on hydrogen bonding patterns (Pauling et al.,1951)." \cite{Heffernan2017}
-"This hypothesis has driven a decades-long effort, spanning multiple disciplines, to deduce how protein sequence determines a protein’s structural and functional properties (Dill et al., 2008; Anfinsen, 1977)." \cite{Busia2017}
-
-"After translation, proteins fold into a 3-dimensional structure, known as the tertiary structure (Fig. 3A)."\cite{Jurtz2017}
-"The 3D structure of a protein is determined largely by its amino acid sequence1." \cite{Wang2016}
-"Knowledge of a protein’s structure can help to understand its function. Therefore de novo prediction of protein structure from sequence is a problem of great biological interest (Dill and MacCallum, 2012)." \cite{Jurtz2017}
-"However it is extremely challenging to predict protein structure from sequence alone2." \cite{Wang2016}
-"An important step in the prediction of tertiary protein structure is the prediction of the secondary structure, the local conformations of the peptide back-bone." \cite{Jurtz2017}
-"There are three main classes of secondary structure: alpha-helix, beta-strand and coil. These can be further divided into 8 classes (Kabsch and Sander, 1983) (3 sub-classes of helix, 2 sub-classes of strands and 3 sub-classes of coil)." \cite{Jurtz2017}
-"Since protein structure is critical to analysis of its function and many applications like drug and/or enzyme design3–5, understanding the complex sequence-structure relationship is one of the greatest challenges in computational biology6–8. Accurate protein structure and function prediction relies, in part, on the accuracy of secondary structure prediction9–12. [...] Overall, protein secondary structure can be regarded as a bridge that links the primary sequence and tertiary structure and thus, is used by many structure and functional analysis tools15–18" \cite{Wang2016}
-"Protein tertiary structure prediction from amino acid sequence is a very challenging problem in computational biology (Yaseen and Li, 2014; Dill and MacCallum, 2012). However, if a protein secondary structure can be predicted accurately, it can provide useful constraints for 3D protein structure prediction. Protein secondary structure can also help identify the protein function domains and may guide the rational design of site-specific mutation experiments (Drozdetskiy et al., 2015)." \cite{Fang2017}
-"The three-dimensional structure is also known as native conformation and it is a function of its secondary structures. A number of diseases, including cancer, Alzheimer’s disease, cystic fibrosis, Huntington’s disease and diabetes are linked to the result of the aggregation of ill-formed proteins [1], [2]. Notwithstanding, despite a large number of proteins that have been discovered recently (around 84.8 million records in the UniProtKB/TrEMBL repository as in may/2017), only a few of them have their structure known (129,745 in the Protein Data Bank – PDB as in may/2017). Therefore, acquiring knowledge about the structure of proteins is an important issue, since such knowledge can lead to important medical and biochemical advancements and even to the development of new drugs with specific functionality [3], [2]. [...] A possible way to infer the full structure of an unknown protein is to determine secondary structures in it. However, the pattern formation rules of secondary structures of proteins are still not known precisely [3]." \cite{Hattori2017}
-"Proteins perform a wide variety of molecular functions, and most of those functions are determined by the protein’s three-dimensional structures. The problem of predicting the three-dimensional structure of a protein, given only its linear sequence of residues, is crucially important due to the high cost of experimental protein structure determination and the low cost of DNA sequencing to obtain protein sequences. However, even with this importance it is a problem which has remained unsolved since its inception half a century ago (Gibson and Scheraga, 1967; Dill and MacCallum, 2012; Zhou et al., 2011). Due to the challenge of predicting three-dimensional protein structure, the problem is commonly divided into smaller, more achievable problems, in the hopes that their solutions will ultimately lead to the solution for three-dimensional structure prediction. One type of these sub-problems is the prediction of one-dimensional structural properties of proteins, which can be represented as a one-dimensional vector along the protein sequence. The most commonly predicted one-dimensional structure of proteins is secondary structure. Secondary structure prediction can be dated back to 1951 when Pauling and Corey proposed helical and sheet conformations of protein backbone based on hydrogen bonding patterns (Pauling et al.,1951). Secondary structure is a course-grained descriptor of the local structure of the polypeptide backbone." \cite{Heffernan2017}
-"Protein-based interactions are responsible for controlling a variety of vital functions: they are critical in driving the immune system, regulating breathing and oxygenation, controlling aging and energy usage, and determining drug response, with a protein’s particular functional role determined by its structure (Breda et al., 2006; Guo, Ellrott, \& Xu, 2008). Over time, scientists have reached a consensus that a protein’s structure primarily depends on its amino acid sequence–local and long-range interactions between amino acid residues and their side-chains are both a cause and consequence of protein secondary and tertiary structure (Dill et al., 2008). This hypothesis has driven a decades-long effort, spanning multiple disciplines, to deduce how protein sequence determines a protein’s structural and functional properties (Dill et al., 2008; Anfinsen, 1977).
-As the number of proteins with known sequence continues to outpace the number of experimentally determined secondary and tertiary structures (Huang, Liu, \& Weinberger, 2016), computational approaches to protein structure prediction become increasingly desirable. Computational tools that can handle large amounts of data while making sufficiently accurate predictions of secondary structures can potentially serve to mitigate the cost and time burden in the experimental determination of protein structures." \cite{Busia2017}
-
-"There is a natural upper-bound on the maximum possible Q3 accuracy from inconsistencies in secondary structure assignment likely due to the coarseness and inherent arbitrariness of three-class labels (Kihara, 2005). This is likely also the case for the eight-class instantiation of the problem. A better approach might be to predict the sequence of back-bone angles for the amino acids, since these are experimentally observed values." \cite{Busia2017}
-
-"Accurately and reliably predicting structures, especially 3D structures, from protein sequences is one of the most challenging tasks in computational biology, and has been of great interest in bioinformatics [Ashraf and Yaohang, 2014]. Structural understanding is not only critical for protein analysis, but also meaningful for practical applications including drug design [Noble et al., 2004]. Understanding protein secondary structure is a vital intermediate step for protein structure prediction as the secondary structure of a protein reflects the types of local structures (such as 310−helix and β−bridge) present in the protein. Thus, an accurate secondary structure prediction significantly reduces the degree of freedom in the tertiary structure, and can give rise to a more precise and high resolution protein structure prediction [Ashraf and Yaohang, 2014; Zhou and Troyanskaya, 2014; Wang et al., 2011]." \cite{Li2016}
-
- \subsection{Features}
- "The input features we used are the same as (Busia and Jaitly, 2017). The amino acid at position i is represented as one-hot vector. There are 20 different types of amino acids. Some special amino acid cases were handled as follows: Amino Acid ‘X’ was treated as amino acid ‘A’. ‘B’ was treated as amino acid ‘N’. ‘Z’ was treated as amino acid ‘Q’. Since the input size was fixed at 700, if the input protein sequences were less than 700 amino acids; the remaining amino acid positions were padded with the ‘NoSeq’ label, which means no amino acid was there. Current implementation can handle any protein sequence length less or equal to 700 amino acids. The protein sequences will be split into smaller segments if they have more than 700 amino acids. [...] The profile information is also represented as 700-by-21 array. Hence, the input dimension is 700-by-42 in total." \cite{Fang2017}
-
- "each amino acid (ai) of the sequence (with n amino acids) has 42 features: 22 profile features are used for representing scores obtained from a Position-Specific Scoring Matrix (PSSM) [21], which are normalized using the logistic Sigmoid function. The last 20 features are used for representing the amino acid, using the one-hot encoding. In this encoding, only one bit is set and represents the name category of the amino acid." \cite{Hattori2017}
-
- "amino acid was encoded using one-hot encoding and additionally a sequence profile." \cite{Jurtz2017}
-
- "the first set of predictors take seven representative physio-chemical properties (PP) of amino acids (Fauche`re et al., 1988), 20-dimensional Position Specific Substitution Matrices (PSSM) from PSI-BLAST (Altschul et al., 1997), and 30-dimensional hidden Markov Model sequence profiles from HHBlits (Remmert et al., 2012) per residue as input [...] These features were selected previously in the development of SPIDER for secondary structure and contact prediction (Lyons et al., 2014; Heffernan et al., 2016, 2015). [...] The outputs from iteration 1 are then added to the PSSM, PP and HMM profile features, as inputs to a second set of predictors (iteration 2). This process is repeated two more times (iterations 3 and 4), for a total of four sets of networks as the result converges. [...] The TR4950 set is split into the same 10 folds for training every iteration of the network." \cite{Heffernan2017}
-
- "Each protein is represented as a sequence of amino acids, padded if necessary by no-sequence tokens to a sequence length of 700 residues. In turn, each amino acid is encoded as a 42-dimensional vector: the first twenty-one dimensions represent the one-hot encoding of the residue’s identity (or the no-sequence token), while the remaining dimensions contain Position-Specific Scoring Matrices (PSSM) generated with PSI-BLAST (see Zhou\&Troyanskaya (2014) for more details) which we normalize via mean-centering and scaling by the standard deviation." \cite{Busia2017}
-
- "Overtime, scientists have reached a consensus that a protein’s structure primarily depends on its amino acid sequence and concluded that the local and long-range interaction are a cause of protein second and tertiary structure. Based on this hypothesis, we can deduce that proteins with similar amino acid sequence tend to have similar secondary structure sequence. Therefore, the common sequence information contained by PSSM can contribute to the secondary structure prediction. For a protein with length L, PSSM is usually represented as a matrix with L ×21 dimensions where 21 denotes the 20 standard types of residues and one extra residue type which represents all non-standard residue types. Before PSSMs are used in- puts for CNNH\_PSS, they need to be transformed to 0–1 range by the sigmoid function. By concatenating sequence features and evolutional information, each residue in protein sequences can be encoded by a feature vector with dimension of 42." \cite{Zhou2018}
-  \subsubsection{Beyond one-hot}
-  "the input feature sequence X is decomposed into two parts, one is a sequence of 21-dimensional feature vectors encoding the types of the amino acids in the protein and the other is a sequence of 21-dimensional profile features obtained from the PSI-BLAST [Altschul et al., 1997] log file and rescaled by a logistic function [Jones, 1999]. Note that each feature vector in the first sequence is a sparse one-hot vector, i.e., only one of its 21 elements is none-zero, while a profile feature vector has a dense representation. In order to avoid the in- consistency of feature representations, we adopt an embed- ding operation from natural language processing to transform sparse sequence features to a denser representation [Mesnil et al., 2015]. This embedding operation is implemented as a feedforward neural network layer with an embedding matrix, Wemb ∈ R21×Demb, that maps a sparse 21-dimensional vector into a denser Demb-dimensional vector. In this paper, we empirically set Demb = 50, and initialize the embedding matrix with random numbers. The embedded sequence feature vector is concatenated with the profile feature vector before being fed into multiscale CNN layers." \cite{Li2016}
-
-  "As the dimension of amino acid representation is already low, we only calculate a real value for every dimension by embedding technique and don’t decrease the dimension. The residue embedding in this paper is implemented by a feedforward neural net- work layer before multi-scale CNN in CNNH\_PSS [42]." \cite{Zhou2018}
-
-  "The protein sequence input is one-hot vector, which is a sparse matrix. In the future work, ProtVec (Asgari and Mofrad, 2015) will be explored to represent the sequence so that it will become a much denser and picture-like matrix, which may improve the Q3 and Q8 accuracy." \cite{Fang2017}
-
-	\subsubsection{PSI-BLAST profiles}
-	"PSI-BLAST generates a PSSM of size T × 20 for a T lengthed sequence, where a higher score represents a higher likelihood of the ith amino acid replacing the current one in other species. Generally, two amino acids that are interchangeable in the PSSM indicates that they are also interchangeable in the protein without sig- nificantly modifying the functionality of the protein." \cite{Lin2016}
-
-	"The BLOSUM matrix captures information about which pairs of amino acids are eas- ily interchangeable during evolution, but it does not capture information about the evolutionary constraints on a protein family (i.e. which amino acid positions are highly conserved and which are variable). This information can effectively be captured in a sequence profile. A sequence profile has the dimensions protein length times the number of amino acids and is conventionally generated by run- ning PSI-BLAST (Altschul et al., 1997) against a reference database. Encoding protein sequences as such profiles has demonstrated very helpful for prediction of for instance secondary structure (Jones, 1999)." \cite{Jurtz2017}
-
-	"DeepCNF has no significant advantage over the others when a protein under prediction has very sparse sequence profile (i.e., Neff $≤$ 2). That is, it is still challenging to predict SS structure from primary sequence instead of sequence profile." \cite{Wang2016}
-
-	"We used the input features described in36. In particular, for each protein sequence, we ran PSI-BLAST41 with E-value threshold 0.001 and 3 iterations to search UniRef9079 to generate the position specific scoring matrix (PSSM). We then transform PSSM by the sigmoid function 1/(1 + exp(− x)) where x is a PSSM entry. We also use a binary vector of 21 elements to indicate the amino acid type at position i. We use 21 since there might be some unknown amino acids in a protein sequence. In total there are 42 input features for each residue, 21 from PSSM and the other 21 from the primary sequence. Note that besides using PSSM generated by 3 iterations, we could also add the PSSM generated by 5 iterations into the input features." \cite{Wang2016}
-
-	"A protein sequence is represented as a 700-by-21 array in the system. Next, protein profiles were generated using PSI- BLAST (Altschul et al., 1997), as performed in some previous work (Wang et al., 2016; McGuffin et al., 2000). The PSI-BLAST tool param- eters were set as follows: evalue: 0.001, num\_iterations: 3, db, and UniRef50 to generate a position-specific scoring matrix (PSSM). PSSM is then transformed by the sigmoid function so that the value is in range (0,1)." \cite{Fang2017}
-
-	"profile search time is relatively shorter than current available tools because we used a filtered version of the UniRef50 database. [...]
-	The PSI-BLAST can generate the protein sequence profile in a short time if the search database is small, while a larger search database takes a longer time to get the profile and the prediction accuracy may not always increase. [...] Four different databases were downloaded from UniProt (http://www.uniprot.org/downloads). They are Swiss\_Prot (0.08GB), UniRef50 (4.3GB), UniRef90 (12GB) and UniRef100 (25GB). Take the UniRef50 database as an example: This database was used to perform a PSI-BLAST search with the parameter setup of evalue 0.001 and num\_iterations 3 on all protein sequences in the JPRED data set. Then, the train-ing set was used to train the Deep3I network, and the test set was used to report Q3, as shown in Table 1. The UniRef50 yielded the best results as a larger database was not needed to yield a better performance." \cite{Fang2017}
-
-	"The PSI-BLAST search database is UniRef50 and evalue is set to 0.001. Four experiments were performed with different num\_iteration of PSI-BLAST ranging from 2 to 5. Table 2 shows that too few or too many PSI-BLAST iterations do not yield good profile. The number of iterations of PSI-BLAST should be set to 3." \cite{Fang2017}
-
-	"Based on the information presented thus far, one could assume that the smaller the database, the better the Q3. One might ask: What will happen if an even smaller database is used for a PSI-BLAST search? To find out, we filtered a UniRef50 data set and kept those protein sequences whose length fell between 70 and 3000 thereby forming the shrunk database, UniRef50\_shrunk. Some other smaller databases were built, as shown in Table 3. Table 4 shows that the UniRef50\_smaller was sufficient for PSI- BLAST to use as a database and saves computing time. But when the da- tabase became even smaller, the prediction accuracy started to drop or fail. Another option would be to apply CD-Hit to shrink the database with a lower sequence similarity threshold" \cite{Fang2017}
-
-	"A PSSM, or Position-Specific Scoring Matrix, is a type of scoring matrix used in protein BLAST searches in which amino acid substitution scores are given separately for each position in a protein multiple sequence alignment. Thus, a Tyr-Trp substitution at position A of an alignment may receive a very different score than the same substitution at position B. This is in contrast to position-independent matrices such as the PAM and BLOSUM matrices, in which the Tyr-Trp substitution receives the same score no matter at what position it occurs.
+	\subsection{Input features}
+	The input to the system is an amino-acid chain of length $l$. Since amino-acids can be of any of 21 categories\footnote{There are 20 standard types while amino-acid X is commonly used for representing all the unknown or non-standard ones (\cite{Zhou2018}). Other ways of handling non-standard amino-acids are also possible (\cite{Fang2017}).}, the most natural way is to treat them as one-hot vectors, forming an input matrix of 21x$l$. Other features of the amino-acids ---such as solving accessibility or other physio-chemical properties (\cite{Fauchere1988})--- could also be added to the end of the vector, adding thus extra-information that could be potentially important for making the classification. An typical approach involves inspecting the sequence by taking \textit{n-grams} (i.e. fragments of size $n$) and classify the middle amino-acid with classical machine learning algorithms such as support-vector machines (\textit{SVM}s). This has been the approach also held by initial neural networks applied to the problem. With the arrival of CNNs and RNNs, the whole input matrix is fed to the system, as they allow for inputs of varying lengths.
+	 
+	A key turning point for prediction performance appeared when Position Specific Substitution Matrices (\textit{PSSM}) were added as extra features. These values are originated from sequence alignment with \textit{PSI-BLAST} (\cite{Altschul1997}) and express the probability of finding sequences that have a specific amino-acid substituted by another. Each amino-acid of the sequence has then 21 extra features that represent how likely are each of the 21 types of amino-acids found on similar sequences, which gives valuable information about mutations that do not change the structure of the protein (and hence its function) and are then kept by evolution. In order to make most of this information with machine learning algorithms, it is usually filtered through a sigmoid function that the values between 0 and 1 (\cite{Jones1999}), although it can be further normalized to zero mean and one standard deviation (\cite{Busia2017}).
+	 
+	The combination of one-hot encoded (sparse) along with \textit{pssm} (dense) features brings some problems for typical machine learning algorithms: the dense part carries more information, so the weights associated to this part of the input vector learn much faster. \cite{Li2016} proposed having the one-hot side of the input embedded into a denser representation through an MLP ---as it is common in natural language processing (\cite{Mesnil2015})---, but reported only a small marginal performance improvement in doing that (0.05\% Q8 accuracy).
 	
-	PSSM scores are generally shown as positive or negative integers. Positive scores indicate that the given amino acid substitution occurs more frequently in the alignment than expected by chance, while negative scores indicate that the substitution occurs less frequently than expected. Large positive scores often indicate critical functional residues, which may be active site residues or residues required for other intermolecular interactions.
+	\subsection{Targets}
+	Broadly, there are three kinds of local structures based on the hydrogen bonds formed between the amino-acids: $\alpha$\textit{-helix}, $\beta$\textit{-sheet}, and \textit{coil}, which includes everything else. These were proposed by \cite{Pauling1951} when the protein secondary-structure problem was first defined and have been the targets mostly used in the secondary structure prediction problem and it is generally referred as \textit{Q3}.
 	
-	PSSMs can be created using PSI-BLAST, which finds similar protein sequences to a query sequence, and then constructs a PSSM from the resulting alignment. Alternatively, PSSMs can be retrieved from the NCBI CDD database, since each CD is represented by a PSSM that encodes the observed substitutions in the seed alignments. These CD records can be found either by text searching in Entrez Conserved Domains or by using RPS-BLAST (Reverse Position-Specific BLAST), also known as CD-Search, to locate these domains on an input protein sequence." [https://www.ncbi.nlm.nih.gov/Class/Structure/pssm/pssm_viewer.cgi]
-
- \subsection{Targets}
- "Pauling et al. (1951) proposed the earliest concept of protein secondary structure determining that the poly-peptide backbone contains regular hydrogen-bonded geometry, forming α-helices and β-sheets." \cite{Fang2017}
-
- "Protein secondary structure (SS) refers to the local conformation of the polypeptide backbone of proteins. There are two regular SS states: alpha-helix (H) and beta-strand (E), as suggested by Pauling13 more than 60 years ago, and one irregular SS type: coil region (C). [...] Overall, protein secondary structure can be regarded as a bridge that links the primary sequence and tertiary structure and thus, is used by many structure and functional analysis tools15–18" \cite{Wang2016}
-  \subsubsection{Q3}
-  "(ssp) A collapsed version of the 8 class prediction task, since many protein secondary structure prediction algorithms use a 3 class approach instead of the 8-class approach given in dssp. {H, G} → H =Helix, {B, E} → B =Beta sheet, and {I, S, T, L} → C =Coil" \cite{Lin2016}
-
-  "The secondary structures (SS) of a protein represent the local conformations of a three-dimensional structure. There are three main secondary structures: α-helices [8], β-sheets [9] and turns [10]. For instance, proteins 1DG2 and 1KFP represent an α−helix and an β −sheet, respectively." \cite{Hattori2017}
-
-  "approaching the theoretical limit in the range of 88–90\% (Rost, 2001)." \cite{Heffernan2017}
-
-  "we predict three states by converting the DSSP assigned states G, H, and I to H; B and E to E; and S, T, and C to C." \cite{Heffernan2017}
-  \subsubsection{Q8}
-  "Cooperative secondary structure is recognized as repeats of the elementary hydrogen-bonding patterns “turn” and “bridge.” Repeating turns are “helices,” repeating bridges are “ladders,” connected ladders are “sheets.”
-  [...]
-  Curved pieces are defined as “bends.”
-  [...]
-  Pieces of 3- or 5-helix, reduced to less than minimal size due to overlaps, are labeled “T.”
-  [...]
-  H bonds with n = +3,+4,+5 are reported as turns or helices.
-  [...]
-  3-Helices are more frequent than previously believed, although they are entirely pure: numerous H bonds in them are bifurcated, i.e., (i,i + 4) and usually short and have mediocre hydrogen bonds. a-Helices are rarely (i,i + 3) or sometimes (i,i + 5). The ends of a-helices often are overwound, ending in a 3-turn or 3-helix, or underwound, ending in a 5-turn. Some of these cases were already noted and generalized by Schellman21 and Richardson.8 We even find a few 5-helices ($\pi$-helices)-see Fig. 3.
-  [...]
-  Structure summary:
-  “H” = 4-helix ($\alpha$-helix)
-  “B” = residue in isolated $\beta$-bridge
-  “E” - extended strand, participates in $\beta$-ladder
-  “G” = 3-helix ($3_{10}$-helix)
-  “I” = 5-helix ($\pi$-helix)
-  “T” = H-bonded turn
-  “S” = bend
-  "\cite{Kabsch1983}
-  
-  "The class labels are H = alpha helix, B = residue in isolated beta bridge, E = extended strand, G = 3-helix, I = 5-helix, T = hydrogen bonded turn, S = bend, L = loop." \cite{Lin2016}
-
-  "The Q8 accuracy is another evaluation metric to evaluate the accuracy of eight-class classification: 310-helix (G), ?-helix (H), ?-helix (I), ?-strand (E), ?-bridge (B), ?-turn (T), bend (S) and loop or irregular (L) (Yaseen and Li, 2014; Zhou and Troyanskaya, 2014)." \cite{Fang2017}
-
-  "Sander14 developed a DSSP algorithm to classify SS into 8 fine-grained states. In particular, DSSP assigns 3 types for helix (G for 310 helix, H for alpha-helix, and I for pi-helix), 2 types for strand (E for beta-strand and B for beta-bridge), and 3 types for coil (T for beta-turn, S for high curvature loop, and L for irregular)." \cite{Wang2016}
-
-  "The DSSP program (Touw et al., 2015; Kabsch and Sander, 1983) was used to get the secondary structure label from the PDB files." \cite{Fang2017}
-
-  "Instead of using three classes, [11] group the secondary structures into 8 classes, including others, such as 310-helix, π-heliX and β-bridge." \cite{Hattori2017}
-
-  "The secondary structure of the proteins, which should be predicted, is given as eight different DSSP classes (Q8) (Kabsch and Sander, 1983). The dataset was originally downloaded from PDB and annotated with the DSSP program (Kabsch and Sander, 1983)." \cite{Jurtz2017}
-
-  "During training both of these networks mask out the loss contributed by any undefined labels, such as residues with no secondary structure assignment according to the program Dictionary of Secondary Structure of Proteins (DSSP) (Kabsch and Sander 1983)." \cite{Heffernan2017}
-
-  "DSSP (Kabsch and Sander, 1983) specifies eight secondary structure states. Three helix shapes: 310-helix G, alpha-helix H, and pi-helix I; two strand types: beta- bridge B and beta-strand E; and three coil types: high curvature loop S, beta-turn T, and coil C. [...] These secondary structure labels are calculated from their experimentally determined structures." \cite{Heffernan2017}
-
-  \subsubsection{Accuracy}
-  "The Q3 (Q8) accuracy is defined as the percentage of residues for which the predicted secondary structures are correct32." \cite{Wang2016}
-
-  "Q3 and Q8 were used as a performance metric, as commonly used in Zhou and Troyanskaya (2014), Wang et al. (2016), Li and Yu (2016), and Busia and Jaitly (2017). The Q3 or Q8 accuracy measured the percentage of residues being correctly predicted among three-state or eight-state protein secondary structure classes." \cite{Fang2017}
-
- \subsection{State of the art}
-	\subsubsection{Initial research}
-	"Protein SS prediction has been extensively studied10–12,19–35. Many computational methods have been developed to predict both 3-state SS and a few to predict 8-state SS. Meanwhile, 8-state prediction may provide more detailed local structure information33,34,36. Holley \& Karplus19 and Qian \& Sejnowski20 may be the first that used neural networks (NN) to predict SS, which have been followed by a few others19,21,23,24,37. The most significant improvement in SS prediction was achieved by Rost \& Sander23 and Zvelebil et al.35 by making use of sequence profile derived from multiple sequence alignment38–40. Jones et al.24 developed a 2-stage neural network method PSIPRED, which takes PSI-BLAST sequence profile41 as input and obtains ~80\% accuracy for 3-state SS predic- tion. Other machine learning methods include bidirectional recurrent neural networks26,34,37 (which can capture spatial dependency), probabilistic graphical models25,29,42, support vector machines27,28,30,43 and hidden Markov models22,31." \cite{Wang2016}
-
-	"In the 1980s, the Q3 accuracy was below 60\% due to the lack of input features. In the 1990s, the Q3 accuracy reached above 70\% because of using the protein evolutionary information in the form of position-specific score matrices. Since then, the Q3 accu- racy has gradually improved to above 80\%." \cite{Fang2017}
-
-	"there is no consensus about the classification task which can be done using different properties of proteins. For instance, early approaches were based on stereochemical principles [12], statistics [13] and Position-specific Scoring Matrices (PSSM) [14]. More recently, [3] used the Kyte and Doolittle (K \& D) hydrophobicity scale in order to represent the aminoacids of proteins. From the approach point of view, [3] present the application and comparison of Machine Learning and Evolutionary Computation methods to define suitable classifiers for predicting the secondary structure of proteins, such as Gene expression programming (GEP), Sequential Minimal Optimization algorithm (SMO) and RandomForest (collection of tree-structured classifiers). [15]" \cite{Hattori2017}
-
-	"The accuracy of predicting protein local and global structural properties such as secondary structure and solvent accessible surface area has been stagnant for many years because of the challenge of accounting for non-local interactions between amino acid residues that are close in three-dimensional structural space but far from each other in their sequence positions. All existing machine-learning techniques relied on a sliding window of 10–20 amino acid residues to capture some ‘short to intermediate’ non-local interactions. [...] Commonly used simple Artificial Neural Networks (ANNs) (Faraggi et al., 2012), and Deep Neural Networks (DNNs) (Lyons et al., 2014; Heffernan et al., 2016, 2015), relied on their input windows of neighbouring residue information, which means that they are unable to fully learn the relation- ship between the residues in the whole sequence." \cite{Heffernan2017}
-
-	"Applications of machine learning to the protein secondary structure problem have a rich history: the use of neural networks for secondary structure prediction was pioneered by Qian and Sejnowski in 1988," \cite{Busia2017}
+	A finer classification schema developed by \cite{Kabsch1983}, the \textit{Dictionary of Secondary Structure of Proteins (DSSP)}, focuses in two smaller sub-units: \textit{turns} and \textit{bridges}. Repeating turns would form helices and consecutive bridges create \textit{ladders}, which in turn form sheets. Depending on how many of them you can find together, different kinds of helices or strands could form, leading to a finer classification that comprehends eight classes in total: three kinds of helices, two sheets, and three coils. Having a more minute classification increases the complexity of the problem and has therefore been the focus of recent, more powerful deep learning approaches. This classification schema is commonly referred as \textit{Q8} and an algorithm for its classification was also developed by \cite{Kabsch1983}. A detailed list of the classes can be seen in Table \ref{tab:q8}.
 	
-	"The study of protein secondary structure prediction dates back to 1970s. In the 1970s, statistical models were frequently used to analyze the probability of specific amino acids appearing in different secondary structure elements [Chou and Fasman, 1974]. The Q3 accuracy, i.e., the accuracy of three-category classification: helix (H), strand (E) and coil (C), of these models was lower than 60\% due to inadequate features. In the 1990s, significant improvements were achieved by exploiting the evolutionary information of proteins from the same structural family [Rost and Sander, 1993] and position-specific scoring matrices [Jones, 1999]. During this period, the Q3 accuracy exceeded 70\% by taking advantage of these features. However, progress stalled when it came to the more challenging 8-category classification problem, which needs to distinguish among the following 8 categories of secondary structure elements: 310−helix (G), α−helix (H), π−helix (I), β−strand (E), β−bridge (B), β−turn (T), bend (S) and loop or irregular (L) [Zhou and Troyanskaya, 2014; Yaseen and Li, 2014]." \cite{Li2016}
-
-	\subsubsection{Recently}
-	"Zhou \& Troyanskaya36 reported another deep learning approach to 8-state SS prediction using a supervised generative stochastic network, which to our best knowledge may be the best 8-state predictor. However, neither Cheng nor Zhou reported a better than 80\% accuracy for 3-state prediction. SS prediction is usually evaluated by Q3 or Q8 accuracy, which measures the percent of residues for which 3-state or 8-state secondary structure is correctly predicted44. So far the best Q3 accuracy for ab initio prediction (i.e., templates are not allowed) is ~80\% obtained by PSIPRED and a few other state-of-the-art approaches such as JPRED47,48" \cite{Wang2016}
+	%"The secondary structures (SS) of a protein represent the local conformations of a three-dimensional structure. There are three main secondary structures: α-helices [8], β-sheets [9] and turns [10]." \cite{Hattori2017}
 	
-	"In the 21-st century, various machine learning methods, especially artificial neural networks, have been utilized to improve the performance, e.g., SVMs [Sujun and Zhirong, 2001], recurrent neural networks (RNNs) [Pollastri et al., 2002], probabilistic graphical models such as conditional neural fields combining CRFs with neural networks [Wang et al., 2011], generative stochastic networks [Zhou and Troyanskaya, 2014]." \cite{Li2016}
-
-	\subsubsection{Hall of fame}\label{sect:HoF}
 	\begin{table}[h]
+		\begin{tabular}{cc|cc|c}
+		\multicolumn{2}{c}{\textbf{Q3 grouping}} & \multicolumn{2}{c}{\textbf{Q8 grouping}} &  \textbf{Explanation} \\ 
+						&   & $\alpha$-helix & H & Helix with 4 turns \\ 
+		$\alpha$-helix	& H & $3_{10}$-helix & G & Smaller helix with 3 turns \\ 
+						&   & $pi$-helix 	 & I & Bigger helix with 5 turns. Not as common.\\ \hline
+		\multirow{2}{*}{$\beta$-sheet}	& \multirow{2}{*}{B} & $\beta$-bridge & B & Isolated $\beta$-bridge \\ 
+										&  					 & $\beta$-strand & E & Participates in $\beta$-ladders \\ \hline
+				&   & Turn & T & Turns that do not reach the minimum to be a helix \\ 
+		Coil	& C & Bend & S & Curved piece \\ 
+				&   & Loop & L & Sometimes also categorized simply as coil (C)
+		\end{tabular}
+		\label{tab:q8}
+		\caption{\textit{Targets for the secondary structure prediction problem.} The simpler way of 3-class grouping was further expanded into eight classes by \cite{Kabsch1983} in their Dictionary of Secondary Structure or Proteins (DSSP).}
+	\end{table}
+	
+	The natural way to format them for prediction is their transformation in one-hot vector form, with a softmax function as the last layer of the network as a means to provide with posterior probabilities, p($Q|x$). Networks are typically trained using cross-entropy between targets and predictions and the most commonly used performance score is accuracy, as the percentage of residues correctly classified. Some other performance measures include per-class precision and recall (\cite{Wang2016}), ROC Area Under the Curve (\cite{Hattori2017}), Matthews correlation coefficient (\cite{Fang2017}), Person's Correlation Coefficient (\cite{Jurtz2017}), or Segment of OVerlap (\cite{Wang2016}).
+	
+	\subsection{State of the art}
+	Secondary structure prediction problem has a long history, with first approaches mainly rooted in statistics (\cite{Chou1974}). Major breakthroughs can be found with the first implementations of neural networks (\cite{Qian1988}) and the inclusion of \textit{pssm} values as inputs (\cite{Rost1993}). A new generation of deep learning networks started recently (\cite{Zhou2014}), introducing new major improvements while being more flexible in merging information from local and more distant contexts. Earlier approaches typically used the n-grams or sliding window approach. CNNs, although with a similar principle, have a rather pyramidal structure, being able to increase the span of their action (see Figure \ref{fig:cnnwang}). RNNs are able to capture even longer interactions. Table \ref{tab:HoF} collects the best results achieved for Q8 in the last few years. All results are measured on the CB513 benchmark dataset first introduced by \cite{Zhou2014}. All state-of-the-art algorithms are based on deep learning networks, either in the form of CNNs, RNNs, or both combined.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{cnnwang}
+		\caption{\textit{Improvements of CNNs over fixed-window sliding.} While for MLP are not as flexible when at capturing information from different contexts (left), CNNs are able to merge local information at the lower layers with longer-range info at upper layers (\cite{Busia2017}). Furthermore, increasing the depth expands the window size without adding much complexity to the model. Figure reproduced from \cite{Wang2016}.}
+		\label{fig:cnnwang}
+	\end{figure}
+	
+	\begin{table}
 		\begin{tabular}{cccc}
 			\textbf{Names} & \textbf{Q8} & \textbf{Architecture} & \textbf{Date} \\
-			$[$Wang et al., 2011$]$	& 64.9\% 	& CNF 			& 2011 \\ 
 			\cite{Zhou2014}	& 66.4\% 	& \textbf{CGSN} 			& 2014 \\ 
 			\cite{Magnan2014} & 66.5\% & SSPro (BRNN) & 2014 \\
 			\cite{Sønderby2014}	& 67.45\% 	& LSTM 			& 2014 	\\ 
 			\cite{Wang2016} & 68.3\% & \textbf{DeepCNF} 	& Jan 2016 \\ 
 			\cite{Li2016}	& 69.7\% 	& \textbf{DCRNN} 		& Apr 2016 \\
 			\cite{Lin2016} 	& 68.4\% 	& \textbf{MUST-CNN} 		& May 2016 \\
-			\cite{Busia2017}& 71.4\%& \textbf{Deep3I+conditioning}& Feb 2017 \\
+			\cite{Busia2017}& \textbf{71.4\%}& \textbf{Deep3I+conditioning}& Feb 2017 \\
 			\cite{Hattori2017} & 68.0\%	& DBLSTM		& May 2017 \\
 			\cite{Jurtz2017} & 70.2\%	& \textbf{LSTM+CNN} 		& Aug 2017 \\
 			\cite{Johansen2017} & 70.9\% & BGRU-CRF & Aug 2017 \\
-			\cite{8371925} & 71.1\% & \textbf{DeepNRN} & Nov 2017 \\
+			\cite{8371925} & \textbf{71.1\%} & \textbf{DeepNRN+Deep3I} & Nov 2017 \\
 			\cite{Zhou2018} & 70.3\% & \textbf{CNN+highway} & Jan 2018 \\
 			\cite{Fang2017}& 70.63\% & \textbf{MUFold-SS (Deep3I)}&Feb 2018\\
-			
-			Mine & 67.7\% & 3-layers ResNet & Aug 2018 \\ 
 		\end{tabular}
+		\label{tab:HoF}
+		\caption{\textit{State-of-the-art Q8 results on benchmark CB513.} All networks include some sort of deep learning architecture. Architectures in bold indicate some sort of CNN were included. Best Q8 results are marked in bold.}
 	\end{table}
-	
-	A good part of the winning architectures are actually using CNNs, either alone, or in combinations with other methods.

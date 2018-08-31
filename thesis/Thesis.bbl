@@ -1,7 +1,32 @@
-\begin{thebibliography}{39}
+\begin{thebibliography}{65}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{{\tt #1}}\fi
+
+\bibitem[Alipanahi et~al.(2015)Alipanahi, Delong, Weirauch, and
+  Frey]{Alipanahi2015}
+Babak Alipanahi, Andrew Delong, Matthew~T. Weirauch, and Brendan~J. Frey.
+\newblock {Predicting the sequence specificities of DNA- and RNA-binding
+  proteins by deep learning}.
+\newblock {\em Nature Biotechnology}, 33\penalty0 (8):\penalty0 831--838, 2015.
+\newblock ISSN 15461696.
+
+\bibitem[Altschul et~al.(1997)Altschul, Madden, Sch{\"{a}}ffer, Zhang, Zhang,
+  Miller, and Lipman]{Altschul1997}
+Stephen~F. Altschul, Thomas~L. Madden, Alejandro~A. Sch{\"{a}}ffer, Jinghui
+  Zhang, Zheng Zhang, Webb Miller, and David~J. Lipman.
+\newblock {Gapped BLAST and PSI-BLAST: A new generation of protein database
+  search programs}, 1997.
+\newblock ISSN 03051048.
+
+\bibitem[Bach et~al.(2015)Bach, Binder, Montavon, Klauschen, M{\"{u}}ller, and
+  Samek]{Bach2015}
+Sebastian Bach, Alexander Binder, Gr{\'{e}}goire Montavon, Frederick Klauschen,
+  Klaus~Robert M{\"{u}}ller, and Wojciech Samek.
+\newblock {On pixel-wise explanations for non-linear classifier decisions by
+  layer-wise relevance propagation}.
+\newblock {\em PLoS ONE}, 2015.
+\newblock ISSN 19326203.
 
 \bibitem[Berman et~al.(2003)Berman, Henrick, and Nakamura]{Berman2003}
 Helen Berman, Kim Henrick, and Haruki Nakamura.
@@ -30,6 +55,12 @@ Travers Ching, Daniel~S. Himmelstein, Brett~K. Beaulieu-Jones, Alexandr~A.
 \newblock 2017.
 \newblock ISBN 0000000305396.
 
+\bibitem[Chou and Fasman(1974)]{Chou1974}
+Peter~Y. Chou and Gerald~D. Fasman.
+\newblock {Prediction of Protein Conformation}.
+\newblock {\em Biochemistry}, 1974.
+\newblock ISSN 15204995.
+
 \bibitem[Cuff and Barton(1999)]{Cuff1999}
 J~a Cuff and G~J Barton.
 \newblock {Evaluation and improvement of multiple sequence methods for protein
@@ -47,6 +78,17 @@ Sander Dieleman, Jan Schl{\"{u}}ter, Colin Raffel, Eben Olson, S{\o}ren~Kaae
   Weideman, Takacsg84, Peterderivaz, Jon, Instagibbs, Dr~Kashif Rasul, CongLiu,
   Britefury, and Jonas Degrave.
 \newblock {Lasagne: First release.}, 2015.
+
+\bibitem[Dill and MacCallum(2012)]{Dill2012}
+Ken~A. Dill and Justin~L. MacCallum.
+\newblock {The protein-folding problem, 50 years on}, 2012.
+\newblock ISSN 10959203.
+
+\bibitem[Dumoulin and Visin(2016)]{Dumoulin2016}
+Vincent Dumoulin and Francesco Visin.
+\newblock \href{http://arxiv.org/abs/1603.07285}{{A guide to convolution
+  arithmetic for deep learning}}.
+\newblock mar 2016.
 
 \bibitem[Erhan et~al.(2009)Erhan, Bengio, Courville, and Vincent]{Erhan2009}
 Dumitru Erhan, Yoshua Bengio, Aaron Courville, and Pascal Vincent.
@@ -66,10 +108,34 @@ Chao Fang, Yi~Shang, and Dong Xu.
   Structure Prediction Using Deep Inception-Inside-Inception Networks}}.
 \newblock sep 2017{\natexlab{b}}.
 
+\bibitem[Fauch{\`{e}}re et~al.(1988)Fauch{\`{e}}re, Charton, Kier, Verloop, and
+  Pliska]{Fauchere1988}
+Jean-Luc Fauch{\`{e}}re, Marvin Charton, Lemont~B Kier, Arie Verloop, and
+  Vladimir Pliska.
+\newblock {Amino acid side chain parameters for correlation studies in biology
+  and pharmacology}.
+\newblock {\em International Journal of Peptide and Protein Research}, 1988.
+\newblock ISSN 0367-8377.
+
+\bibitem[Finnegan and Song(2017)]{Finnegan2017}
+Alex Finnegan and Jun~S. Song.
+\newblock {Maximum entropy methods for extracting the learned features of deep
+  neural networks}.
+\newblock {\em PLoS Computational Biology}, 2017.
+\newblock ISSN 15537358.
+
 \bibitem[Fontal(2017)]{Fontal2017}
 Alejandro Fontal.
 \newblock {\em {Neural Networks for Subcellular Localization Prediction}}.
 \newblock PhD thesis, Wageningen University {\&} Research, 2017.
+
+\bibitem[Gu et~al.(2017)Gu, Wang, Kuen, Ma, Shahroudy, Shuai, Liu, Wang, Wang,
+  Wang, Cai, and Chen]{Gu2017}
+Jiuxiang Gu, Zhenhua Wang, Jason Kuen, Lianyang Ma, Amir Shahroudy, Bing Shuai,
+  Ting Liu, Xingxing Wang, Li~Wang, Gang Wang, Jianfei Cai, and Tsuhan Chen.
+\newblock {Recent Advances in Convolutional Neural Networks}.
+\newblock {\em Arxiv}, 2017.
+\newblock ISSN 16641078.
 
 \bibitem[Hattori et~al.(2017)Hattori, Benitez, and Lopes]{Hattori2017}
 Leandro~Takeshi Hattori, Cesar Manuel~Vargas Benitez, and Heitor~Silverio
@@ -108,6 +174,22 @@ Alexander~Rosenberg Johansen, Casper~Kaae S{\o}nderby, S{\o}ren~Kaae
   2017.
 \newblock ISBN 9781450347228.
 
+\bibitem[Jones(1999)]{Jones1999}
+D.~T. Jones.
+\newblock {Protein secondary structure prediction based on position-specific
+  scoring matrices}.
+\newblock {\em J. Mol. Biol.}, 1999.
+\newblock ISSN 0022-2836.
+
+\bibitem[Jones et~al.(2017)Jones, Alasoo, Fishman, and Parts]{Jones2017}
+William Jones, Kaur Alasoo, Dmytro Fishman, and Leopold Parts.
+\newblock
+  \href{http://www.emergtoplifesci.org/lookup/doi/10.1042/ETLS20160025}{{Computational
+  biology: deep learning}}.
+\newblock {\em Emerging Topics in Life Sciences}, 1\penalty0 (3):\penalty0
+  257--274, 2017.
+\newblock ISSN 2397-8554.
+
 \bibitem[Jurtz et~al.(2017)Jurtz, Johansen, Nielsen, {Almagro Armenteros},
   Nielsen, S{\o}nderby, Winther, and S{\o}nderby]{Jurtz2017}
 Vanessa~Isabell Jurtz, Alexander~Rosenberg Johansen, Morten Nielsen, Jose~Juan
@@ -125,6 +207,13 @@ Wolfgang Kabsch and Christian Sander.
 \newblock {\em Biopolymers}, 22\penalty0 (12):\penalty0 2577--2637, 1983.
 \newblock ISSN 10970282.
 
+\bibitem[Kelley et~al.(2016)Kelley, Snoek, and Rinn]{Kelley2016}
+David~R. Kelley, Jasper Snoek, and John~L. Rinn.
+\newblock {Basset: Learning the regulatory code of the accessible genome with
+  deep convolutional neural networks}.
+\newblock {\em Genome Research}, 2016.
+\newblock ISSN 15495469.
+
 \bibitem[Lanchantin et~al.(2016)Lanchantin, Singh, Wang, and
   Qi]{Lanchantin2016}
 Jack Lanchantin, Ritambhara Singh, Beilun Wang, and Yanjun Qi.
@@ -132,6 +221,20 @@ Jack Lanchantin, Ritambhara Singh, Beilun Wang, and Yanjun Qi.
   Sequences Using Deep Neural Networks}.
 \newblock 2016.
 \newblock ISSN 23356936.
+
+\bibitem[LeCun et~al.(1998)LeCun, Bottou, Bengio, and Haffner]{LeCun1998}
+Yann LeCun, L{\'{e}}on Bottou, Yoshua Bengio, and Patrick Haffner.
+\newblock {Gradient-based learning applied to document recognition}.
+\newblock {\em Proceedings of the IEEE}, 1998.
+\newblock ISSN 00189219.
+
+\bibitem[Lee et~al.(2009)Lee, Grosse, Ranganath, and Ng]{Lee2009}
+Honglak Lee, Roger Grosse, Rajesh Ranganath, and Andrew~Y. Ng.
+\newblock {Convolutional deep belief networks for scalable unsupervised
+  learning of hierarchical representations}.
+\newblock In {\em Proceedings of the 26th Annual International Conference on
+  Machine Learning - ICML '09}, 2009.
+\newblock ISBN 9781605585161.
 
 \bibitem[Li and Yu(2016)]{Li2016}
 Zhen Li and Yizhou Yu.
@@ -156,12 +259,34 @@ Christophe~N. Magnan and Pierre Baldi.
 \newblock {\em Bioinformatics}, 2014.
 \newblock ISSN 14602059.
 
-\bibitem[Mahendran and Vedaldi(2015)]{Mahendran2015}
-Aravindh Mahendran and Andrea Vedaldi.
-\newblock {Understanding deep image representations by inverting them}.
-\newblock In {\em Proceedings of the IEEE Computer Society Conference on
-  Computer Vision and Pattern Recognition}, 2015.
-\newblock ISBN 9781467369640.
+\bibitem[Mahmud et~al.(2018)Mahmud, Kaiser, Hussain, and
+  Vassanelli]{Mahmud2018}
+Mufti Mahmud, Mohammed~Shamim Kaiser, Amir Hussain, and Stefano Vassanelli.
+\newblock {Applications of Deep Learning and Reinforcement Learning to
+  Biological Data}, 2018.
+\newblock ISSN 21622388.
+
+\bibitem[Mamoshina et~al.(2016)Mamoshina, Vieira, Putin, and
+  Zhavoronkov]{Mamoshina2016}
+Polina Mamoshina, Armando Vieira, Evgeny Putin, and Alex Zhavoronkov.
+\newblock {Applications of Deep Learning in Biomedicine}, 2016.
+\newblock ISSN 15438392.
+
+\bibitem[Mesnil et~al.(2015)Mesnil, Dauphin, Yao, Bengio, Deng, Hakkani-Tur,
+  He, Heck, Tur, Yu, and Zweig]{Mesnil2015}
+Gregoire Mesnil, Yann Dauphin, Kaisheng Yao, Yoshua Bengio, Li~Deng, Dilek
+  Hakkani-Tur, Xiaodong He, Larry Heck, Gokhan Tur, Dong Yu, and Geoffrey
+  Zweig.
+\newblock {Using Recurrent Neural Networks for Slot Filling in Spoken Language
+  Understanding}.
+\newblock {\em IEEE/ACM Transactions on Audio, Speech, and Language
+  Processing}, 2015.
+\newblock ISSN 2329-9290.
+
+\bibitem[Min et~al.(2017)Min, Lee, and Yoon]{Min2017}
+Seonwoo Min, Byunghan Lee, and Sungroh Yoon.
+\newblock {Deep learning in bioinformatics}, 2017.
+\newblock ISSN 14774054.
 
 \bibitem[Montavon et~al.(2017)Montavon, Lapuschkin, Binder, Samek, and
   M{\"{u}}ller]{Montavon2017}
@@ -184,6 +309,13 @@ Alexander Mordvintsev, Michael Tyka, and Christopher Olah.
   \href{https://ai.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html}{{Inceptionism:
   Going deeper into neural networks, google research blog}}, 2015.
 
+\bibitem[Nguyen et~al.(2016)Nguyen, Yosinski, and Clune]{Nguyen2016}
+Anh Nguyen, Jason Yosinski, and Jeff Clune.
+\newblock \href{http://arxiv.org/abs/1602.03616}{{Multifaceted Feature
+  Visualization: Uncovering the Different Types of Features Learned By Each
+  Neuron in Deep Neural Networks}}.
+\newblock feb 2016.
+
 \bibitem[Olah et~al.(2017)Olah, Mordvintsev, and Schubert]{Olah2017}
 Chris Olah, Alexander Mordvintsev, and Ludwig Schubert.
 \newblock \href{https://distill.pub/2017/feature-visualization/}{{Feature
@@ -191,12 +323,45 @@ Chris Olah, Alexander Mordvintsev, and Ludwig Schubert.
 \newblock {\em Distill}, 2017.
 \newblock ISSN 2476-0757.
 
+\bibitem[Pauling et~al.(1951)Pauling, Corey, and Branson]{Pauling1951}
+L.~Pauling, R.~B. Corey, and H.~R. Branson.
+\newblock {The structure of proteins: Two hydrogen-bonded helical
+  configurations of the polypeptide chain}.
+\newblock {\em Proceedings of the National Academy of Sciences}, 1951.
+\newblock ISSN 0027-8424.
+
+\bibitem[Qian and Sejnowski(1988)]{Qian1988}
+Ning Qian and Terrence~J. Sejnowski.
+\newblock {Predicting the secondary structure of globular proteins using neural
+  network models}.
+\newblock {\em Journal of Molecular Biology}, 1988.
+\newblock ISSN 00222836.
+
+\bibitem[Quang and Xie(2016)]{Quang2016}
+Daniel Quang and Xiaohui Xie.
+\newblock {DanQ: A hybrid convolutional and recurrent deep neural network for
+  quantifying the function of DNA sequences}.
+\newblock {\em Nucleic Acids Research}, 2016.
+\newblock ISSN 13624962.
+
+\bibitem[Rost(2001)]{Rost2001}
+Burkhard Rost.
+\newblock {Review: Protein secondary structure prediction continues to rise},
+  2001.
+\newblock ISSN 10478477.
+
 \bibitem[Rost and Sander(1993)]{Rost1993}
 Burkhard Rost and Chris Sander.
 \newblock {Prediction of protein secondary structure at better than 70{\%}
   accuracy}.
 \newblock {\em Journal of Molecular Biology}, 1993.
 \newblock ISSN 00222836.
+
+\bibitem[{Sergey Ioffe} and {Christian Szegedy}(2015)]{SergeyIoffe2015}
+Google {Sergey Ioffe} and Google {Christian Szegedy}.
+\newblock {Batch Normalization}.
+\newblock {\em Icml}, 2015.
+\newblock ISSN 10282092.
 
 \bibitem[Shrikumar et~al.(2017)Shrikumar, Greenside, and
   Kundaje]{Shrikumar2017}
@@ -225,20 +390,28 @@ S{\o}ren~Kaae S{\o}nderby and Ole Winther.
   Networks}.
 \newblock {\em arXiv:1412.7828}, 2014.
 
+\bibitem[Springenberg et~al.(2014)Springenberg, Dosovitskiy, Brox, and
+  Riedmiller]{Springenberg2014}
+Jost~Tobias Springenberg, Alexey Dosovitskiy, Thomas Brox, and Martin
+  Riedmiller.
+\newblock \href{http://arxiv.org/abs/1412.6806}{{Striving for Simplicity: The
+  All Convolutional Net}}.
+\newblock dec 2014.
+
+\bibitem[Srivastava et~al.(2014)Srivastava, Hinton, Krizhevsky, Sutskever, and
+  Salakhutdinov]{Srivastava2014}
+Nitish Srivastava, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan
+  Salakhutdinov.
+\newblock {Dropout: A Simple Way to Prevent Neural Networks from Overfitting}.
+\newblock {\em Journal of Machine Learning Research}, 2014.
+\newblock ISSN 15337928.
+
 \bibitem[Sundararajan et~al.(2017)Sundararajan, Taly, and
   Yan]{Sundararajan2017}
 Mukund Sundararajan, Ankur Taly, and Qiqi Yan.
 \newblock {Axiomatic Attribution for Deep Networks}.
 \newblock 2017.
 \newblock ISSN 1938-7228.
-
-\bibitem[Szegedy et~al.(2013)Szegedy, Zaremba, Sutskever, Bruna, Erhan,
-  Goodfellow, and Fergus]{Szegedy2013}
-Christian Szegedy, Wojciech Zaremba, Ilya Sutskever, Joan Bruna, Dumitru Erhan,
-  Ian Goodfellow, and Rob Fergus.
-\newblock \href{http://arxiv.org/abs/1312.6199}{{Intriguing properties of
-  neural networks}}.
-\newblock dec 2013.
 
 \bibitem[{The Theano Development Team} et~al.(2016){The Theano Development
   Team}, Al-Rfou, Alain, Almahairi, Angermueller, Bahdanau, Ballas, Bastien,
@@ -297,6 +470,13 @@ Martin Christen~Frolund Thomsen and Morten Nielsen.
 \newblock {\em Nucleic Acids Research}, 40\penalty0 (W1), 2012.
 \newblock ISSN 03051048.
 
+\bibitem[Umarov and Solovyev(2017)]{Umarov2017}
+Ramzan~Kh Umarov and Victor~V. Solovyev.
+\newblock {Recognition of prokaryotic and eukaryotic promoters using
+  convolutional deep learning neural networks}.
+\newblock {\em PLoS ONE}, 12\penalty0 (2), 2017.
+\newblock ISSN 19326203.
+
 \bibitem[Wang and Dunbrack(2003)]{Wang2003}
 Guoli Wang and Roland~L. Dunbrack.
 \newblock {PISCES: A protein sequence culling server}.
@@ -309,6 +489,13 @@ Sheng Wang, Jian Peng, Jianzhu Ma, and Jinbo Xu.
   Neural Fields}.
 \newblock {\em Scientific Reports}, 6, 2016.
 \newblock ISSN 20452322.
+
+\bibitem[Wang et~al.(2011)Wang, Zhao, Peng, and Xu]{Wang2011}
+Zhiyong Wang, Feng Zhao, Jian Peng, and Jinbo Xu.
+\newblock {Protein 8-class secondary structure prediction using conditional
+  neural fields}.
+\newblock {\em Proteomics}, 2011.
+\newblock ISSN 16159853.
 
 \bibitem[Zeiler and Fergus(2014)]{Zeiler2014}
 Matthew~D. Zeiler and Rob Fergus.

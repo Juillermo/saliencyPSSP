@@ -6,80 +6,79 @@ A level-1 auxiliary file: Methods.aux
 A level-1 auxiliary file: Results.aux
 The style file: ecs.bst
 Database file #1: ECS.bib
-Repeated entry---line 204 of file ECS.bib
+Repeated entry---line 815 of file ECS.bib
  : @article{Kabsch1983
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 627 of file ECS.bib
+Repeated entry---line 871 of file ECS.bib
+ : @article{Thomsen2012
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 960 of file ECS.bib
+ : @book{Ching2017
+ :                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1238 of file ECS.bib
  : @article{Sønderby2014
  :                       ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 655 of file ECS.bib
+Repeated entry---line 1266 of file ECS.bib
  : @article{Zhou2014
  :                  ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 755 of file ECS.bib
+Repeated entry---line 1366 of file ECS.bib
  : @article{Jurtz2017
  :                   ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "Libbrecht2015"
-Warning--I didn't find a database entry for "Alipanahi2015"
-Warning--I didn't find a database entry for "Ditzler2015"
-Warning--I didn't find a database entry for "Leung2014"
-Warning--I didn't find a database entry for "Zeng2015"
-Warning--I didn't find a database entry for "Fan2015"
-Warning--I didn't find a database entry for "Witteveen2014"
-Warning--I didn't find a database entry for "Chen2015"
-Warning--I didn't find a database entry for "Wang2015"
-Warning--I didn't find a database entry for "Zhang2015"
-Warning--I didn't find a database entry for "Liang2015"
 Warning--empty publisher in Ching2017
+Warning--empty journal in Dumoulin2016
 Warning--empty journal in Fang2017
 Warning--empty journal in Lanchantin2016
 Warning--empty journal in Lin2016
+Warning--empty journal in Nguyen2016
 Warning--empty journal in Shrikumar2017
+Warning--empty journal in Springenberg2014
 Warning--empty journal in Sundararajan2017
-Warning--empty journal in Szegedy2013
 Warning--empty journal in Zhou2014
-You've used 39 entries,
+You've used 65 entries,
             2638 wiz_defined-function locations,
-            855 strings with 16738 characters,
-and the built_in function-call counts, 24464 in all, are:
-= -- 1910
-> -- 2362
-< -- 16
-+ -- 869
-- -- 828
-* -- 2291
-:= -- 4436
-add.period$ -- 138
-call.type$ -- 39
-change.case$ -- 430
-chr.to.int$ -- 38
-cite$ -- 47
-duplicate$ -- 768
-empty$ -- 1239
-format.name$ -- 893
-if$ -- 4628
+            1013 strings with 22130 characters,
+and the built_in function-call counts, 36681 in all, are:
+= -- 2994
+> -- 3254
+< -- 25
++ -- 1192
+- -- 1125
+* -- 3261
+:= -- 6598
+add.period$ -- 234
+call.type$ -- 65
+change.case$ -- 633
+chr.to.int$ -- 64
+cite$ -- 75
+duplicate$ -- 1246
+empty$ -- 2018
+format.name$ -- 1230
+if$ -- 7039
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 35
-newline$ -- 222
-num.names$ -- 156
-pop$ -- 609
+missing$ -- 55
+newline$ -- 370
+num.names$ -- 260
+pop$ -- 920
 preamble$ -- 1
-purify$ -- 393
+purify$ -- 570
 quote$ -- 0
-skip$ -- 586
+skip$ -- 971
 stack$ -- 0
-substring$ -- 389
-swap$ -- 58
+substring$ -- 595
+swap$ -- 84
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 424
-warning$ -- 8
-while$ -- 130
+type$ -- 710
+warning$ -- 10
+while$ -- 212
 width$ -- 0
-write$ -- 516
-(There were 4 error messages)
+write$ -- 865
+(There were 6 error messages)
