@@ -219,7 +219,7 @@ def plot_sliding_saliencies():
         plot_len = end - ini
         fig, axes = plt.subplots(plot_len, 3, figsize=(15, 2 * plot_len))
         for pos in range(ini, end):
-            (ax1, ax2, ax3) = (axes[pos - ini][0], axes[pos - ini][1], axes[pos-ini][2])
+            (ax1, ax2, ax3) = (axes[pos - ini][0], axes[pos - ini][1], axes[pos - ini][2])
             tot_plot = saliencies[pos, 5]
 
             ax1.plot(tot_plot[:, 21:])
@@ -231,7 +231,7 @@ def plot_sliding_saliencies():
             ax3.plot(np.sum(abs(tot_plot[:, 21:]), axis=1))
         plt.show()
 
-    #plot_singles(saliencies)
+    # plot_singles(saliencies)
     plot_for_clustering(saliencies)
 
 
@@ -387,7 +387,7 @@ def plot_sheer_class_aa():
     ax21.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
     ax21.margins(0)
     ax21.legend(omg_cosa, [el + ": {:.1f}".format(kurtvec[i]) for i, el in enumerate(legend_names)], loc='upper right')
-    #ax21.yaxis.set(ticks=[])
+    # ax21.yaxis.set(ticks=[])
 
     plt.tight_layout()
     fig2.show()
@@ -421,8 +421,8 @@ plot_sliding_saliencies()
 # plot_single_sequence()
 
 # plot_sheer_aa()
-#plot_sheer_class_aa()
-#plot_sheer_agg_aa()
+# plot_sheer_class_aa()
+# plot_sheer_agg_aa()
 
 if __name__ == "__main__":
     # main()

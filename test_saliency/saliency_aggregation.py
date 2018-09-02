@@ -3,7 +3,7 @@ import pickle
 import argparse
 
 import numpy as np
-from sklearn.cluster import AgglomerativeClustering
+from sklearn.cluster import AgglomerativeClustering, DBSCAN
 
 from reparer import SALIENCIES_SCRATCH_PATH, PROCESSED_SCRATCH_PATH
 from utils import Jurtz_Data, ssConvertString, WINDOW
@@ -146,6 +146,7 @@ def calculate_points(args):
     np.save(SHEER_PATH + "points" + str(success_seqs) + ".npy", np.array(points))
     print(len(points))
     print(points[0].shape)
+    # 1259916
 
 
 def clustering(args):
@@ -160,12 +161,16 @@ def clustering(args):
     points = points[mask]
     print("Filtered points shape (no zero vectors):", points.shape)
 
-    n_clusters = 4
+    if args.clustering == "agglomerative":
+        n_clusters = 4
+        model = AgglomerativeClustering(n_clusters=n_clusters, linkage="average", affinity="cosine")
+    elif args.clustering == "DBSCAN":
+        model = DBSCAN(metric="cosine")
+    else:
+        raise ValueError("Clustering algorithm '{:s}' not recognized".format(args.clustering))
+    model.fit(points[:, args.label])
 
-    model = AgglomerativeClustering(n_clusters=n_clusters, linkage="average", affinity="cosine")
-    model.fit(points[:, 5])
-
-    np.save(SHEER_PATH + "cluster_labels" + str(args.num_points) + ".npy", model.labels_)
+    np.save(SHEER_PATH + "clusterlabels_{:s}{:d}.npy".format(args.label, args.num_points), model.labels_)
 
 
 def main():
@@ -180,6 +185,8 @@ def main():
                         help='number of protein sequences aggregated (default 2)')
     parser.add_argument('--num-points', type=int, default=50, metavar='num_points',
                         help='number of points for clustering (default 50)')
+    parser.add_argument('--clustering', choices=['agglomerative', 'DBSCAN'], default='agglomerative',
+                        metavar='clustering', help='clustering algorithm being used (default agglomerative')
     args = parser.parse_args()
 
     if args.func == 'sheer':
