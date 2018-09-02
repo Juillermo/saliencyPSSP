@@ -10,13 +10,20 @@
 
 %Check that you end the paper with something worth remembering. This means something concrete. “More research is needed” is a platitude and a vague one at that; better, go for something like “because of the results of this paper, we are now in a position to tackle problem X with method Y, bringing us closer to the ultimate goal of Z”. This is far more concrete and memorable. Endings have power; do not waste this power.
 
-%Future work:
-% Train a network with a slightly wider window
-% Check contribution of each layer by computing pre-dense saliency maps
-% Train network without one-hot amino-acids to prove that they are not that relevant
-% Applying DeepLift
+%FUTURE WORK:
+% TRain a network with a slightly wider window
+% CHeck contribution of each layer by computing pre-dense saliency maps
+% TRain network without one-hot amino-acids to prove that they are not that relevant
+% APplying DeepLift
+% DAta augmentation: due to the irrelevance of forward-backwards in the sequences it would be better to have a double database for purely CNNs approaches, with sequences trained in both ways
 
 %\begin{enumerate}
 %\item Let me summarise my conclusions about it
 %\item And let me state the value of them
 %\end{enumerate}
+
+The field of biomedical research requires more than high accuracy, the ability to interpret models is also an important asset. Deep learning networks brought into the field have increased the first thing, but fails at the second. Luckily, some interpretability techniques are being developed in the context of image processing and can be applied to other fields. This work has implemented for the first time saliency maps in a structure-to-structure sequential problem, namely, the protein secondary structure prediction problem. While saliency maps in problems with a single output per sequence are simple to interpret, structure-to-structure problems have more dimensions, so further methods for aggregating and inspecting them had to be developed in this work. The aggregating methods shown here focus on sequences, inputs or outputs, uncovering varied relations in the data. This type of analysis can be easily understood by experts in the field and provide them with valuable new information.
+
+Still, further exploration techniques should be sought for. Other methods of aggregation can be explored, since the ones here exposed only show features in a very general level. Clustering of the saliency maps would cover this aspect by including various facets of the features to each of which all techniques developed here can be applied independently and thus capture multi-modality. Feature visualization techniques can also provide with extra valuable information and their implementation should also be studied.
+
+Finally, other kinds problems can also be explored, such as back-bone angle prediction, where the goal shifts from classification to regression.
