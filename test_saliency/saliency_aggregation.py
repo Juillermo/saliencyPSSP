@@ -150,12 +150,20 @@ def calculate_points(args):
 
 def clustering(args):
     points = np.load(SHEER_PATH + "points" + str(args.num_seqs) + ".npy")
-    print(points.shape)
+    points = points[:args.num_points]
+    print("Original points shape:", points.shape)
+
+    mask = [True for _ in range(len(points))]
+    for i, point in enumerate(points):
+        if np.allclose(point, np.zeros_like(point)):
+            mask[i] = False
+    points = points[mask]
+    print("Filtered points shape (no zero vectors):", points.shape)
 
     n_clusters = 4
 
     model = AgglomerativeClustering(n_clusters=n_clusters, linkage="average", affinity="cosine")
-    model.fit(points[:,5])
+    model.fit(points[:, 5])
 
     np.save(SHEER_PATH + "cluster_labels" + str(args.num_seqs) + ".npy", model.labels_)
 
@@ -169,7 +177,9 @@ def main():
     parser.add_argument('--label', default='H', choices=[el for el in ssConvertString],
                         help='class from which to analyse the saliencies (default H)')
     parser.add_argument('--num-seqs', type=int, default=2, metavar='num_seqs',
-                        help='number of sequences aggregated for SeqLogo (default 2)')
+                        help='number of protein sequences aggregated (default 2)')
+    parser.add_argument('--num-points', type=int, default=50, metavar='num_points',
+                        help='number of points for clustering (default 50)')
     args = parser.parse_args()
 
     if args.func == 'sheer':
