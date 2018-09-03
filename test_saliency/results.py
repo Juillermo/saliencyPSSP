@@ -330,6 +330,28 @@ def plot_sheer_class():
     plt.show()
 
 
+def plot_sheer_class_all():
+    totals = collect_sheer()
+
+    fig, axes = plt.subplots(3, 3, figsize=(6 * 3 / 2, 6.65 * 3 / 2))
+    for i, target_class in enumerate(ssConvertString):
+        ax = axes[i // 3][i % 3]
+        tot_sal = totals[ssConvertString.find(target_class)]
+        vmax = np.max(abs(tot_sal[..., 21:]))
+        cax = ax.imshow(tot_sal[..., 21:].T, cmap='PiYG', vmin=-vmax, vmax=vmax)
+        # fig.colorbar(cax)
+
+        ax.set(title="Class " + target_class)
+        ax.yaxis.set(ticks=range(len(pssmString_jurtz)), ticklabels=pssmString_jurtz)
+        ax.xaxis.set(ticks=range(2 * WINDOW + 1),
+                     ticklabels=range(-WINDOW, WINDOW + 1))
+        ax.margins(0)
+
+    plt.tight_layout()
+    fig.savefig(FIGURES_PATH + "class_agg_class_all.eps", format='eps')
+    plt.show()
+
+
 def plot_sheer_aa():
     totals = collect_sheer()
     totals /= 1000
@@ -354,6 +376,29 @@ def plot_sheer_aa():
 
     plt.tight_layout()
     fig.savefig(FIGURES_PATH + "class_agg_aa.eps")
+    plt.show()
+
+
+def plot_sheer_aa_all():
+    totals = collect_sheer()
+    totals /= 1000
+
+    fig, axes = plt.subplots(7, 3, figsize=(13, 2.8 * 7))
+    for i, aa in enumerate(pssmString_jurtz):
+        ax1 = axes[i // 3][i % 3]
+        for j, label in enumerate(CLASS_NAMES):
+            ax1.plot(totals[ssConvertString.find(label), :, pssmString_jurtz.find(aa) + 21], label=label,
+                     marker='.', color=CLASS_COLOURS[label])
+
+        # vmax = np.max(abs(totals[:, :, 21:]))
+        ax1.legend(loc='right')
+        ax1.set(title="Pssm-values for " + aa)  # , ylim=[-vmax, vmax])
+        ax1.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
+        # ax1.yaxis.set(ticks=[])
+        ax1.margins(0)
+
+    plt.tight_layout()
+    fig.savefig(FIGURES_PATH + "class_agg_aa_all.eps")
     plt.show()
 
 
@@ -417,13 +462,15 @@ def plot_sheer_agg_aa():
 
 # sal = collect_saliencies()
 
-plot_sliding_saliencies()
+# plot_sliding_saliencies()
 # plot_single_sequence()
 
-# plot_sheer_aa()
+plot_sheer_aa()
 # plot_sheer_class_aa()
 # plot_sheer_agg_aa()
 
+# plot_sheer_class_all()
+# plot_sheer_aa_all()
 if __name__ == "__main__":
     # main()
     ""

@@ -282,7 +282,7 @@ def main():
 
         if (epoch >= config.start_saving_at) and ((epoch % config.save_every) == 0):
             print ("  saving parameters and metadata")
-            with open((metadata_path + "-%d" % (epoch) + ".pkl"), 'w') as f:
+            with open((metadata_path + "-%d" % (epoch) + ".pkl"), 'wb') as f:
                 pickle.dump({
                     'config_name': config_name,
                     'param_values': nn.layers.get_all_param_values(l_out),

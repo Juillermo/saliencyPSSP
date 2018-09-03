@@ -3,6 +3,7 @@ import pickle
 import argparse
 
 import numpy as np
+import pandas as pd
 from sklearn.cluster import AgglomerativeClustering, DBSCAN
 
 from reparer import SALIENCIES_SCRATCH_PATH, PROCESSED_SCRATCH_PATH
@@ -154,7 +155,7 @@ def clustering(args):
     points = points[:args.num_points]
     print("Original points shape:", points.shape)
 
-    mask = [True for _ in range(len(points))]
+    mask = np.ones(len(points), dtype='bool')
     for i, point in enumerate(points):
         if np.allclose(point, np.zeros_like(point)):
             mask[i] = False
@@ -165,12 +166,17 @@ def clustering(args):
         n_clusters = 4
         model = AgglomerativeClustering(n_clusters=n_clusters, linkage="average", affinity="cosine")
     elif args.clustering == "DBSCAN":
-        model = DBSCAN(metric="cosine")
+        model = DBSCAN(metric="cosine", eps=args.eps)
     else:
         raise ValueError("Clustering algorithm '{:s}' not recognized".format(args.clustering))
-    model.fit(points[:, args.label])
 
-    np.save(SHEER_PATH + "clusterlabels_{:s}{:d}.npy".format(args.label, args.num_points), model.labels_)
+    model.fit(points[:, ssConvertString.find(args.label)])
+
+    file_end = "{:s}{:d}.npy".format(args.label, args.num_points)
+    np.save(SHEER_PATH + args.clustering + file_end, model.labels_)
+    np.save(SHEER_PATH + 'mask' + file_end, mask)
+    print("Clustering completed. Labels saved in " + SHEER_PATH + ', ending with ' + file_end)
+    print("Labels:", pd.Series(model.labels_).value_counts())
 
 
 def main():
@@ -187,6 +193,8 @@ def main():
                         help='number of points for clustering (default 50)')
     parser.add_argument('--clustering', choices=['agglomerative', 'DBSCAN'], default='agglomerative',
                         metavar='clustering', help='clustering algorithm being used (default agglomerative')
+    parser.add_argument('--eps', type=float, default=0.5,
+                        metavar='eps', help='epsilon for DBSCAN (default 0.5')
     args = parser.parse_args()
 
     if args.func == 'sheer':
