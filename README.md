@@ -1,3 +1,7 @@
+This repository contains my code for my dissertation for the MSc in Artificial Intelligence in the University of Southampton. The network has been built and trained using the framework developed by [Vanessa Jurtz's](https://github.com/vanessajurtz) [lasagne4bio repository](https://github.com/vanessajurtz/lasagne4bio), in the *secondary_proteins_prediction* folder, to which I have mainly added new models (*pureConv.py* and *pssmConv.py* in *secondary_proteins_prediction/configurations*). The saliency maps are built and aggregated in the folder *test_saliencies*.
+
+---------------------
+
 # lasagne4bio
 
 This repository provides code examples to train neural networks for 3 biological sequence analysis problems:
