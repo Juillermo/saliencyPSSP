@@ -1,6 +1,6 @@
 %% ----------------------------------------------------------------
 %% Results.tex
-%% 2336
+%% 2639
 %% ---------------------------------------------------------------- 
 \chapter{Results \& Discussion} \label{Chapter: Results}
 
@@ -19,14 +19,14 @@
 %\item Here's my conclusion(s) about it
 %\end{enumerate}
 
-I have trained the network described in section \ref{sect:network} for 400 epochs with the same parameters as the ones used by \cite{Jurtz2017}; i.e., gradient clipping at 20, regularisation term $\lambda=10^{-4}$, learning rate varying from $\mu=0.025$ down to $10^{-4}$ throughout the epochs. The resulting network reaches an accuracy of 67.7\% on the test set, which is not far from the 71\% of the state-of-the-art (see section \ref{sect:HoF}).
+I have trained the network described in Section \ref{sect:network} for 400 epochs with the same parameters as the ones used by \cite{Jurtz2017}; i.e., gradient clipping at 20, regularisation term $\lambda=10^{-4}$, learning rate varying from $\mu=0.025$ down to $10^{-4}$ throughout the epochs. The resulting network reaches an accuracy of 67.7\% on the test set, which is not far from the 71\% of the state-of-the-art (see Section \ref{tab:HoF}).
 I believe that the techniques of analysis here presented and the conclusions withdrawn from them can be transferred to current state-of-the-art methods without losing validity.
 
 \section{Outlier analysis} \label{sect:outliers}
 
 In order to analyse the performance space a bit better, the average accuracy per sequence has been calculated, and it has been plotted in Figure \ref{fig:per_seq_acc} with respect to the sequence length. The distribution exhibits the typical funnel shape that one could expect from processes with random variables forming groups of different sizes: the bigger the groups, the smaller the variance. The funnel ceases to shrink at length about 400, so it would be particularly attractive to understand why the network is classifying worse (60\% and below) some of the sequences above that length.
 
-If we observe the colour scheme of the figure, we can understand right away that sequences rich in $\alpha$-helix are generally better predicted than $\beta$-sheets and coils. An explanation could be that while $\alpha$-helix sizes are up to five positions away, which is inside the window size, $\beta$-sheets interact with amino-acids further away in the sequence, which is not possible to be captured with the window of the network, of lateral size of nine.
+If we observe the colour scheme of the figure, we can understand right away that sequences rich in $\alpha$-helix are generally better predicted than $\beta$-sheets and coils. An explanation could be that while $\alpha$-helix sizes are up to five positions away, which is inside the window size, $\beta$-sheets interact with amino-acids further away in the sequence, which is not possible to be captured with the window of the network, of lateral size of nine. This is in line with previous literature (\cite{Rost2001}).
 
 \begin{figure}
 	\centering
@@ -36,16 +36,20 @@ If we observe the colour scheme of the figure, we can understand right away that
 \end{figure}
 % EXtra: include the same graph but colour the high-appearing classes and the low appearing classes differently (RB). Maybe not, in any case, some correlations plot
 
-\section{Feature visualization}
+\section{Feature visualization: first-layer filters}
+Some first-layer filters are shown in Figure \ref{fig:filters}. The first thing to notice is that for the upper two filters the side corresponding to \textit{pssm} contains stronger values, so filters seem to be focusing more on them. Although this asymmetry is not present in all filters, it seems to be prevalent in most of them. The middle filters (size five), has the features of an edge detector for specific \textit{pssm} values, these need to be at the right side and not at the left side for the filter to give a high output. The bottom filter (size seven) heavily penalises P values on the left. All the filters from the first layer can be seen in Appendix~\ref{Chapter:Feat}.
 
-\subsection{First layer filters}
-
-\subsection*{Saliency maps on layers?}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{Figures/filters}
+	\caption{\textit{Three sample first-layer filters, each of a different size.} The $y$ axis shows is the window of the filter and the $x$ axis the depth of the input, with the 21 first positions on the left corresponding to the one-hot encoding amino-acids and the right 21 positions to the \textit{pssm scores}. Positive values are in red and negative values in blue.}
+	\label{fig:filters}
+\end{figure}
 
 
 \section{Saliency maps on inputs}
 
-Before going through the analysis, it is worth recalling that the saliency map outputs has dimensions 8x42x19, for each position at each sequence, corresponding to the eight classes (outputs), the 42 inputs and the total window size of 19 (as explained in Section \ref{sect:saliency}).
+Before going through the analysis, it is worth recalling that the saliency map outputs has dimensions 8x42x19, for each position at each sequence, corresponding to the eight classes (outputs), the 42 inputs and the total window size of 19 (as explained in Section~\ref{sect:saliency}).
 
 %Talk about dimensions: saliency value, class, sequences, positions, window, amino-acids, aa/pssm (7 dimensions). From now on, individual saliency maps will refer to the saliency map of one sequence-position
 
@@ -95,7 +99,7 @@ For a more in-depth look into the whole \textit{pssm} spectrum, we would need to
 \begin{figure}
 	\centering
 	\includegraphics[width=1\linewidth]{Figures/sample_Hclass}
-	\caption{\textit{Fragment of sequence map for class H in SeqLogo form.} The saliency of the \textit{pssm} values is shown here. The frame and labels of the figure is the same as in Figure \ref{fig:sample_8classes}. The image has been generated by \textit{SeqLogo} \cite{Thomsen2012}.}
+	\caption{\textit{Fragment of sequence map for class H in sequence logo form.} The saliency of the \textit{pssm} values is shown here. The frame and labels of the figure is the same as in Figure \ref{fig:sample_8classes}. The image has been generated by \textit{Seq2Logo} \cite{Thomsen2012}.}
 	\label{fig:sample_Hclass}
 \end{figure}
 
@@ -106,9 +110,9 @@ For a more in-depth look into the whole \textit{pssm} spectrum, we would need to
 Instead of looking at the saliency information along single sequences, aggregating the information from all the 1.3 million saliency maps could give us some broader information of what the network has learned. Again, the high dimensionality of the data to explore requires us to seek meaningful ways to aggregate and represent the data.
 
 \subsubsection*{Sheer addition} \label{sect:sheer}
-A simple way to aggregate the saliency maps would be adding them up with element-wise addition, thus composing a single saliency map of size 8x42x19. This mega-saliency map should convey rough information of the general features of the network. Since there is no a sense of ``left" or ``right" in the sequences, the aggregation should be \textit{side-invariant} and therefore an extra \textit{mirroring} operation is applied to the aggregation in order to make the aggregated saliency map symmetric along the centre of the window.
+A simple way to aggregate the saliency maps would be adding them up with element-wise addition, thus composing a single saliency map of size 8x42x19. This mega-saliency map should convey rough information of the general features of the network.
 
-To start with, Figure \ref{fig:class_agg_class} shows the aggregated class-specific saliency maps for the three main classes and the 21 \textit{pssm} values. There are a few details to notice here. First, higher saliency values concentrate around the centre of the window, meaning that most relevant information is located around five positions from the predicted one. Second, most \textit{pssm} values preserve the same sign along the window of a class, although a few exceptions also occur. Third, as it could be expected, class \textit{L} generally presents inverse patterns with respect to classes \textit{H} and \textit{E}. It makes sense since coils appear wherever there are no $\alpha$-helices or $\beta$-strands, they are complementary. Lastly, each class has a ``feature" \textit{pssm} value that is their best indicator: \textit{A} for class \textit{H}; \textit{V} for \textit{E}; and \textit{P} for \textit{L}.
+To start with, Figure \ref{fig:class_agg_class} shows the aggregated class-specific saliency maps for the three main classes and the 21 \textit{pssm} values. There are a few details to notice here. First, higher saliency values concentrate around the centre of the window, meaning that most relevant information is located around five positions from the predicted one. However, class $H$ shows a slight skewness towards the right; it focuses more on what further positions contain than what was before. Second, most \textit{pssm} values preserve the same sign along the window of a class, although exceptions also occur. Third, as it could be expected, class \textit{L} generally presents inverse patterns with respect to classes \textit{H} and \textit{E}. It makes sense since coils appear wherever there are no $\alpha$-helices or $\beta$-strands, they are complementary. Lastly, each class has a ``feature" \textit{pssm} value that is their best indicator: \textit{A} for class \textit{H}; \textit{V} for \textit{E}; and \textit{P} for \textit{L}.
 
 \begin{figure}
 	\centering
@@ -117,7 +121,7 @@ To start with, Figure \ref{fig:class_agg_class} shows the aggregated class-speci
 	\label{fig:class_agg_class}
 \end{figure}
 
-Figure \ref{fig:class_agg_aa} shows the same information but from a different perspective: as it is \textit{pssm-specific}, it focuses on how a single \textit{pssm}'s position affects the classification on the eight classes. These plots show important effects of the position, as all of them make significant shifts at the centre of the window. \textit{Pssm} value \textit{G} strongly favours coils at its spot, but foresees the presence of $\beta$-strands a few positions away. \textit{Pssm} value \textit{K} has somehow similar behaviour, although with a more intricate ladder of classes while moving further away from the centre. \textit{Pssm} value \textit{M} is generally favouring $\alpha$-helices, although $3_{10}$-helices gain equal importance at the very centre. Note the difference in scales, which indicates that \textit{pssm}-values of \textit{G} are in any case more influential than the other two.
+Figure \ref{fig:class_agg_aa} shows the same information but from a different perspective: as it is \textit{pssm-specific}, it focuses on how a single \textit{pssm}'s position affects the classification on the eight classes. These plots show important effects of the position, as all of them make significant shifts at the centre of the window. \textit{Pssm} value \textit{G} strongly favours coils around its position but foresees the presence of $\beta$-strands a few positions away in either side. \textit{Pssm} value \textit{K} has a more chaotic effect with high asymmetry: while favouring $\beta$-strands and hindering helices on the left, it switches this behaviour on the right and favours coils as well. \textit{Pssm} value \textit{M} is generally favouring $\alpha$-helices, although $3_{10}$-helices gain importance at the very centre. The skewness of $\alpha$-helices to the right is quite evident here. Note the difference in scales, which indicates that \textit{pssm}-values of \textit{G} are in any case more influential than the other two.
 
 \begin{figure}
 	\centering
@@ -126,7 +130,7 @@ Figure \ref{fig:class_agg_aa} shows the same information but from a different pe
 	\label{fig:class_agg_aa}
 \end{figure}
 
-We can use the aggregated saliency maps to investigate the span of the class influence, i.e. how much of the further away positions the network uses to predict the class. For performing this analysis, the addition of the saliency maps must be done in absolute value and then aggregated by the \textit{pssm} dimension as well. Figure \ref{fig:sheer_class_aa} reveals the results for this operation. $\alpha$-helices (\textit{H}) and $\beta$-bridges (\textit{B}) seem to have the highest side influence, although $\beta$-strand's \textit{E} influence gets more weight for further positions. Most classes show a quasi-linear descend on influence from one to five-positions away and some tail afterwards. Coils are the most centred classes.
+Lastly, we can use the aggregated saliency maps to investigate the span of a class influence, i.e. how much of the further away positions the network uses to predict the class. For performing this analysis, the addition of the saliency maps must be done in absolute value and then aggregated by the \textit{pssm} dimension. Figure \ref{fig:sheer_class_aa} reveals the results for this operation. Helices and strands have higher side influence, as it could be expected. They all present a moderate level of asymmetry, with more variance happening on the right side, with $\alpha$-helices (\textit{H}) paying more attention to side positions and $\beta$-strands (\textit{E}) focusing less on side positions.
 
 \begin{figure}
 	\centering
@@ -138,36 +142,15 @@ We can use the aggregated saliency maps to investigate the span of the class inf
 
 % SHould I try to compare my results with known motifs? Absolutely yes!
 
-\subsubsection*{Clustering techniques}
-Aggregate all individual saliency maps % SHould I try to compare my results with known motifs? Absolutely yes!
-%clustering (5 dimensions left)
-%Using the per-class window-aggregated version of individual saliency maps (4 dimensions left)
-%Cosine distance metric.
-%Show either all profiles per-cluster (3 dimensions) or aggregated profiles (2 dimensions)
-%Show t-SNE with points coloured by cluster
 
-\begin{figure}
-	\centering
-	\includegraphics[width=1\linewidth]{Figures/clusters}
-	\caption{}
-	\label{fig:clusters}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{tsne}
-	\caption{}
-	\label{fig:tsne}
-\end{figure}
-
-
-\section{Final discussion and future research}
-%INclude rest of graphs in appendix A
-%AGgregated saliencies should be divided by frequency of happening??
-%PEr class motifs apparition by pure statistics should also be measured and compared with results
+\section{Final discussion}
 The results shown here are a small sub-sample of the kind of information that can be obtained from saliency maps. An exhaustive catalogue including plots for all classes and \textit{pssm} values can be found in Appendix \ref{Chapter:App}.
 
-Section \ref{sect:saliency} introduced the state-of-the-art techniques for saliency maps. This work has applied the gradient * input approach, as it leverages simplicity and effectiveness. Although more recent techniques for calculating saliency maps proved to have better results and they should be applied in further research, the whole framework for aggregating and evaluating them still holds and is independent of how the saliency maps were calculated.
+The asymmetry in the saliency maps requires further discussion. It seems it is natural to have some degree of asymmetry since we only count with a sub-sample of data and there can be some statistical variation. However, the consistency in the skewness suggests that there is some stronger underlying reason for this. The ribosome creates amino-acids sequentially, and it could be argued that the free end is already dynamically folding into their secondary structure while the amino-acids are still being assembled at the other end. So in the case of the $\alpha$-helix, the amino-acids coming after the one being inspected would determine more whether some folding is going to occur than the ones previously released. A bit more of time should be employed into determining whether this idea is consistent with what is known about protein formation.
+
+The analysis performed on Section \ref{sect:sheer} can be subject to criticism for other reasons. It mostly shows the influences of single amino-acids and their positions on specific classes. One could imagine a simple statistical linear model that looks at the frequencies in the training set that specific amino-acids are at certain positions with respect to specific classes and maybe we would get similar results. It is clear that CNNs are doing more than that, as their improved performance can prove. A direct comparison between both algorithms would shed more light on what the CNN is learning out of statistics form single amino-acids. Another way of doing so is not just focusing on the influence of single amino-acids but combinations of them. Since inspecting all the combinations of amino-acids and positions would be endless, other smarter approaches would need to be taken for doing so. One of them could be applying clustering on the saliency maps, with the hope that there are few strong modes (e.g. class \textit{H} being activated mostly when four specific combinations happen). Another approach could be implementing the feature visualisation technique of activation maximisation, as explained in Section \ref{sect:actmax}.
+
+The theoretical discussion of saliency maps in Section \ref{sect:saliency} introduced the state-of-the-art techniques for building them. This work has applied the gradient * input approach, as it leverages simplicity and effectiveness. Although more recent techniques for calculating saliency maps proved to have better results, the whole framework for aggregating and evaluating them still holds and is independent of how the saliency maps were calculated.
 
 The choice of protein secondary structure prediction is rooted in that it is a well-known problem. There has been some discussion on whether it is the best middle-step for reaching 3D structures, based on the fact that classification of secondary structure in these eight types has some degree of arbitrariness. The main alternative is predicting the angles of the backbone between every two amino-acids, transforming the problem from classification to regression. While translating the techniques developed here to this new problem is not straightforward, significant parts of it ---as the ideas for aggregating saliency maps--- can be recycled and adapted to the new context.
 

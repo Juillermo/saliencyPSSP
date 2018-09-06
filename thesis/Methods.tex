@@ -21,7 +21,7 @@
 Most of the computation work is performed on the \textit{IRIDIS High-Performance Computing Facility}, with the help of associated support services at the university. They make use of NVIDIA\textregistered$ $ GeForce GTX 1080 Ti Graphical Processing Units (\textit{GPU}s). The use of the GPUs has been possible thanks to the CUDA 9.0 toolkit\footnote{\url{https://developer.nvidia.com/cuda-toolkit}}.
 
 \section{Dataset}
-For this project, the database produced and made public by \cite{Zhou2014} is used\footnote{It can be accessed at \url{https://www.princeton.edu/\~7Ejzthree/datasets/ICML2014/}}. This database has been taken as the flagship benchmark since its release and making use of it allows fair comparisons with most state-of-the-art algorithms\footnote{See Table \ref{tab:HoF}}. This dataset includes two sub-sets (training and test) of proteins that come from different sources in order to ensure that the test set is composed of completely new samples. For this same reason, they filtered the training set, stripping out every sequence that held 25\% or more similarity with any protein from the test set.
+For this project, the database produced and made public by \cite{Zhou2014} is used\footnote{It can be accessed at \url{https://www.princeton.edu/\~7Ejzthree/datasets/ICML2014/}}. This database has been taken as the flagship benchmark since its release and making use of it allows fair comparisons with most state-of-the-art algorithms. This dataset includes two sub-sets (training and test) of proteins that come from different sources in order to ensure that the test set is composed of completely new samples. For this same reason, they filtered the training set, stripping out every sequence that held 25\% or more similarity with any protein from the test set.
 The training set was obtained from PISCES server (\cite{Wang2003})\footnote{\url{http://dunbrack.fccc.edu/Guoli/PISCES\_OptionPage.php}} from a date before January 2014, which was in time culled from the Protein Data Bank (PDB) (\cite{Berman2003}).
 It has an original size of 6133 proteins and 5534 after the filtering. The test set comes from the CB513 dataset \cite{Cuff1999} and includes 514 sequences\footnote{Originally 513, but the last one was split in two since it was longer than the 700 amino-acids limit.}.
 
@@ -44,19 +44,24 @@ The interpretability methods could be applied to any state-of-the-art network si
 The network that is used in this study has been built and trained using the open-source code developed by \cite{Jurtz2017}\footnote{Accesible at \url{https://github.com/vanessajurtz/lasagne4bio}.} on the \textit{Lasagne} framework (\cite{Dieleman2015}). While most training configurations are preserved (cross-entropy with L2 regularisation as the error function, batch normalisation, uniform glorot initialisation, mini-batches of size 64, RMSprop rule updates, gradient clipping), the network architecture itself is completely rebuilt. The weights for the final model are the ones from the epoch that has the best performance on the validation set.
 
 The network is composed of three successive convolutional networks and a dense layer on top. Each of the convolutional layers contains three sets of filters of size 3, 5 and 7, respectively, with 16 filters per size. There are skip connections that by-pass every convolutional network in the same fashion as \textit{ResNet}(\cite{He2015}), so the dense layer gets the concatenation of the raw input along with the outputs from the first, second and third layer altogether.
-The dense layer has 200 neurons and is connected to a \textit{soft-max} layer that gives the output (secondary structure prediction). The convolution operation is carried out with padding at each end of the sequence to preserve the length of the sequences throughout the convolution operations and produce in the final step one label per position.
+The dense layer has 200 neurons and is connected to a \textit{soft-max} layer that gives the output (secondary structure prediction). The convolution operation is carried out with padding at each end of the sequence to preserve the length of the sequences throughout the convolution operations and produce in the final step one label per position. A sketch of the network can be seen in Figure \ref{fig:pureConv}.
 
-% CHeck number of weights at the dense layer
+% Check number of weights at the dense layer. Done, they seem alright (186x200)
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{Figures/pureConv}
+\caption{\textit{Schema of network architecture}. There are three convolutional layers with filters of size 3, 5 and 7, followed by a dense layer and the softmax. Skip-connections bring together the output from all previous layers to each new layer.}
+\label{fig:pureConv}
+\end{figure}
+
 
 The total window size for this network is 19, meaning that for making a single secondary structure classification the network obtains information from 9 adjacent positions at each side. Although some authors claim that the network should capture long interactions between amino-acids (\cite{Li2016,Lin2016,Hattori2017,Heffernan2017}), it has been proven that most relevant information comes from the local environment (\cite{Busia2017}), so the limited window size should not impinge the model. This fact also supports the idea that the skip connections are beneficial since they avoid the most local information to be ``washed out" in upper layers (\cite{Busia2017}).
 
 % TRy network with a total window size of 43, as Busia did
-% TRy with data augmentation, training with the sequences flipped
 
 
 \section{Feature visualization}
-First order filters. They only show the first layer of feature extraction.
-Optimization maximisation. Bound to give unreal data. Not credible priors.
+This work only uses first-layer filters as feature visualization means. These only give a very limited amount of information about the very first features created, with a hard interpretation due to the depth of the network. In this case, we have filters with three different sizes to inspect: 3x42, 5x42 and 7x42. They can be visualized in a intuitive way in the form of \textit{sequence logos}, which can be generated with the \textit{Seq2Logo} tool (\cite{Thomsen2012}). Other feature visualisation techniques remain for future work.
 
 
 \section{Saliency maps} \label{sect:saliency}

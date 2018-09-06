@@ -16,6 +16,12 @@ pssmMap_jurtz = {amino: i for i, amino in enumerate(pssmString_jurtz)}
 ssConvertString = 'LBEGIHST'
 
 
+def toSeqLogo(total):
+    print(" ".join(pssmString_jurtz))
+    for row in range(len(total)):
+        print(" ".join("{:.8f}".format(el) for el in total[row, 21:]))
+
+
 def convertPredictQ8Result2HumanReadable(predictedSS):
     predSS = np.argmax(predictedSS, axis=-1)
     result = []

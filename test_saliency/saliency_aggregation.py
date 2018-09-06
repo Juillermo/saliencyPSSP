@@ -152,7 +152,7 @@ def calculate_points(args):
 
 def clustering(args):
     points = np.load(SHEER_PATH + "points" + str(args.num_seqs) + ".npy")
-    points = points[:args.num_points]
+    points = points[:args.num_points, ssConvertString.find(args.label)]
     print("Original points shape:", points.shape)
 
     mask = np.ones(len(points), dtype='bool')
@@ -166,17 +166,20 @@ def clustering(args):
         n_clusters = 4
         model = AgglomerativeClustering(n_clusters=n_clusters, linkage="average", affinity="cosine")
     elif args.clustering == "DBSCAN":
-        model = DBSCAN(metric="cosine", eps=args.eps)
+        #model = DBSCAN(metric="cosine", eps=args.eps)
+        import hdbscan
+        model = hdbscan.HDBSCAN(min_cluster_size=10)
     else:
         raise ValueError("Clustering algorithm '{:s}' not recognized".format(args.clustering))
 
-    model.fit(points[:, ssConvertString.find(args.label)])
+    model.fit(points)
 
     file_end = "{:s}{:d}.npy".format(args.label, args.num_points)
     np.save(SHEER_PATH + args.clustering + file_end, model.labels_)
     np.save(SHEER_PATH + 'mask' + file_end, mask)
-    print("Clustering completed. Labels saved in " + SHEER_PATH + ', ending with ' + file_end)
-    print("Labels:", pd.Series(model.labels_).value_counts())
+    print("Clustering completed. Labels saved in " + SHEER_PATH + args.clustering + file_end)
+    print("Labels:")
+    print(pd.Series(model.labels_).value_counts())
 
 
 def main():

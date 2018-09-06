@@ -185,24 +185,30 @@
     \begin{center}
       \setlength{\parskip}{0pt}
       {\large\textbf{\UNIVNAME}\par}
+      \bigskip
+      {\large \facname \par}
+      {\large \deptname \par}
       \vfill
       {\huge \bf \@title \par}
       \vfill
+      %\bigskip
+      %\bigskip
       {\LARGE by \par}
       \smallskip
       {\LARGE \authornames \par}
-      \vfill
-      {\large A thesis submitted in partial fulfillment for the \par}
-      {\large degree of Master of Science \par}
-      \bigskip
-      \bigskip
-      {\large in the \par}
-      {\large \facname \par}
-      {\large \deptname \par}
-      \bigskip
-      \bigskip
       \bigskip
       {\Large \@date \par}
+      \vfill
+      %\bigskip
+      %\bigskip
+      {\Large Supervisor: Mahesan Niranjan \par}
+      {\Large Second Examiner: Adam Prugel-Bennett\par}
+      %\bigskip
+      %\bigskip
+      %\bigskip
+      \vfill
+      {\large A dissertation submitted in partial fulfilment of the degree of \par}
+      {\large MSc in Artificial Intelligence \par}
       \bigskip
     \end{center}
     \par
@@ -236,7 +242,7 @@
     {\normalsize \FACNAME \par}
     {\normalsize \DEPTNAME \par}
     \bigskip
-    {\normalsize \underline{Master of Science}\par}
+    {\normalsize \underline{MSc in Artificial Intelligence}\par}
     \bigskip
     {\normalsize\bf \@title \par}
     \medskip

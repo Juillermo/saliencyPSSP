@@ -1,31 +1,37 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
+\citation{Goodfellow-et-al-2016}
+\citation{Cybenko1989}
+\citation{Barron1993}
 \citation{Srivastava2014}
 \citation{SergeyIoffe2015}
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}Background theory}{3}{chapter.2}}
+\citation{NIPS2012_4824}
+\citation{Vesely2013}
+\citation{Cho2014}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Background theory \& literature review}{3}{chapter.2}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{Chapter: Theory}{{2}{3}{Background theory}{chapter.2}{}}
+\newlabel{Chapter: Theory}{{2}{3}{Background theory \& literature review}{chapter.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Deep Learning}{3}{section.2.1}}
 \citation{LeCun1998}
 \citation{Dumoulin2016}
 \citation{Dumoulin2016}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces \textit  {Convolution operation with a 3x3 filter, padding of 1x1 and strides of 2x2}. The blue cells represent the input space, the white ones are the result of padding and the green cells conform the output space. The filter operation is performed onto the shaded input cells and produce the shaded output cells. Due to the strides, the filter jumps two positions while sliding. Figure reproduced from \cite  {Dumoulin2016}.}}{4}{figure.2.1}}
-\newlabel{fig:padding}{{2.1}{4}{\textit {Convolution operation with a 3x3 filter, padding of 1x1 and strides of 2x2}. The blue cells represent the input space, the white ones are the result of padding and the green cells conform the output space. The filter operation is performed onto the shaded input cells and produce the shaded output cells. Due to the strides, the filter jumps two positions while sliding. Figure reproduced from \cite {Dumoulin2016}}{figure.2.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Convolutional Neural Networks}{4}{subsection.2.1.1}}
 \newlabel{sect:cnn}{{2.1.1}{4}{Convolutional Neural Networks}{subsection.2.1.1}{}}
 \citation{Gu2017}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces \textit  {Convolution operation with a 3x3 filter, padding of 1x1 and strides of 2x2}. The blue cells represent the input space, the white ones are the result of padding, and the green cells form the output space. The filter operation is performed on the shaded input cells and produces the shaded output cells. Due to the strides, the filter jumps two positions while sliding. Figure reproduced from \cite  {Dumoulin2016}.}}{5}{figure.2.1}}
+\newlabel{fig:padding}{{2.1}{5}{\textit {Convolution operation with a 3x3 filter, padding of 1x1 and strides of 2x2}. The blue cells represent the input space, the white ones are the result of padding, and the green cells form the output space. The filter operation is performed on the shaded input cells and produces the shaded output cells. Due to the strides, the filter jumps two positions while sliding. Figure reproduced from \cite {Dumoulin2016}}{figure.2.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Drawbacks of deep-learning}{5}{subsection.2.1.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Interpretability techniques}{5}{section.2.2}}
 \citation{Lee2009}
 \citation{Erhan2009}
 \citation{Erhan2009}
 \citation{Erhan2009}
-\citation{Olah2017}
-\citation{Olah2017}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Feature visualization}{6}{subsection.2.2.1}}
 \newlabel{sect:featvis}{{2.2.1}{6}{Feature visualization}{subsection.2.2.1}{}}
-\newlabel{eq:opt}{{2.1}{6}{Activation maximization}{equation.2.2.1}{}}
+\newlabel{sect:actmax}{{2.2.1}{6}{Activation maximization}{section*.3}{}}
+\citation{Olah2017}
+\citation{Olah2017}
 \citation{Nguyen2016,Olah2017}
 \citation{Mordvintsev2015}
 \citation{Montavon2018}
@@ -33,16 +39,17 @@
 \citation{Olah2017}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces \textit  {Activation maximization method.} The process starts with random noise and performs gradient ascent to find the input sample that maximizes the activation of a unit (or a channel, in this case). Figure reproduced from \cite  {Olah2017}.}}{7}{figure.2.2}}
 \newlabel{fig:randopt}{{2.2}{7}{\textit {Activation maximization method.} The process starts with random noise and performs gradient ascent to find the input sample that maximizes the activation of a unit (or a channel, in this case). Figure reproduced from \cite {Olah2017}}{figure.2.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces \textit  {Maximally activating samples from training/test set (above) and activation maximization outcome (below) for four different units.} A single activation maximization local minimum does not capture all the variety of the neuron, so a multi-faceted set of them should be sought. Figure reproduced from \cite  {Olah2017}.}}{7}{figure.2.3}}
-\newlabel{optimization}{{2.3}{7}{\textit {Maximally activating samples from training/test set (above) and activation maximization outcome (below) for four different units.} A single activation maximization local minimum does not capture all the variety of the neuron, so a multi-faceted set of them should be sought. Figure reproduced from \cite {Olah2017}}{figure.2.3}{}}
+\newlabel{eq:opt}{{2.1}{7}{Activation maximization}{equation.2.2.1}{}}
 \citation{Montavon2017}
 \citation{Montavon2017}
 \citation{Zeiler2014}
-\citation{Shrikumar2017}
-\citation{Simonyan2014}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces \textit  {Maximally activating samples from training/test set (above) and activation maximization outcome (below) for four different units.} A single activation maximization local minimum does not capture all the variety of the neuron, so a multi-faceted set of them should be sought. Figure reproduced from \cite  {Olah2017}.}}{8}{figure.2.3}}
+\newlabel{optimization}{{2.3}{8}{\textit {Maximally activating samples from training/test set (above) and activation maximization outcome (below) for four different units.} A single activation maximization local minimum does not capture all the variety of the neuron, so a multi-faceted set of them should be sought. Figure reproduced from \cite {Olah2017}}{figure.2.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces \textit  {Basic sample of a saliency map.} Here, the network is detecting the digit zero (on the left) and the pixels that contributed to the classification are highlighted (on the right). Image reproduced form \cite  {Montavon2017}.}}{8}{figure.2.4}}
 \newlabel{fig:deeptaylor}{{2.4}{8}{\textit {Basic sample of a saliency map.} Here, the network is detecting the digit zero (on the left) and the pixels that contributed to the classification are highlighted (on the right). Image reproduced form \cite {Montavon2017}}{figure.2.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Saliency maps (or how to assign importance scores)}{8}{subsection.2.2.2}}
+\citation{Shrikumar2017}
+\citation{Simonyan2014}
 \citation{Springenberg2014}
 \citation{Bach2015}
 \citation{Montavon2017}
@@ -55,47 +62,54 @@
 \citation{Min2017}
 \citation{Mamoshina2016}
 \citation{Ching2017}
-\citation{Jurtz2017}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Deep Learning in biology}{9}{section.2.3}}
 \citation{Jurtz2017}
+\citation{Zhang2015}
+\citation{Jurtz2017}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}CNNs on biological sequence data}{10}{subsection.2.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Interpretability techniques on biological sequence problems}{10}{subsection.2.3.2}}
 \citation{Thomsen2012}
-\citation{Fontal2017}
-\citation{Fontal2017}
 \citation{Fontal2017}
 \citation{Lanchantin2016}
 \citation{Lanchantin2016}
 \citation{Alipanahi2015}
 \citation{Quang2016}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Interpretability techniques on biological sequence problems}{11}{subsection.2.3.2}}
 \citation{Alipanahi2015}
 \citation{Zhou2015}
 \citation{Umarov2017,Fontal2017}
 \citation{Kelley2016}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces \textit  {Two first-layer filters for a protein sequence problem shown as Seq2Logo.} The $x$ axis represents the span of the filters, width 10 in both filters presented here. While the left filter captures the appearance of two specific amino-acids anywhere around, the right one is more restrictive in terms of the position the must apper at. Figure reproduced from \cite  {Fontal2017}.}}{11}{figure.2.5}}
-\newlabel{fig:seqlogo}{{2.5}{11}{\textit {Two first-layer filters for a protein sequence problem shown as Seq2Logo.} The $x$ axis represents the span of the filters, width 10 in both filters presented here. While the left filter captures the appearance of two specific amino-acids anywhere around, the right one is more restrictive in terms of the position the must apper at. Figure reproduced from \cite {Fontal2017}}{figure.2.5}{}}
 \citation{Lanchantin2016}
 \citation{Lanchantin2016}
 \citation{Lanchantin2016}
 \citation{Shrikumar2017}
 \citation{Finnegan2017}
+\newlabel{Figure:figsubex:left}{{2.5(a)}{12}{Subfigure 2 2.5(a)}{subfigure.2.5.1}{}}
+\newlabel{sub@Figure:figsubex:left}{{(a)}{12}{Subfigure 2 2.5(a)\relax }{subfigure.2.5.1}{}}
+\newlabel{Figure:figsubex:right}{{2.5(b)}{12}{Subfigure 2 2.5(b)}{subfigure.2.5.2}{}}
+\newlabel{sub@Figure:figsubex:right}{{(b)}{12}{Subfigure 2 2.5(b)\relax }{subfigure.2.5.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces \textit  {Two first-layer filters for a protein sequence problem shown as Seq2Logo.} The $x$ axis represents the span of the filters, which is seven in both filters presented here. While the left filter captures the appearance of specific amino-acids at the sides and not the centre, the right one resembles more an edge detector, with many amino-acids with different signs at each side.}}{12}{figure.2.5}}
+\newlabel{fig:seqlogo}{{2.5}{12}{\textit {Two first-layer filters for a protein sequence problem shown as Seq2Logo.} The $x$ axis represents the span of the filters, which is seven in both filters presented here. While the left filter captures the appearance of specific amino-acids at the sides and not the centre, the right one resembles more an edge detector, with many amino-acids with different signs at each side}{figure.2.5}{}}
 \citation{Pauling1951}
 \citation{Heffernan2017}
 \citation{Rost2001}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces \textit  {Deep Motif dashboard including varied interpretability techniques for TF Binding Site classification.} This figure includes activation maximization methods (top), saliency maps (middle) and temporal outputs (bottom) for CNNs, RNNs, and a combination of both. Figure reproduced from \cite  {Lanchantin2016}.}}{12}{figure.2.6}}
-\newlabel{fig:demo}{{2.6}{12}{\textit {Deep Motif dashboard including varied interpretability techniques for TF Binding Site classification.} This figure includes activation maximization methods (top), saliency maps (middle) and temporal outputs (bottom) for CNNs, RNNs, and a combination of both. Figure reproduced from \cite {Lanchantin2016}}{figure.2.6}{}}
 \citation{Dill2012}
 \citation{Hattori2017}
+\citation{Magnan2014}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces \textit  {Deep Motif dashboard including varied interpretability techniques for TF Binding Site classification.} This figure includes activation maximization methods (top), saliency maps (middle) and temporal outputs (bottom) for CNNs, RNNs, and a combination of both. Figure reproduced from \cite  {Lanchantin2016}.}}{13}{figure.2.6}}
+\newlabel{fig:demo}{{2.6}{13}{\textit {Deep Motif dashboard including varied interpretability techniques for TF Binding Site classification.} This figure includes activation maximization methods (top), saliency maps (middle) and temporal outputs (bottom) for CNNs, RNNs, and a combination of both. Figure reproduced from \cite {Lanchantin2016}}{figure.2.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Protein Secondary Structure Prediction}{13}{section.2.4}}
 \citation{Zhou2018}
 \citation{Fang2017}
 \citation{Fauchere1988}
+\citation{Yang2018}
 \citation{Altschul1997}
 \citation{Jones1999}
 \citation{Busia2017}
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}Protein Secondary Structure Prediction}{13}{section.2.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Input features}{13}{subsection.2.4.1}}
 \citation{Li2016}
+\citation{Zhou2018}
 \citation{Mesnil2015}
+\citation{Spencer2015}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Input features}{14}{subsection.2.4.1}}
 \citation{Pauling1951}
 \citation{Kabsch1983}
 \citation{Kabsch1983}
@@ -106,12 +120,17 @@
 \citation{Fang2017}
 \citation{Jurtz2017}
 \citation{Wang2016}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Targets}{14}{subsection.2.4.2}}
 \citation{Chou1974}
 \citation{Qian1988}
 \citation{Rost1993}
+\citation{Qian1988,doi:10.1016/0014-5793(88)81066-4,Rost1993}
+\citation{Jones1999,Dor2007}
 \citation{Zhou2014}
+\citation{8371925,Fang2017}
 \citation{Zhou2014}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Targets}{15}{subsection.2.4.2}}
+\newlabel{tab:q8}{{2.4.2}{15}{Targets}{subsection.2.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces \textit  {Targets for the secondary structure prediction problem.} The simpler way of 3-class grouping was further expanded into eight classes by \cite  {Kabsch1983} in their Dictionary of Secondary Structure or Proteins (DSSP).}}{15}{table.2.1}}
 \citation{Busia2017}
 \citation{Wang2016}
 \citation{Busia2017}
@@ -129,16 +148,14 @@
 \citation{8371925}
 \citation{Zhou2018}
 \citation{Fang2017}
-\newlabel{tab:q8}{{2.4.2}{15}{Targets}{subsection.2.4.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces \textit  {Targets for the secondary structure prediction problem.} The simpler way of 3-class grouping was further expanded into eight classes by \cite  {Kabsch1983} in their Dictionary of Secondary Structure or Proteins (DSSP).}}{15}{table.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}State of the art}{15}{subsection.2.4.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces \textit  {Improvements of CNNs over fixed-window sliding.} While for MLP are not as flexible when at capturing information from different contexts (left), CNNs are able to merge local information at the lower layers with longer-range info at upper layers (\cite  {Busia2017}). Furthermore, increasing the depth expands the window size without adding much complexity to the model. Figure reproduced from \cite  {Wang2016}.}}{16}{figure.2.7}}
 \newlabel{fig:cnnwang}{{2.7}{16}{\textit {Improvements of CNNs over fixed-window sliding.} While for MLP are not as flexible when at capturing information from different contexts (left), CNNs are able to merge local information at the lower layers with longer-range info at upper layers (\cite {Busia2017}). Furthermore, increasing the depth expands the window size without adding much complexity to the model. Figure reproduced from \cite {Wang2016}}{figure.2.7}{}}
-\newlabel{tab:HoF}{{2.4.3}{16}{State of the art}{figure.2.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces \textit  {State-of-the-art Q8 results on benchmark CB513.} All networks include some sort of deep learning architecture. Architectures in bold indicate some sort of CNN were included. Best Q8 results are marked in bold.}}{16}{table.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}State of the art}{16}{subsection.2.4.3}}
+\newlabel{tab:HoF}{{2.4.3}{17}{State of the art}{figure.2.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces \textit  {State-of-the-art Q8 results on benchmark CB513.} All networks include some sort of deep learning architecture. Architectures in bold indicate some sort of CNN were included. Best Q8 results are marked in bold.}}{17}{table.2.2}}
 \@setckpt{Theory}{
-\setcounter{page}{17}
-\setcounter{equation}{2}
+\setcounter{page}{18}
+\setcounter{equation}{4}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}

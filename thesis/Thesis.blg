@@ -1,36 +1,50 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Thesis.aux
+A level-1 auxiliary file: Introduction.aux
 A level-1 auxiliary file: Theory.aux
 A level-1 auxiliary file: Methods.aux
 A level-1 auxiliary file: Results.aux
+A level-1 auxiliary file: Conclusions.aux
+A level-1 auxiliary file: AppendixA.aux
 The style file: ecs.bst
 Database file #1: ECS.bib
-Repeated entry---line 815 of file ECS.bib
+Repeated entry---line 924 of file ECS.bib
+ : @article{Rost1993
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 995 of file ECS.bib
  : @article{Kabsch1983
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 871 of file ECS.bib
+Repeated entry---line 1051 of file ECS.bib
  : @article{Thomsen2012
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 960 of file ECS.bib
+Repeated entry---line 1140 of file ECS.bib
  : @book{Ching2017
  :                ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1238 of file ECS.bib
+Repeated entry---line 1418 of file ECS.bib
  : @article{Sønderby2014
  :                       ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1266 of file ECS.bib
+Repeated entry---line 1433 of file ECS.bib
+ : @article{Magnan2014
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1446 of file ECS.bib
  : @article{Zhou2014
  :                  ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1366 of file ECS.bib
+Repeated entry---line 1546 of file ECS.bib
  : @article{Jurtz2017
  :                   ,
 I'm skipping whatever remains of this entry
+Warning--empty year in doi:10.1016/0014-5793(88)81066-4
+Warning--empty year in doi:10.1016/0014-5793(88)81066-4
 Warning--empty publisher in Ching2017
+Warning--empty journal in Cho2014
 Warning--empty journal in Dumoulin2016
 Warning--empty journal in Fang2017
 Warning--empty journal in Lanchantin2016
@@ -39,46 +53,47 @@ Warning--empty journal in Nguyen2016
 Warning--empty journal in Shrikumar2017
 Warning--empty journal in Springenberg2014
 Warning--empty journal in Sundararajan2017
+Warning--empty journal in Zhang2015
 Warning--empty journal in Zhou2014
-You've used 65 entries,
+You've used 75 entries,
             2638 wiz_defined-function locations,
-            1013 strings with 22130 characters,
-and the built_in function-call counts, 36681 in all, are:
-= -- 2994
-> -- 3254
-< -- 25
-+ -- 1192
-- -- 1125
-* -- 3261
-:= -- 6598
-add.period$ -- 234
-call.type$ -- 65
-change.case$ -- 633
-chr.to.int$ -- 64
-cite$ -- 75
-duplicate$ -- 1246
-empty$ -- 2018
-format.name$ -- 1230
-if$ -- 7039
+            1083 strings with 24765 characters,
+and the built_in function-call counts, 41708 in all, are:
+= -- 3431
+> -- 3608
+< -- 29
++ -- 1320
+- -- 1243
+* -- 3676
+:= -- 7471
+add.period$ -- 271
+call.type$ -- 75
+change.case$ -- 710
+chr.to.int$ -- 74
+cite$ -- 89
+duplicate$ -- 1458
+empty$ -- 2349
+format.name$ -- 1360
+if$ -- 8039
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 55
-newline$ -- 370
-num.names$ -- 260
-pop$ -- 920
+missing$ -- 66
+newline$ -- 426
+num.names$ -- 302
+pop$ -- 1048
 preamble$ -- 1
-purify$ -- 570
+purify$ -- 638
 quote$ -- 0
-skip$ -- 971
+skip$ -- 1123
 stack$ -- 0
-substring$ -- 595
-swap$ -- 84
-text.length$ -- 2
+substring$ -- 716
+swap$ -- 106
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 710
-warning$ -- 10
-while$ -- 212
+type$ -- 815
+warning$ -- 14
+while$ -- 247
 width$ -- 0
-write$ -- 865
-(There were 6 error messages)
+write$ -- 997
+(There were 8 error messages)

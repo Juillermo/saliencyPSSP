@@ -1,4 +1,4 @@
-\begin{thebibliography}{65}
+\begin{thebibliography}{75}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname url\endcsname\relax
   \def\url#1{{\tt #1}}\fi
@@ -28,10 +28,27 @@ Sebastian Bach, Alexander Binder, Gr{\'{e}}goire Montavon, Frederick Klauschen,
 \newblock {\em PLoS ONE}, 2015.
 \newblock ISSN 19326203.
 
+\bibitem[Barron(1993)]{Barron1993}
+Andrew~R. Barron.
+\newblock {Universal approximation bounds for superpositions of a sigmoidal
+  function}.
+\newblock {\em IEEE Transactions on Information Theory}, 1993.
+\newblock ISSN 00189448.
+
 \bibitem[Berman et~al.(2003)Berman, Henrick, and Nakamura]{Berman2003}
 Helen Berman, Kim Henrick, and Haruki Nakamura.
 \newblock {Announcing the worldwide Protein Data Bank}, 2003.
 \newblock ISSN 10728368.
+
+\bibitem[Bohr et~al.()Bohr, Bohr, Brunak, Cotterill, Lautrup, Nørskov, Olsen,
+  and Petersen]{doi:10.1016/0014-5793(88)81066-4}
+Henrik Bohr, Jakob Bohr, Søren Brunak, Rodney~M.J. Cotterill, Benny Lautrup,
+  Leif Nørskov, Ole~H. Olsen, and Steffen~B. Petersen.
+\newblock
+  \href{https://febs.onlinelibrary.wiley.com/doi/abs/10.1016/0014-5793%2888%2981066-4}{Protein
+  secondary structure and homology by neural networks the α-helices in
+  rhodopsin}.
+\newblock {\em FEBS Letters}, 241\penalty0 (1-2):\penalty0 223--228.
 
 \bibitem[Busia and Jaitly(2017)]{Busia2017}
 Akosua Busia and Navdeep Jaitly.
@@ -55,6 +72,15 @@ Travers Ching, Daniel~S. Himmelstein, Brett~K. Beaulieu-Jones, Alexandr~A.
 \newblock 2017.
 \newblock ISBN 0000000305396.
 
+\bibitem[Cho et~al.(2014)Cho, van Merrienboer, Gulcehre, Bahdanau, Bougares,
+  Schwenk, and Bengio]{Cho2014}
+Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi
+  Bougares, Holger Schwenk, and Yoshua Bengio.
+\newblock \href{http://arxiv.org/abs/1406.1078}{{Learning Phrase
+  Representations using RNN Encoder-Decoder for Statistical Machine
+  Translation}}.
+\newblock jun 2014.
+
 \bibitem[Chou and Fasman(1974)]{Chou1974}
 Peter~Y. Chou and Gerald~D. Fasman.
 \newblock {Prediction of Protein Conformation}.
@@ -67,6 +93,12 @@ J~a Cuff and G~J Barton.
   secondary structure prediction.}
 \newblock {\em Proteins}, 1999.
 \newblock ISSN 0887-3585.
+
+\bibitem[Cybenko(1989)]{Cybenko1989}
+George Cybenko.
+\newblock {Approximations by superpositions of sigmoidal functions}.
+\newblock {\em Approximation Theory and its Applications}, 1989.
+\newblock ISSN 10009221.
 
 \bibitem[Dieleman et~al.(2015)Dieleman, Schl{\"{u}}ter, Raffel, Olson,
   S{\o}nderby, Nouri, Maturana, Thoma, Battenberg, Kelly, Fauw, Heilman,
@@ -83,6 +115,13 @@ Sander Dieleman, Jan Schl{\"{u}}ter, Colin Raffel, Eben Olson, S{\o}ren~Kaae
 Ken~A. Dill and Justin~L. MacCallum.
 \newblock {The protein-folding problem, 50 years on}, 2012.
 \newblock ISSN 10959203.
+
+\bibitem[Dor and Zhou(2007)]{Dor2007}
+Ofer Dor and Yaoqi Zhou.
+\newblock {Achieving 80{\%} ten-fold cross-validated accuracy for secondary
+  structure prediction by large-scale training}.
+\newblock {\em Proteins: Structure, Function and Genetics}, 2007.
+\newblock ISSN 08873585.
 
 \bibitem[Dumoulin and Visin(2016)]{Dumoulin2016}
 Vincent Dumoulin and Francesco Visin.
@@ -128,6 +167,13 @@ Alex Finnegan and Jun~S. Song.
 Alejandro Fontal.
 \newblock {\em {Neural Networks for Subcellular Localization Prediction}}.
 \newblock PhD thesis, Wageningen University {\&} Research, 2017.
+
+\bibitem[Goodfellow et~al.(2016)Goodfellow, Bengio, and
+  Courville]{Goodfellow-et-al-2016}
+Ian Goodfellow, Yoshua Bengio, and Aaron Courville.
+\newblock {\em Deep Learning}.
+\newblock MIT Press, 2016.
+\newblock \url{http://www.deeplearningbook.org}.
 
 \bibitem[Gu et~al.(2017)Gu, Wang, Kuen, Ma, Shahroudy, Shuai, Liu, Wang, Wang,
   Wang, Cai, and Chen]{Gu2017}
@@ -213,6 +259,16 @@ David~R. Kelley, Jasper Snoek, and John~L. Rinn.
   deep convolutional neural networks}.
 \newblock {\em Genome Research}, 2016.
 \newblock ISSN 15495469.
+
+\bibitem[Krizhevsky et~al.(2012)Krizhevsky, Sutskever, and
+  Hinton]{NIPS2012_4824}
+Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
+\newblock
+  \href{http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf}{Imagenet
+  classification with deep convolutional neural networks}.
+\newblock In F.~Pereira, C.~J.~C. Burges, L.~Bottou, and K.~Q. Weinberger,
+  editors, {\em Advances in Neural Information Processing Systems 25}, pages
+  1097--1105. Curran Associates, Inc., 2012.
 
 \bibitem[Lanchantin et~al.(2016)Lanchantin, Singh, Wang, and
   Qi]{Lanchantin2016}
@@ -344,18 +400,19 @@ Daniel Quang and Xiaohui Xie.
 \newblock {\em Nucleic Acids Research}, 2016.
 \newblock ISSN 13624962.
 
+\bibitem[Rost and Sander(1993)]{Rost1993}
+B~Rost and C~Sander.
+\newblock {Improved prediction of protein secondary structure by use of
+  sequence profiles and neural networks.}
+\newblock {\em Proceedings of the National Academy of Sciences of the United
+  States of America}, 1993.
+\newblock ISSN 0027-8424.
+
 \bibitem[Rost(2001)]{Rost2001}
 Burkhard Rost.
 \newblock {Review: Protein secondary structure prediction continues to rise},
   2001.
 \newblock ISSN 10478477.
-
-\bibitem[Rost and Sander(1993)]{Rost1993}
-Burkhard Rost and Chris Sander.
-\newblock {Prediction of protein secondary structure at better than 70{\%}
-  accuracy}.
-\newblock {\em Journal of Molecular Biology}, 1993.
-\newblock ISSN 00222836.
 
 \bibitem[{Sergey Ioffe} and {Christian Szegedy}(2015)]{SergeyIoffe2015}
 Google {Sergey Ioffe} and Google {Christian Szegedy}.
@@ -389,6 +446,14 @@ S{\o}ren~Kaae S{\o}nderby and Ole Winther.
 \newblock {Protein Secondary Structure Prediction with Long Short Term Memory
   Networks}.
 \newblock {\em arXiv:1412.7828}, 2014.
+
+\bibitem[Spencer et~al.(2015)Spencer, Eickholt, and Cheng]{Spencer2015}
+Matt Spencer, Jesse Eickholt, and Jianlin Cheng.
+\newblock {A Deep Learning Network Approach to ab initio Protein Secondary
+  Structure Prediction}.
+\newblock {\em Ieee/Acm Transactions on Computational Biology and
+  Bioinformatics}, 2015.
+\newblock ISSN 1545-5963.
 
 \bibitem[Springenberg et~al.(2014)Springenberg, Dosovitskiy, Brox, and
   Riedmiller]{Springenberg2014}
@@ -477,6 +542,14 @@ Ramzan~Kh Umarov and Victor~V. Solovyev.
 \newblock {\em PLoS ONE}, 12\penalty0 (2), 2017.
 \newblock ISSN 19326203.
 
+\bibitem[Vesel{\'{y}} et~al.(2013)Vesel{\'{y}}, Ghoshal, Burget, and
+  Povey]{Vesely2013}
+Karel Vesel{\'{y}}, Arnab Ghoshal, Luk{\'{a}}{\v{s}} Burget, and Daniel Povey.
+\newblock {Sequence-discriminative training of deep neural networks}.
+\newblock In {\em Proceedings of the Annual Conference of the International
+  Speech Communication Association, INTERSPEECH}, 2013.
+\newblock ISBN 9781479927562.
+
 \bibitem[Wang and Dunbrack(2003)]{Wang2003}
 Guoli Wang and Roland~L. Dunbrack.
 \newblock {PISCES: A protein sequence culling server}.
@@ -490,12 +563,14 @@ Sheng Wang, Jian Peng, Jianzhu Ma, and Jinbo Xu.
 \newblock {\em Scientific Reports}, 6, 2016.
 \newblock ISSN 20452322.
 
-\bibitem[Wang et~al.(2011)Wang, Zhao, Peng, and Xu]{Wang2011}
-Zhiyong Wang, Feng Zhao, Jian Peng, and Jinbo Xu.
-\newblock {Protein 8-class secondary structure prediction using conditional
-  neural fields}.
-\newblock {\em Proteomics}, 2011.
-\newblock ISSN 16159853.
+\bibitem[Yang et~al.(2018)Yang, Gao, Wang, Heffernan, Hanson, Paliwal, and
+  Zhou]{Yang2018}
+Yuedong Yang, Jianzhao Gao, Jihua Wang, Rhys Heffernan, Jack Hanson, Kuldip
+  Paliwal, and Yaoqi Zhou.
+\newblock {Sixty-five years of the long march in protein secondary structure
+  prediction: The final stretch?}
+\newblock {\em Briefings in Bioinformatics}, 2018.
+\newblock ISSN 14774054.
 
 \bibitem[Zeiler and Fergus(2014)]{Zeiler2014}
 Matthew~D. Zeiler and Rob Fergus.
@@ -504,6 +579,12 @@ Matthew~D. Zeiler and Rob Fergus.
   Lecture Notes in Artificial Intelligence and Lecture Notes in
   Bioinformatics)}, 2014.
 \newblock ISBN 9783319105895.
+
+\bibitem[Zhang et~al.(2015)Zhang, Zhao, and LeCun]{Zhang2015}
+Xiang Zhang, Junbo Zhao, and Yann LeCun.
+\newblock \href{http://arxiv.org/abs/1509.01626}{{Character-level Convolutional
+  Networks for Text Classification}}.
+\newblock sep 2015.
 
 \bibitem[Zhou and Troyanskaya(2014)]{Zhou2014}
 Jian Zhou and Olga~G. Troyanskaya.

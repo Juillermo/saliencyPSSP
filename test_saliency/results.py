@@ -5,7 +5,7 @@ from scipy.stats import kurtosis
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 
-from utils import WINDOW, ssConvertString, pssmString_jurtz, aaString_jurtz, Jurtz_Data
+from utils import WINDOW, ssConvertString, pssmString_jurtz, Jurtz_Data, toSeqLogo
 
 # from saliency_aggregation import SHEER_PATH
 
@@ -26,11 +26,6 @@ SEQLOGO_COLOURS = {'D': first, 'E': first,
                    'N': second, 'Q': second, 'S': second, 'G': second, 'T': second, 'Y': second,
                    'R': third, 'K': third, 'H': third,
                    'X': fourth, 'I': fourth, 'A': fourth, 'V': fourth, 'L': fourth, 'F': fourth}
-
-
-def toSeqLogo(total):
-    for row in range(len(total)):
-        print(" ".join("{:.8f}".format(el) for el in total[row, 21:]))
 
 
 def plot_outliers():
@@ -189,8 +184,8 @@ def collect_sheer():
         with open("SeqLogo_data/SeqLogo" + str(num_seqs) + target_class + ".pkl", "rb") as f:
             totals[i] = pickle.load(f)
 
-    totals += totals[:, ::-1, :]
-    totals /= 2
+    # totals += totals[:, ::-1, :]
+    # totals /= 2
     return totals
 
 
@@ -404,8 +399,8 @@ def plot_sheer_aa_all():
 
 def plot_sheer_class_aa():
     abs_sheer = np.load(SHEER_PATH + "sheer6016.npy")
-    abs_sheer += abs_sheer[:, ::-1, :]
-    abs_sheer /= 2
+    # abs_sheer += abs_sheer[:, ::-1, :]
+    # abs_sheer /= 2
 
     fig2, ax21 = plt.subplots(figsize=(9, 3))
 
@@ -432,11 +427,17 @@ def plot_sheer_class_aa():
     ax21.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
     ax21.margins(0)
     ax21.legend(omg_cosa, [el + ": {:.1f}".format(kurtvec[i]) for i, el in enumerate(legend_names)], loc='upper right')
-    # ax21.yaxis.set(ticks=[])
+    ax21.yaxis.set(ticks=[])
 
     plt.tight_layout()
     fig2.show()
     fig2.savefig(FIGURES_PATH + "sheer_class_aa.eps")
+
+    # fig3, ax3 = plt.subplots(figsize=(9, 3))
+    # ax3.plot(np.sum(np.sum(abs_sheer[..., 21:], axis=0), axis=1))
+    # ax3.yaxis.set(ticks=[])
+    # ax3.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
+    # fig3.show()
 
 
 def plot_sheer_agg_aa():
@@ -465,8 +466,9 @@ def plot_sheer_agg_aa():
 # plot_sliding_saliencies()
 # plot_single_sequence()
 
-plot_sheer_aa()
-# plot_sheer_class_aa()
+# plot_sheer_class()
+# plot_sheer_aa()
+plot_sheer_class_aa()
 # plot_sheer_agg_aa()
 
 # plot_sheer_class_all()
