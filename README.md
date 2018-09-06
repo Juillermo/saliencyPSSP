@@ -1,4 +1,9 @@
-This repository contains my code for my dissertation for the MSc in Artificial Intelligence in the University of Southampton. The network has been built and trained using the framework developed by [Vanessa Jurtz's](https://github.com/vanessajurtz) [lasagne4bio repository](https://github.com/vanessajurtz/lasagne4bio), in the *secondary_proteins_prediction* folder, to which I have mainly added new models (*pureConv.py* and *pssmConv.py* in *secondary_proteins_prediction/configurations*). The saliency maps are built and aggregated in the folder *test_saliencies*.
+This repository contains my code for my dissertation for the MSc in Artificial Intelligence in the University of Southampton:
+>Applying Saliency Map Analysis to CNNs on Protein Secondary Structure Prediction
+ 
+The network has been built and trained using the framework developed by [Vanessa Jurtz's](https://github.com/vanessajurtz) [lasagne4bio repository](https://github.com/vanessajurtz/lasagne4bio), which can be found in the *secondary_proteins_prediction* folder. I have mainly added new models to it (*pureConv.py* and *pssmConv.py* in *secondary_proteins_prediction/configurations*).
+
+The saliency maps are built and aggregated in the folder *test_saliency*.
 
 ---------------------
 
