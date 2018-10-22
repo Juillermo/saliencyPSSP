@@ -9,35 +9,35 @@ A level-1 auxiliary file: Conclusions.aux
 A level-1 auxiliary file: AppendixA.aux
 The style file: ecs.bst
 Database file #1: ECS.bib
-Repeated entry---line 924 of file ECS.bib
+Repeated entry---line 959 of file ECS.bib
  : @article{Rost1993
  :                  ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 995 of file ECS.bib
+Repeated entry---line 1030 of file ECS.bib
  : @article{Kabsch1983
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1051 of file ECS.bib
+Repeated entry---line 1086 of file ECS.bib
  : @article{Thomsen2012
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1140 of file ECS.bib
+Repeated entry---line 1175 of file ECS.bib
  : @book{Ching2017
  :                ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1418 of file ECS.bib
+Repeated entry---line 1453 of file ECS.bib
  : @article{Sønderby2014
  :                       ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1433 of file ECS.bib
+Repeated entry---line 1468 of file ECS.bib
  : @article{Magnan2014
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1446 of file ECS.bib
+Repeated entry---line 1481 of file ECS.bib
  : @article{Zhou2014
  :                  ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1546 of file ECS.bib
+Repeated entry---line 1581 of file ECS.bib
  : @article{Jurtz2017
  :                   ,
 I'm skipping whatever remains of this entry
@@ -53,47 +53,48 @@ Warning--empty journal in Nguyen2016
 Warning--empty journal in Shrikumar2017
 Warning--empty journal in Springenberg2014
 Warning--empty journal in Sundararajan2017
+Warning--empty journal in Szegedy2016
 Warning--empty journal in Zhang2015
 Warning--empty journal in Zhou2014
-You've used 75 entries,
+You've used 77 entries,
             2638 wiz_defined-function locations,
-            1083 strings with 24765 characters,
-and the built_in function-call counts, 41708 in all, are:
-= -- 3431
-> -- 3608
+            1096 strings with 25214 characters,
+and the built_in function-call counts, 42683 in all, are:
+= -- 3514
+> -- 3680
 < -- 29
-+ -- 1320
-- -- 1243
-* -- 3676
-:= -- 7471
-add.period$ -- 271
-call.type$ -- 75
-change.case$ -- 710
-chr.to.int$ -- 74
-cite$ -- 89
-duplicate$ -- 1458
-empty$ -- 2349
-format.name$ -- 1360
-if$ -- 8039
++ -- 1346
+- -- 1267
+* -- 3753
+:= -- 7642
+add.period$ -- 279
+call.type$ -- 77
+change.case$ -- 726
+chr.to.int$ -- 76
+cite$ -- 92
+duplicate$ -- 1500
+empty$ -- 2416
+format.name$ -- 1386
+if$ -- 8233
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 66
-newline$ -- 426
-num.names$ -- 302
-pop$ -- 1048
+missing$ -- 68
+newline$ -- 438
+num.names$ -- 310
+pop$ -- 1076
 preamble$ -- 1
-purify$ -- 638
+purify$ -- 652
 quote$ -- 0
-skip$ -- 1123
+skip$ -- 1151
 stack$ -- 0
-substring$ -- 716
-swap$ -- 106
+substring$ -- 728
+swap$ -- 108
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 815
-warning$ -- 14
-while$ -- 247
+type$ -- 837
+warning$ -- 15
+while$ -- 253
 width$ -- 0
-write$ -- 997
+write$ -- 1024
 (There were 8 error messages)

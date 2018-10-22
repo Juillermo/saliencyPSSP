@@ -98,6 +98,11 @@ def calculate_sheer(args):
 
 
 def calculate_sheer_abs(args):
+    if args.func == "sheerabsequal":
+        dater = Jurtz_Data()
+        _, labels, mask = dater.get_all_data()
+        predictions = dater.get_all_predictions()
+
     origin = os.getcwd()
     os.chdir(PROCESSED_SCRATCH_PATH)
 
@@ -108,8 +113,18 @@ def calculate_sheer_abs(args):
             fname = "saliencies{:4d}.npy".format(seq)
             processed_seq = np.load(fname)
 
-            for saliency_map in processed_seq:
-                total += abs(saliency_map)
+            for pos, saliency_map in enumerate(processed_seq):
+                if args.func == "sheerabs":
+                    total += abs(saliency_map)
+                elif args.func == "sheerabsequal":
+                    if mask[seq, pos]:
+                        if labels[seq, pos] == np.argmax(predictions[seq, pos]):
+                            total[labels[seq,pos]]+=saliency_map[labels[seq,pos]]
+                    else:
+                        break
+                else:
+                    raise ValueError(
+                        "Invalid function '%s'. It should be either 'sheerabs' or 'sheerabsequal'.".format(args.func))
             print(seq)
 
         except OSError:
@@ -119,7 +134,7 @@ def calculate_sheer_abs(args):
     os.chdir(origin)
     success_seqs = args.num_seqs - fail_seqs
     print("Sheer addition of " + str(success_seqs) + " elements, absolute value")
-    np.save(SHEER_PATH + "sheer" + str(success_seqs) + ".npy", total)
+    np.save(SHEER_PATH + args.func + str(success_seqs) + ".npy", total)
 
 
 def calculate_points(args):
@@ -166,7 +181,7 @@ def clustering(args):
         n_clusters = 4
         model = AgglomerativeClustering(n_clusters=n_clusters, linkage="average", affinity="cosine")
     elif args.clustering == "DBSCAN":
-        #model = DBSCAN(metric="cosine", eps=args.eps)
+        # model = DBSCAN(metric="cosine", eps=args.eps)
         import hdbscan
         model = hdbscan.HDBSCAN(min_cluster_size=10)
     else:
@@ -186,8 +201,8 @@ def main():
     parser = argparse.ArgumentParser(
         description='Aggregate saliencies either by sheer addition, compute points for clustering, or aggregate points as aa/pssm')
 
-    parser.add_argument('--func', choices=['sheer', 'points', 'aapssm', 'sheerabs', 'cluster'],
-                        help='Function: "sheer" addition of saliencies, "points" for clustering, "aampssm" values, "sheerabs" addition, "cluster" points')
+    parser.add_argument('--func', choices=['sheer', 'points', 'aapssm', 'sheerabs', 'sheerabsequal', 'cluster'],
+                        help='Function: "sheer" addition of saliencies, "points" for clustering, "aampssm" values, "sheerabs" addition, "sheerabsequal" addition only for predicted classes, "cluster" points')
     parser.add_argument('--label', default='H', choices=[el for el in ssConvertString],
                         help='class from which to analyse the saliencies (default H)')
     parser.add_argument('--num-seqs', type=int, default=2, metavar='num_seqs',
@@ -206,7 +221,7 @@ def main():
         calculate_points(args)
     elif args.func == 'aapssm':
         calculate_aa_pssm(args)
-    elif args.func == 'sheerabs':
+    elif args.func == 'sheerabs' or 'sheerabsequal':
         calculate_sheer_abs(args)
     elif args.func == 'cluster':
         clustering(args)

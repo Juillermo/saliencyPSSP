@@ -1,0 +1,164 @@
+\begin{thebibliography}{10}
+
+\bibitem{Kabsch1983}
+W.~Kabsch and C.~Sander,
+\newblock ``{Dictionary of protein secondary structure: Pattern recognition of
+  hydrogen‐bonded and geometrical features},''
+\newblock {\em Biopolymers}, vol. 22, no. 12, pp. 2577--2637, 1983.
+
+\bibitem{Yang2018}
+Y.~Yang, J.~Gao, J.~Wang, R.~Heffernan, J.~Hanson, K.~Paliwal, and Y.~Zhou,
+\newblock ``{Sixty-five years of the long march in protein secondary structure
+  prediction: The final stretch?},''
+\newblock {\em Briefings in Bioinformatics}, 2018.
+
+\bibitem{Busia2017}
+A.~Busia and N.~Jaitly,
+\newblock ``{Next-Step Conditioned Deep Convolutional Neural Networks Improve
+  Protein Secondary Structure Prediction},''
+\newblock {\em arXiv:1702.03865v1}, 2017.
+
+\bibitem{Rost1993}
+B.~Rost and C.~Sander,
+\newblock ``{Improved prediction of protein secondary structure by use of
+  sequence profiles and neural networks.},''
+\newblock {\em Proceedings of the National Academy of Sciences of the United
+  States of America}, 1993.
+
+\bibitem{Zhou2014}
+J.~Zhou and O.~G. Troyanskaya,
+\newblock ``{Deep Supervised and Convolutional Generative Stochastic Network
+  for Protein Secondary Structure Prediction},''
+\newblock 2014.
+
+\bibitem{Wang2016}
+S.~Wang, J.~Peng, J.~Ma, and J.~Xu,
+\newblock ``{Protein Secondary Structure Prediction Using Deep Convolutional
+  Neural Fields},''
+\newblock {\em Scientific Reports}, vol. 6, 2016.
+
+\bibitem{Fang2017}
+C.~Fang, Y.~Shang, and D.~Xu,
+\newblock ``{MUFold-SS: Protein Secondary Structure Prediction Using Deep
+  Inception-Inside-Inception Networks},''
+\newblock sep 2017.
+
+\bibitem{Zhou2018}
+J.~Zhou, H.~Wang, Z.~Zhao, R.~Xu, and Q.~Lu,
+\newblock ``{CNNH{\_}PSS: Protein 8-class secondary structure prediction by
+  convolutional neural network with highway},''
+\newblock {\em BMC Bioinformatics}, 2018.
+
+\bibitem{Li2016}
+Z.~Li and Y.~Yu,
+\newblock ``{Protein Secondary Structure Prediction Using Cascaded
+  Convolutional and Recurrent Neural Networks},''
+\newblock in {\em Proceedings of the Twenty-Fifth International Joint
+  Conference on Artificial Intelligence}, 2016.
+
+\bibitem{Hattori2017}
+L.~T. Hattori, C.~M.~V. Benitez, and H.~S. Lopes,
+\newblock ``{A deep bidirectional long short-term memory approach applied to
+  the protein secondary structure prediction problem},''
+\newblock in {\em 2017 IEEE Latin American Conference on Computational
+  Intelligence (LA-CCI)}, 2017, pp. 1--6.
+
+\bibitem{Jurtz2017}
+V.~I. Jurtz, A.~R. Johansen, M.~Nielsen, J.~J. {Almagro Armenteros},
+  H.~Nielsen, C.~K. S{\o}nderby, O.~Winther, and S.~K. S{\o}nderby,
+\newblock ``{An introduction to deep learning on biological sequence data:
+  Examples and solutions},''
+\newblock {\em Bioinformatics}, vol. 33, no. 22, pp. 3685--3690, 2017.
+
+\bibitem{Olah2017}
+C.~Olah, A.~Mordvintsev, and L.~Schubert,
+\newblock ``{Feature Visualization},''
+\newblock {\em Distill}, 2017.
+
+\bibitem{Shrikumar2017}
+A.~Shrikumar, P.~Greenside, and A.~Kundaje,
+\newblock ``{Learning Important Features Through Propagating Activation
+  Differences},''
+\newblock apr 2017.
+
+\bibitem{Simonyan2014}
+K.~Simonyan, A.~Vedaldi, and A.~Zisserman,
+\newblock ``{Deep Inside Convolutional Networks: Visualising Image
+  Classification Models and Saliency Maps},''
+\newblock {\em arXiv.org}, 2014.
+
+\bibitem{Bach2015}
+S.~Bach, A.~Binder, G.~Montavon, F.~Klauschen, K.~R. M{\"{u}}ller, and
+  W.~Samek,
+\newblock ``{On pixel-wise explanations for non-linear classifier decisions by
+  layer-wise relevance propagation},''
+\newblock {\em PLoS ONE}, 2015.
+
+\bibitem{Sundararajan2017}
+M.~Sundararajan, A.r Taly, and Q.~Yan,
+\newblock ``{Axiomatic Attribution for Deep Networks},''
+\newblock 2017.
+
+\bibitem{Montavon2017}
+G.~Montavon, S.~Lapuschkin, A.~Binder, W.~Samek, and K.~R. M{\"{u}}ller,
+\newblock ``{Explaining nonlinear classification decisions with deep Taylor
+  decomposition},''
+\newblock {\em Pattern Recognition}, 2017.
+
+\bibitem{Alipanahi2015}
+B.~Alipanahi, A.~Delong, M.~T. Weirauch, and B.~J. Frey,
+\newblock ``{Predicting the sequence specificities of DNA- and RNA-binding
+  proteins by deep learning},''
+\newblock {\em Nature Biotechnology}, vol. 33, no. 8, pp. 831--838, 2015.
+
+\bibitem{Quang2016}
+D.~Quang and X.~Xie,
+\newblock ``{DanQ: A hybrid convolutional and recurrent deep neural network for
+  quantifying the function of DNA sequences},''
+\newblock {\em Nucleic Acids Research}, 2016.
+
+\bibitem{Zhou2015}
+J.~Zhou and O.~G. Troyanskaya,
+\newblock ``{Predicting effects of noncoding variants with deep learning-based
+  sequence model},''
+\newblock {\em Nature Methods}, vol. 12, no. 10, pp. 931--934, 2015.
+
+\bibitem{Umarov2017}
+R.~K. Umarov and V.~V. Solovyev,
+\newblock ``{Recognition of prokaryotic and eukaryotic promoters using
+  convolutional deep learning neural networks},''
+\newblock {\em PLoS ONE}, vol. 12, no. 2, 2017.
+
+\bibitem{Kelley2016}
+D.~R. Kelley, J.~Snoek, and J.~L. Rinn,
+\newblock ``{Basset: Learning the regulatory code of the accessible genome with
+  deep convolutional neural networks},''
+\newblock {\em Genome Research}, 2016.
+
+\bibitem{Lanchantin2016}
+J.~Lanchantin, R.~Singh, B.~Wang, and Y.~Qi,
+\newblock ``{Deep Motif Dashboard: Visualizing and Understanding Genomic
+  Sequences Using Deep Neural Networks},''
+\newblock 2016.
+
+\bibitem{Finnegan2017}
+A.~Finnegan and J.~S. Song,
+\newblock ``{Maximum entropy methods for extracting the learned features of
+  deep neural networks},''
+\newblock {\em PLoS Computational Biology}, 2017.
+
+\bibitem{Shrikumar2016}
+A.~Shrikumar, P.~Greenside, A.~Shcherbina, and A.~Kundaje,
+\newblock ``{Not Just a Black Box: Learning Important Features Through
+  Propagating Activation Differences},''
+\newblock {\em arXiv:1605.01713 [cs]}, 2016.
+
+\bibitem{Thomsen2012}
+M.~C.~F. Thomsen and M.~Nielsen,
+\newblock ``{Seq2Logo: A method for construction and visualization of amino
+  acid binding motifs and sequence profiles including sequence weighting,
+  pseudo counts and two-sided representation of amino acid enrichment and
+  depletion},''
+\newblock {\em Nucleic Acids Research}, vol. 40, no. W1, 2012.
+
+\end{thebibliography}

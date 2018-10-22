@@ -1,6 +1,6 @@
 %% ----------------------------------------------------------------
 %% Thesis.tex
-%% 199 phrases, Aug 10th
+%% 252 phrases
 %% ---------------------------------------------------------------- 
 \documentclass{ecsthesis}      % Use the Thesis Style
 \graphicspath{{Figures/}}   % Location of your graphics files
@@ -50,9 +50,9 @@
 
 %Check that your paper is focused. Choose the point of the paper and its key conclusion before you begin writing, stick to your choices, and write the paper so that the reader gets the point already in the abstract and in the introduction. Leave  out results that are not required for supporting the key conclusion, or safely tuck them away in the supplementary information document. When editing, if you feel that your paper loses its focus at some point, take a step back and do a major rewrite.
 
-The relatively new field of deep learning is slowly being transferred to the biomedical field and pushing its state-of-the-art achievements. However, improvements in performance with deep learning machines come with the drawback of opaqueness, which is especially detrimental to biomedical research. A few authors have already started applying deep network interpretability techniques on biological problems to overcome this issue, but none of them has approached problems like structural tagging, where every element in the sequence has a classification output.
+The relatively new field of deep learning is slowly being transferred to the biomedical field and pushing its state-of-the-art achievements. However, improvements in performance with deep learning machines come with the drawback of opaqueness, which is especially detrimental to biomedical research. A few authors have already started applying deep network interpretability techniques on biological problems to overcome this issue, but none of them has approached problems of the kind of structural tagging, where every element in the sequence has a classification output.
 
-This work aims to develop interpretability techniques for deep networks that have been trained to solve the secondary-structure prediction problem as one of the best studied structural tagging problems. For doing so, a state-of-the-art-similar convolutional neural network is first trained, and then saliency maps are applied to it. Since a saliency map gets produced per position (instead of by sequence, as in previous studies), new ways of aggregating them for gathering meaningful insights have been construed. These preliminary techniques could be of double value: on one side, they may help biologists to get a better understanding on the underlying protein structural forming process; on the other, machine learning researchers can better understand their machines and spot their previously uncovered flaws.
+This work aims to develop interpretability techniques for deep networks that have been trained to solve the secondary-structure prediction problem, as it is one of the most studied structural tagging problems. For doing so, a convolutional neural network similar to state-of-the-art was first trained, and then saliency maps were applied to it. Since a single saliency map gets produced per each position (instead of per sequence, as in previous studies), new ways of aggregating them for gathering meaningful insights needed to be construed. The aggregation can occur at two primary levels: on a sequence level, allowing us to explore a single protein sample and spot why specific classifications were made, or on a general level, showing the general relations between input \textit{pssm} and the different classes. These preliminary techniques can be of double value: on one side, they may help biologists to get a better understanding on the underlying protein structural forming process; on the other, machine learning researchers can better understand their machines and spot their previously uncovered flaws.
 
 \end{abstract}
 \tableofcontents

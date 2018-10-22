@@ -35,19 +35,9 @@ def plot_outliers():
     lengths_train = np.sum(mask[:split_value], axis=1)
     lengths_test = np.sum(mask[split_value:], axis=1)
 
-    predictions_path = "../secondary_proteins_prediction/predictions/predictions_train_valid_pureConv-20180804-010835-47.npy"
-    predictions = np.load(predictions_path)
-    # print "train_val", predictions.shape
+    predictions = dater.get_all_predictions()
 
-    predictions_path = "../secondary_proteins_prediction/predictions/predictionstest_pureConv-20180804-010835-47.npy"
-    predictions2 = np.load(predictions_path)
-    # print "test", predictions2[:-126].shape
-
-    predictions = np.concatenate((predictions, predictions2[:-126]))
-
-    # print "total", predictions.shape
-
-    def calculate_seq_accuracy(predictions, labels):
+    def calculate_seq_accuracy(labels):
         num_seq = len(mask)
         seq_len = predictions.shape[1]
 

@@ -12,8 +12,10 @@ import lasagne as nn
 from saliency import BATCH_SIZE, compute_complex_saliency
 from utils import ssConvertString, Jurtz_Data, WINDOW
 
-SALIENCIES_SCRATCH_PATH = '/scratch/grm1g17/saliencies/'
-PROCESSED_SCRATCH_PATH = '/scratch/grm1g17/processed/'
+SCRATCH_PATH = '/scratch/grm1g17/'
+
+SALIENCIES_SCRATCH_PATH = SCRATCH_PATH + 'saliencies/'
+PROCESSED_SCRATCH_PATH = SCRATCH_PATH + 'processed/'
 NUM_SEQS = 6016
 
 

@@ -112,3 +112,14 @@ class Jurtz_Data():
         # print X.shape
 
         return X, labels, mask
+
+    def get_all_predictions(self):
+        predictions_path = "../secondary_proteins_prediction/predictions/predictions_train_valid_pureConv-20180804-010835-47.npy"
+        predictions = np.load(predictions_path)
+        # print "train_val", predictions.shape
+
+        predictions_path = "../secondary_proteins_prediction/predictions/predictionstest_pureConv-20180804-010835-47.npy"
+        predictions2 = np.load(predictions_path)
+        # print "test", predictions2[:-126].shape
+
+        return np.concatenate((predictions, predictions2[:-126]))

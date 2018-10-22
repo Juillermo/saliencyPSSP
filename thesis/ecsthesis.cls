@@ -160,11 +160,11 @@
                 {IMAGE, SPEECH AND INTELLIGENT SYSTEMS GROUP}}
                 {IMAGE, SPEECH AND INTELLIGENT SYSTEMS GROUP}}
 \faculty     {\texorpdfstring{\href{http://www.engineering.soton.ac.uk}
-                {Faculty of Physical Sciences and Engineering}}
-                {Faculty of Physical Sciences and Engineering}}
+                {Faculty of Engineering and Physical Sciences}}
+                {Faculty of Engineering and Physical Sciences}}
 \FACULTY     {\texorpdfstring{\href{http://www.engineering.soton.ac.uk}
-                {FACULTY OF PHYSICAL SCIENCES AND ENGINEERING}}
-                {FACULTY OF PHYSICAL SCIENCES AND ENGINEERING}}
+                {FACULTY OF ENGINEERING AND PHYSICAL SCIENCES}}
+                {FACULTY OF ENGINEERING AND PHYSICAL SCIENCES}}
 \addresses   {}
 \subject     {}
 \keywords    {}

@@ -1,0 +1,219 @@
+% Template for ICASSP-2019 paper; to be used with:
+%          spconf.sty  - ICASSP/ICIP LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+% --------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{spconf,amsmath,graphicx,multirow}
+
+% Example definitions.
+% --------------------
+\def\x{{\mathbf x}}
+\def\L{{\cal L}}
+
+% Title.
+% ------
+\title{Applying Saliency Map Analysis to CNNs on Protein Secondary Structure	Prediction}
+%
+% Single address.
+% ---------------
+\name{Author(s) Name(s)\thanks{Thanks to XYZ agency for funding.}}
+\address{Author Affiliation(s)}
+%
+% For example:
+% ------------
+%\address{School\\
+%	Department\\
+%	Address}
+%
+% Two addresses (uncomment and modify for two-address case).
+% ----------------------------------------------------------
+%\twoauthors
+%  {A. Author-one, B. Author-two\sthanks{Thanks to XYZ agency for funding.}}
+%	{School A-B\\
+%	Department A-B\\
+%	Address A-B}
+%  {C. Author-three, D. Author-four\sthanks{The fourth author performed the work
+%	while at ...}}
+%	{School C-D\\
+%	Department C-D\\
+%	Address C-D}
+%
+\begin{document}
+%\ninept
+%
+\maketitle
+%
+\begin{abstract}
+%The abstract should appear at the top of the left-hand column of text, about
+%0.5 inch (12 mm) below the title area and no more than 3.125 inches (80 mm) in
+%length.  Leave a 0.5 inch (12 mm) space between the end of the abstract and the
+%beginning of the main text.  The abstract should contain about 100 to 150
+%words, and should be identical to the abstract text submitted electronically
+%along with the paper cover sheet.  All manuscripts must be in English, printed
+%in black ink.
+
+Deep learning techniques have been successfully transferred to the biomedical field, achieving higher performance but bringing opaqueness. While interpretability techniques are under current development, only a few authors have brought them to the biomedical field, and none of them has approached problems dealing with structural tagging. This work aims to apply one of such techniques ---saliency maps--- in the context of protein secondary-structure prediction. For doing so, a convolutional neural network was first trained, saliency maps were obtained from it, and different ways of aggregating them have been developed to gather meaningful insights on the network learning of the underlying problem structure. These preliminary techniques can be of double value: on one side, they may help biologists to get a better understanding on the underlying protein structural forming process; on the other, machine learning researchers can better understand their machines and spot their previously uncovered flaws.
+\end{abstract}
+%
+\begin{keywords}
+Saliency Maps, Convolutional Neural Networks, Interpretability, Protein Secondary Structure Prediction.
+\end{keywords}
+%
+\section{Introduction}
+\label{sec:intro}
+
+%TAlk about deep learning and its inclusion into biology studies
+
+%INclude many references
+
+Secondary structure prediction is a long-time studied problem in bio-informatics. The 3D structure of a protein determines the function it is going adopt in the cell and hence it is a valuable information for drug design, disease treatment or early diagnosis, among others. However, due to their molecular scale and complex environment, the protein structure cannot be easily measured and any attempt to do so remains costly. A more feasible alternative is utilising computational tools to make the predictions having as a base the amino-acid sequence (easy to obtain through DNA sequencing) and the proteins whose structure is already known. Predicting the secondary structure of the protein's amino-acids chain is often regarded as a middle step for tackling the much harder problem of predicting the 3D structure.
+
+The protein secondary structure prediction problem is a sequence structural tagging problem: each element (amino-acid) of the sequence protein has to be assigned a class (secondary structure). There are 21 different types of amino-acids (20 regular and amino-acid \textit{X} grouping the non-regular ones) and eight possible goal classes, which are commonly known as Q8 and composed of 3 types of $\alpha$-helices(H,G,I), two types of $\beta$-bridges (B,E), and three types of coils (T,S,L)~\cite{Kabsch1983}. Other relevant features of the amino-acids can also be added as inputs to facilitate the classification process. A common one whose addition brought a significant performance improvement is the Position Specific Substitution Matrices (PSSM)~\cite{Yang2018}, which encode the evolutionary probability of finding substitutions in each element of the amino-acid chain. The final input sequence would have length \textit{l} (variable from protein to protein) and width 42: the one-hot encoded amino-acid plus the 21 extra values of the PSSM, normalized to a range between 0 and 1~\cite{Busia2017}.
+
+While at the early stages the secondary structure prediction problem was mainly tackled with statistics, towards the end of the century the application of neural networks became prevalent \cite{Rost1993}. A new generation of deep learning approaches started recently with Zhou and Troyanskaya~\cite{Zhou2014}, who implemented a Generative Stochastic Network fed by a 1D Convolutional Neural Network (CNN) architecture, and later works that already included 1D CNNs with five or more layers~\cite{Wang2016,Fang2017,Zhou2018} or recurrent neural networks~\cite{Li2016,Hattori2017,Jurtz2017}, which are deep in the sense of signals being processed for many time-steps.
+
+Saliency maps (also known as \textit{attribution techniques}~\cite{Olah2017}) are a visualisation technique that aims to reveal which parts of an input sample are mainly responsible for the output decision made by a classification system. They work by generating a map of the same dimensions as the input and an importance value assigned to each element of the map, with higher values meaning the presence of the element was more decisive for making the decision. Depending on the way of calculating the importance value, saliency maps techniques can be broadly grouped into two categories: \textit{perturbation-based approaches} (make modifications on the input and assess changes in the output) and \textit{backpropagation-based approaches} (utilise the gradient of the output respect to the input for obtaining the importance information)~\cite{Shrikumar2017}. The first group is similar in spirit to the techniques known as \textit{sensitivity analysis} that are applied in many other fields of research. Although useful for small input spaces, it becomes quickly intractable when the input size grows, as all possible combinations of inputs should be examined for a complete analysis. The second group, especially designed for neural networks, allows the computation of importance scores in a single backward pass, so its computational complexity significantly improves and hence it is the preferred option for such architectures.
+
+The back-propagation approaches can be thought as a linear approximation of the classification function around a sample input point $x_0$ by applying a first-order Taylor expansion, as introduced by Simonyan et al.~\cite{Simonyan2014}:
+\begin{align}
+f(x) \approx w x + b \; , \\
+w = \left. \frac{\partial f}{\partial x} \right|_{x_0} \; .
+\end{align}
+In their simplest form, the saliency maps of back-propagation methods are equivalent to the gradient value on the input \cite{Simonyan2014}. A second approach~\cite{Bach2015} would multiply the gradient by the input values to leverage out the gradients that don't carry relevant information. A last wave of methods proposes including a reference point and hence more closely resembling the Taylor approximation. Main examples of this trend are \textit{integrated gradients}~\cite{Sundararajan2017}, \textit{deep Taylor decomposition}~\cite{Montavon2017} and \textit{DeepLIFT}~\cite{Shrikumar2017}. They overcome problems of previous methods such as saturation or discontinuities in the gradient, although they bring the extra difficulty of choosing an appropiate reference point.
+
+\section{Previous work}
+\label{sec:prevwork}
+
+%The text of the paper should contain discussions on how the paper's
+%contributions are related to prior work in the field. It is important
+%to put new work in context, to give credit to foundational work, and
+%to provide details associated with the previous work that have appeared
+%in the literature. This discussion may be a separate, numbered section
+%or it may appear elsewhere in the body of the manuscript, but it must
+%be present.
+%
+%You should differentiate what is new and how your work expands on
+%or takes a different path from the prior studies. An example might
+%read something to the effect: "The work presented here has focused
+%on the formulation of the ABC algorithm, which takes advantage of
+%non-uniform time-frequency domain analysis of data. The work by
+%Smith and Cohen \cite{Lamp86} considers only fixed time-domain analysis and
+%the work by Jones et al \cite{C2} takes a different approach based on
+%fixed frequency partitioning. While the present study is related
+%to recent approaches in time-frequency analysis [3-5], it capitalizes
+%on a new feature space, which was not considered in these earlier
+%studies."
+
+As a simplified version of saliency maps, Alipanahhi et al.~\cite{Alipanahi2015} and Quang and Xie~\cite{Quang2016} spotted the segment the segment in the input genetic sequence that had the highest activation of the first-layer filters and compared them to known motifs. This approach only makes sense as long as the network has a single layer, but cannot be applied to deeper networks.
+
+Alipanahi et al.~\cite{Alipanahi2015} and Zhou and Troyanskaya~\cite{Zhou2015} showed how genetic mutations affected the output of their network, which is a natural way of performing perturbation-based approaches in the field. Umarov and solovyev~\cite{Umarov2017} substituted small windows of the sequence by random genetic code and assessed the differences in the output along the sequence by sliding such window. Kelley et al.~\cite{Kelley2016} introduced known motifs at the centre of DNA sequences. All these can be categorised into the perturbation-based approach group and therefore need high computational times or not be exhaustive enough.
+
+Gradient-based approaches have barely been translated to the biological field. Lanchantin et al.~\cite{Lanchantin2016} include saliency maps with the form of gradient * input for TF binding site classification. They extracted the window with the highest score from each saliency map and compared them with a database of known motifs, matching almost half of the motifs thus produced. Shrikumar et al.~\cite{Shrikumar2017} developed the reference-based saliency map technique DeepLIFT and simulated a motif detection task within a genomic sequence to prove its effectiveness. Finnegan and Song~\cite{Finnegan2017} utilised Markov chain Monte Carlo methods to withdraw samples from the maximum entropy distribution around a single sequence and assessed the importance scores by looking at the variance of the samples at each position. This method was applied to a previously trained DNA-protein binding CNN and proved to have better results than DeepLIFT.
+
+All these methods address classification problems where there is a single output (classification task) for each sequence. A significant difference between this work and previous papers that make use of saliency maps is that they perform many-to-one classification (one output class per input sequence/image), whereas the classification task for our problem is many-to-many (each position of the sequences is assigned a class), producing as many saliency maps as positions in a sequence. To the best of our knowledge, interpretability techniques have not been applied yet to this sort of problems.
+
+\section{Methods}
+\label{sec:methods}
+
+The experiments made use of the database produced and made public by Zhou and Troyanskaya~\cite{Zhou2014}. It includes two sub-sets (training and test, with 5534 and 514 protein sequences of varying length, respectively) of proteins that come from different sources after removing the proteins that share 25\% or more similarity, thus ensuring that the test set is composed of totally new samples. The proteins in the dataset already come in one-hot form, with their PSSM values and their Q8 class in one-hot form.
+
+The network architecture is composed of three successive convolutional neural networks and a dense layer on top. Each of the convolutional layers contains three sets of filters of size 3, 5 and 7, respectively, with 16 filters per size. There are skip connections at every convolutional layer. The dense layer has 200 neurons and is connected to the soft-max output layer. The convolution operations are carried out with padding at each end of the sequence to preserve the length throughout the process. The total window size of the network is 19, meaning that for making a single secondary structure classification the network obtains information from 9 adjacent positions at each side. The network has been built and trained using the open-source code developed by Jurtz et al.~\cite{Jurtz2017}.
+
+Saliency maps are calculated by the conventional technique of computing the gradient of the output with respect to the inputs and multiplying it by the value of the input (gradient * input)~\cite{Shrikumar2016}. Every single position in a sequence produces a saliency map that spans the width of the input vector of size 42 and 9 positions to each side, due to the architecture's window size of 19. Each output class has its independent saliency values, so the total size of a position saliency map is 8x42x19.
+
+The presence of overlapping saliency maps allows for different ways in which to aggregate them to extract meaningful information. If focus on a sequence of length $l$ and want to obtain a single sequence-specific saliency map, we can add up the overlapping areas to form a saliency map of size 8x42x$l$. By changing the focus to a broader look on what the network has learnt, the addition of the saliency maps for the positions in all sequences could create a single saliency map of size 8x42x19 that shows an average behaviour of the network. From this map we can extract general information about a particular class (creating a class-specific saliency map) or about a particular input (PSSM-specific saliency map).
+
+\section{Results}
+\label{sec:results}
+
+The network described in the previous section has been trained for 400 epochs with gradient clipping at 20, regularisation parameter $\lambda=10^{-4}$, learning rate $\mu=10^{-4}$. It reaches an accuracy of 67.74\% on the test set, not far from the 71\% reached by the state of the art~\cite{Busia2017}.
+
+%SAliency maps amino-acids vs pssm.
+
+Figure~\ref{fig:result} shows a fragment of a sequence-specific saliency map for one of the eight classes (H). It reveals which PSSM values in the vicinity are mostly responsible for the predictions of class H in the fragment. The real amino-acids that are in the sequence are not always as influential in the algorithm decisions as other of the PSSM values, which explains why the inclusion of the later significantly improves the performance of predictions. PSSM values for specific amino-acids do not need to have contributions of the same sign (such P or D reveal in the figure), so the network is capturing something more than pure presence of the PSSM values in the vicinity: their location and combination is also influential. The saliency maps can help to find significant motifs that give raise to specific secondary structures.
+
+\begin{figure*}
+	\centering
+	\centerline{\includegraphics[width=17.8cm]{sample_Hclass}}
+	%  \vspace{1.5cm}
+	\caption{Fragment of a sequence-specific saliency map for class H in sequence logo form. Only the saliency of PSSM values is shown here. The upper x axis displays the amino-acids that form the sequence. The lower x axis contains three sets of labels: the predictions, the true values, and the position number in the sequence, respectively. The sequence logo has been generated by \textit{Seq2Logo}~\cite{Thomsen2012}.}
+	\label{fig:result}
+	%
+\end{figure*}
+
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+
+\section{ILLUSTRATIONS, GRAPHS, AND PHOTOGRAPHS}
+\label{sec:illust}
+
+Illustrations must appear within the designated margins.  They may span the two
+columns.  If possible, position illustrations at the top of columns, rather
+than in the middle or at the bottom.  Caption and number every illustration.
+All halftone illustrations must be clear black and white prints.  Colors may be
+used, but they should be selected so as to be readable when printed on a
+black-only printer.
+
+Since there are many ways, often incompatible, of including images (e.g., with
+experimental results) in a LaTeX document, below is an example of how to do
+this \cite{Lamp86}.
+
+
+% Below is an example of how to insert images. Delete the ``\vspace'' line,
+% uncomment the preceding line ``\centerline...'' and replace ``imageX.ps''
+% with a suitable PostScript file name.
+% -------------------------------------------------------------------------
+%\begin{figure}[htb]
+%
+%\begin{minipage}[b]{1.0\linewidth}
+%  \centering
+%  \centerline{\includegraphics[width=8.5cm]{image1}}
+%%  \vspace{2.0cm}
+%  \centerline{(a) Result 1}\medskip
+%\end{minipage}
+%%
+%\begin{minipage}[b]{.48\linewidth}
+%  \centering
+%  \centerline{\includegraphics[width=4.0cm]{image3}}
+%%  \vspace{1.5cm}
+%  \centerline{(b) Results 3}\medskip
+%\end{minipage}
+%\hfill
+%\begin{minipage}[b]{0.48\linewidth}
+%  \centering
+%  \centerline{\includegraphics[width=4.0cm]{image4}}
+%%  \vspace{1.5cm}
+%  \centerline{(c) Result 4}\medskip
+%\end{minipage}
+%%
+%\caption{Example of placing a figure with experimental results.}
+%\label{fig:res}
+%%
+%\end{figure}
+
+
+% To start a new column (but not a new page) and help balance the last-page
+% column length use \vfill\pagebreak.
+% -------------------------------------------------------------------------
+%\vfill
+%\pagebreak
+
+\section{COPYRIGHT FORMS}
+\label{sec:copyright}
+
+You must submit your fully completed, signed IEEE electronic copyright release
+form when you submit your paper. We {\bf must} have this form before your paper
+can be published in the proceedings.
+
+\vfill\pagebreak
+
+% References should be produced using the bibtex program from suitable
+% BiBTeX files (here: strings, refs, manuals). The IEEEbib.bst bibliography
+% style file from IEEE produces unsorted bibliography list.
+% -------------------------------------------------------------------------
+\bibliographystyle{IEEEbib}
+\bibliography{refs}
+
+\end{document}

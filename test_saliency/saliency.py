@@ -5,8 +5,6 @@ import importlib
 import numpy as np
 import theano
 import theano.tensor as T
-import keras.backend as K
-from keras.models import load_model
 import lasagne as nn
 
 from utils import ssConvertString, Jurtz_Data
@@ -64,16 +62,13 @@ def compute_single_saliency(X_batch, sym_x, sym_y):
 
 def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
     """
-    Computes the saliencies of a batch for a certain label, starting at batch index ini.
+    Computes the saliency maps of a batch for a certain label, starting at batch index ini.
 
     Inputs:
         X_batch: batch of length 64, with its corresponding mask batch
         batch: batch number (absolute, for labeling)
         label: one of the 8 classes (see ssConvertString)
-        ini: which sequence of the batch to start from
-
-    Outputs:
-        Saves individual saliencies in separated pickle files, properly labelled"""
+        ini: which sequence of the batch to start from """
 
     metadata_path = "dump_pureConv-20180804-010835-47.pkl"
     metadata = np.load(metadata_path)

@@ -17,18 +17,19 @@
 \contentsline {section}{\numberline {3.1}Dataset}{19}{section.3.1}
 \contentsline {section}{\numberline {3.2}Network of study}{20}{section.3.2}
 \contentsline {section}{\numberline {3.3}Feature visualization}{21}{section.3.3}
-\contentsline {section}{\numberline {3.4}Saliency maps}{21}{section.3.4}
+\contentsline {section}{\numberline {3.4}Saliency maps}{22}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Extracting information from saliency maps}{22}{subsection.3.4.1}
 \contentsline {section}{\numberline {3.5}Open-source}{22}{section.3.5}
 \contentsline {chapter}{\numberline {4}Results \& Discussion}{23}{chapter.4}
 \contentsline {section}{\numberline {4.1}Outlier analysis}{23}{section.4.1}
 \contentsline {section}{\numberline {4.2}Feature visualization: first-layer filters}{24}{section.4.2}
 \contentsline {section}{\numberline {4.3}Saliency maps on inputs}{25}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Sequence-specific saliency maps}{26}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Class-specific and pssm-specific saliency maps}{28}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.1}Analysis of amino-acids and \textit {pssm}}{25}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Sequence-specific saliency maps}{26}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Class-specific and pssm-specific saliency maps}{27}{subsection.4.3.3}
 \contentsline {section}{\numberline {4.4}Final discussion}{30}{section.4.4}
 \contentsline {chapter}{\numberline {5}Conclusions}{33}{chapter.5}
 \contentsline {chapter}{\numberline {A}First-layer filters}{35}{appendix.A}
-\contentsline {chapter}{\numberline {B}Saliency aggregations}{37}{appendix.B}
+\contentsline {chapter}{\numberline {B}Saliency map aggregations}{37}{appendix.B}
 \contentsline {chapter}{\numberline {C}Project planning}{39}{appendix.C}
 \contentsline {chapter}{Bibliography}{41}{dummy.1}

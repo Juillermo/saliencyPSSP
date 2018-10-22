@@ -1,5 +1,5 @@
 import lasagne
-from BatchNormLayer import batch_norm
+from configurations.BatchNormLayer import batch_norm
 
 start_saving_at = 0
 save_every = 1

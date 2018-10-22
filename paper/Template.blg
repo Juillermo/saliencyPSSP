@@ -1,0 +1,73 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Template.aux
+The style file: IEEEbib.bst
+Database file #1: refs.bib
+Repeated entry---line 960 of file refs.bib
+ : @article{Rost1993
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1031 of file refs.bib
+ : @article{Kabsch1983
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1087 of file refs.bib
+ : @article{Thomsen2012
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1482 of file refs.bib
+ : @article{Zhou2014
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1582 of file refs.bib
+ : @article{Jurtz2017
+ :                   ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Lamp86"
+Warning--empty journal in Zhou2014
+Warning--empty journal in Fang2017
+Warning--empty journal in Shrikumar2017
+Warning--empty journal in Sundararajan2017
+Warning--empty journal in Lanchantin2016
+You've used 26 entries,
+            1838 wiz_defined-function locations,
+            600 strings with 8401 characters,
+and the built_in function-call counts, 4869 in all, are:
+= -- 376
+> -- 316
+< -- 1
++ -- 114
+- -- 88
+* -- 381
+:= -- 873
+add.period$ -- 26
+call.type$ -- 26
+change.case$ -- 26
+chr.to.int$ -- 0
+cite$ -- 31
+duplicate$ -- 201
+empty$ -- 434
+format.name$ -- 88
+if$ -- 1036
+int.to.chr$ -- 0
+int.to.str$ -- 26
+missing$ -- 26
+newline$ -- 133
+num.names$ -- 26
+pop$ -- 64
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 84
+stack$ -- 0
+substring$ -- 128
+swap$ -- 28
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 5
+while$ -- 37
+width$ -- 28
+write$ -- 265
+(There were 5 error messages)
