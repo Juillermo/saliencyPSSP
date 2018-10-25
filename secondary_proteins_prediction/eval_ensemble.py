@@ -9,7 +9,20 @@ if len(sys.argv) < 2:
 
 predictions_path_all = glob.glob(sys.argv[1] + "*")
 
-print("shape of metadata_path_all:", len(predictions_path_all))
+print("shape of metadata_path_all")
+print(len(predictions_path_all))
+
+mybool = False
+for predictions_path in predictions_path_all:
+    print(predictions_path)
+    if not mybool:
+        predictions = np.load(predictions_path)  # .ravel()
+        mybool = True
+    else:
+        predictions = predictions + np.load(predictions_path)  # .ravel()
+print("shape of predictions")
+print(predictions.shape)
+print(predictions.max())
 
 import data
 
@@ -31,15 +44,6 @@ else:
     y = data.labels_valid
     mask = data.mask_valid
 
-acc_vec = np.zeros(len(predictions_path_all))
-for i, predictions_path in enumerate(predictions_path_all):
-    print(predictions_path)
+acc = utils.proteins_acc(predictions, y, mask)
 
-    predictions = np.load(predictions_path)  # .ravel()
-    acc = utils.proteins_acc(predictions, y, mask)
-
-    print("Accuracy (%s) is: %.5f" % (subset, acc))
-    acc_vec[i] = acc
-
-print("Avg acc: " + str(np.mean(acc_vec)))
-print("Std acc: " + str(np.std(acc_vec)))
+print("Accuracy (%s) is: %.5f" % (subset, acc))
