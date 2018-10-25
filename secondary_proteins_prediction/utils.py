@@ -1,6 +1,6 @@
 import time
 import platform
-import numpy as np 
+import numpy as np
 import gzip
 
 
@@ -14,13 +14,14 @@ def hms(seconds):
 
 def timestamp():
     return time.strftime("%Y%m%d-%H%M%S", time.localtime())
-    
+
+
 def hostname():
     return platform.node()
-    
+
+
 def generate_expid(arch_name):
     return "%s-%s-%s" % (arch_name, hostname(), timestamp())
-
 
 
 def one_hot(vec, m=None):
@@ -28,8 +29,6 @@ def one_hot(vec, m=None):
         m = int(np.max(vec)) + 1
 
     return np.eye(m)[vec]
-
-
 
 
 def log_losses(y, t, eps=1e-15):
@@ -40,6 +39,7 @@ def log_losses(y, t, eps=1e-15):
     losses = -np.sum(t * np.log(y), axis=1)
     return losses
 
+
 def log_loss(y, t, eps=1e-15):
     """
     cross entropy loss, summed over classes, mean over batches
@@ -47,28 +47,38 @@ def log_loss(y, t, eps=1e-15):
     losses = log_losses(y, t, eps)
     return np.mean(losses)
 
+
 def proteins_acc(out, label, mask):
     out = np.argmax(out, axis=2)
-    return np.sum(((out == label).flatten()*mask.flatten())).astype('float32') / np.sum(mask).astype('float32')
+    return np.sum(((out == label).flatten() * mask.flatten())).astype('float32') / np.sum(mask).astype('float32')
+
+
+def proteins_acc_H(out, label, mask):
+    out = np.argmax(out, axis=2)
+    print(np.sum(mask))
+    mask = (label == 5).flatten() * mask.flatten()
+    print(np.sum(mask))
+    return np.sum(((out == label).flatten() * mask.flatten())).astype('float32') / np.sum(mask).astype('float32')
 
 
 def accuracy(y, t):
     if t.ndim == 2:
         t = np.argmax(t, axis=1)
-        
+
     predictions = np.argmax(y, axis=1)
     return np.mean(predictions == t)
 
-def softmax(x): 
+
+def softmax(x):
     m = np.max(x, axis=1, keepdims=True)
     e = np.exp(x - m)
     return e / np.sum(e, axis=1, keepdims=True)
+
 
 def entropy(x):
     h = -x * np.log(x)
     h[np.invert(np.isfinite(h))] = 0
     return h.sum(1)
-
 
 
 def conf_matrix(p, t, num_classes):
@@ -82,9 +92,9 @@ def conf_matrix(p, t, num_classes):
 def accuracy_topn(y, t, n=5):
     if t.ndim == 2:
         t = np.argmax(t, axis=1)
-    
-    predictions = np.argsort(y, axis=1)[:, -n:]    
-    
+
+    predictions = np.argsort(y, axis=1)[:, -n:]
+
     accs = np.any(predictions == t[:, None], axis=1)
 
     return np.mean(accs)
@@ -101,7 +111,7 @@ def current_learning_rate(schedule, idx):
     return current_lr
 
 
-def load_gz(path): # load a .npy.gz file
+def load_gz(path):  # load a .npy.gz file
     if path.endswith(".gz"):
         f = gzip.open(path, 'rb')
         return np.load(f)

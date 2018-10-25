@@ -16,8 +16,9 @@
 %
 % Single address.
 % ---------------
-\name{Author(s) Name(s)\thanks{Thanks to XYZ agency for funding.}}
-\address{Author Affiliation(s)}
+\name{Guillermo Romero Moreno, Mahesan Niranjan}%\thanks{Thanks to XYZ agency for funding.}}
+\address{School of Electronics and Computer Science\\
+	University of Southampton, UK}
 %
 % For example:
 % ------------
@@ -70,7 +71,7 @@ Secondary structure prediction is a long-time studied problem in bio-informatics
 
 The protein secondary structure prediction problem is a sequence structural tagging problem: each element (amino-acid) of the sequence protein has to be assigned a class (secondary structure). There are 21 different types of amino-acids (20 regular and amino-acid \textit{X} grouping the non-regular ones) and eight possible goal classes, which are commonly known as Q8 and composed of 3 types of $\alpha$-helices(H,G,I), two types of $\beta$-bridges (B,E), and three types of coils (T,S,L)~\cite{Kabsch1983}. Other relevant features of the amino-acids can also be added as inputs to facilitate the classification process. A common one whose addition brought a significant performance improvement is the Position Specific Substitution Matrices (PSSM)~\cite{Yang2018}, which encode the evolutionary probability of finding substitutions in each element of the amino-acid chain. The final input sequence would have length \textit{l} (variable from protein to protein) and width 42: the one-hot encoded amino-acid plus the 21 extra values of the PSSM, normalized to a range between 0 and 1~\cite{Busia2017}.
 
-While at the early stages the secondary structure prediction problem was mainly tackled with statistics, towards the end of the century the application of neural networks became prevalent \cite{Rost1993}. A new generation of deep learning approaches started recently with Zhou and Troyanskaya~\cite{Zhou2014}, who implemented a Generative Stochastic Network fed by a 1D Convolutional Neural Network (CNN) architecture, and later works that already included 1D CNNs with five or more layers~\cite{Wang2016,Fang2017,Zhou2018} or recurrent neural networks~\cite{Li2016,Hattori2017,Jurtz2017}, which are deep in the sense of signals being processed for many time-steps.
+While at the early stages the secondary structure prediction problem was mainly tackled with statistics, towards the end of the century the application of neural networks became prevalent \cite{Rost1993}. A new generation of deep learning approaches started recently with Zhou and Troyanskaya~\cite{Zhou2014}, who implemented a Generative Stochastic Network fed by a 1D Convolutional Neural Network (CNN) architecture, and later works that already included 1D CNNs with five or more layers~\cite{Fang2017,Zhou2018} or recurrent neural networks~\cite{Li2016,Jurtz2017}, which are deep in the sense of signals being processed for many time-steps.
 
 Saliency maps (also known as \textit{attribution techniques}~\cite{Olah2017}) are a visualisation technique that aims to reveal which parts of an input sample are mainly responsible for the output decision made by a classification system. They work by generating a map of the same dimensions as the input and an importance value assigned to each element of the map, with higher values meaning the presence of the element was more decisive for making the decision. Depending on the way of calculating the importance value, saliency maps techniques can be broadly grouped into two categories: \textit{perturbation-based approaches} (make modifications on the input and assess changes in the output) and \textit{backpropagation-based approaches} (utilise the gradient of the output respect to the input for obtaining the importance information)~\cite{Shrikumar2017}. The first group is similar in spirit to the techniques known as \textit{sensitivity analysis} that are applied in many other fields of research. Although useful for small input spaces, it becomes quickly intractable when the input size grows, as all possible combinations of inputs should be examined for a complete analysis. The second group, especially designed for neural networks, allows the computation of importance scores in a single backward pass, so its computational complexity significantly improves and hence it is the preferred option for such architectures.
 
@@ -115,7 +116,23 @@ All these methods address classification problems where there is a single output
 \section{Methods}
 \label{sec:methods}
 
-The experiments made use of the database produced and made public by Zhou and Troyanskaya~\cite{Zhou2014}. It includes two sub-sets (training and test, with 5534 and 514 protein sequences of varying length, respectively) of proteins that come from different sources after removing the proteins that share 25\% or more similarity, thus ensuring that the test set is composed of totally new samples. The proteins in the dataset already come in one-hot form, with their PSSM values and their Q8 class in one-hot form.
+The experiments made use of the database produced and made public by Zhou and Troyanskaya~\cite{Zhou2014}. It includes two sub-sets (training and test, with 5534 and 514 protein sequences of varying length, respectively) of proteins that come from different sources after removing the proteins that share 25\% or more similarity, thus ensuring that the test set is composed of totally new samples. The proteins in the dataset already come in one-hot form, with their PSSM values and their Q8 class in one-hot form. The dataset is heavily imbalanced, as it can be seen in Table \ref{table:q8}
+
+\begin{table}
+	\begin{tabular}{cc|c|c}
+		\multicolumn{2}{c}{\textbf{Q8 grouping}} &  \textbf{Explanation} & \textbf{\%}\\ 
+		$\alpha$-helix & H & Helix with 4 turns & 34.54 \\ 
+		$3_{10}$-helix & G & Smaller helix with 3 turns & 3.91 \\ 
+		$pi$-helix      & I & Bigger helix with 5 turns & 0.02 \\ \hline
+		$\beta$-bridge & B & Isolated $\beta$-bridge & 1.03 \\ 
+		$\beta$-strand & E & Participates in $\beta$-ladders & 21.78\\ \hline
+		Turn & T & Turns smaller than a helix & 11.28 \\ 
+		Bend & S & Curved piece & 8.26 \\ 
+		Loop & L & Sometimes also as coil (C) & 19.19
+	\end{tabular}
+	\caption{Targets for the secondary structure prediction problem, as defined by \cite{Kabsch1983} in their Dictionary of Secondary Structure or Proteins (DSSP) and their presence on the training set.}
+	\label{table:q8}
+\end{table}
 
 The network architecture is composed of three successive convolutional neural networks and a dense layer on top. Each of the convolutional layers contains three sets of filters of size 3, 5 and 7, respectively, with 16 filters per size. There are skip connections at every convolutional layer. The dense layer has 200 neurons and is connected to the soft-max output layer. The convolution operations are carried out with padding at each end of the sequence to preserve the length throughout the process. The total window size of the network is 19, meaning that for making a single secondary structure classification the network obtains information from 9 adjacent positions at each side. The network has been built and trained using the open-source code developed by Jurtz et al.~\cite{Jurtz2017}.
 
@@ -126,39 +143,79 @@ The presence of overlapping saliency maps allows for different ways in which to 
 \section{Results}
 \label{sec:results}
 
-The network described in the previous section has been trained for 400 epochs with gradient clipping at 20, regularisation parameter $\lambda=10^{-4}$, learning rate $\mu=10^{-4}$. It reaches an accuracy of 67.74\% on the test set, not far from the 71\% reached by the state of the art~\cite{Busia2017}.
+The network described in the previous section has been trained for 400 epochs with gradient clipping at 20, regularisation parameter $\lambda=10^{-4}$, and learning rate $\mu=10^{-4}$. The epoch with highest validation error (on a validation subset with 512 sequences of the training set) reaches an accuracy of 76.57\% on the train set and 67.74\% on the test set, not far from the 71\% reached by the state-of-the-art~\cite{Busia2017}. The aim of this work is not to outperform the state-of-the-art predictions, but to build a network with moderately simple structure (to keep the calculation times of saliency maps on reasonable levels) and fair performance. We believe that the techniques of analysis here presented and the conclusions withdrawn from them can be transferred to current state-of-the-art methods without losing validity.
 
-%SAliency maps amino-acids vs pssm.
-
-Figure~\ref{fig:result} shows a fragment of a sequence-specific saliency map for one of the eight classes (H). It reveals which PSSM values in the vicinity are mostly responsible for the predictions of class H in the fragment. The real amino-acids that are in the sequence are not always as influential in the algorithm decisions as other of the PSSM values, which explains why the inclusion of the later significantly improves the performance of predictions. PSSM values for specific amino-acids do not need to have contributions of the same sign (such P or D reveal in the figure), so the network is capturing something more than pure presence of the PSSM values in the vicinity: their location and combination is also influential. The saliency maps can help to find significant motifs that give raise to specific secondary structures.
-
-\begin{figure*}
+Figure \ref{fig:accuracies} shows the distribution of per-sequence accuracies over different sizes.
+\begin{figure}
 	\centering
-	\centerline{\includegraphics[width=17.8cm]{sample_Hclass}}
+	\centerline{\includegraphics[width=9cm]{per_seq_acc}}
 	%  \vspace{1.5cm}
-	\caption{Fragment of a sequence-specific saliency map for class H in sequence logo form. Only the saliency of PSSM values is shown here. The upper x axis displays the amino-acids that form the sequence. The lower x axis contains three sets of labels: the predictions, the true values, and the position number in the sequence, respectively. The sequence logo has been generated by \textit{Seq2Logo}~\cite{Thomsen2012}.}
-	\label{fig:result}
+	\caption{Mean sequence accuracy against sequence length for the proteins in test set. Each point represents a single protein sequence and the horizontal line is the total mean accuracy. They have been separated by the prevalent group of classes on them: on top, majority of $\alpha$-helices (H, G, I); at the middle, $\beta$-sheets (E, B); and below, coils (L, S, T).}
+	\label{fig:accuracies}
 	%
-\end{figure*}
+\end{figure}
+As it could be expected, the variance in mean accuracy increases with shorter sequences. Higher accuracies can be expected from sequences rich in $\alpha$-helices and lower accuracies for sequences high in coils. Figure \ref{fig:confusion} displays the resulting confusion matrix of the predictions on the test set.
+\begin{figure}
+	\centering
+	\centerline{\includegraphics[width=6.5cm]{confusion}}
+	%  \vspace{1.5cm}
+	\caption{Confusion matrix of the test set.}
+	\label{fig:confusion}
+	%
+\end{figure}
+It is similar to the ones obtained on other state-of-the-art networks~\cite{Fang2017}. It is noticeable that the $\pi$-helix (I) has never been given as prediction; its presence is so rare in the dataset that the machine keeps a higher accuracy by ignoring it. $\beta$-bridges (B) are also largely misrepresented for the same reasons. Loops present high levels of confusion with other classes, probably due to the arbitrary discretisation into eight classes, while it has been pointed that it is not that clear the class assignation at the transitions between structures and coils~\cite{Rost2001}.
+
+The saliency maps can be used as additional evidence for theories around protein secondary structure. For instance, one point of concern has been the inclusion of inputs with different nature: the one-hot amino-acid along the pssm dense vector. Some authors \cite{Li2016,Zhou2018} embedded the one-hot vector into a denser space, reporting a small marginal improvement in accuracy (0.5\% and 0.4\%, respectively). \cite{Spencer2015} reported a 2\% Q3 improvement by not including the one-hot amino-acids at all. Saliency maps provide with information of the importance that different parts of the input have, so by direct comparison of both kinds of inputs can be made by comparing their associated saliency values. To do so, saliency map is split in two halves, corresponding to amino-acid and pssm, and all the values of each half are summed up in absolute value to form a single saliency score. The comparison of such scores for all positions in the dataset is made in Figure \ref{fig:aa_pssm}, revealing that in the great majority of positions the pssm inputs had four times or more relevance for making the classification decision, with around half of them having seven times or more relevance.
+\begin{figure}
+	\centering
+	\centerline{\includegraphics[width=9cm]{aa_pssm}}
+	%  \vspace{1.5cm}
+	\caption{Cumulative histogram of how much bigger are pssm saliency scores as compared to aminoa-acid saliency scores.}
+	\label{fig:aa_pssm}
+	%
+\end{figure}
+We further validate these findings by training a second network that uses the pssm input but ignores the one-hot amino-acids, all the other things remaining equal. This network reaches an accuracy of 67.58\% on the test set, just 0.2\% lower than the original one.
+
+Figure \ref{fig:sheereq} includes the saliency profiles of the average behaviour in each class.
+\begin{figure}
+	\centering
+	\centerline{\includegraphics[width=9cm]{sheerabsequal6016_class_aa}}
+	%  \vspace{1.5cm}
+	\caption{Average saliency profiles for the eight classes. On top, the three helix classes; in the middle, the two $\beta$ classes; below, the three coil classes. The legends show the amount of profiles averaged over for each class.)}
+	\label{fig:sheereq}
+	%
+\end{figure}
+The construction of each class profile has been made as follows. For each sequence position belonging to the class that was predicted right, the 42x19 slice of the saliency map corresponding to the class is extracted and summed up over the feature dimension, leading to a profile vector of size 19. The figure shows the average of the all the profiles for each class. Sequences of both the training and test set were used for this result. The figure reveals what the system is capturing for each class. For the $\alpha$-helices, H holds some periodicity on the even positions and large asymmetry, while G is rather centred on the positions $0$ and $-1$, which relates to the fact that the class G correspond to smaller types of helices. The periodicity goes in line with the structure of $\alpha$-helices, which are a succession of turns. The asymmetry can point to a strong dependency on the posterior amino-acids when the protein chain is built. The $\beta$ classes are influenced by further positions ($\pm6$), as they extend more and form bigger groups of amino-acids. While the $\beta$-strands (E) have a smooth decay, the $\beta$-bridges have a stronger periodicity.
+
+%Figure~\ref{fig:result} shows a fragment of a sequence-specific saliency map for one of the eight classes (H). It reveals which PSSM values in the vicinity are mostly responsible for the predictions of class H in the fragment. The real amino-acids that are in the sequence are not always as influential in the algorithm decisions as other of the PSSM values, which explains why the inclusion of the later significantly improves the performance of predictions. PSSM values for specific amino-acids do not need to have contributions of the same sign (such P or D reveal in the figure), so the network is capturing something more than pure presence of the PSSM values in the vicinity: their location and combination is also influential. The saliency maps can help to find significant motifs that give raise to specific secondary structures.
+
+%\begin{figure*}
+%	\centering
+%	\centerline{\includegraphics[width=17.8cm]{sample_Hclass}}
+%	%  \vspace{1.5cm}
+%	\caption{Fragment of a sequence-specific saliency map for class H in sequence logo form. Only the saliency of PSSM values is shown here. The upper x axis displays the amino-acids that form the sequence. The lower x axis contains three sets of labels: the predictions, the true values, and the position number in the sequence, respectively. The sequence logo has been generated by \textit{Seq2Logo}~\cite{Thomsen2012}.}
+%	\label{fig:result}
+	%
+%\end{figure*}
 
 
 \section{Conclusions}
 \label{sec:conclusions}
 
 
-\section{ILLUSTRATIONS, GRAPHS, AND PHOTOGRAPHS}
-\label{sec:illust}
+%\section{ILLUSTRATIONS, GRAPHS, AND PHOTOGRAPHS}
+%\label{sec:illust}
 
-Illustrations must appear within the designated margins.  They may span the two
-columns.  If possible, position illustrations at the top of columns, rather
-than in the middle or at the bottom.  Caption and number every illustration.
-All halftone illustrations must be clear black and white prints.  Colors may be
-used, but they should be selected so as to be readable when printed on a
-black-only printer.
+%Illustrations must appear within the designated margins.  They may span the two
+%columns.  If possible, position illustrations at the top of columns, rather
+%than in the middle or at the bottom.  Caption and number every illustration.
+%All halftone illustrations must be clear black and white prints.  Colors may be
+%used, but they should be selected so as to be readable when printed on a
+%black-only printer.
 
-Since there are many ways, often incompatible, of including images (e.g., with
-experimental results) in a LaTeX document, below is an example of how to do
-this \cite{Lamp86}.
+%Since there are many ways, often incompatible, of including images (e.g., with
+%experimental results) in a LaTeX document, below is an example of how to do
+%this \cite{Lamp86}.
 
 
 % Below is an example of how to insert images. Delete the ``\vspace'' line,

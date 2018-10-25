@@ -102,6 +102,7 @@ def calculate_sheer_abs(args):
         dater = Jurtz_Data()
         _, labels, mask = dater.get_all_data()
         predictions = dater.get_all_predictions()
+        hits = np.zeros(len(ssConvertString))
 
     origin = os.getcwd()
     os.chdir(PROCESSED_SCRATCH_PATH)
@@ -119,7 +120,8 @@ def calculate_sheer_abs(args):
                 elif args.func == "sheerabsequal":
                     if mask[seq, pos]:
                         if labels[seq, pos] == np.argmax(predictions[seq, pos]):
-                            total[labels[seq,pos]]+=saliency_map[labels[seq,pos]]
+                            total[labels[seq, pos]] += saliency_map[labels[seq, pos]]
+                            hits[labels[seq, pos]] += 1
                     else:
                         break
                 else:
