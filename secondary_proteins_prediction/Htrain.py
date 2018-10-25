@@ -16,12 +16,12 @@ import utils
 
 np.random.seed(1)
 
-# if len(sys.argv) != 2:
-#    sys.exit("Usage: python train.py <config_name>")
+if len(sys.argv) != 3:
+    sys.exit("Usage: python train.py <config_name> <side='left' or 'right'>")
 
-# config_name = sys.argv[1]
+config_name = sys.argv[1]
+side = sys.argv[2]
 
-config_name = "HConv"
 config = importlib.import_module("configurations.%s" % config_name)
 optimizer = config.optimizer
 print ("Using configurations: '%s'" % config_name)
@@ -108,14 +108,14 @@ def main():
     for i, p in enumerate(all_params):
         if p.ndim == 3:
             values = p.get_value()
-            # print(values)
-            # print(len(all_params))
-            # print(values.shape)
-            # print(values.shape[2] / 2)
-            values[..., values.shape[2] / 2:] = 0
-            p.set_value(values)
-            # return p
-            all_params[i] = p[..., :values.shape[2] / 2]
+            if side == 'right':
+                values[..., int(values.shape[2] / 2.0 + 0.5):] = 0
+                p.set_value(values)
+                all_params[i] = p[..., : int(values.shape[2] / 2.0 + 0.5)]
+            else:
+                values[..., : int(values.shape[2] / 2.0 - 0.5)] = 0
+                p.set_value(values)
+                all_params[i] = p[..., int(values.shape[2] / 2.0 - 0.5):]
 
     params = [el for el in all_params if el.name == "W" or el.name == "gamma"]
 
@@ -311,7 +311,7 @@ def main():
 
         if (epoch >= config.start_saving_at) and ((epoch % config.save_every) == 0):
             print ("  saving parameters and metadata")
-            with open((metadata_path + "-%d" % (epoch) + ".pkl"), 'w') as f:
+            with open((metadata_path + side + "-%d" % (epoch) + ".pkl"), 'wb') as f:
                 pickle.dump({
                     'config_name': config_name,
                     'param_values': nn.layers.get_all_param_values(l_out),
