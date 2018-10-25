@@ -143,7 +143,7 @@ The presence of overlapping saliency maps allows for different ways in which to 
 \section{Results}
 \label{sec:results}
 
-The network described in the previous section has been trained for 400 epochs with gradient clipping at 20, regularisation parameter $\lambda=10^{-4}$, and learning rate $\mu=10^{-4}$. The epoch with highest validation error (on a validation subset with 512 sequences of the training set) reaches an accuracy of 76.57\% on the train set and 67.74\% on the test set, not far from the 71\% reached by the state-of-the-art~\cite{Busia2017}. The aim of this work is not to outperform the state-of-the-art predictions, but to build a network with moderately simple structure (to keep the calculation times of saliency maps on reasonable levels) and fair performance. We believe that the techniques of analysis here presented and the conclusions withdrawn from them can be transferred to current state-of-the-art methods without losing validity.
+The network described in the previous section has been trained for 400 epochs with gradient clipping at 20, regularisation parameter $\lambda=10^{-4}$, and learning rate $\mu=10^{-4}$. The epoch with highest validation error (on a validation subset with 512 sequences of the training set) reaches an accuracy of 76.57\% on the train set and $67.72\%\pm0.08\%$ on the test set\footnote{Average over four networks with different random weight initialisation.}, not far from the 71\% reached by the state-of-the-art~\cite{Busia2017}. The aim of this work is not to outperform the state-of-the-art predictions, but to build a network with moderately simple structure (to keep the calculation times of saliency maps on reasonable levels) and fair performance. We believe that the techniques of analysis here presented and the conclusions withdrawn from them can be transferred to current state-of-the-art methods without losing validity.
 
 Figure \ref{fig:accuracies} shows the distribution of per-sequence accuracies over different sizes.
 \begin{figure}
@@ -174,7 +174,7 @@ The saliency maps can be used as additional evidence for theories around protein
 	\label{fig:aa_pssm}
 	%
 \end{figure}
-We further validate these findings by training a second network that uses the pssm input but ignores the one-hot amino-acids, all the other things remaining equal. This network reaches an accuracy of 67.58\% on the test set, just 0.2\% lower than the original one.
+We further validate these findings by training a second network that uses the pssm input but ignores the one-hot amino-acids, all the other things remaining equal. This network reaches an accuracy of $67.46\%\pm0.10\%$ (average over three initialisations) on the test set, just $0.26\%\pm0.18\%$ lower than the original one.
 
 Figure \ref{fig:sheereq} includes the saliency profiles of the average behaviour in each class.
 \begin{figure}
