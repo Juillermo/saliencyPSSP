@@ -186,6 +186,8 @@ def main():
     import data
     X_train, X_valid, y_train, y_valid, mask_train, mask_valid, num_seq_train \
         = data.get_train()
+    X_train, X_valid = X_train[..., 21:], X_valid[..., 21:]  # Only train with pssm scores
+
     print("y shape")
     print(y_valid.shape)
     print("X shape")
