@@ -23,8 +23,6 @@ for predictions_path in predictions_path_all:
 print("shape of predictions")
 print(predictions.shape)
 print(predictions.max())
-print("Beginning: ", predictions[0, :15])
-print("End: ", predictions[0, -15:])
 
 import data
 
@@ -45,6 +43,9 @@ elif subset == "train_valid":
 else:
     y = data.labels_valid
     mask = data.mask_valid
+
+print("Beginning: ", predictions[0, :10])
+print("End: ", predictions[0, int(np.sum(mask[0])-10):int(np.sum(mask[0]))])
 
 for i in range(y.shape[0]):
     for j in range(y.shape[1]):
