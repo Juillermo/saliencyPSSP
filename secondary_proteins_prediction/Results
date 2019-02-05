@@ -1,20 +1,47 @@
-file_name			      best | acc    | seed
+file_name			      |best |  acc   | seed
 ------------------------------------------------------
-dump_pureConv-20180904-122721-399.pkl | 42 | 67.798 | 1??
-dump_pureConv-20180804-010835-399.pkl | 47 | 67.741 | 3?
-dump_pureConv-20181024-144950-340.pkl | 81 | 67.615 | 7
-dump_pureConv-20181024-190945-301.pkl | 55 | 67.673 | 8
-| | | 9
 
-Avg top 4: 67.707
+NORMAL
+-----
+dump_pureConv-20180904-122721-399.pkl |  42 | 67.798 | 1??
+dump_pureConv-20180804-010835-399.pkl |  47 | 67.741 | 3?
+dump_pureConv-20181024-144950-340.pkl |  81 | 67.615 | 7
+dump_pureConv-20181024-190945-301.pkl |  55 | 67.673 | 8
+dump_pureConv-20181028-205300-230.pkl |  62 | 67.535 | 10?
 
-dump_pssmConv-20180903-132843-399.pkl | 53 | 67.576 | 3?
-dump_pssmConv-20181024-145006-389.pkl |174 | 67.341 | 7
-dump_pssmConv-20181024-183124-319.pkl |300 | 67.475 | 8
-| | | 9
-| | | 10
+Avg top 4.5:	67.673 +- 0.092
+Ensemble 4.5:	69.234
 
-Avg top 3: 67.464
 
-dump-HConv-20181025-163546left-399.pkl |357 | 83.865 | 1
-dump_HConv-20181025-164815right-392.pkl|377 | 88.570 | 1
+PSSM ONLY
+---------
+dump_pssmConv-20180903-132843-399.pkl |  53 | 67.576 | 3?
+dump_pssmConv-20181024-145006-389.pkl | 174 | 67.341 | 7
+dump_pssmConv-20181024-183124-319.pkl | 300 | 67.475 | 8
+dump_pssmConv-20181025-141901-399.pkl | 305 | 67.101 | 9
+dump_pssmConv-20181025-161221-399.pkl | 301 | 67.257 | 10
+
+Avg top 5:	67.350 +- 0.165
+Ensemble 5:	69.360
+
+
+SIDES CANCELLED
+---------------
+dump-HConv-20181025-163546left-399.pkl  | 357 | 83.865 | 1
+dump_HConv-20181025-164815right-392.pkl | 377 | 88.570 | 1
+
+
+SIDES AND MIDDLE CANCELLED
+--------------------------
+dump_HpureConv-20181026-140150left-399.pkl |398|80.806 | 1
+dump_HpureConv-20181026-140218right-399.pkl|369|86.598 | 1
+||| 2
+||| 2
+||| 3
+||| 3
+
+
+SIDES AND MODIFIED POST-TRAINING
+----------------------------
+predictions_right_pureConv-20180904-122721-42.npy | 0.788
+predictions_left_pureConv-20180904-122721-42.npy  | 0.011

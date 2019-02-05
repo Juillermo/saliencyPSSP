@@ -10,6 +10,15 @@ from utils import WINDOW, ssConvertString, pssmString_jurtz, Jurtz_Data, toSeqLo
 
 # from saliency_aggregation import SHEER_PATH
 
+#plt.rcParams["font.family"] = "cmt"
+#from matplotlib import rc
+import matplotlib
+#matplotlib.rcParams['pdf.fonttype'] = 42
+#matplotlib.rcParams['ps.fonttype'] = 42
+matplotlib.rcParams['text.usetex'] = True
+#rc('font',family="Times New Roman")
+#rc('font',**{'family':'sans-serif', 'sans-serif':['cmtt10']})
+
 FIGURES_PATH = "../paper/"
 SEQLOGO_PATH = "SeqLogo_data/"
 SHEER_PATH = "sheer_data/"
@@ -51,7 +60,6 @@ def plot_confusion():
     ax.yaxis.set(ticks=range(K),
                  ticklabels=ssConvertString)
     # ax.yaxis.set(ticks=range(K), ticklabels=np.sum(confusion, axis=1), ticks_position="right", label_position="right")
-    ax.set(xlabel="predicted", ylabel="true")
 
     for x in range(K):
         for y in range(K):
@@ -66,7 +74,9 @@ def plot_confusion():
 
     cax = ax.imshow(confusion, cmap='Blues')  # , vmin=0, vmax=100)
 
-    plt.tight_layout()
+    #plt.tight_layout()
+    plt.xlabel("predicted", fontsize=15)
+    plt.ylabel("true", fontsize=15)
     fig.savefig(FIGURES_PATH + 'confusion.eps', format='eps')
     fig.show()
 
@@ -129,13 +139,14 @@ def plot_outliers():
 
         ax.plot(np.mean(seq_acc_test) * np.ones(seq_len), label="mean", color='orange')
         ax.set(ylim=[0, 1], xlim=[0, seq_len])
+        ax.tick_params(labelsize=12)
         if i == 0 or i == 1:
             ax.xaxis.set(ticks=[])
+        if i == 1:
+            plt.ylabel("accuracy", fontsize=15)
 
     plt.tight_layout()
-    plt.tick_params(labelsize=9)
-    plt.xlabel("sequence length", fontsize=12)
-    plt.ylabel("accuracy", fontsize=12)
+    plt.xlabel("sequence length", fontsize=15)
     fig.savefig(FIGURES_PATH + 'per_seq_acc.eps', format='eps')
     fig.show()
 
@@ -160,12 +171,14 @@ def plot_aa_pssm():
     diff2 = pssm_tot / aa_tot
     bins = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 999]
     ax2.hist(diff2, density=True, cumulative=True, bins=bins)
-    ax2.set(xlabel="times superior", xlim=[2, 13], ylim=[0,1])
+    ax2.set(xlim=[2, 13], ylim=[0,1])
     ax2.set_yticks(np.arange(0, 1.2, 0.2))
     ax2.set_xticks(np.arange(2, 14, 1))
+    ax2.tick_params(labelsize=12)
     ax2.yaxis.grid()
 
     plt.tight_layout()
+    plt.xlabel("times superior", fontsize=15)
     plt.savefig(FIGURES_PATH + "aa_pssm.eps", format="eps")
     plt.show()
 
@@ -437,6 +450,12 @@ def plot_sheer_class_aa(sheer_data="sheer6016.npy"):
                 ax2 = ax.twinx()
                 ax2.yaxis.set(ticks=[])
 
+            if j == 0:
+                ax2.set(ylim=[-1.1*np.max(abs(tot_pssm)), 1.1*np.max(abs(tot_pssm))])
+            elif j == 1:
+                ax2.set(ylim=[-np.max(abs(tot_pssm))/10, 1.1*np.max(abs(tot_pssm))])
+            else:
+                ax2.set(ylim=[-np.max(abs(tot_pssm))/4.5, 1.1*np.max(abs(tot_pssm))])
             ax2.plot(tot_pssm, marker='.', color=CLASS_COLOURS[target_class])
             # ax22.set_ylim(bottom=0)
 
@@ -446,14 +465,44 @@ def plot_sheer_class_aa(sheer_data="sheer6016.npy"):
         ax.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
         ax.margins(0)
         ax.legend(omg_cosa, [el + ": {:d}".format(amountvec[i]) for i, el in enumerate(classvec)],
-                  loc='upper left')
+                  loc='upper left', fontsize=12)
         ax.axhline(0, color="black")
+        ax.tick_params(labelsize=12)
 
     plt.tight_layout()
     fig.show()
     (fname, ext) = os.path.splitext(sheer_data)
-    fig.savefig(FIGURES_PATH + fname + "_class_aa.eps")
+    fig.savefig(FIGURES_PATH + fname + "_class_aa.pdf")
 
+
+def plot_sheer_cabestro(sheer_data="sheer6016.npy"):
+    amounts = [164981, 1242, 236833, 17858, 0, 405754, 33990, 84479]
+    eq_sheer = np.load(SHEER_PATH + sheer_data)
+
+    fig, ax = plt.subplots(figsize=(7, 2.5))
+
+    #omg_cosa = []
+    amountvec = []
+    classvec = []
+    for target_class in CLASS_NAMES:
+        classvec.append(target_class)
+
+        tot_pssm = np.sum(eq_sheer[ssConvertString.find(target_class), :, 21:], axis=1)
+        amountvec.append(amounts[ssConvertString.find(target_class)])
+        ax.plot(tot_pssm/amounts[ssConvertString.find(target_class)], marker='.', color=CLASS_COLOURS[target_class], label=target_class)
+        #omg_cosa.append(mlines.Line2D([], [], color=CLASS_COLOURS[target_class], marker='.',
+                                      #label=target_class))
+
+    ax.xaxis.set(ticks=range(19), ticklabels=range(-WINDOW, WINDOW + 1))
+    ax.margins(0)
+    ax.legend()#omg_cosa, [el + ": {:d}".format(amountvec[i]) for i, el in enumerate(classvec)],
+              #loc='upper left')
+    #ax.axhline(0, color="black")
+
+    plt.tight_layout()
+    fig.show()
+    #(fname, ext) = os.path.splitext(sheer_data)
+    #fig.savefig(FIGURES_PATH + fname + "_class_aa.eps")
 
 def plot_sheer_agg_aa():
     abs_sheer = np.load(SHEER_PATH + "sheer6016.npy")
@@ -472,24 +521,16 @@ def plot_sheer_agg_aa():
     fig.savefig(FIGURES_PATH + "pssm_influence.eps", format='eps')
     plt.show()
 
-print(ssConvertString)
 #plot_outliers()
-# plot_confusion()
+#plot_confusion()
 #p, a = plot_aa_pssm()
-
-# sal = collect_saliencies()
 
 # plot_sliding_saliencies()
 # plot_single_sequence()
 
-# plot_sheer_class()
-# plot_sheer_aa()
-# plot_sheer_class_aa()
-# plot_sheer_class_aa("sheerabsequal6016.npy")
-# plot_sheer_agg_aa()
+#plot_sheer_cabestro("sheerabsequal6016.npy")
+plot_sheer_class_aa("sheerabsequal6016.npy")
 
-# plot_sheer_class_all()
-# plot_sheer_aa_all()
 if __name__ == "__main__":
     # main()
     ""

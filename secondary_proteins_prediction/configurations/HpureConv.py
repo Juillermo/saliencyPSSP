@@ -108,11 +108,11 @@ def build_model():
     l_totconv_c = lasagne.layers.ConcatLayer([l_conv_a_b, l_conv_b_b, l_conv_c_b], axis=1)
     l_totconv_c = lasagne.layers.DimshuffleLayer(
         l_totconv_c, (0, 2, 1))
-    l_dim_d = lasagne.layers.ConcatLayer([l_in, l_totconv_a, l_totconv_b, l_totconv_c], axis=2)
+    l_dim_d = lasagne.layers.ConcatLayer([l_totconv_a, l_totconv_b, l_totconv_c], axis=2)
 
     # 5. First Dense Layer
     l_reshape_a = lasagne.layers.ReshapeLayer(
-        l_dim_d, (batch_size * seq_len, n_inputs + 3 * (N_CONV_A + N_CONV_B + N_CONV_C)))
+        l_dim_d, (batch_size * seq_len, 3 * (N_CONV_A + N_CONV_B + N_CONV_C)))
     l_1 = lasagne.layers.DenseLayer(
         l_reshape_a, num_units=N_L1, nonlinearity=lasagne.nonlinearities.rectify)
     l_1_b = batch_norm(l_1)
