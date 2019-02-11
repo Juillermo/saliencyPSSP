@@ -1,12 +1,8 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: Template.aux
 The style file: IEEEbib.bst
 Database file #1: refs.bib
-Repeated entry---line 960 of file refs.bib
- : @article{Rost1993
- :                  ,
-I'm skipping whatever remains of this entry
 Repeated entry---line 1031 of file refs.bib
  : @article{Kabsch1983
  :                    ,
@@ -26,15 +22,15 @@ Warning--empty journal in Sundararajan2017
 Warning--empty journal in Lanchantin2016
 You've used 25 entries,
             1838 wiz_defined-function locations,
-            590 strings with 8019 characters,
-and the built_in function-call counts, 4529 in all, are:
-= -- 346
-> -- 298
+            590 strings with 7922 characters,
+and the built_in function-call counts, 4573 in all, are:
+= -- 347
+> -- 307
 < -- 0
-+ -- 108
-- -- 83
-* -- 349
-:= -- 820
++ -- 111
+- -- 86
+* -- 359
+:= -- 830
 add.period$ -- 25
 call.type$ -- 25
 change.case$ -- 25
@@ -42,18 +38,18 @@ chr.to.int$ -- 0
 cite$ -- 30
 duplicate$ -- 182
 empty$ -- 406
-format.name$ -- 83
-if$ -- 958
+format.name$ -- 86
+if$ -- 965
 int.to.chr$ -- 0
 int.to.str$ -- 25
 missing$ -- 24
 newline$ -- 127
 num.names$ -- 25
-pop$ -- 65
+pop$ -- 64
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 75
+skip$ -- 73
 stack$ -- 0
 substring$ -- 112
 swap$ -- 21
@@ -64,5 +60,5 @@ type$ -- 0
 warning$ -- 5
 while$ -- 33
 width$ -- 27
-write$ -- 251
-(There were 4 error messages)
+write$ -- 252
+(There were 3 error messages)

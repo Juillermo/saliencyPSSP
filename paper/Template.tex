@@ -54,11 +54,16 @@
 %along with the paper cover sheet.  All manuscripts must be in English, printed
 %in black ink.
 
-Deep learning has been successfully transferred to the biomedical field, achieving higher performance but bringing opaqueness. While interpretability techniques are under current development, only a few authors have brought them to the biomedical field. This work aims to apply one of such techniques ---saliency maps--- in the context of protein secondary structure prediction. For doing so, a convolutional neural network was first trained, saliency maps obtained from it, and different ways of aggregating them have been developed to gather meaningful insights on the network's learning of the underlying problem structure. The analysis of saliency maps led to interesting findings, namely the irrelevance of one-hot amino-acid inputs and the higher importance of right positions for the prediction of $\alpha$-helices. These techniques can be of double value: they help biologists to get a better understanding of the underlying processes and machine learning researchers can spot previously uncovered flaws.
+Deep learning has been successfully transferred to the biomedical field, achieving higher performance but bringing opaqueness.
+While interpretability techniques are under development, only a few authors have brought them to the biomedical field.
+This work aims to apply one of such techniques ---saliency maps--- in the context of protein secondary structure prediction.
+For doing so, a convolutional neural network was first trained, saliency maps obtained from it, and different ways of aggregating them developed to gather meaningful insights on the network's learning of the underlying problem structure.
+The analysis of saliency maps led to interesting findings, namely the irrelevance of one-hot amino-acid inputs and the higher importance of right positions for the prediction of $\alpha$-helices.
+These techniques can be of double value: they help biologists to get a better understanding of the underlying processes, and machine learning researchers can detect hidden flaws.
 \end{abstract}
 %
 \begin{keywords}
-Saliency Maps, Convolutional Neural Networks, Protein Secondary Structure Prediction, Interpretability.
+Interpretability, Saliency Maps, Protein Secondary Structure Prediction, Convolutional Neural Networks.
 \end{keywords}
 %
 \section{Introduction}
@@ -68,15 +73,30 @@ Saliency Maps, Convolutional Neural Networks, Protein Secondary Structure Predic
 
 %INclude many references
 
-Secondary structure prediction is a long-time studied problem in bioinformatics. The 3D structure of a protein determines the function it is going adopt in the cell. However, the protein structure cannot be easily measured and any attempt to do so remains costly. A more feasible alternative is utilising computational tools to make the predictions having as a base the amino-acid sequence (easy to obtain through DNA sequencing) and the proteins whose structure is already known. Predicting the secondary structure is often regarded as a middle step for tackling the much harder problem of predicting the 3D structure. The protein secondary structure prediction problem is a sequence structural tagging problem: each element (amino-acid) of the protein sequence has to be assigned a class (secondary structure). There are 21 different types of amino-acids and eight possible goal classes, which are composed of 3 types of helices(H, G, I), two types of $\beta$-sheets (B, E), and three types of coils (T, S, L)~\cite{Kabsch1983}. Other relevant features of the amino-acids can also be added as inputs to facilitate the classification process. A common one whose addition brought a significant performance improvement is the Position Specific Substitution Matrices (PSSM)~\cite{Yang2018}, which encode the evolutionary probability of finding substitutions in each element of the amino-acid chain. The final input sequence would have length \textit{l} (variable from protein to protein) and width 42: the one-hot encoded amino-acid plus the 21 extra values of the PSSM, normalized to a range between zero and one~\cite{Busia2017}. While at the early stages the secondary structure prediction problem was mainly tackled with statistics, towards the end of the century the application of neural networks became prevalent \cite{Rost1993}. A new generation of deep learning approaches started recently with~\cite{Zhou2014}, who implemented a Generative Stochastic Network fed by a 1D Convolutional Neural Network (CNN) architecture, and later works that already included 1D CNNs with five or more layers~\cite{Fang2017,Zhou2018} or recurrent neural networks~\cite{Li2016,Jurtz2017}, which are deep in the sense of signals being processed for many time-steps.
+Secondary structure prediction is a long-time studied problem in bioinformatics.
+The 3D structure of a protein determines the function it is going to adopt in the cell.
+However, the protein structure cannot be easily measured without being too costly, so computational tools can be an alternative by predictions based on amino-acid sequences ---easy to obtain through DNA sequencing--- and proteins with known structure.
+Since direct prediction of the 3D structure is still a hard problem, tackling the prediction of the secondary structure can be seen as an easier middle step.
+Protein secondary structure prediction is a sequence structural tagging problem: each element (amino-acid) of the protein sequence has to be assigned a class (secondary structure).
+There are 21 different types of amino-acids and eight possible goal classes, composed of 3 types of helices (H, G, I), two types of $\beta$-sheets (B, E), and three types of coils (T, S, L)~\cite{Kabsch1983}.
+Along with the amino-acid themselves, other relevant features can also be added as inputs, such as Position Specific Substitution Matrices (PSSMs)~\cite{Yang2018}.
+PSSMs encode the evolutionary probability of finding substitutions in each element of the amino-acid chain, and brought a significant performance improvement in the classficiation task.
+A common input sequence would have length \textit{l} (variable from protein to protein) and width 42: 21 from one-hot encoded amino-acids and 21 from the PSSM values, normalized to a range between zero and one~\cite{Busia2017}.
+%While at the early stages the secondary structure prediction problem was mainly approached with statistics, towards the 90s the application of neural networks became prevalent \cite{Rost1993}.
+A new generation of deep learning approaches started recently with~\cite{Zhou2014}, who implemented a Generative Stochastic Network fed by a 1D Convolutional Neural Network (CNN) architecture.
+Later works already included 1D CNNs with five or more layers~\cite{Fang2017,Zhou2018} or recurrent neural networks~\cite{Li2016,Wang2016,Jurtz2017,Zhou2018,Wang2017}, which are deep in the sense of signals being processed for many time-steps.
 
-Saliency maps are a visualisation technique for sensitivity analysis. A saliency map has the same dimensions as the input and contains their importance values, e.g. their contribution to the output. Depending on their calculation method, saliency maps can be broadly grouped into \textit{perturbation-based approaches} (make modifications on the input and assess changes in the output) or \textit{backpropagation-based approaches} (utilise the gradient of the output respect to the input for obtaining the importance information)~\cite{Shrikumar2017}. Although the first group is intuitive and useful for small input spaces, it becomes quickly intractable when the input size grows, as all possible combinations of inputs should be examined for a complete analysis. The second group ---especially designed for neural networks--- allows the computation of importance scores in a single backward pass, so its computational complexity significantly improves and hence it is the preferred option for such architectures.
+Saliency maps (also known as \textit{attribution techniques}~\cite{Olah2017}) are a visualisation technique that aims to reveal which parts of an input sample are mainly responsible for the output decision made by a classification system.
+They can be regarded as a type of \textit{sensitivity analysis}, applied in many other fields of research.
+A saliency map has the same dimensions as the input and contains their importance values, i.e. their contribution to the output.
+Depending on their calculation method, saliency maps can be broadly grouped into \textit{perturbation-based approaches} (making modifications on the input and assessing changes in the output) or \textit{backpropagation-based approaches} (obtaining the importance information from the gradient of the output respect to the input)~\cite{Shrikumar2017}.
+Although the first group is intuitive and useful for small input spaces, it becomes quickly intractable when the input size grows, as all possible combinations of inputs should be examined for a complete analysis.
+The second group allows the computation of importance scores in a single gradient computation, with a reduced computational complexity that makes it preferable for bigger input spaces.
 
 Back-propagation approaches can be thought as a linear approximation of the classification function around a sample input point $x_0$ by applying a first-order Taylor expansion, as introduced in~\cite{Simonyan2014}:
-\begin{align}
-f(x) \approx w^T x + b \; , \\
-w = \left. \frac{\partial f}{\partial x} \right|_{x_0} \; .
-\end{align}
+\begin{equation*}
+f(x) \approx w^T x + b \; , \qquad w = \left. \frac{\partial f}{\partial x} \right|_{x_0} \; .
+\end{equation*}
 In their simplest form, the saliency maps of back-propagation methods are equivalent to the gradient value on the input \cite{Simonyan2014}. A second approach~\cite{Bach2015} would multiply the gradient by the input values to leverage out the gradients that don't carry relevant information. A last wave of methods proposes including a reference point and hence more closely resembling the Taylor approximation. The main examples of this trend are integrated gradients~\cite{Sundararajan2017}, deep Taylor decomposition~\cite{Montavon2017} and DeepLIFT~\cite{Shrikumar2017}. They overcome problems of previous methods such as saturation or discontinuities in the gradient, although they bring the extra difficulty of choosing an appropriate reference point.
 
 \section{Previous work}
@@ -138,38 +158,56 @@ The presence of overlapping saliency maps allows for different ways in which to 
 \section{Results}
 \label{sec:results}
 
-The network described in the previous section has been trained for 400 epochs with regularisation parameter $\lambda=10^{-4}$, and learning rate $\mu=10^{-4}$. Five of such networks with different weight initialisation are trained, and the set of weights for each of them with highest validation accuracy\footnote{On a validation subset of the training set, with 512 sequences.} is taken to form an ensemble that reaches an accuracy of $69.23\%$ on the test set, not far from the $71\%$ reached by the state-of-the-art~\cite{Busia2017}. The aim of this work is not to outperform the state-of-the-art predictions, but to build a network with a moderately simple structure (to keep the calculation times of saliency maps on reasonable levels) and fair performance. We believe that the techniques of analysis here presented and the conclusions withdrawn from them can be transferred to current state-of-the-art methods without losing validity.
+The network described aboved was trained for 400 epochs with regularisation parameter $\lambda=10^{-4}$, and learning rate $\mu=10^{-4}$.
+Five of such networks are trained (with the stopping criteria decided via a validation subset\footnote{The validation subset contains 512 sequences, 10\% of the training set.}) and form an ensemble that reaches an accuracy of $69.23\%$ on the test set, not far from the $71\%$ reached by the state-of-the-art~\cite{Busia2017}.
+The aim of this work is not to outperform the state-of-the-art predictions, but to build a network with a moderately simple structure (to keep the calculation times of saliency maps on reasonable levels) and fair performance.
+We believe that the techniques of analysis here presented and the conclusions withdrawn from them can be transferred to current state-of-the-art methods without losing validity.
 \begin{figure}[t]
 	\centering
 	\centerline{\includegraphics[width=8.6cm]{per_seq_acc}}
 	%  \vspace{1.5cm}
-	\caption{Mean sequence accuracy against sequence length for the proteins in test set. Each point represents a single protein sequence and the horizontal line is the total mean accuracy. On top, sequences with majority of helices (H, G, I); $\beta$-sheets (E, B) at the middle; and coils (L, S, T) below. Best accuracies are achieved with high percentage of helices and worst accuracies with with majority of coils.}
+	\caption{Mean sequence accuracy against sequence length for the proteins in test set.
+		Each point represents a single protein sequence and the horizontal line marks the total mean accuracy.
+		On top, sequences with majority of helices (H, G, I); $\beta$-sheets (E, B) at the middle; and coils (L, S, T) below.
+		Best accuracies are achieved with high percentage of helices and worst accuracies with with majority of coils.}
 	\label{fig:accuracies}
-	%
 \end{figure}
 
-Figures \ref{fig:accuracies} and \ref{fig:confusion} show more information on the network performance. Figure \ref{fig:accuracies} shows the distribution of per-sequence accuracies over different sizes.
-As it could be expected, the variance in mean accuracy increases with shorter sequences. Higher accuracies can be expected from sequences rich in helices and lower accuracies for sequences high in coils. Figure \ref{fig:confusion} displays the resulting confusion matrix of the predictions on the test set.
+Figures \ref{fig:accuracies} and \ref{fig:confusion} show more information on the network performance.
+Figure \ref{fig:accuracies} shows the distribution of per-sequence mean accuracy over different sequence lengths.
+As it could be expected, the variance in accuracy increases with shorter sequences.
+Higher accuracies can be expected from sequences rich in helices and lower accuracies for sequences high in coils.
+Figure \ref{fig:confusion} displays the resulting confusion matrix of the predictions on the test set.
 \begin{figure}[t]
 	\centering
 	\centerline{\includegraphics[width=7.5cm]{confusion}}
 	%  \vspace{1.5cm}
-	\caption{Confusion matrix of the test set. Classes I and B are scarce in the dataset; classes G, H and T have relatively high levels of confusion because they are all composed of turns, but with different lengths; loops (L) are a loose category and their confusion is also high.}
+	\caption{Confusion matrix of the test set.
+		Classes I and B are scarce in the dataset. Classes G, H and T have relatively high levels of confusion because they are all composed of turns, but with different lengths. Loops (L) are a loose category and easily misclassified.}
 	\label{fig:confusion}
-	%
 \end{figure}
-It is similar to the ones obtained on other state-of-the-art networks~\cite{Fang2017}. It is noticeable that the $\pi$-helix (I) has never been given as prediction; its presence is so rare in the dataset that the machine keeps a higher accuracy by ignoring it. $\beta$-bridges (B) are also largely misrepresented for the same reasons. Loops present high levels of confusion with other classes, probably due to the arbitrary discretisation into eight classes, while it has been pointed that it is not that clear the class assignation at the transitions between structures and coils~\cite{Rost2001}.
+It is similar to the ones obtained on other state-of-the-art networks~\cite{Fang2017}.
+The lack of $\pi$-helix (I) predictions is noticeable; its presence in the dataset is so rare that the machine keeps high accuracy even when ignoring it.
+$\beta$-bridges (B) are also largely misrepresented for the same reasons.
+Loops present high levels of confusion with other classes, probably due to the arbitrary discretisation into eight classes, while it has been pointed that the transition between structures and coils is not sharp~\cite{Rost2001}.
 
-Saliency maps can be used as additional evidence for theories around protein secondary structure. For instance, one point of concern has been the inclusion of inputs with different nature: the one-hot amino-acid along the PSSM dense vector. Some authors \cite{Li2016,Zhou2018} embedded the one-hot vector into a denser space, reporting a small marginal improvement in accuracy (0.5\% and 0.4\%, respectively). Spencer et al.~\cite{Spencer2015} reported a 2\% Q3 improvement by not including the one-hot amino-acids at all. Saliency maps provide information of about the importance that different parts of the input have, so direct comparison of both kinds of inputs can be made by looking at their associated saliency values. To do so, each saliency map is split into two halves, corresponding to amino-acid and PSSM, respectively, and all the values of each half are summed up in absolute value to form a single saliency score. The comparison of such scores for all positions in the dataset is made in Figure \ref{fig:aa_pssm}, revealing that in the great majority of positions the PSSM inputs had four times or more relevance for making the classification decision, with around half of them having seven times or more relevance.
+Saliency maps can be used as additional evidence for theories around protein secondary structure.
+For instance, one point of concern has been the inclusion of inputs with different nature: a one-hot amino-acid input along a PSSM dense vector.
+Some authors \cite{Li2016,Zhou2018} embedded the one-hot vector into a denser space, reporting a marginal improvement in accuracy (0.5\% and 0.4\%, respectively).
+Spencer et al.~\cite{Spencer2015} reported a 2\% Q3 improvement by not including the one-hot amino-acids at all.
+Saliency maps provide information about the importance that different parts of the input have, so direct comparison of both kinds of inputs can be made by looking at their associated saliency values.
+To do so, each saliency map is split into two halves, corresponding to amino-acid and PSSM, respectively, and all the values of each half are summed up in absolute value to form a single saliency score.
+The comparison of such scores for all positions in the dataset is made in Figure \ref{fig:aa_pssm}, revealing that the PSSM inputs had four times or more relevance for making the classification decision in the great majority of positions, with around half of them having seven times or more relevance.
 \begin{figure}
 	\centering
 	\centerline{\includegraphics[width=8.6cm]{aa_pssm}}
 	%  \vspace{1.5cm}
-	\caption{Cumulative histogram of how much bigger are PSSM saliency scores as compared to aminoa-acid saliency scores.}
+	\caption{Cumulative histogram with relative strength of PSSM saliency scores as compared to amino-acid saliency scores.}
 	\label{fig:aa_pssm}
 	%
 \end{figure}
-We further validate these findings by training a second network that uses PSSM inputs but ignores the one-hot amino-acids, all the other things remaining equal. An ensemble of five of these networks reaches an accuracy of $69.36\%$ on the test set, $0.14\%$ points higher than the original configuration (see Table \ref{table:res}).
+We further validate these findings by training a second network that uses PSSM inputs but ignores the one-hot amino-acids, all the other things remaining equal.
+An ensemble of five of these networks reaches an accuracy of $69.36\%$ on the test set, $0.14\%$ points higher than the original configuration (see Table \ref{table:res}).
 \begin{table}
 	\centering
 	\begin{tabular}{c|c|c}
@@ -179,20 +217,34 @@ We further validate these findings by training a second network that uses PSSM i
 		\multirow{2}{*}{H / non-H} & Right positions only & \textbf{86.60}\% \\
 		& Left positions only & 80.81\%
 	\end{tabular}
-	\caption{Accuracies on the test set for different network configurations. Ensembles of networks performed better by ignoring one-hot amino-acids. Networks that look on a window of size nine at the right side predict class H better than when they regard the nine left positions.}
+	\caption{Accuracies on the test set for different network configurations.
+		Ensembles of networks performed better by ignoring one-hot amino-acids.
+		Networks that look on a window of size nine at the right side predict class H better than when they regard the nine left positions.}
 	\label{table:res}
 \end{table}
 
-Another useful application of saliency maps can be the study of spatial importance around the predicted position. Figure \ref{fig:sheereq} includes the average saliency spatial profiles for each class.
+Another useful application of saliency maps can be the study of spatial importance around the predicted position, i.e. where the network is looking at when classifying.
+Figure \ref{fig:sheereq} includes the average saliency spatial profiles for each class.
 \begin{figure}[t]
 	\centering
 	\centerline{\includegraphics[width=8.6cm]{sheerabsequal6016_class_aa}}
 	%  \vspace{1.5cm}
-	\caption{Average saliency profiles for the eight classes. On top, the three helix classes; in the middle, the two $\beta$ classes; below, the three coil classes. The legends show the number of profiles averaged over for each class. We want to focus on the distribution of each class over the window positions, so each line has been independently normalized for a clearer visualisation of each shape and scales only shared the zero reference.}
+	\caption{Average saliency profiles for the eight classes.
+		On top, the three helix classes; in the middle, the two $\beta$ classes; below, the three coil classes.
+		The legends show the number of profiles averaged over for each class.
+		The focus is on the distribution of each class over the window positions, so each line has been independently normalized for a clearer visualisation of the shapes, and scales only share the zero reference.}
 	\label{fig:sheereq}
-	%
 \end{figure}
-The construction of each profile has been made as follows. For each sequence position belonging to the class that was predicted right, the 42x19 slice of the saliency map corresponding to the class is extracted and summed up over the feature dimensions, leading to a profile vector of size 19. The figure shows the average of all of such profiles for each class. Sequences coming from both the training and test set were used for this result. The profiles reveal what the spatial influence for each class. For instance, the $\alpha$-helices (H) hold some periodicity at the right side and large asymmetry. The periodicity could go in line with the structure of helices, which are a succession of turns. The asymmetry can point to a strong dependency on posterior amino-acids when the protein chain is built instead of what was coming before. To validate this finding, we re-train two new networks for binary classification of H / non-H. The networks have an identical structure to the previous ones with the only modification being that one of them ignores the input from the left positions and the other the ones from the right positions\footnote{This is achieved by zeroing out different halves of the parameters on the convolutional filters.}. While the network making use of the left positions obtains an accuracy of $80.81\%$ on the test set, the one utilising the right positions achieves $86.60\%$, supporting the idea that future positions are more significant in the formation of an $\alpha$-helix (Table \ref{table:res}).
+The construction of each profile has been made as follows.
+For each correctly predicted position of the class, the corresponding 42x19 slice of the saliency map is extracted and summed up over the feature dimensions, leading to a profile vector of size 19.
+Figure \ref{fig:sheereq} shows the average of all of such profiles grouped by class, with profiles coming from both the training and test set.
+The lines reveal which positions were more relevant for predicting the class.
+For instance, the $\alpha$-helices (H) hold some periodicity at the right side and large asymmetry.
+The periodicity goes in line with the structure of helices, which are a succession of turns.
+The asymmetry can point to a strong dependency on posterior amino-acids when the protein chain is formed.
+To validate this finding, we re-train two new networks with exclusively binary classification for the class H.
+The networks have an identical structure to the previous ones except that one of them ignores the input from the left positions and the other the ones from the right positions\footnote{This is achieved by zeroing out different halves of the parameters on the convolutional filters.}.
+While the network making use of the left positions obtains an accuracy of $80.81\%$ on the test set, the one utilising the right positions achieves $86.60\%$, supporting the idea that future positions are more significant in the formation of an $\alpha$-helix (Table \ref{table:res}).
 
 %Figure~\ref{fig:result} shows a fragment of a sequence-specific saliency map for one of the eight classes (H). It reveals which PSSM values in the vicinity are mostly responsible for the predictions of class H in the fragment. The real amino-acids that are in the sequence are not always as influential in the algorithm decisions as other of the PSSM values, which explains why the inclusion of the later significantly improves the performance of predictions. PSSM values for specific amino-acids do not need to have contributions of the same sign (such P or D reveal in the figure), so the network is capturing something more than pure presence of the PSSM values in the vicinity: their location and combination is also influential. The saliency maps can help to find significant motifs that give raise to specific secondary structures.
 
@@ -209,7 +261,10 @@ The construction of each profile has been made as follows. For each sequence pos
 \section{Conclusions}
 \label{sec:conclusions}
 
-Sensitive analysis help with dealing with the opaqueness of deep neural networks. Saliency maps are one of such techniques which have been extensively applied in the computer vision field but has barely been transferred to biomedical research. In this work, we have successfully applied saliency maps to the secondary structure prediction problem and shown that they can reveal insights from what the network has learnt, such as the irrelevance of one-hot amino-acid inputs or the strong dependence on future positions for the formation of $\alpha$-helices.
+Interpretability methods help dealing with the opaqueness of deep neural networks.
+Saliency maps are one of such techniques which have been extensively applied in the computer vision field, but barely on biomedical research.
+In this work, we have successfully applied saliency maps to the secondary structure prediction problem and shown that they can reveal insights from what the network has learnt, such as the irrelevance of one-hot amino-acid inputs or the strong dependence on future positions for the formation of $\alpha$-helices.
+These techniques can be easily transferred to other problems that make use of deep networks and extract valuable information from the models learned by the networks.
 
 %\section{ILLUSTRATIONS, GRAPHS, AND PHOTOGRAPHS}
 %\label{sec:illust}
