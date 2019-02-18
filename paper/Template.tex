@@ -53,13 +53,20 @@
 %words, and should be identical to the abstract text submitted electronically
 %along with the paper cover sheet.  All manuscripts must be in English, printed
 %in black ink.
+Deep learning, a powerful methodology for data-driven modelling, has been shown to be useful in tackling several problems in the biomedical domain.
+However, deep neural architectures lack interpretability of how predictions from them are made on any test input.
+While several approaches to "opening the black box" are being developed, their application to biological and medical data is very much as its infancy.
+Here, we consider the specific problem of protein secondary structure prediction using the techniques of saliency maps to explain decisions of a deep neural network.
+The analysis leads to two important observations: (a) one-hot-encoded amino-acids are irrelevant in the presence of PSSM values as extra features; and (b) in predicting $\alpha$-helices at any position, amino-acids to the right are far more important than those to the left.
+The latter observation may have a biological basis relating to the synthesis of proteins by ribosome movement from left to right, sequentially adding amino-acids.
 
-Deep learning has been successfully transferred to the biomedical field, achieving higher performance but bringing opaqueness.
-While interpretability techniques are under development, only a few authors have brought them to the biomedical field.
-This work aims to apply one of such techniques ---saliency maps--- in the context of protein secondary structure prediction.
-For doing so, a convolutional neural network was first trained, saliency maps obtained from it, and different ways of aggregating them developed to gather meaningful insights on the network's learning of the underlying problem structure.
-The analysis of saliency maps led to interesting findings, namely the irrelevance of one-hot amino-acid inputs and the higher importance of right positions for the prediction of $\alpha$-helices.
-These techniques can be of double value: they help biologists to get a better understanding of the underlying processes, and machine learning researchers can detect hidden flaws.
+
+%Deep learning has been successfully transferred to the biomedical field, achieving higher performance but bringing opaqueness.
+%While interpretability techniques are under development, only a few authors have brought them to the biomedical field.
+%This work aims to apply one of such techniques ---saliency maps--- in the context of protein secondary structure prediction.
+%For doing so, a convolutional neural network was first trained, saliency maps obtained from it, and different ways of aggregating them developed to gather meaningful insights on the network's learning of the underlying problem structure.
+%The analysis of saliency maps led to interesting findings, namely the irrelevance of one-hot amino-acid inputs and the higher importance of right positions for the prediction of $\alpha$-helices.
+%These techniques can be of double value: they help biologists to get a better understanding of the underlying processes, and machine learning researchers can detect hidden flaws.
 \end{abstract}
 %
 \begin{keywords}
@@ -84,7 +91,7 @@ PSSMs encode the evolutionary probability of finding substitutions in each eleme
 A common input sequence would have length \textit{l} (variable from protein to protein) and width 42: 21 from one-hot encoded amino-acids and 21 from the PSSM values, normalized to a range between zero and one~\cite{Busia2017}.
 %While at the early stages the secondary structure prediction problem was mainly approached with statistics, towards the 90s the application of neural networks became prevalent \cite{Rost1993}.
 A new generation of deep learning approaches started recently with~\cite{Zhou2014}, who implemented a Generative Stochastic Network fed by a 1D Convolutional Neural Network (CNN) architecture.
-Later works already included 1D CNNs with five or more layers~\cite{Fang2017,Zhou2018} or recurrent neural networks~\cite{Li2016,Wang2016,Jurtz2017,Zhou2018,Wang2017}, which are deep in the sense of signals being processed for many time-steps.
+Later works already included 1D CNNs with five or more layers~\cite{Wang2016,Fang2017,Zhou2018} or recurrent neural networks~\cite{Li2016,Jurtz2017}, which are deep in the sense of signals being processed for many time-steps.
 
 Saliency maps (also known as \textit{attribution techniques}~\cite{Olah2017}) are a visualisation technique that aims to reveal which parts of an input sample are mainly responsible for the output decision made by a classification system.
 They can be regarded as a type of \textit{sensitivity analysis}, applied in many other fields of research.
@@ -261,10 +268,13 @@ While the network making use of the left positions obtains an accuracy of $80.81
 \section{Conclusions}
 \label{sec:conclusions}
 
-Interpretability methods help dealing with the opaqueness of deep neural networks.
-Saliency maps are one of such techniques which have been extensively applied in the computer vision field, but barely on biomedical research.
-In this work, we have successfully applied saliency maps to the secondary structure prediction problem and shown that they can reveal insights from what the network has learnt, such as the irrelevance of one-hot amino-acid inputs or the strong dependence on future positions for the formation of $\alpha$-helices.
-These techniques can be easily transferred to other problems that make use of deep networks and extract valuable information from the models learned by the networks.
+This work demonstrates that saliency maps could help to explain black box decisions made by deep neural networks on the biological inference problem of predicting protein secondary structures. While these methods have been developed in the field of computer vision, their application to biological sequence analysis is novel.
+By this application, we reach two conclusions.
+Firstly, one-hot amino-acid inputs contain far less useful information than Position Specific Substitution Matrices, to the point of not losing significative performance with the omission of the earlier.
+Secondly, the prediction of $\alpha$-helices relies more on amino-acids to the right of the predicted position than to the left, which may be a consequence of the biological processes in protein formation and folding.
+The benefits of the presented techniques can be of double value: helping biologist understand to get a deeper understanding of the underlying biological processes, and providing machine learning researchers with diagnostic tools for spotting flaws in their systems.
+Future work should focus on more advanced saliency maps techniques, as well as further methods for analysing and extracting information from them. A wider window width could also be explored, as it has been suggested that $\beta$-sheets rely on longer interactions~\cite{Zhou2018,10.1007/978-3-642-16001-1_30}.
+
 
 %\section{ILLUSTRATIONS, GRAPHS, AND PHOTOGRAPHS}
 %\label{sec:illust}
