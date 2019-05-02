@@ -1,0 +1,16 @@
+@incollection{Roth2015,
+abstract = {Automatic organ segmentation is an important yet challenging problem for medical image analysis. The pancreas is an abdominal organ with very high anatomical variability. This inhibits previous segmentation methods from achieving high accuracies, especially compared to other organs such as the liver, heart or kidneys. In this paper, we present a probabilistic bottom-up approach for pancreas segmentation in abdominal computed tomography (CT) scans, using multi-level deep convolutional networks (ConvNets). We propose and evaluate several variations of deep ConvNets in the context of hierarchical, coarse-to-fine classification on image patches and regions, i.e. superpixels. We first present a dense labeling of local image patches via {\$}P{\{}-{\}}\backslashmathrm{\{}ConvNet{\}}{\$} and nearest neighbor fusion. Then we describe a regional ConvNet ({\$}R{\_}1{\{}-{\}}\backslashmathrm{\{}ConvNet{\}}{\$}) that samples a set of bounding boxes around each image superpixel at different scales of contexts in a "zoom-out" fashion. Our ConvNets learn to assign class probabilities for each superpixel region of being pancreas. Last, we study a stacked {\$}R{\_}2{\{}-{\}}\backslashmathrm{\{}ConvNet{\}}{\$} leveraging the joint space of CT intensities and the {\$}P{\{}-{\}}\backslashmathrm{\{}ConvNet{\}}{\$} dense probability maps. Both 3D Gaussian smoothing and 2D conditional random fields are exploited as structured predictions for post-processing. We evaluate on CT images of 82 patients in 4-fold cross-validation. We achieve a Dice Similarity Coefficient of 83.6{\$}\backslashpm{\$}6.3{\%} in training and 71.8{\$}\backslashpm{\$}10.7{\%} in testing.},
+archivePrefix = {arXiv},
+arxivId = {1506.06448},
+author = {Roth, Holger R. and Lu, Le and Farag, Amal and Shin, Hoo Chang and Liu, Jiamin and Turkbey, Evrim B. and Summers, Ronald M.},
+booktitle = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
+doi = {10.1007/978-3-319-24553-9_68},
+eprint = {1506.06448},
+isbn = {978-3-319-24552-2},
+issn = {16113349},
+pages = {556--564},
+pmid = {23285570},
+title = {{Deeporgan: Multi-level deep convolutional networks for automated pancreas segmentation}},
+volume = {9349},
+year = {2015}
+}

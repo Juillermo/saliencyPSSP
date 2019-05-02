@@ -1,0 +1,251 @@
+@article{Zhou2018,
+	abstract = {Protein secondary structure is the three dimensional form of local segments of proteins and its prediction is an important problem in protein tertiary structure prediction. Developing computational approaches for protein secondary structure prediction is becoming increasingly urgent. We present a novel deep learning based model, referred to as CNNH{\_}PSS, by using multi-scale CNN with highway. In CNNH{\_}PSS, any two neighbor convolutional layers have a highway to deliver information from current layer to the output of the next one to keep local contexts. As lower layers extract local context while higher layers extract long-range interdependencies, the highways between neighbor layers allow CNNH{\_}PSS to have ability to extract both local contexts and long-range interdependencies. We evaluate CNNH{\_}PSS on two commonly used datasets: CB6133 and CB513. CNNH{\_}PSS outperforms the multi-scale CNN without highway by at least 0.010 Q8 accuracy and also performs better than CNF, DeepCNF and SSpro8, which cannot extract long-range interdependencies, by at least 0.020 Q8 accuracy, demonstrating that both local contexts and long-range interdependencies are indeed useful for prediction. Furthermore, CNNH{\_}PSS also performs better than GSM and DCRNN which need extra complex model to extract long-range interdependencies. It demonstrates that CNNH{\_}PSS not only cost less computer resource, but also achieves better predicting performance. CNNH{\_}PSS have ability to extracts both local contexts and long-range interdependencies by combing multi-scale CNN and highway network. The evaluations on common datasets and comparisons with state-of-the-art methods indicate that CNNH{\_}PSS is an useful and efficient tool for protein secondary structure prediction.},
+	author = {Zhou, Jiyun and Wang, Hongpeng and Zhao, Zhishan and Xu, Ruifeng and Lu, Qin},
+	doi = {10.1186/s12859-018-2067-8},
+	file = {:home/juillermo/Desktop/document.pdf:pdf},
+	issn = {14712105},
+	journal = {BMC Bioinformatics},
+	keywords = {Convolutional neural network,Highway,Local context,Long-range interdependency,Protein secondary structure,Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{CNNH{\_}PSS: Protein 8-class secondary structure prediction by convolutional neural network with highway}},
+	year = {2018}
+}
+
+@INPROCEEDINGS{8371925,
+	author={C. Fang and Y. Shang and D. Xu},
+	booktitle={2017 IEEE 29th International Conference on Tools with Artificial Intelligence (ICTAI)},
+	title={A New Deep Neighbor Residual Network for Protein Secondary Structure Prediction},
+	year={2017},
+	volume={},
+	number={},
+	pages={66-71},
+	keywords={Amino acids;Computer architecture;Neural networks;Protein sequence;Tools;Training;Protein secondary structure prediction;deep learning;deep neighbor residual network},
+	doi={10.1109/ICTAI.2017.00022},
+	ISSN={},
+	month={Nov},}
+
+@inproceedings{Johansen2017,
+	abstract = {Deep learning has become the state-of-the-art method for predict-ing protein secondary structure from only its amino acid residues and sequence proole. Building upon these results, we propose to combine a bi-directional recurrent neural network (biRNN) with a conditional random meld (CRF), which we call the biRNN-CRF. The biRNN-CRF may be seen as an improved alternative to an auto-regressive uni-directional RNN where predictions are performed sequentially conditioning on the prediction in the previous time-step. The CRF is instead nearest neighbor-aware and models for the joint distribution of the labels for all time-steps. We condition the CRF on the output of biRNN, which learns a distributed represen-tation based on the entire sequence. The biRNN-CRF is therefore close to ideally suited for the secondary structure task because a high degree of cross-talk between neighboring elements can be ex-pected. We validate the model on several benchmark datasets. For example, on CB513, a model with 1.7 million parameters, achieves a Q8 accuracy of 69.4 for single model and 70.9 for ensemble, which to our knowledge is state-of-the-art. 1},
+	author = {Johansen, Alexander Rosenberg and S{\o}nderby, Casper Kaae and S{\o}nderby, S{\o}ren Kaae and Winther, Ole},
+	booktitle = {Proceedings of the 8th ACM International Conference on Bioinformatics, Computational Biology,and Health Informatics - ACM-BCB '17},
+	doi = {10.1145/3107411.3107489},
+	file = {:home/juillermo/Desktop/p73-johansen.pdf:pdf},
+	isbn = {9781450347228},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Deep Recurrent Conditional Random Field Network for Protein Secondary Prediction}},
+	year = {2017}
+}
+
+@article{Wang2017,
+	abstract = {The prediction of protein structures directly from amino acid sequences is one of the biggest challenges in computational biology. It can be divided into several independent sub-problems in which protein secondary structure (SS) prediction is fundamental. Many computational methods have been proposed for SS prediction problem. Few of them can model well both the sequence-structure mapping relationship between input protein features and SS, and the interaction relationship among residues which are both important for SS prediction. In this paper, we proposed a deep recurrent encoder–decoder networks called Secondary Structure Recurrent Encoder–Decoder Networks (SSREDNs) to solve this SS prediction problem. Deep architecture and recurrent structures are employed in the SSREDNs to model both the complex nonlinear mapping relationship between input protein features and SS, and the mutual interaction among continuous residues of the protein chain. A series of techniques are also used in this paper to refine the model's performance. The proposed model is applied to the open dataset CullPDB and CB513. Experimental results demonstrate that our method can improve both Q3 and Q8 accuracy compared with some public available methods. For Q8 prediction problem, it achieves 68.20{\%} and 73.1{\%} accuracy on CB513 and CullPDB dataset in fewer epochs better than the previous state-of-art method.},
+	author = {Wang, Yangxu and Mao, Hua and Yi, Zhang},
+	doi = {10.1016/j.knosys.2016.11.015},
+	file = {:home/juillermo/Desktop/1-s2.0-S0950705116304713-main.pdf:pdf},
+	issn = {09507051},
+	journal = {Knowledge-Based Systems},
+	keywords = {Deep learning,Encoder–decoder networks,Recurrent neural networks,Secondary structure,Secondary structure prediction},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Protein secondary structure prediction by using deep learning method}},
+	year = {2017}
+}
+
+
+@article{Sønderby2014,
+	abstract = {Prediction of protein secondary structure from the amino acid sequence is a classical bioinformatics problem. Common methods use feed forward neural networks or SVMs combined with a sliding window, as these models does not naturally handle sequential data. Recurrent neural networks are an generalization of the feed forward neural network that naturally handle sequential data. We use a bidirectional recurrent neural network with long short term memory cells for prediction of secondary structure and evaluate using the CB513 dataset. On the secondary structure 8-class problem we report better performance (0.674) than state of the art (0.664). Our model includes feed forward networks between the long short term memory cells, a path that can be further explored.},
+	archivePrefix = {arXiv},
+	arxivId = {1412.7828},
+	author = {S{\o}nderby, S{\o}ren Kaae and Winther, Ole},
+	eprint = {1412.7828},
+	journal = {arXiv:1412.7828},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Protein Secondary Structure Prediction with Long Short Term Memory Networks}},
+	year = {2014}
+}
+
+
+@article{Magnan2014,
+	abstract = {MOTIVATION Accurately predicting protein secondary structure and relative solvent accessibility is important for the study of protein evolution, structure and function and as a component of protein 3D structure prediction pipelines. Most predictors use a combination of machine learning and profiles, and thus must be retrained and assessed periodically as the number of available protein sequences and structures continues to grow. RESULTS We present newly trained modular versions of the SSpro and ACCpro predictors of secondary structure and relative solvent accessibility together with their multi-class variants SSpro8 and ACCpro20. We introduce a sharp distinction between the use of sequence similarity alone, typically in the form of sequence profiles at the input level, and the additional use of sequence-based structural similarity, which uses similarity to sequences in the Protein Data Bank to infer annotations at the output level, and study their relative contributions to modern predictors. Using sequence similarity alone, SSpro's accuracy is between 79 and 80{\%} (79{\%} for ACCpro) and no other predictor seems to exceed 82{\%}. However, when sequence-based structural similarity is added, the accuracy of SSpro rises to 92.9{\%} (90{\%} for ACCpro). Thus, by combining both approaches, these problems appear now to be essentially solved, as an accuracy of 100{\%} cannot be expected for several well-known reasons. These results point also to several open technical challenges, including (i) achieving on the order of ≥ 80{\%} accuracy, without using any similarity with known proteins and (ii) achieving on the order of ≥ 85{\%} accuracy, using sequence similarity alone. AVAILABILITY AND IMPLEMENTATION SSpro, SSpro8, ACCpro and ACCpro20 programs, data and web servers are available through the SCRATCH suite of protein structure predictors at http://scratch.proteomics.ics.uci.edu.},
+	author = {Magnan, Christophe N. and Baldi, Pierre},
+	doi = {10.1093/bioinformatics/btu352},
+	isbn = {1367-4811 (Electronic)$\backslash$r1367-4803 (Linking)},
+	issn = {14602059},
+	journal = {Bioinformatics},
+	pmid = {24860169},
+	title = {{SSpro/ACCpro 5: Almost perfect prediction of protein secondary structure and relative solvent accessibility using profiles, machine learning and structural similarity}},
+	year = {2014}
+}
+
+
+@article{Zhou2014,
+	abstract = {Predicting protein secondary structure is a fundamental problem in protein structure prediction. Here we present a new supervised generative stochastic network (GSN) based method to predict local secondary structure with deep hierarchical representations. GSN is a recently proposed deep learning technique (Bengio {\&} Thibodeau-Laufer, 2013) to globally train deep generative model. We present the supervised extension of GSN, which learns a Markov chain to sample from a conditional distribution, and applied it to protein structure prediction. To scale the model to full-sized, high-dimensional data, like protein sequences with hundreds of amino acids, we introduce a convolutional architecture, which allows efficient learning across multiple layers of hierarchical representations. Our architecture uniquely focuses on predicting structured low-level labels informed with both low and high-level representations learned by the model. In our application this corresponds to labeling the secondary structure state of each amino-acid residue. We trained and tested the model on separate sets of non-homologous proteins sharing less than 30{\%} sequence identity. Our model achieves 66.4{\%} Q8 accuracy on the CB513 dataset, better than the previously reported best performance 64.9{\%} (Wang et al., 2011) for this challenging secondary structure prediction problem.},
+	archivePrefix = {arXiv},
+	arxivId = {1403.1347},
+	author = {Zhou, Jian and Troyanskaya, Olga G.},
+	eprint = {1403.1347},
+	isbn = {9781634393973},
+	keywords = {CNN,Deep learning,Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {CNN,Deep learning,Secondary structure},
+	title = {{Deep Supervised and Convolutional Generative Stochastic Network for Protein Secondary Structure Prediction}},
+	year = {2014}
+}
+
+
+@article{Heffernan2017,
+	abstract = {Motivation: The accuracy of predicting protein local and global structural properties such as sec-ondary structure and solvent accessible surface area has been stagnant for many years because of the challenge of accounting for non-local interactions between amino acid residues that are close in three-dimensional structural space but far from each other in their sequence positions. All exist-ing machine-learning techniques relied on a sliding window of 10–20 amino acid residues to cap-ture some 'short to intermediate' non-local interactions. Here, we employed Long Short-Term Memory (LSTM) Bidirectional Recurrent Neural Networks (BRNNs) which are capable of capturing long range interactions without using a window. Results: We showed that the application of LSTM-BRNN to the prediction of protein structural properties makes the most significant improvement for residues with the most long-range contacts (ji-jj {\textgreater}19) over a previous window-based, deep-learning method SPIDER2. Capturing long-range interactions allows the accuracy of three-state secondary structure prediction to reach 84{\%} and the correlation coefficient between predicted and actual solvent accessible surface areas to reach 0.80, plus a reduction of 5{\%}, 10{\%}, 5{\%} and 10{\%} in the mean absolute error for backbone /, w, h and s angles, respectively, from SPIDER2. More significantly, 27{\%} of 182724 40-residue models directly constructed from predicted Ca atom-based h and s have similar structures to their corresponding native structures (6{\AA} RMSD or less), which is 3{\%} better than models built by / and w angles. We expect the method to be useful for assisting protein structure and function prediction. Availability and implementation: The method is available as a SPIDER3 server and standalone package at http://sparks-lab.org.},
+	author = {Heffernan, Rhys and Yang, Yuedong and Paliwal, Kuldip and Zhou, Yaoqi},
+	doi = {10.1093/bioinformatics/btx218},
+	file = {:home/juillermo/Desktop/btx218.pdf:pdf},
+	issn = {14602059},
+	journal = {Bioinformatics},
+	keywords = {Computational Biology,LSTM,RNN,Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Computational Biology,LSTM,RNN,Secondary structure},
+	number = {18},
+	pages = {2842--2849},
+	title = {{Capturing non-local interactions by long short-term memory bidirectional recurrent neural networks for improving prediction of protein secondary structure, backbone angles, contact numbers and solvent accessibility}},
+	volume = {33},
+	year = {2017}
+}
+
+
+@inproceedings{Hattori2017,
+	abstract = {—One of the most important open problems in science is the protein secondary structures prediction from the protein sequence of amino acids. This work presents an application of Deep Recurrent Neural Network with Bidirectional Long Short-Term Memory (DBLSTM) cells to this problem. We compare the performance of the proposed approach with the state-of-the-art approaches. Despite the lower complexity of the proposed approach (i.e. Neural Network architecture with fewer neurons), results showed that the DBLSTM could achieve a satisfactory level of accuracy when compared with the state-of-the-art ap-proaches. We also studied the behavior of Gradient Optimizers applied to the DBLSTM. Furthermore, this paper concentrates on well-known quantitative analytical methods applied to evaluate the proposed approach.},
+	annote = {Good technical info about DLSTM. Compares results to the Vanessa-previous paper.},
+	author = {Hattori, Leandro Takeshi and Benitez, Cesar Manuel Vargas and Lopes, Heitor Silverio},
+	booktitle = {2017 IEEE Latin American Conference on Computational Intelligence (LA-CCI)},
+	doi = {10.1109/LA-CCI.2017.8285678},
+	file = {:home/juillermo/Desktop/08285678.pdf:pdf},
+	isbn = {978-1-5386-3734-0},
+	keywords = {Computational Biology,Deep Learning,LSTM,RNN,Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Computational Biology,Deep Learning,LSTM,RNN,Secondary structure},
+	pages = {1--6},
+	title = {{A deep bidirectional long short-term memory approach applied to the protein secondary structure prediction problem}},
+	url = {http://ieeexplore.ieee.org/document/8285678/},
+	year = {2017}
+}
+
+
+@article{Busia2017,
+	abstract = {Recently developed deep learning techniques have significantly improved the accuracy of various speech and image recognition systems. In this paper we show how to adapt some of these techniques to create a novel chained convolutional architecture with next-step conditioning for improving performance on protein sequence prediction problems. We explore its value by demonstrating its ability to improve performance on eight-class secondary structure prediction. We first establish a state-of-the-art baseline by adapting recent advances in convolutional neural networks which were developed for vision tasks. This model achieves 70.0{\%} per amino acid accuracy on the CB513 benchmark dataset without use of standard performance-boosting techniques such as ensembling or multitask learning. We then improve upon this state-of-the-art result using a novel chained prediction approach which frames the secondary structure prediction as a next-step prediction problem. This sequential model achieves 70.3{\%} Q8 accuracy on CB513 with a single model; an ensemble of these models produces 71.4{\%} Q8 accuracy on the same test set, improving upon the previous overall state of the art for the eight-class secondary structure problem. Our models are implemented using TensorFlow, an open-source machine learning software library available at TensorFlow.org; we aim to release the code for these experiments as part of the TensorFlow repository.},
+	archivePrefix = {arXiv},
+	arxivId = {1702.03865},
+	author = {Busia, Akosua and Jaitly, Navdeep},
+	eprint = {1702.03865},
+	journal = {arXiv:1702.03865v1},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Next-Step Conditioned Deep Convolutional Neural Networks Improve Protein Secondary Structure Prediction}},
+	year = {2017}
+}
+
+
+@inproceedings{Li2016,
+	abstract = {Protein secondary structure prediction is an important problem in bioinformatics. Inspired by the recent successes of deep neural networks, in this paper, we propose an end-to-end deep network that predicts protein secondary structures from integrated local and global contextual features. Our deep architecture leverages convolutional neural networks with different kernel sizes to extract multiscale local contextual features. In addition, considering long-range dependencies existing in amino acid sequences, we set up a bidirectional neural network consisting of gated recurrent unit to capture global contextual features. Furthermore, multi-task learning is utilized to predict secondary structure labels and amino-acid solvent accessibility simultaneously. Our proposed deep network demonstrates its effectiveness by achieving state-of-the-art performance, i.e., 69.7{\%} Q8 accuracy on the public benchmark CB513, 76.9{\%} Q8 accuracy on CASP10 and 73.1{\%} Q8 accuracy on CASP11. Our model and results are publicly available.},
+	archivePrefix = {arXiv},
+	arxivId = {1604.07176},
+	author = {Li, Zhen and Yu, Yizhou},
+	booktitle = {Proceedings of the Twenty-Fifth International Joint Conference on Artificial Intelligence},
+	eprint = {1604.07176},
+	isbn = {978-1-57735-770-4},
+	issn = {10450823},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	title = {{Protein Secondary Structure Prediction Using Cascaded Convolutional and Recurrent Neural Networks}},
+	year = {2016}
+}
+
+
+@article{Fang2017,
+	abstract = {Motivation: Protein secondary structure prediction can provide important information for protein 3D structure prediction and protein functions. Deep learning, which has been successfully applied to various research fields such as image classification and voice recognition, provides a new opportunity to significantly improve the secondary structure prediction accuracy. Although several deep-learning methods have been developed for secondary structure prediction, there is room for improvement. MUFold-SS was developed to address these issues. Results: Here, a very deep neural network, the deep inception-inside-inception networks (Deep3I), is proposed for protein secondary structure prediction and a software tool was implemented using this network. This network takes two inputs: a protein sequence and a profile generated by PSI-BLAST. The output is the predicted eight states (Q8) or three states (Q3) of secondary structures. The proposed Deep3I not only achieves the state-of-the-art performance but also runs faster than other tools. Deep3I achieves Q3 82.8{\%} and Q8 71.1{\%} accuracies on the CB513 benchmark.},
+	archivePrefix = {arXiv},
+	arxivId = {1709.06165},
+	author = {Fang, Chao and Shang, Yi and Xu, Dong},
+	eprint = {1709.06165},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Fang, Shang, Xu - 2017 - MUFold-SS Protein Secondary Structure Prediction Using Deep Inception-Inside-Inception Networks.pdf:pdf},
+	keywords = {Secondary structure},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Secondary structure},
+	month = {sep},
+	title = {{MUFold-SS: Protein Secondary Structure Prediction Using Deep Inception-Inside-Inception Networks}},
+	url = {http://arxiv.org/abs/1709.06165},
+	year = {2017}
+}
+
+
+@article{Jurtz2017,
+	abstract = {Motivation: Deep neural network architectures such as convolutional and long short-term memory networks have become increasingly popular as machine learning tools during the recent years. The availability of greater computational resources, more data, new algorithms for training deep models and easy to use libraries for implementation and training of neural networks are the drivers of this development. The use of deep learning has been especially successful in image recognition; and the development of tools, applications and code examples are in most cases centered within this field rather than within biology. Results: Here, we aim to further the development of deep learning methods within biology by providing application examples and ready to apply and adapt code templates. Given such examples, we illustrate how architectures consisting of convolutional and long short-term memory neural networks can relatively easily be designed and trained to state-of-the-art performance on three biological sequence problems: prediction of subcellular localization, protein secondary structure and the binding of peptides to MHC Class II molecules. Availability: All implementations and datasets are available online to the scientific community at https://github.com/vanessajurtz/lasagne4bio. Supplementary information:Supplementary data are available at Bioinformatics online.},
+	annote = {The key paper.},
+	archivePrefix = {arXiv},
+	arxivId = {103549},
+	author = {Jurtz, Vanessa Isabell and Johansen, Alexander Rosenberg and Nielsen, Morten and {Almagro Armenteros}, Jose Juan and Nielsen, Henrik and S{\o}nderby, Casper Kaae and Winther, Ole and S{\o}nderby, S{\o}ren Kaae},
+	doi = {10.1093/bioinformatics/btx531},
+	eprint = {103549},
+	file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Jurtz et al. - 2017 - An introduction to deep learning on biological sequence data Examples and solutions.pdf:pdf},
+	isbn = {1367-4811 (Electronic)},
+	issn = {14602059},
+	journal = {Bioinformatics},
+	keywords = {Broad,CNN,Computational Biology,Deep learning,LSTM,RNN,Secondary structure,Sequencing},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {Broad,CNN,Computational Biology,Deep learning,LSTM,RNN,Secondary structure,Sequencing},
+	number = {22},
+	pages = {3685--3690},
+	pmid = {28961695},
+	title = {{An introduction to deep learning on biological sequence data: Examples and solutions}},
+	volume = {33},
+	year = {2017}
+}
+
+
+@article{Wang2016,
+	abstract = {Protein secondary structure (SS) prediction is important for studying protein structure and function. When only the sequence (profile) information is used as input feature, currently the best predictors can obtain {\~{}}80{\%} Q3 accuracy, which has not been improved in the past decade. Here we present DeepCNF (Deep Convolutional Neural Fields) for protein SS prediction. DeepCNF is a Deep Learning extension of Conditional Neural Fields (CNF), which is an integration of Conditional Random Fields (CRF) and shallow neural networks. DeepCNF can model not only complex sequence-structure relationship by a deep hierarchical architecture, but also interdependency between adjacent SS labels, so it is much more powerful than CNF. Experimental results show that DeepCNF can obtain {\~{}}84{\%} Q3 accuracy, {\~{}}85{\%} SOV score, and {\~{}}72{\%} Q8 accuracy, respectively, on the CASP and CAMEO test proteins, greatly outperforming currently popular predictors. As a general framework, DeepCNF can be used to predict other protein structure properties such as contact number, disorder regions, and solvent accessibility.},
+	archivePrefix = {arXiv},
+	arxivId = {1611.01503},
+	author = {Wang, Sheng and Peng, Jian and Ma, Jianzhu and Xu, Jinbo},
+	doi = {10.1038/srep18962},
+	eprint = {1611.01503},
+	file = {:home/juillermo/Desktop/srep18962.pdf:pdf},
+	isbn = {2045-2322 (Electronic)$\backslash$r2045-2322 (Linking)},
+	issn = {20452322},
+	journal = {Scientific Reports},
+	keywords = {CNN,Computational Biology,Deep learning,Secondary structure,Solving accessibility},
+	mendeley-groups = {Deep Biology},
+	mendeley-tags = {CNN,Computational Biology,Deep learning,Secondary structure,Solving accessibility},
+	pmid = {26752681},
+	title = {{Protein Secondary Structure Prediction Using Deep Convolutional Neural Fields}},
+	volume = {6},
+	year = {2016}
+}
+
+
+@article{Lin2016,
+abstract = {Predicting protein properties such as solvent accessibility and secondary structure from its primary amino acid sequence is an important task in bioinformatics. Recently, a few deep learning models have surpassed the traditional window based multilayer perceptron. Taking inspiration from the image classification domain we propose a deep convolutional neural network architecture, MUST-CNN, to predict protein properties. This architecture uses a novel multilayer shift-and-stitch (MUST) technique to generate fully dense per-position predictions on protein sequences. Our model is significantly simpler than the state-of-the-art, yet achieves better results. By combining MUST and the efficient convolution operation, we can consider far more parameters while retaining very fast prediction speeds. We beat the state-of-the-art performance on two large protein property prediction datasets.},
+annote = {After the initial multitask model is trained, we take the top layers and each task-specific subclassifier and fine-tune the models by initializing their weights at the weights learned by the multitask model and training only on each specific task with 1/10 of the original learning rate. 
+
+PSI-BLAST generates a PSSM of size T × 20 for a T lengthed sequence, where a higher score represents a higher likelihood of the ith amino acid replacing the current one in other species. Generally, two amino acids that are interchangeable in the PSSM indicates that they are also interchangeable in the protein without sig- nificantly modifying the functionality of the protein.
+
+The class labels are H = alpha helix, B = residue in isolated beta bridge, E = extended strand, G = 3-helix, I = 5-helix, T = hydrogen bonded turn, S = bend, L = loop.
+
+ssp A collapsed version of the 8 class prediction task, since many protein secondary structure prediction algo- rithms use a 3 class approach instead of the 8-class ap- proach given in dssp. {\{}H, G{\}} → H =Helix, {\{}B, E{\}} → B =Beta sheet, and {\{}I, S, T, L{\}} → C =Coil},
+archivePrefix = {arXiv},
+arxivId = {1605.03004},
+author = {Lin, Zeming and Lanchantin, Jack and Qi, Yanjun},
+eprint = {1605.03004},
+file = {:home/juillermo/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Lin, Lanchantin, Qi - 2016 - MUST-CNN A Multilayer Shift-and-Stitch Deep Convolutional Architecture for Sequence-based Protein Structure.pdf:pdf},
+keywords = {Secondary structure},
+mendeley-groups = {Deep Biology},
+mendeley-tags = {Secondary structure},
+month = {may},
+title = {{MUST-CNN: A Multilayer Shift-and-Stitch Deep Convolutional Architecture for Sequence-based Protein Structure Prediction}},
+url = {http://arxiv.org/abs/1605.03004},
+year = {2016}
+}

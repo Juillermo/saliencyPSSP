@@ -1,0 +1,99 @@
+\begin{thebibliography}{10}
+
+\bibitem{Alipanahi2015}
+Babak Alipanahi, Andrew Delong, Matthew~T. Weirauch, and Brendan~J. Frey.
+\newblock {Predicting the sequence specificities of DNA- and RNA-binding
+  proteins by deep learning}.
+\newblock {\em Nature Biotechnology}, 33(8):831--838, 2015.
+
+\bibitem{Chen2015}
+Lujia Chen, Chunhui Cai, Vicky Chen, and Xinghua Lu.
+\newblock {Trans-species learning of cellular signaling systems with bimodal
+  deep belief networks}.
+\newblock {\em Bioinformatics}, 31(18):3008--3015, 2015.
+
+\bibitem{Ditzler2015}
+Gregory Ditzler, Robi Polikar, and Gail Rosen.
+\newblock {Multi-Layer and Recursive Neural Networks for Metagenomic
+  Classification}.
+\newblock {\em IEEE Transactions on Nanobioscience}, 2015.
+
+\bibitem{Fan2015}
+X.-N. Fan and S.-W. Zhang.
+\newblock {LncRNA-MFDL: Identification of human long non-coding RNAs by fusing
+  multiple features and using deep learning}.
+\newblock {\em Molecular BioSystems}, 11(3):892--897, 2015.
+
+\bibitem{He2015}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock {Deep Residual Learning for Image Recognition}.
+\newblock dec 2015.
+
+\bibitem{Jurtz2017}
+Vanessa~Isabell Jurtz, Alexander~Rosenberg Johansen, Morten Nielsen, Jose~Juan
+  {Almagro Armenteros}, Henrik Nielsen, Casper~Kaae S{\o}nderby, Ole Winther,
+  and S{\o}ren~Kaae S{\o}nderby.
+\newblock {An introduction to deep learning on biological sequence data:
+  Examples and solutions}.
+\newblock {\em Bioinformatics}, 33(22):3685--3690, 2017.
+
+\bibitem{Leung2014}
+Michael~K.K. Leung, Hui~Yuan Xiong, Leo~J. Lee, and Brendan~J. Frey.
+\newblock {Deep learning of the tissue-regulated splicing code}.
+\newblock {\em Bioinformatics}, 30(12), 2014.
+
+\bibitem{Liang2015}
+Muxuan Liang, Zhizhong Li, Ting Chen, and Jianyang Zeng.
+\newblock {Integrative Data Analysis of Multi-Platform Cancer Data with a
+  Multimodal Deep Learning Approach}.
+\newblock {\em IEEE/ACM Transactions on Computational Biology and
+  Bioinformatics}, 2015.
+
+\bibitem{Libbrecht2015}
+Maxwell~W Libbrecht and William~Stafford Noble.
+\newblock {Machine learning applications in genetics and genomics}.
+\newblock {\em Nat Rev Genet}, 16(6):321--332, 2015.
+
+\bibitem{Mamoshina2016}
+Polina Mamoshina, Armando Vieira, Evgeny Putin, and Alex Zhavoronkov.
+\newblock {Applications of Deep Learning in Biomedicine}, 2016.
+
+\bibitem{Ravi2017}
+Daniele Ravi, Charence Wong, Fani Deligianni, Melissa Berthelot, Javier
+  Andreu-Perez, Benny Lo, and Guang~Zhong Yang.
+\newblock {Deep Learning for Health Informatics}.
+\newblock {\em IEEE Journal of Biomedical and Health Informatics}, 21(1):4--21,
+  2017.
+
+\bibitem{Wang2015}
+Sheng Wang, Shunyan Weng, Jianzhu Ma, and Qingming Tang.
+\newblock {DeepCNF-D: Predicting protein order/disorder regions by weighted
+  deep convolutional neural fields}.
+\newblock {\em International Journal of Molecular Sciences}, 2015.
+
+\bibitem{Witteveen2014}
+M~J Witteveen.
+\newblock {\em {Identification and Elucidation of Expression Quantitative Trait
+  Loci (eQTL) and their regulating mechanisms using Decodive Deep Learning}}.
+\newblock Master thesis, TU Delf, 2014.
+
+\bibitem{Zeng2015}
+Tao Zeng, Rongjian Li, Ravi Mukkamala, Jieping Ye, and Shuiwang Ji.
+\newblock {Deep convolutional neural networks for annotating gene expression
+  patterns in the mouse brain}.
+\newblock {\em BMC Bioinformatics}, 2015.
+
+\bibitem{Zhang2015}
+Sai Zhang, Jingtian Zhou, Hailin Hu, Haipeng Gong, Ligong Chen, Chao Cheng, and
+  Jianyang Zeng.
+\newblock {A deep learning framework for modeling structural features of
+  RNA-binding protein targets}.
+\newblock {\em Nucleic Acids Research}, 44(4), 2015.
+
+\bibitem{Zhou2015}
+Jian Zhou and Olga~G. Troyanskaya.
+\newblock {Predicting effects of noncoding variants with deep learning-based
+  sequence model}.
+\newblock {\em Nature Methods}, 12(10):931--934, 2015.
+
+\end{thebibliography}

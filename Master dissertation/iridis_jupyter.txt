@@ -1,0 +1,17 @@
+****Only for the first time****
+module load conda
+conda info --envs
+conda create --name <env_name> --clone tensorflow-gpu-1.7
+
+***Do this everytime you login***
+1st window: (iridis)
+module load conda
+source activate <env_name>
+sinteractive -p lyceum --gres=gpu:1
+jupyter notebook --no-browser --port 8888
+
+2nd window: (iridis)
+ssh -L 8888:localhost:8888 pink56 (or whatever pink machine is alloted to you, check in the first window)
+
+3rd window: (normal terminal, without ssh)
+ssh -L 8888:localhost:8888 <uni_id>@iridis5_a.soton.ac.uk

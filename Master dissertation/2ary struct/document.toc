@@ -1,0 +1,79 @@
+\contentsline {section}{\numberline {1}Intro}{3}
+\contentsline {subsection}{\numberline {1.1}Motivation}{3}
+\contentsline {subsubsection}{\numberline {1.1.1}Biological}{3}
+\contentsline {subsubsection}{\numberline {1.1.2}Computer software}{5}
+\contentsline {subsection}{\numberline {1.2}Deep Learning}{5}
+\contentsline {subsection}{\numberline {1.3}CNNs}{6}
+\contentsline {subsubsection}{\numberline {1.3.1}CNNs on biological sequencial data}{8}
+\contentsline {subsection}{\numberline {1.4}LSTMs}{10}
+\contentsline {subsection}{\numberline {1.5}Framework}{11}
+\contentsline {subsubsection}{\numberline {1.5.1}Lasagne}{11}
+\contentsline {subsection}{\numberline {1.6}Open-source}{11}
+\contentsline {section}{\numberline {2}Problem definition}{12}
+\contentsline {subsection}{\numberline {2.1}Local and non-local interactions}{12}
+\contentsline {subsection}{\numberline {2.2}Datasets}{12}
+\contentsline {subsubsection}{\numberline {2.2.1}CullPDB53}{12}
+\contentsline {subsubsection}{\numberline {2.2.2}CB513 \& CB6133}{13}
+\contentsline {subsubsection}{\numberline {2.2.3}CASP 10, 11 \& 12}{13}
+\contentsline {subsubsection}{\numberline {2.2.4}CAMEO}{14}
+\contentsline {subsubsection}{\numberline {2.2.5}JPRED}{14}
+\contentsline {subsubsection}{\numberline {2.2.6}Wang}{14}
+\contentsline {subsubsection}{\numberline {2.2.7}Fang}{15}
+\contentsline {subsubsection}{\numberline {2.2.8}SPIDER3}{15}
+\contentsline {subsection}{\numberline {2.3}Features}{15}
+\contentsline {subsubsection}{\numberline {2.3.1}Beyond one-hot}{17}
+\contentsline {subsection}{\numberline {2.4}PSI-BLAST profiles}{17}
+\contentsline {subsection}{\numberline {2.5}Targets}{19}
+\contentsline {subsubsection}{\numberline {2.5.1}Q3}{19}
+\contentsline {subsubsection}{\numberline {2.5.2}Q8}{19}
+\contentsline {subsection}{\numberline {2.6}Evaluation}{20}
+\contentsline {subsubsection}{\numberline {2.6.1}Accuracy}{20}
+\contentsline {subsubsection}{\numberline {2.6.2}Matthews correlation coefficient}{20}
+\contentsline {subsubsection}{\numberline {2.6.3}Precision-recall}{21}
+\contentsline {subsubsection}{\numberline {2.6.4}Confusion matrix}{21}
+\contentsline {subsubsection}{\numberline {2.6.5}ROC curve}{21}
+\contentsline {subsubsection}{\numberline {2.6.6}PCC: Pearson's correlation coefficient}{22}
+\contentsline {subsubsection}{\numberline {2.6.7}SOV}{22}
+\contentsline {subsubsection}{\numberline {2.6.8}P-value}{23}
+\contentsline {subsection}{\numberline {2.7}Hard targets}{24}
+\contentsline {subsection}{\numberline {2.8}Superfamilies}{25}
+\contentsline {subsection}{\numberline {2.9}Class imbalance}{25}
+\contentsline {subsection}{\numberline {2.10}Data scarcity}{25}
+\contentsline {subsection}{\numberline {2.11}Neff}{25}
+\contentsline {section}{\numberline {3}Architecture}{26}
+\contentsline {subsection}{\numberline {3.1}CNNH\_PSS}{26}
+\contentsline {subsection}{\numberline {3.2}DeepCNF}{26}
+\contentsline {subsection}{\numberline {3.3}DCRNN}{27}
+\contentsline {subsection}{\numberline {3.4}MUFold-SS}{27}
+\contentsline {subsection}{\numberline {3.5}DBLSTM}{29}
+\contentsline {subsection}{\numberline {3.6}Jurtz}{29}
+\contentsline {subsection}{\numberline {3.7}SPIDER3}{30}
+\contentsline {subsection}{\numberline {3.8}Busia}{30}
+\contentsline {subsection}{\numberline {3.9}Window size}{35}
+\contentsline {subsection}{\numberline {3.10}Adjancent labels}{35}
+\contentsline {section}{\numberline {4}Training}{38}
+\contentsline {subsection}{\numberline {4.1}Regularization}{38}
+\contentsline {subsubsection}{\numberline {4.1.1}Dropout}{39}
+\contentsline {subsubsection}{\numberline {4.1.2}Batch Normalization}{39}
+\contentsline {subsection}{\numberline {4.2}Cost function}{39}
+\contentsline {subsection}{\numberline {4.3}Epochs and batch size}{40}
+\contentsline {subsection}{\numberline {4.4}Early stopping}{40}
+\contentsline {subsection}{\numberline {4.5}Weight initialization and norm constraint}{40}
+\contentsline {subsubsection}{\numberline {4.5.1}Weight initialization}{40}
+\contentsline {subsubsection}{\numberline {4.5.2}Weight norm constraint}{40}
+\contentsline {subsection}{\numberline {4.6}Cross-validation}{40}
+\contentsline {subsection}{\numberline {4.7}Gradient optimization and learning rate}{41}
+\contentsline {subsection}{\numberline {4.8}Ensemble}{42}
+\contentsline {subsection}{\numberline {4.9}Hardware}{43}
+\contentsline {subsection}{\numberline {4.10}Multitaks learning}{43}
+\contentsline {section}{\numberline {5}Previous work}{43}
+\contentsline {subsection}{\numberline {5.1}Initial research}{43}
+\contentsline {subsection}{\numberline {5.2}Recently}{44}
+\contentsline {subsection}{\numberline {5.3}Hall of fame}{45}
+\contentsline {section}{\numberline {6}Side problems}{46}
+\contentsline {subsection}{\numberline {6.1}Disorder regions}{46}
+\contentsline {subsection}{\numberline {6.2}Solvent accessibility}{46}
+\contentsline {subsection}{\numberline {6.3}Sub-cellular location}{47}
+\contentsline {subsection}{\numberline {6.4}Peptide MHCII}{48}
+\contentsline {subsection}{\numberline {6.5}Structural alphabet}{49}
+\contentsline {subsection}{\numberline {6.6}Backbone angles}{50}

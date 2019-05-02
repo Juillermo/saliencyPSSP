@@ -1,0 +1,12 @@
+Research and project goal,08-06-2018,29-06-2018
+Research and goal definitions,08-06-2018,22-06-2018
+Project brief and risk planning,22-06-2018,29-06-2018
+Technology development,29-06-2018,20-07-2018
+Investigating technology,29-06-2018,06-07-2018
+Code & test,06-07-2018,13-07-2018
+Run on supercomputer,13-07-2018,20-07-2018
+Experiments & statistical analysis,20-07-2018,03-08-2018
+Analyse results,20-07-2018,27-07-2018
+Plot graphs and visualisations,27-07-2018,03-08-2018
+Dissertation writing,03-08-2018,31-08-2018
+Margin,31-08-2018,06-09-2018

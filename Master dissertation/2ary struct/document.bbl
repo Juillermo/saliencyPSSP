@@ -1,0 +1,93 @@
+\begin{thebibliography}{}
+
+\bibitem[Busia and Jaitly, 2017]{Busia2017}
+Busia, A. and Jaitly, N. (2017).
+\newblock {Next-Step Conditioned Deep Convolutional Neural Networks Improve
+  Protein Secondary Structure Prediction}.
+\newblock {\em arXiv:1702.03865v1}.
+
+\bibitem[Fang et~al., 2017a]{Fang2017}
+Fang, C., Shang, Y., and Xu, D. (2017a).
+\newblock {MUFold-SS: Protein Secondary Structure Prediction Using Deep
+  Inception-Inside-Inception Networks}.
+
+\bibitem[Fang et~al., 2017b]{8371925}
+Fang, C., Shang, Y., and Xu, D. (2017b).
+\newblock A new deep neighbor residual network for protein secondary structure
+  prediction.
+\newblock In {\em 2017 IEEE 29th International Conference on Tools with
+  Artificial Intelligence (ICTAI)}, pages 66--71.
+
+\bibitem[Hattori et~al., 2017]{Hattori2017}
+Hattori, L.~T., Benitez, C. M.~V., and Lopes, H.~S. (2017).
+\newblock {A deep bidirectional long short-term memory approach applied to the
+  protein secondary structure prediction problem}.
+\newblock In {\em 2017 IEEE Latin American Conference on Computational
+  Intelligence (LA-CCI)}, pages 1--6.
+
+\bibitem[Heffernan et~al., 2017]{Heffernan2017}
+Heffernan, R., Yang, Y., Paliwal, K., and Zhou, Y. (2017).
+\newblock {Capturing non-local interactions by long short-term memory
+  bidirectional recurrent neural networks for improving prediction of protein
+  secondary structure, backbone angles, contact numbers and solvent
+  accessibility}.
+\newblock {\em Bioinformatics}, 33(18):2842--2849.
+
+\bibitem[Johansen et~al., 2017]{Johansen2017}
+Johansen, A.~R., S{\o}nderby, C.~K., S{\o}nderby, S.~K., and Winther, O.
+  (2017).
+\newblock {Deep Recurrent Conditional Random Field Network for Protein
+  Secondary Prediction}.
+\newblock In {\em Proceedings of the 8th ACM International Conference on
+  Bioinformatics, Computational Biology,and Health Informatics - ACM-BCB '17}.
+
+\bibitem[Jurtz et~al., 2017]{Jurtz2017}
+Jurtz, V.~I., Johansen, A.~R., Nielsen, M., {Almagro Armenteros}, J.~J.,
+  Nielsen, H., S{\o}nderby, C.~K., Winther, O., and S{\o}nderby, S.~K. (2017).
+\newblock {An introduction to deep learning on biological sequence data:
+  Examples and solutions}.
+\newblock {\em Bioinformatics}, 33(22):3685--3690.
+
+\bibitem[Li and Yu, 2016]{Li2016}
+Li, Z. and Yu, Y. (2016).
+\newblock {Protein Secondary Structure Prediction Using Cascaded Convolutional
+  and Recurrent Neural Networks}.
+\newblock In {\em Proceedings of the Twenty-Fifth International Joint
+  Conference on Artificial Intelligence}.
+
+\bibitem[Lin et~al., 2016]{Lin2016}
+Lin, Z., Lanchantin, J., and Qi, Y. (2016).
+\newblock {MUST-CNN: A Multilayer Shift-and-Stitch Deep Convolutional
+  Architecture for Sequence-based Protein Structure Prediction}.
+
+\bibitem[Magnan and Baldi, 2014]{Magnan2014}
+Magnan, C.~N. and Baldi, P. (2014).
+\newblock {SSpro/ACCpro 5: Almost perfect prediction of protein secondary
+  structure and relative solvent accessibility using profiles, machine learning
+  and structural similarity}.
+\newblock {\em Bioinformatics}.
+
+\bibitem[S{\o}nderby and Winther, 2014]{Sønderby2014}
+S{\o}nderby, S.~K. and Winther, O. (2014).
+\newblock {Protein Secondary Structure Prediction with Long Short Term Memory
+  Networks}.
+\newblock {\em arXiv:1412.7828}.
+
+\bibitem[Wang et~al., 2016]{Wang2016}
+Wang, S., Peng, J., Ma, J., and Xu, J. (2016).
+\newblock {Protein Secondary Structure Prediction Using Deep Convolutional
+  Neural Fields}.
+\newblock {\em Scientific Reports}, 6.
+
+\bibitem[Zhou and Troyanskaya, 2014]{Zhou2014}
+Zhou, J. and Troyanskaya, O.~G. (2014).
+\newblock {Deep Supervised and Convolutional Generative Stochastic Network for
+  Protein Secondary Structure Prediction}.
+
+\bibitem[Zhou et~al., 2018]{Zhou2018}
+Zhou, J., Wang, H., Zhao, Z., Xu, R., and Lu, Q. (2018).
+\newblock {CNNH{\_}PSS: Protein 8-class secondary structure prediction by
+  convolutional neural network with highway}.
+\newblock {\em BMC Bioinformatics}.
+
+\end{thebibliography}
