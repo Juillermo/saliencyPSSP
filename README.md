@@ -1,38 +1,15 @@
-This repository contains my code for my dissertation for the MSc in Artificial Intelligence in the University of Southampton:
->Applying Saliency Map Analysis to CNNs on Protein Secondary Structure Prediction
+This repository contains the code for the paper:
+>[Saliency Maps on CNNs for Protein Secondary Structure Prediction](https://ieeexplore.ieee.org/document/8683603)
  
-The network has been built and trained using the framework developed by [Vanessa Jurtz's](https://github.com/vanessajurtz) [lasagne4bio repository](https://github.com/vanessajurtz/lasagne4bio), which can be found in the *secondary_proteins_prediction* folder. I have mainly added new models to it (*pureConv.py* and *pssmConv.py* in *secondary_proteins_prediction/configurations*).
+The convolutional neural network (CNN) for protein secondary structure prediction (PSSP) has been built and trained using the framework [lasagne4bio](https://github.com/vanessajurtz/lasagne4bio) developed by [Vanessa Jurtz](https://github.com/vanessajurtz), and can be found in the *secondary_proteins_prediction* folder of this repository. My only additions to this folder dedicated to the training of CNNs are the CNN architectures *pureConv.py* and *pssmConv.py*, which are located at *secondary_proteins_prediction/configurations*.
 
-The saliency maps are built and aggregated in the folder *test_saliency*.
+The code related to the creation of the saliency maps is located at the folder *test_saliency*.
+
+The protein dataset can be downloaded from [here](https://www.princeton.edu/%7Ejzthree/datasets/ICML2014/).
 
 ---------------------
 
-# lasagne4bio
-
-This repository provides code examples to train neural networks for 3 biological sequence analysis problems:
-
-- subcellular localization
-- secondary structure
-- peptide binding to MHCII molecules
-
-Please find detailed instructions in the respective directories.
-
-## Data sets
-
-All data sets are either included in the repositroy or links are provided to download them.
-
-## Jupyter notebooks
-
-In the directory `subcellular_localization` there are four tutorials on how to train four different types of neural networks for protein subcellular localization prediction:
-
- - Feedforward neural network
- - Convolutional neural network
- - Convolutional LSTM neural network
- - Convolutional LSTM neural network with attention mechanism
-
-The dataset used for this tutorial is a reduced version of the original one, only with proteins shorter than 400 amino acids. This is done to save computational time, as here the main focus is to show how the network is built.
-
-There is an additional tutorial on how to load the trained models and a comparison of their performances.
+A relevant fragment from the README information of the *lasagne4bio* framework:
 
 ## Dependencies
 
@@ -63,20 +40,3 @@ The libraries used in this code are:
 - sys
 - theano
 - time
-
-
-## Citation
-
-Please cite the following when using our code as template:
-...to be added...
-
-## Contributors
-
-Vanessa Isabell Jurtz, DTU Bioinformatics<br/>
-Alexander Rosenberg Johansen, DTU Compute<br/>
-Morten Nielsen, DTU Bioinformatics<br/>
-Jose Juan Almagro Armenteros, DTU Bioinformatics<br/>
-Henrik Nielsen, DTU Bioinformatics<br/>
-Casper Kaae Sønderby, University of Copenhagen<br/>
-Ole Winther, DTU Compute<br/>
-Søren Kaae Sønderby, University of Copenhagen<br/>
