@@ -1,7 +1,7 @@
 This repository contains the code for the paper:
 >[Saliency Maps on CNNs for Protein Secondary Structure Prediction](https://ieeexplore.ieee.org/document/8683603)
  
-The convolutional neural network (CNN) for protein secondary structure prediction (PSSP) has been built and trained using the framework [lasagne4bio](https://github.com/vanessajurtz/lasagne4bio) developed by [Vanessa Jurtz](https://github.com/vanessajurtz), and can be found in the *secondary_proteins_prediction* folder of this repository. My only additions to this folder dedicated to the training of CNNs are the CNN architectures *pureConv.py* and *pssmConv.py*, which are located at *secondary_proteins_prediction/configurations*.
+The convolutional neural network (CNN) for protein secondary structure prediction (PSSP) has been built and trained using the framework [lasagne4bio](https://github.com/vanessajurtz/lasagne4bio) developed by [Vanessa Jurtz](https://github.com/vanessajurtz), and can be found in the *secondary_proteins_prediction* folder of this repository. My only additions to this folder regarding the training of CNNs are the CNN architectures *pureConv.py* and *pssmConv.py*, which are located at *secondary_proteins_prediction/configurations*.
 
 The code related to the creation of the saliency maps is located at the folder *test_saliency*.
 
