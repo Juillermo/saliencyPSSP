@@ -18,7 +18,7 @@ The protein dataset can be downloaded from [here](https://www.princeton.edu/%7Ej
 
 ---------------------
 
-#Relevant fragments from the README information of the *lasagne4bio* framework:
+# Relevant fragments from the README information of the *lasagne4bio* framework:
 ## Reproducing results
 
 ### Installation
