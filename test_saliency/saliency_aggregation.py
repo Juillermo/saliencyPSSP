@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from sklearn.cluster import AgglomerativeClustering, DBSCAN
 
-from reparer import SALIENCIES_SCRATCH_PATH, PROCESSED_SCRATCH_PATH
+from reparer import SALIENCIES_PATH, PROCESSED_PATH
 from utils import Jurtz_Data, ssConvertString, WINDOW
 
 SHEER_PATH = "sheer_data/"
@@ -14,7 +14,7 @@ SHEER_PATH = "sheer_data/"
 
 def calculate_aa_pssm(args):
     origin = os.getcwd()
-    os.chdir(PROCESSED_SCRATCH_PATH)
+    os.chdir(PROCESSED_PATH)
 
     fail_seqs = 0
     points = []
@@ -42,7 +42,7 @@ def calculate_aa_pssm(args):
 
 def calculate_sheer(args):
     origin = os.getcwd()
-    os.chdir(SALIENCIES_SCRATCH_PATH)
+    os.chdir(SALIENCIES_PATH)
 
     dater = Jurtz_Data()
 
@@ -105,7 +105,7 @@ def calculate_sheer_abs(args):
         hits = np.zeros(len(ssConvertString))
 
     origin = os.getcwd()
-    os.chdir(PROCESSED_SCRATCH_PATH)
+    os.chdir(PROCESSED_PATH)
 
     fail_seqs = 0
     total = np.zeros((8, 2 * WINDOW + 1, 42))  # classes, WINDOW-size, aminoacids+pssm
@@ -141,7 +141,7 @@ def calculate_sheer_abs(args):
 
 def calculate_points(args):
     origin = os.getcwd()
-    os.chdir(PROCESSED_SCRATCH_PATH)
+    os.chdir(PROCESSED_PATH)
 
     fail_seqs = 0
     points = []

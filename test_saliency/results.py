@@ -9,7 +9,7 @@ from utils import WINDOW, ssConvertString, pssmString_jurtz, Jurtz_Data, toSeqLo
 
 # from saliency_aggregation import SHEER_PATH
 
-FIGURES_PATH = "../thesis/Figures/"
+FIGURES_PATH = "Figures/"
 SEQLOGO_PATH = "SeqLogo_data/"
 SHEER_PATH = "sheer_data/"
 

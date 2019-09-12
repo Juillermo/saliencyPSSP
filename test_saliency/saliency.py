@@ -10,7 +10,7 @@ import lasagne as nn
 from utils import ssConvertString, Jurtz_Data
 
 BATCH_SIZE = 64
-PATH_SALIENCIES = "/scratch/grm1g17/saliencies/"
+PATH_SALIENCIES = "saliencies/"
 
 
 def compute_complex_saliency(X_batch, mask_batch, batch_seq, inference, sym_x, batch, label):
@@ -44,9 +44,8 @@ def compute_complex_saliency(X_batch, mask_batch, batch_seq, inference, sym_x, b
         grads = np.concatenate((grads1, grads2), axis=0)
 
     assert grads.shape[0] == grads.shape[
-        1], "You see, there is a problem over here. {:d} is not equal to {:d} for sequence with length {:d}, and I don't know why this is happening. I did concatenate grad1 with shape {:s} with grads2 with shape {:s}, but the fact is that I got grads with shape {:s}. Does this make any sense?".format(
-        grads.shape[0],
-        grads.shape[1], seq_len, str(grads1.shape), str(grads2.shape), str(grads.shape))
+        1], "{:d} != {:d} for sequence with length {:d}. Concatenation of grad1 with shape {:s} and grads2 with shape {:s}, gives grads with shape {:s}.".format(
+        grads.shape[0], grads.shape[1], seq_len, str(grads1.shape), str(grads2.shape), str(grads.shape))
     fname = "saliencies{:4d}{:s}.pkl".format(BATCH_SIZE * batch + batch_seq, label)
     with open(PATH_SALIENCIES + fname, 'wb') as f:
         pickle.dump(grads, f, protocol=2)
@@ -60,7 +59,7 @@ def compute_single_saliency(X_batch, sym_x, sym_y):
     return np.array(grads)
 
 
-def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
+def compute_tensor(X_batch, mask_batch, batch, label, ini=0):
     """
     Computes the saliency maps of a batch for a certain label, starting at batch index ini.
 
@@ -89,7 +88,7 @@ def compute_tensor_jurtz(X_batch, mask_batch, batch, label, ini=0):
         print(batch_seq)
 
 
-def main_saliencies_jurtz():
+def main_saliencies():
     parser = argparse.ArgumentParser(description='Compute saliencies (jurtz)')
     parser.add_argument('--label', type=str, default='H', metavar='label',
                         help='class to which gradients are computed (default H)')
@@ -102,8 +101,8 @@ def main_saliencies_jurtz():
         dater = Jurtz_Data()
 
         X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
-        compute_tensor_jurtz(X_batch, mask_batch, args.batch, args.label)
+        compute_tensor(X_batch, mask_batch, args.batch, args.label)
 
 
 if __name__ == "__main__":
-    main_saliencies_jurtz()
+    main_saliencies()

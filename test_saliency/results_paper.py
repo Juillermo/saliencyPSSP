@@ -19,7 +19,7 @@ matplotlib.rcParams['text.usetex'] = True
 #rc('font',family="Times New Roman")
 #rc('font',**{'family':'sans-serif', 'sans-serif':['cmtt10']})
 
-FIGURES_PATH = "../paper/"
+FIGURES_PATH = "Figures/"
 SEQLOGO_PATH = "SeqLogo_data/"
 SHEER_PATH = "sheer_data/"
 

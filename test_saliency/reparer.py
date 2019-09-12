@@ -12,16 +12,16 @@ import lasagne as nn
 from saliency import BATCH_SIZE, compute_complex_saliency
 from utils import ssConvertString, Jurtz_Data, WINDOW
 
-SCRATCH_PATH = '/scratch/grm1g17/'
+PATH = ''
 
-SALIENCIES_SCRATCH_PATH = SCRATCH_PATH + 'saliencies/'
-PROCESSED_SCRATCH_PATH = SCRATCH_PATH + 'processed/'
+SALIENCIES_PATH = PATH + 'saliencies/'
+PROCESSED_PATH = PATH + 'processed/'
 NUM_SEQS = 6016
 
 
 def probe(folder='saliencies'):
     origin = os.getcwd()
-    os.chdir(SALIENCIES_SCRATCH_PATH)
+    os.chdir(SALIENCIES_PATH)
     files = glob.glob(folder + '*')
 
     exists = np.zeros((NUM_SEQS, 8))
@@ -43,7 +43,7 @@ def scrap():
     fail_seqs = 0
     deleted = 0
     origin = os.getcwd()
-    os.chdir(SALIENCIES_SCRATCH_PATH)
+    os.chdir(SALIENCIES_PATH)
     for seq in range(len(exists)):
         for label in ssConvertString:
             if exists[seq, ssConvertString.find(label)]:
@@ -81,7 +81,7 @@ def process():
     fail_seqs = 0
     processed = 0
     origin = os.getcwd()
-    os.chdir(SALIENCIES_SCRATCH_PATH)
+    os.chdir(SALIENCIES_PATH)
     for seq in range(len(exists_sal)):
         X_seq, mask_seq = dater.get_sequence(seq)
         end_seq = int(sum(mask_seq))
@@ -133,7 +133,7 @@ def process():
                 print(str(seq) + " Files not found")
 
         fname = "saliencies{:4d}.npy".format(seq)
-        np.save(PROCESSED_SCRATCH_PATH + fname, processed_seq)
+        np.save(PROCESSED_PATH + fname, processed_seq)
 
     os.chdir(origin)
     print(str(processed) + " saliencies processed")
@@ -191,7 +191,7 @@ def assert_all():
 
 
 def main():
-    parser = argparse.ArgumentParser(description='For seen saliency files and repairing them')
+    parser = argparse.ArgumentParser(description='For seeing saliency files and repairing them')
     parser.add_argument('--func', type=str, default='assert', metavar='func',
                         help='which function of the file to use (assert, repair, scrap, process)')
     parser.add_argument('--dir', type=str, default='f', metavar='dir',

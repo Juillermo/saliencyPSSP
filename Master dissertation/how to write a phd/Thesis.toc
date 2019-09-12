@@ -1,7 +1,0 @@
-\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.2}
-\contentsline {chapter}{\numberline {2}Theory}{5}{chapter.10}
-\contentsline {chapter}{\numberline {3}Methods}{7}{chapter.13}
-\contentsline {chapter}{\numberline {4}Results}{9}{chapter.16}
-\contentsline {chapter}{\numberline {5}Discussion}{11}{chapter.19}
-\contentsline {chapter}{\numberline {6}Conclusions}{13}{chapter.22}
-\contentsline {chapter}{\numberline {A}Stuff}{15}{appendix.25}
