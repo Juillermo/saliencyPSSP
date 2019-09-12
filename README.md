@@ -1,38 +1,43 @@
-This repository contains my code for my dissertation for the MSc in Artificial Intelligence in the University of Southampton:
->Applying Saliency Map Analysis to CNNs on Protein Secondary Structure Prediction
+This repository contains the code for the paper:
+>[Saliency Maps on CNNs for Protein Secondary Structure Prediction](https://ieeexplore.ieee.org/document/8683603)
  
-The network has been built and trained using the framework developed by [Vanessa Jurtz's](https://github.com/vanessajurtz) [lasagne4bio repository](https://github.com/vanessajurtz/lasagne4bio), which can be found in the *secondary_proteins_prediction* folder. I have mainly added new models to it (*pureConv.py* and *pssmConv.py* in *secondary_proteins_prediction/configurations*).
+The convolutional neural network (CNN) for protein secondary structure prediction (PSSP) has been built and trained using the framework [lasagne4bio](https://github.com/vanessajurtz/lasagne4bio) developed by [Vanessa Jurtz](https://github.com/vanessajurtz), and can be found in the *secondary_proteins_prediction* folder of this repository. My only additions to this folder regarding the training of CNNs are the CNN architectures *pureConv.py*, *HpureConv.py* and *pssmConv.py*, which are located at *secondary_proteins_prediction/configurations*. These architecures were employed for the experiments in the paper. The last two are modified architectures that can be trained and evaluated with the files *Hpuretrain.py*, *pssmtrain.py* and *Heval.py*, *pssmpredict.py*, respectively, and they correspond to architectures predicting H values from one side of a position only, or with only pssm input, respectively.
 
-The saliency maps are built and aggregated in the folder *test_saliency*.
+The code related to the creation of the saliency maps is located at the folder *test_saliency*. Some preliminary exploration of the code can be found at the jupyter notebook *"Exploring Saliencies.ipynb"* on the root directory. A short description of each file is included next:
+- *data_managing.py*: processes data to keep it in handier formats
+- *pureConv.py*: file containing the CNN architecture employed in the paper
+- *saliency.py*: functions to produce the saliency maps (this is done in batches)
+- *saliency_aggregation.py*: functions to aggregate the saliency maps along different dimensions
+- *reparer.py*: scans saliency maps already generated or repairs the ones that had problems
+- *results.py*: generates figures, statistics, and processed data
+- *results_paper.py*: same as *results.py*, but for the figures included in the paper
+- *utils.py*: various basic utility functions and data
+
+
+The protein dataset can be downloaded from [here](https://www.princeton.edu/%7Ejzthree/datasets/ICML2014/).
 
 ---------------------
 
-# lasagne4bio
+# Relevant fragments from the README information of the *lasagne4bio* framework:
+## Reproducing results
 
-This repository provides code examples to train neural networks for 3 biological sequence analysis problems:
+### Installation
 
-- subcellular localization
-- secondary structure
-- peptide binding to MHCII molecules
+Please refer to [lasagne's](https://github.com/Lasagne/Lasagne/wiki/From-Zero-to-Lasagne-on-Ubuntu-14.04) for installation and setup of GPU environment on an Ubuntu 14.04 machine.
 
-Please find detailed instructions in the respective directories.
+### Training models
 
-## Data sets
+Train model
+>> python train.py T31
 
-All data sets are either included in the repositroy or links are provided to download them.
+After which use debug\_metadata.py to find the best training epochs, found by validation performance
+>> debug_metadata.py
 
-## Jupyter notebooks
+Use predict.py to gather predictions
+>> predict.py
 
-In the directory `subcellular_localization` there are four tutorials on how to train four different types of neural networks for protein subcellular localization prediction:
-
- - Feedforward neural network
- - Convolutional neural network
- - Convolutional LSTM neural network
- - Convolutional LSTM neural network with attention mechanism
-
-The dataset used for this tutorial is a reduced version of the original one, only with proteins shorter than 400 amino acids. This is done to save computational time, as here the main focus is to show how the network is built.
-
-There is an additional tutorial on how to load the trained models and a comparison of their performances.
+Use eval\_avrg.py to evaluate the model and combining several predictions.
+>> eval_avrg.py
 
 ## Dependencies
 
@@ -63,20 +68,3 @@ The libraries used in this code are:
 - sys
 - theano
 - time
-
-
-## Citation
-
-Please cite the following when using our code as template:
-...to be added...
-
-## Contributors
-
-Vanessa Isabell Jurtz, DTU Bioinformatics<br/>
-Alexander Rosenberg Johansen, DTU Compute<br/>
-Morten Nielsen, DTU Bioinformatics<br/>
-Jose Juan Almagro Armenteros, DTU Bioinformatics<br/>
-Henrik Nielsen, DTU Bioinformatics<br/>
-Casper Kaae Sønderby, University of Copenhagen<br/>
-Ole Winther, DTU Compute<br/>
-Søren Kaae Sønderby, University of Copenhagen<br/>
