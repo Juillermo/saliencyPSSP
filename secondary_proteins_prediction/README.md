@@ -1,5 +1,7 @@
 # RNNProteins
 
+(All of this *README.md* file is from the original project [lasagne4bio](https://github.com/vanessajurtz/lasagne4bio), except for additions of my own included in the **Training models** section)
+
 World record on cb513 dataset using cullpdb+profile\_6133\_filtered (68.7% Q8 with best single performing model, 70.2% Q8 with model ensemble), available at:
 http://www.princeton.edu/~jzthree/datasets/ICML2014/
 
@@ -15,17 +17,25 @@ Please refer to [lasagne's](https://github.com/Lasagne/Lasagne/wiki/From-Zero-to
 
 ### Training models
 
-Train model
->> python train.py T31
+*Note that diagrams of the architecture of `pureConv.py` (in `jpeg` and `dia` formats) can be found in the `secondary_proteins_prediction/configurations` folder.
 
-After which use debug\_metadata.py to find the best training epochs, found by validation performance
->> debug_metadata.py
+1. Train model
+    > python train.py pureConv
 
-Use predict.py to gather predictions
->> predict.py
+    (or alternatively `Hpuretrain.py HpureConv` / `pssmtrain.py pssmConv`)
 
-Use eval\_avrg.py to evaluate the model and combining several predictions.
->> eval_avrg.py
+2. After which use debug_metadata.py to find the best training epochs, found by validation performance
+    > python debug_metadata.py <]topX> <metadata_path>
+
+3. Use predict.py to gather predictions
+    > python predict.py <metadata_path> [subset=test]
+
+    (or `predict_side.py` / `pssmpredict.py`)
+
+4. Use eval_avrg.py to evaluate the model and combining several predictions.
+    > python eval_avrg.py <predictions_path> [subset=test]
+
+    (or `eval_avrg_side.py` for *HpureConv* models)
 
 ## Best network elaborated
 

@@ -59,17 +59,18 @@ def compute_single_saliency(X_batch, sym_x, sym_y):
     return np.array(grads)
 
 
-def compute_tensor(X_batch, mask_batch, batch, label, ini=0):
+def compute_tensor(X_batch, mask_batch, batch, label, ini=0, metadata_path="dump_pureConv-20180804-010835-47.pkl"):
     """
     Computes the saliency maps of a batch for a certain label, starting at batch index ini.
 
-    Inputs:
-        X_batch: batch of length 64, with its corresponding mask batch
-        batch: batch number (absolute, for labeling)
-        label: one of the 8 classes (see ssConvertString)
-        ini: which sequence of the batch to start from """
-
-    metadata_path = "dump_pureConv-20180804-010835-47.pkl"
+    :param X_batch: batch of length 64
+    :param mask_batch: mask batch corresponding to X_batch
+    :param batch: batch number (absolute, for labeling)
+    :param label: one of the 8 classes (see ssConvertString)
+    :param ini: which sequence of the batch to start from
+    :param metadata_path: model to use for computing saliencies
+    :return:
+    """
     metadata = np.load(metadata_path)
     config_name = metadata['config_name']
     config = importlib.import_module("%s" % config_name)
@@ -77,8 +78,7 @@ def compute_tensor(X_batch, mask_batch, batch, label, ini=0):
     l_in, l_out = config.build_model()
 
     sym_x = T.tensor3()
-    inference = nn.layers.get_output(
-        l_out, sym_x, deterministic=True)
+    inference = nn.layers.get_output(l_out, sym_x, deterministic=True)
     nn.layers.set_all_param_values(l_out, metadata['param_values'])
 
     print("Computing saliencies")
@@ -90,10 +90,11 @@ def compute_tensor(X_batch, mask_batch, batch, label, ini=0):
 
 def main_saliencies():
     parser = argparse.ArgumentParser(description='Compute saliencies (jurtz)')
+    parser.add_argument('--model', type=str, metavar='model', help="Trained model to compute saliencies from. They are located at ../secondary_proteins_prediction/metadata, and should have a format similar to 'dump_pureConv-20180804-010835-47.pkl'")
     parser.add_argument('--label', type=str, default='H', metavar='label',
                         help='class to which gradients are computed (default H)')
     parser.add_argument('--batch', type=int, default=0, metavar='batch',
-                        help='batch of which the gradient is calculated (default 0)')
+                        help='batch of data at which the gradient is calculated (default 0). Each batch contains 64 sequences.')
     args = parser.parse_args()
 
     if args.batch is not None:
@@ -101,7 +102,7 @@ def main_saliencies():
         dater = Jurtz_Data()
 
         X_batch, mask_batch = dater.get_batch_from_seq(first_seq)
-        compute_tensor(X_batch, mask_batch, args.batch, args.label)
+        compute_tensor(X_batch, mask_batch, args.batch, args.label, metadata_path=args.model)
 
 
 if __name__ == "__main__":

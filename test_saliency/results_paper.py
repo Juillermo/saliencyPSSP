@@ -521,16 +521,15 @@ def plot_sheer_agg_aa():
     fig.savefig(FIGURES_PATH + "pssm_influence.eps", format='eps')
     plt.show()
 
-#plot_outliers()
-#plot_confusion()
-#p, a = plot_aa_pssm()
-
-# plot_sliding_saliencies()
-# plot_single_sequence()
-
-#plot_sheer_cabestro("sheerabsequal6016.npy")
-plot_sheer_class_aa("sheerabsequal6016.npy")
 
 if __name__ == "__main__":
-    # main()
-    ""
+    "Functions for plots from the paper: "
+    plot_outliers()
+    plot_confusion()
+    p, a = plot_aa_pssm()
+
+    plot_sliding_saliencies()
+    plot_single_sequence()
+
+    plot_sheer_cabestro("sheerabsequal6016.npy")
+    plot_sheer_class_aa("sheerabsequal6016.npy")
