@@ -16,7 +16,7 @@ The code related to the creation of the saliency maps is located at the folder *
 
 The protein dataset can be downloaded from [here](https://www.princeton.edu/%7Ejzthree/datasets/ICML2014/).
 
-###Training models and evaluating them
+### Training models and evaluating them
 
 In the *secondary_proteins_prediction/* folder:
 
@@ -38,7 +38,7 @@ In the *secondary_proteins_prediction/* folder:
 
     (or `eval_avrg_side.py` for *HpureConv* models)
 
-###Computing saliencies from a trained model
+### Computing saliencies from a trained model
 
 1. Compute saliencies via `saliency.py`*.
 
